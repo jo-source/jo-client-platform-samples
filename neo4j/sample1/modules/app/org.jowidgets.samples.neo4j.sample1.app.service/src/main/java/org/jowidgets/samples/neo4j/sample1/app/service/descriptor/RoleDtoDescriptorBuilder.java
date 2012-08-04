@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2011, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,34 +26,47 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.application;
+package org.jowidgets.samples.neo4j.sample1.app.service.descriptor;
 
-import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
-import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
-import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
-import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
+import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
+import org.jowidgets.cap.common.tools.bean.BeanDtoDescriptorBuilder;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRole;
 
-public final class Sample1ApplicationFactory {
+public final class RoleDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 
-	private Sample1ApplicationFactory() {}
+	public RoleDtoDescriptorBuilder() {
+		super(IRole.class);
 
-	public static IWorkbenchApplicationModel create() {
-		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
+		setLabelSingular("Role");
+		setLabelPlural("Roles");
+		setRenderingPattern("$" + IRole.NAME_PROPERTY + "$");
 
-		builder.setId(Sample1ApplicationFactory.class.getName());
-		builder.setLabel("Sample1");
-		createComponentTree(builder);
+		IBeanPropertyBluePrint propertyBp;
 
-		return builder.build();
+		propertyBp = addProperty(IBean.ID_PROPERTY);
+		propertyBp.setLabel("Id");
+		propertyBp.setDescription("The roles technical identifier");
+		propertyBp.setVisible(false);
+
+		propertyBp = addProperty(IRole.NAME_PROPERTY);
+		propertyBp.setLabel("Name");
+		propertyBp.setDescription("The roles name");
+		propertyBp.setMandatory(true);
+
+		propertyBp = addProperty(IRole.DESCRIPTION_PROPERTY);
+		propertyBp.setLabel("Description");
+		propertyBp.setDescription("The roles description");
+
+		propertyBp = addProperty(IRole.IN_USE_PROPERTY);
+		propertyBp.setLabel("Used");
+		propertyBp.setDescription("Determines if the role is used");
+		propertyBp.setSortable(false);
+		propertyBp.setFilterable(false);
+
+		propertyBp = addProperty(IBean.VERSION_PROPERTY);
+		propertyBp.setLabel("Version");
+		propertyBp.setDescription("The version of the dataset");
+		propertyBp.setVisible(false);
 	}
-
-	private static void createComponentTree(final IWorkbenchApplicationModelBuilder model) {
-		final IEntityComponentNodesFactory nodesFactory = CapWorkbenchToolkit.entityComponentNodesFactory();
-		model.addChild(nodesFactory.createNode(EntityIds.PERSON));
-		model.addChild(nodesFactory.createNode(EntityIds.ROLE));
-		model.addChild(nodesFactory.createNode(EntityIds.AUTHORIZATION));
-	}
-
 }

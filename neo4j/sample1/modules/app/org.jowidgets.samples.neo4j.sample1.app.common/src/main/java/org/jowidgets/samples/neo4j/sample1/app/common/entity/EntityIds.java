@@ -30,6 +30,8 @@ package org.jowidgets.samples.neo4j.sample1.app.common.entity;
 
 public enum EntityIds {
 
-	PERSON
+	PERSON,
+	ROLE,
+	AUTHORIZATION
 
 }

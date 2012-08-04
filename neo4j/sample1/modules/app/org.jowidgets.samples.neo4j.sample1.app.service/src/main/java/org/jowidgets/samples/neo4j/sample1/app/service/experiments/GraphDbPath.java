@@ -26,34 +26,12 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.application;
+package org.jowidgets.samples.neo4j.sample1.app.service.experiments;
 
-import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
-import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
-import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
-import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
+public final class GraphDbPath {
 
-public final class Sample1ApplicationFactory {
+	public static final String PATH = "Neo4jDB";
 
-	private Sample1ApplicationFactory() {}
-
-	public static IWorkbenchApplicationModel create() {
-		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
-
-		builder.setId(Sample1ApplicationFactory.class.getName());
-		builder.setLabel("Sample1");
-		createComponentTree(builder);
-
-		return builder.build();
-	}
-
-	private static void createComponentTree(final IWorkbenchApplicationModelBuilder model) {
-		final IEntityComponentNodesFactory nodesFactory = CapWorkbenchToolkit.entityComponentNodesFactory();
-		model.addChild(nodesFactory.createNode(EntityIds.PERSON));
-		model.addChild(nodesFactory.createNode(EntityIds.ROLE));
-		model.addChild(nodesFactory.createNode(EntityIds.AUTHORIZATION));
-	}
+	private GraphDbPath() {}
 
 }

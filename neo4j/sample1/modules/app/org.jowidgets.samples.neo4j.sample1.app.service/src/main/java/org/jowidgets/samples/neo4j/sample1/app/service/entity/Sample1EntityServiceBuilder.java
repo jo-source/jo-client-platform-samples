@@ -31,9 +31,13 @@ package org.jowidgets.samples.neo4j.sample1.app.service.entity;
 import org.jowidgets.cap.service.api.entity.IBeanEntityBluePrint;
 import org.jowidgets.cap.service.neo4j.api.Neo4JServiceToolkit;
 import org.jowidgets.cap.service.tools.entity.BeanEntityServiceBuilderWrapper;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IAuthorization;
 import org.jowidgets.samples.neo4j.sample1.app.common.bean.IPerson;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRole;
 import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
+import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.AuthorizationDtoDescriptorBuilder;
 import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.PersonDtoDescriptorBuilder;
+import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.RoleDtoDescriptorBuilder;
 import org.jowidgets.service.api.IServiceRegistry;
 
 public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderWrapper {
@@ -42,8 +46,16 @@ public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderW
 		super(Neo4JServiceToolkit.serviceFactory(), registry);
 
 		//IPerson
-		final IBeanEntityBluePrint entityBp = addEntity().setEntityId(EntityIds.PERSON).setBeanType(IPerson.class);
+		IBeanEntityBluePrint entityBp = addEntity().setEntityId(EntityIds.PERSON).setBeanType(IPerson.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
+
+		//IRole
+		entityBp = addEntity().setEntityId(EntityIds.ROLE).setBeanType(IRole.class);
+		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
+
+		//IAuthorization
+		entityBp = addEntity().setEntityId(EntityIds.AUTHORIZATION).setBeanType(IAuthorization.class);
+		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
 	}
 
 }

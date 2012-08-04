@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2011, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,35 +25,43 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.neo4j.sample1.app.common.bean;
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.application;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
-import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
-import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
-import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public final class Sample1ApplicationFactory {
+import org.jowidgets.cap.common.api.bean.IBean;
 
-	private Sample1ApplicationFactory() {}
+public interface IRole extends IBean {
 
-	public static IWorkbenchApplicationModel create() {
-		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
+	String NAME_PROPERTY = "name";
+	String DESCRIPTION_PROPERTY = "description";
+	String IN_USE_PROPERTY = "inUse";
 
-		builder.setId(Sample1ApplicationFactory.class.getName());
-		builder.setLabel("Sample1");
-		createComponentTree(builder);
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(NAME_PROPERTY);
+			add(DESCRIPTION_PROPERTY);
+			add(IN_USE_PROPERTY);
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
+		}
+	};
 
-		return builder.build();
-	}
+	@NotNull
+	@Size(min = 2, max = 50)
+	String getName();
 
-	private static void createComponentTree(final IWorkbenchApplicationModelBuilder model) {
-		final IEntityComponentNodesFactory nodesFactory = CapWorkbenchToolkit.entityComponentNodesFactory();
-		model.addChild(nodesFactory.createNode(EntityIds.PERSON));
-		model.addChild(nodesFactory.createNode(EntityIds.ROLE));
-		model.addChild(nodesFactory.createNode(EntityIds.AUTHORIZATION));
-	}
+	void setName(String name);
+
+	String getDescription();
+
+	void setDescription(String name);
+
+	boolean getInUse();
 
 }
