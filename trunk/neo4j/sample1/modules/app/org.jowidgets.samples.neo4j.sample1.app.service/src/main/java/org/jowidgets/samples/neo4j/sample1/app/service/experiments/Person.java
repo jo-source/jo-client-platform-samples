@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2011, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,35 +25,16 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.neo4j.sample1.app.service.experiments;
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.application;
+public final class Person {
 
-import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
-import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
-import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
-import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
+	public static final String ID = "id";
+	public static final String LOGIN_NAME_PROPERTY = "loginName";
+	public static final String NAME_PROPERTY = "name";
+	public static final String ACTIVE_PROPERTY = "active";
+	public static final String CREATION_DATE_PROPERTY = "creationDate";
 
-public final class Sample1ApplicationFactory {
-
-	private Sample1ApplicationFactory() {}
-
-	public static IWorkbenchApplicationModel create() {
-		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
-
-		builder.setId(Sample1ApplicationFactory.class.getName());
-		builder.setLabel("Sample1");
-		createComponentTree(builder);
-
-		return builder.build();
-	}
-
-	private static void createComponentTree(final IWorkbenchApplicationModelBuilder model) {
-		final IEntityComponentNodesFactory nodesFactory = CapWorkbenchToolkit.entityComponentNodesFactory();
-		model.addChild(nodesFactory.createNode(EntityIds.PERSON));
-		model.addChild(nodesFactory.createNode(EntityIds.ROLE));
-		model.addChild(nodesFactory.createNode(EntityIds.AUTHORIZATION));
-	}
+	private Person() {}
 
 }
