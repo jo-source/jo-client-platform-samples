@@ -26,34 +26,32 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.workbench;
+package org.jowidgets.samples.neo4j.sample1.app.ui.application;
 
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.neo4j.sample1.app.ui.application.Sample1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchContext;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchPartFactory;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
+import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
+import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
+import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
+import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
+import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
 
-public class Sample1Workbench implements IWorkbenchFactory {
+public final class Sample1ApplicationFactory {
 
-	@Override
-	public IWorkbench create() {
+	private Sample1ApplicationFactory() {}
 
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
+	public static IWorkbenchApplicationModel create() {
+		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
 
+		builder.setId(Sample1ApplicationFactory.class.getName());
 		builder.setLabel("Sample1");
+		createComponentTree(builder);
 
-		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
-			@Override
-			public void onContextInitialize(final IWorkbenchModel model, final IWorkbenchContext context) {
-				model.addApplication(Sample1ApplicationFactory.create());
-			}
-		});
-
-		return WorkbenchPartFactory.workbench(builder.build());
+		return builder.build();
 	}
+
+	private static void createComponentTree(final IWorkbenchApplicationModelBuilder model) {
+		final IEntityComponentNodesFactory nodesFactory = CapWorkbenchToolkit.entityComponentNodesFactory();
+		model.addChild(nodesFactory.createNode(EntityIds.PERSON));
+	}
+
 }

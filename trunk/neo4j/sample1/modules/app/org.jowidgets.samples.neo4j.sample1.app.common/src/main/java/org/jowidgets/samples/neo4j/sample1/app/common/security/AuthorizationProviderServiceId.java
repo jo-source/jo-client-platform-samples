@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2011, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,34 +26,19 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.workbench;
+package org.jowidgets.samples.neo4j.sample1.app.common.security;
 
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.neo4j.sample1.app.ui.application.Sample1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchContext;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchPartFactory;
+import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
+import org.jowidgets.security.tools.DefaultPrincipal;
+import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.service.tools.ServiceId;
 
-public class Sample1Workbench implements IWorkbenchFactory {
+public final class AuthorizationProviderServiceId {
 
-	@Override
-	public IWorkbench create() {
+	public static final IServiceId<IAuthorizationProviderService<DefaultPrincipal>> ID = new ServiceId<IAuthorizationProviderService<DefaultPrincipal>>(
+		AuthorizationProviderServiceId.class.getName() + "ID",
+		IAuthorizationProviderService.class);
 
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
+	private AuthorizationProviderServiceId() {}
 
-		builder.setLabel("Sample1");
-
-		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
-			@Override
-			public void onContextInitialize(final IWorkbenchModel model, final IWorkbenchContext context) {
-				model.addApplication(Sample1ApplicationFactory.create());
-			}
-		});
-
-		return WorkbenchPartFactory.workbench(builder.build());
-	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2011, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,35 +25,52 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.neo4j.sample1.app.common.bean;
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.workbench;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.neo4j.sample1.app.ui.application.Sample1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchContext;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchPartFactory;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public class Sample1Workbench implements IWorkbenchFactory {
+import org.jowidgets.cap.common.api.bean.IBean;
 
-	@Override
-	public IWorkbench create() {
+public interface IPerson extends IBean {
 
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
+	String LOGIN_NAME_PROPERTY = "loginName";
+	String NAME_PROPERTY = "name";
+	String ACTIVE_PROPERTY = "active";
+	String ROLE_NAMES_PROPERTY = "roleNames";
 
-		builder.setLabel("Sample1");
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(LOGIN_NAME_PROPERTY);
+			add(NAME_PROPERTY);
+			add(ROLE_NAMES_PROPERTY);
+			add(ACTIVE_PROPERTY);
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
+		}
+	};
 
-		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
-			@Override
-			public void onContextInitialize(final IWorkbenchModel model, final IWorkbenchContext context) {
-				model.addApplication(Sample1ApplicationFactory.create());
-			}
-		});
+	@NotNull
+	@Size(min = 2, max = 20)
+	String getLoginName();
 
-		return WorkbenchPartFactory.workbench(builder.build());
-	}
+	void setLoginName(String loginName);
+
+	@NotNull
+	@Size(min = 2, max = 50)
+	String getName();
+
+	void setName(String name);
+
+	@NotNull
+	Boolean getActive();
+
+	void setActive(Boolean active);
+
+	List<String> getRoleNames();
+
 }

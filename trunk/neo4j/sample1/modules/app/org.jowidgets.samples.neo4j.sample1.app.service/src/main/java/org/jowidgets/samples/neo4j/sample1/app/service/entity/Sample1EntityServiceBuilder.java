@@ -26,34 +26,24 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.app.ui.workbench;
+package org.jowidgets.samples.neo4j.sample1.app.service.entity;
 
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.neo4j.sample1.app.ui.application.Sample1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchContext;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchPartFactory;
+import org.jowidgets.cap.service.api.entity.IBeanEntityBluePrint;
+import org.jowidgets.cap.service.neo4j.api.Neo4JServiceToolkit;
+import org.jowidgets.cap.service.tools.entity.BeanEntityServiceBuilderWrapper;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IPerson;
+import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
+import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.PersonDtoDescriptorBuilder;
+import org.jowidgets.service.api.IServiceRegistry;
 
-public class Sample1Workbench implements IWorkbenchFactory {
+public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderWrapper {
 
-	@Override
-	public IWorkbench create() {
+	public Sample1EntityServiceBuilder(final IServiceRegistry registry) {
+		super(Neo4JServiceToolkit.serviceFactory(), registry);
 
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-
-		builder.setLabel("Sample1");
-
-		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
-			@Override
-			public void onContextInitialize(final IWorkbenchModel model, final IWorkbenchContext context) {
-				model.addApplication(Sample1ApplicationFactory.create());
-			}
-		});
-
-		return WorkbenchPartFactory.workbench(builder.build());
+		//IPerson
+		final IBeanEntityBluePrint entityBp = addEntity().setEntityId(EntityIds.PERSON).setBeanType(IPerson.class);
+		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 	}
+
 }

@@ -26,19 +26,10 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.app.common.service.security;
+package org.jowidgets.samples.neo4j.sample1.app.common.entity;
 
-import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.security.tools.DefaultPrincipal;
-import org.jowidgets.service.api.IServiceId;
-import org.jowidgets.service.tools.ServiceId;
+public enum EntityIds {
 
-public final class AuthorizationProviderServiceId {
-
-	public static final IServiceId<IAuthorizationProviderService<DefaultPrincipal>> ID = new ServiceId<IAuthorizationProviderService<DefaultPrincipal>>(
-		AuthorizationProviderServiceId.class.getName() + "ID",
-		IAuthorizationProviderService.class);
-
-	private AuthorizationProviderServiceId() {}
+	PERSON
 
 }

@@ -28,16 +28,19 @@
 
 package org.jowidgets.samples.neo4j.sample1.app.service;
 
-import org.jowidgets.samples.neo4j.sample1.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.cap.common.api.service.IEntityService;
+import org.jowidgets.cap.service.neo4j.api.Neo4JServiceToolkit;
+import org.jowidgets.samples.neo4j.sample1.app.common.security.AuthorizationProviderServiceId;
+import org.jowidgets.samples.neo4j.sample1.app.service.entity.Sample1EntityServiceBuilder;
 import org.jowidgets.samples.neo4j.sample1.app.service.security.AuthorizationProviderServiceImpl;
 import org.jowidgets.service.tools.ServiceProviderBuilder;
 
 public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 
 	public SampleServiceProviderBuilder() {
-		super();
-
 		addService(AuthorizationProviderServiceId.ID, new AuthorizationProviderServiceImpl());
+		addService(IEntityService.ID, new Sample1EntityServiceBuilder(this).build());
+		addServiceDecorator(Neo4JServiceToolkit.serviceDecoratorProviderBuilder().build());
 	}
 
 }
