@@ -29,7 +29,7 @@
 package org.jowidgets.samples.neo4j.sample1.starter.client.common;
 
 import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.samples.neo4j.sample1.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.samples.neo4j.sample1.app.common.security.AuthorizationProviderServiceId;
 import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
 import org.jowidgets.service.api.IServiceId;
 
