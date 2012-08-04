@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.sample1.starter.server;
+package org.jowidgets.samples.neo4j.sample1.starter.server;
 
 import org.jowidgets.cap.tools.starter.server.CapServerStarter;
 
