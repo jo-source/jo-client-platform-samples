@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, H.Westphal
+ * Copyright (c) 2011, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,15 +26,16 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.starter.server;
+package org.jowidgets.samples.neo4j.sample1.starter.client.swt.gtk64;
 
-import org.jowidgets.cap.tools.starter.server.CapServerStarter;
+import org.jowidgets.samples.neo4j.sample1.starter.client.swt.common.Sample1StarterClientSwt;
 
-public final class Sample1StarterServer {
+public final class Neo4JSample1StarterClientSwtGtk64 {
 
-	private Sample1StarterServer() {}
+	private Neo4JSample1StarterClientSwtGtk64() {}
 
 	public static void main(final String[] args) throws Exception {
-		CapServerStarter.startServer();
+		Sample1StarterClientSwt.startClient();
 	}
+
 }
