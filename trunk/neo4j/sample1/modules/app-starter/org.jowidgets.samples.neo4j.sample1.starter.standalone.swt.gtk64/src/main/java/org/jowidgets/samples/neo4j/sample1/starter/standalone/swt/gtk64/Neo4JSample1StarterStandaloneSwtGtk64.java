@@ -26,13 +26,13 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.win;
+package org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.gtk64;
 
 import org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.common.Sample1StarterStandaloneSwt;
 
-public final class Sample1StarterStandaloneSwtWin {
+public final class Neo4JSample1StarterStandaloneSwtGtk64 {
 
-	private Sample1StarterStandaloneSwtWin() {}
+	private Neo4JSample1StarterStandaloneSwtGtk64() {}
 
 	public static void main(final String[] args) throws Exception {
 		Sample1StarterStandaloneSwt.startClient();

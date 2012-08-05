@@ -26,16 +26,24 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.starter.client.swt.win;
+package org.jowidgets.samples.neo4j.sample1.starter.standalone.swing;
 
-import org.jowidgets.samples.neo4j.sample1.starter.client.swt.common.Sample1StarterClientSwt;
+import javax.swing.UIManager;
 
-public final class Sample1StarterClientSwtWin {
+import org.jowidgets.samples.neo4j.sample1.app.ui.workbench.Sample1Workbench;
+import org.jowidgets.spi.impl.swing.common.options.SwingOptions;
+import org.jowidgets.workbench.impl.WorkbenchRunner;
 
-	private Sample1StarterClientSwtWin() {}
+public final class Neo4JSample1StarterStandaloneSwing {
+
+	private Neo4JSample1StarterStandaloneSwing() {}
 
 	public static void main(final String[] args) throws Exception {
-		Sample1StarterClientSwt.startClient();
+		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		System.setProperty("apple.laf.useScreenMenuBar", "true");
+		SwingOptions.setJoWidgetsTabLayout(true);
+		new WorkbenchRunner().run(new Sample1Workbench());
+		System.exit(0);
 	}
 
 }

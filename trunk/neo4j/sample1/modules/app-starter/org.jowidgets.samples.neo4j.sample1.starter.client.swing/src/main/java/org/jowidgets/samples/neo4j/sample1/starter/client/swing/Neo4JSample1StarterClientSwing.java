@@ -33,9 +33,9 @@ import javax.swing.UIManager;
 import org.jowidgets.samples.neo4j.sample1.starter.client.common.Sample1StarterClient;
 import org.jowidgets.spi.impl.swing.common.options.SwingOptions;
 
-public final class Sample1StarterClientSwing {
+public final class Neo4JSample1StarterClientSwing {
 
-	private Sample1StarterClientSwing() {}
+	private Neo4JSample1StarterClientSwing() {}
 
 	public static void main(final String[] args) throws Exception {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

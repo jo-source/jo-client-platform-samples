@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2011, H.Westphal
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,24 +26,15 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.neo4j.sample1.starter.standalone.swing;
+package org.jowidgets.samples.neo4j.sample1.starter.server;
 
-import javax.swing.UIManager;
+import org.jowidgets.cap.tools.starter.server.CapServerStarter;
 
-import org.jowidgets.samples.neo4j.sample1.app.ui.workbench.Sample1Workbench;
-import org.jowidgets.spi.impl.swing.common.options.SwingOptions;
-import org.jowidgets.workbench.impl.WorkbenchRunner;
+public final class Neo4JSample1StarterServer {
 
-public final class Sample1StarterStandaloneSwing {
-
-	private Sample1StarterStandaloneSwing() {}
+	private Neo4JSample1StarterServer() {}
 
 	public static void main(final String[] args) throws Exception {
-		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		System.setProperty("apple.laf.useScreenMenuBar", "true");
-		SwingOptions.setJoWidgetsTabLayout(true);
-		new WorkbenchRunner().run(new Sample1Workbench());
-		System.exit(0);
+		CapServerStarter.startServer();
 	}
-
 }
