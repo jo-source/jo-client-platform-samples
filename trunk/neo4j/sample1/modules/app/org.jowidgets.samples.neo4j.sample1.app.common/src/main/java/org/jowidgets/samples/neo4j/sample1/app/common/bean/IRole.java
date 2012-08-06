@@ -62,6 +62,6 @@ public interface IRole extends IBean {
 
 	void setDescription(String name);
 
-	boolean getInUse();
+	Boolean getInUse();
 
 }
