@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2012, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,43 +25,55 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
-package org.jowidgets.samples.neo4j.sample1.app.common.bean;
 
-import java.util.LinkedList;
-import java.util.List;
+package org.jowidgets.samples.neo4j.sample1.app.service.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.service.neo4j.tools.NodeBean;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRole;
+import org.neo4j.graphdb.Direction;
+import org.neo4j.graphdb.Node;
+import org.neo4j.graphdb.Relationship;
 
-public interface IAuthorization extends IBean {
+public class Role extends NodeBean implements IRole {
 
-	String KEY_PROPERTY = "key";
-	String DESCRIPTION_PROPERTY = "description";
-	String IN_USE_PROPERTY = "inUse";
+	public Role(final Node node) {
+		super(node);
+	}
 
-	List<String> ALL_PROPERTIES = new LinkedList<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add(KEY_PROPERTY);
-			add(DESCRIPTION_PROPERTY);
-			add(IN_USE_PROPERTY);
-			add(IBean.ID_PROPERTY);
-			add(IBean.VERSION_PROPERTY);
+	@Override
+	public String getName() {
+		return getProperty(NAME_PROPERTY);
+	}
+
+	@Override
+	public void setName(final String name) {
+		setProperty(NAME_PROPERTY, name);
+	}
+
+	@Override
+	public String getDescription() {
+		return getProperty(DESCRIPTION_PROPERTY);
+	}
+
+	@Override
+	public void setDescription(final String name) {
+		setProperty(DESCRIPTION_PROPERTY, name);
+	}
+
+	@Override
+	public Boolean getInUse() {
+		return getNode().getRelationships(Direction.INCOMING).iterator().hasNext();
+	}
+
+	public Set<Person> getPersons() {
+		final Set<Person> result = new HashSet<Person>();
+		for (final Relationship relation : getNode().getRelationships(Direction.INCOMING, RelationTypes.PERSON_ROLE_LINKS)) {
+			result.add(new Person(relation.getEndNode()));
 		}
-	};
-
-	@NotNull
-	@Size(min = 2, max = 50)
-	String getKey();
-
-	void setKey(String key);
-
-	String getDescription();
-
-	void setDescription(String name);
-
-	Boolean getInUse();
+		return result;
+	}
 
 }

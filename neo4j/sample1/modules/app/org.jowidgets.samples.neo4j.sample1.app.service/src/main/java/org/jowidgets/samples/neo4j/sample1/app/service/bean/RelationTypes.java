@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2012, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,43 +25,13 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
-package org.jowidgets.samples.neo4j.sample1.app.common.bean;
 
-import java.util.LinkedList;
-import java.util.List;
+package org.jowidgets.samples.neo4j.sample1.app.service.bean;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import org.neo4j.graphdb.RelationshipType;
 
-import org.jowidgets.cap.common.api.bean.IBean;
+public enum RelationTypes implements RelationshipType {
 
-public interface IAuthorization extends IBean {
-
-	String KEY_PROPERTY = "key";
-	String DESCRIPTION_PROPERTY = "description";
-	String IN_USE_PROPERTY = "inUse";
-
-	List<String> ALL_PROPERTIES = new LinkedList<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add(KEY_PROPERTY);
-			add(DESCRIPTION_PROPERTY);
-			add(IN_USE_PROPERTY);
-			add(IBean.ID_PROPERTY);
-			add(IBean.VERSION_PROPERTY);
-		}
-	};
-
-	@NotNull
-	@Size(min = 2, max = 50)
-	String getKey();
-
-	void setKey(String key);
-
-	String getDescription();
-
-	void setDescription(String name);
-
-	Boolean getInUse();
+	PERSON_ROLE_LINKS;
 
 }
