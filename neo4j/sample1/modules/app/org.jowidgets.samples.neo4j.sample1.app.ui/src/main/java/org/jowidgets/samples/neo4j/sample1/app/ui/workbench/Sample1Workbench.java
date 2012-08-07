@@ -45,7 +45,7 @@ public class Sample1Workbench implements IWorkbenchFactory {
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 
-		builder.setLabel("Sample1");
+		builder.setLabel("Neo4J-Sample1");
 
 		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
 			@Override
