@@ -29,25 +29,32 @@
 package org.jowidgets.samples.neo4j.sample1.app.service.entity;
 
 import org.jowidgets.cap.common.api.service.IDeleterService;
+import org.jowidgets.cap.common.api.service.IReaderService;
 import org.jowidgets.cap.service.api.entity.IBeanEntityBluePrint;
 import org.jowidgets.cap.service.api.entity.IBeanEntityLinkBluePrint;
-import org.jowidgets.cap.service.neo4j.api.Neo4JServiceToolkit;
-import org.jowidgets.cap.service.tools.entity.BeanEntityServiceBuilderWrapper;
+import org.jowidgets.cap.service.neo4j.tools.Neo4JEntityServiceBuilderWrapper;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IAuthorization;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IPerson;
 import org.jowidgets.samples.neo4j.sample1.app.common.bean.IPersonRoleLink;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRole;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRoleAuthorizationLink;
 import org.jowidgets.samples.neo4j.sample1.app.common.entity.EntityIds;
 import org.jowidgets.samples.neo4j.sample1.app.service.bean.Authorization;
 import org.jowidgets.samples.neo4j.sample1.app.service.bean.Person;
 import org.jowidgets.samples.neo4j.sample1.app.service.bean.PersonRoleLink;
+import org.jowidgets.samples.neo4j.sample1.app.service.bean.RelationTypes;
 import org.jowidgets.samples.neo4j.sample1.app.service.bean.Role;
+import org.jowidgets.samples.neo4j.sample1.app.service.bean.RoleAuthorizationLink;
 import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.AuthorizationDtoDescriptorBuilder;
 import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.PersonDtoDescriptorBuilder;
 import org.jowidgets.samples.neo4j.sample1.app.service.descriptor.RoleDtoDescriptorBuilder;
 import org.jowidgets.service.api.IServiceRegistry;
+import org.neo4j.graphdb.Direction;
 
-public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderWrapper {
+public final class Sample1EntityServiceBuilder extends Neo4JEntityServiceBuilderWrapper {
 
 	public Sample1EntityServiceBuilder(final IServiceRegistry registry) {
-		super(Neo4JServiceToolkit.serviceFactory(), registry);
+		super(registry);
 
 		//IPerson
 		IBeanEntityBluePrint entityBp = addEntity().setEntityId(EntityIds.PERSON).setBeanType(Person.class);
@@ -62,29 +69,56 @@ public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderW
 		//IAuthorization
 		entityBp = addEntity().setEntityId(EntityIds.AUTHORIZATION).setBeanType(Authorization.class);
 		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
+		addAuthorizationRoleLinkDescriptor(entityBp);
 
 		//Linked persons of roles
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
-		//entityBp.setReaderService(createPersonsOfRolesReader(true));
+		entityBp.setReaderService(createPersonsOfRolesReader(true));
 		addPersonLinkDescriptors(entityBp);
 
 		//Linkable persons of roles
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
-		//entityBp.setReaderService(createPersonsOfRolesReader(false));
+		entityBp.setReaderService(createPersonsOfRolesReader(false));
 
 		//Linked roles of persons
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_ROLES_OF_PERSONS).setBeanType(Role.class);
 		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
-		//entityBp.setReaderService(createRolesOfPersonsReader(true));
+		entityBp.setReaderService(createRolesOfPersonsReader(true));
 		entityBp.setDeleterService((IDeleterService) null);
 		addRoleLinkDescriptors(entityBp);
 
 		//Linkable roles of persons
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_ROLES_OF_PERSONS).setBeanType(Role.class);
 		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
-		//entityBp.setReaderService(createRolesOfPersonsReader(false));
+		entityBp.setReaderService(createRolesOfPersonsReader(false));
+		entityBp.setDeleterService((IDeleterService) null);
+
+		//Linked roles of authorizations
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_ROLES_OF_AUTHORIZATIONS).setBeanType(Role.class);
+		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
+		entityBp.setReaderService(createRolesOfAuthorizationsReader(true));
+		entityBp.setDeleterService((IDeleterService) null);
+		addRoleLinkDescriptors(entityBp);
+
+		//Linkable roles of authorizations
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_ROLES_OF_AUTHORIZATIONS).setBeanType(Role.class);
+		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
+		entityBp.setReaderService(createRolesOfAuthorizationsReader(false));
+		entityBp.setDeleterService((IDeleterService) null);
+
+		//Linked authorizations of roles
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_AUTHORIZATION_OF_ROLES).setBeanType(Authorization.class);
+		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
+		entityBp.setReaderService(createAuthorizationsOfRolesReader(true));
+		entityBp.setDeleterService((IDeleterService) null);
+		addAuthorizationRoleLinkDescriptor(entityBp);
+
+		//Linkable authorizations of roles
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_AUTHORIZATIONS_OF_ROLES).setBeanType(Authorization.class);
+		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
+		entityBp.setReaderService(createAuthorizationsOfRolesReader(false));
 		entityBp.setDeleterService((IDeleterService) null);
 
 	}
@@ -95,6 +129,7 @@ public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderW
 
 	private void addRoleLinkDescriptors(final IBeanEntityBluePrint entityBp) {
 		addRolePersonLinkDescriptor(entityBp);
+		addRoleAuthorizationLinkDescriptor(entityBp);
 	}
 
 	private void addPersonRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
@@ -117,20 +152,64 @@ public final class Sample1EntityServiceBuilder extends BeanEntityServiceBuilderW
 		bp.setDestinationProperties(IPersonRoleLink.PERSON_ID_PROPERTY);
 	}
 
-	//	private IReaderService<Void> createPersonsOfRolesReader(final boolean linked) {
-	//		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Person.class);
-	//		queryBuilder.setParentPropertyPath(linked, "personRoleLinks", "role");
-	//		if (!linked) {
-	//			final IFilter filter = ArithmeticFilter.create(IPerson.ACTIVE_PROPERTY, ArithmeticOperator.EQUAL, Boolean.TRUE);
-	//			queryBuilder.addFilter(filter);
-	//		}
-	//		return getServiceFactory().readerService(Person.class, queryBuilder.build(), IPerson.ALL_PROPERTIES);
-	//	}
-	//
-	//	private IReaderService<Void> createRolesOfPersonsReader(final boolean linked) {
-	//		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Role.class);
-	//		queryBuilder.setParentPropertyPath(linked, "personRoleLinks", "person");
-	//		return getServiceFactory().readerService(Role.class, queryBuilder.build(), IRole.ALL_PROPERTIES);
-	//	}
+	private void addRoleAuthorizationLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkEntityId(EntityIds.ROLE_AUTHORIZATION_LINK);
+		bp.setLinkBeanType(RoleAuthorizationLink.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_AUTHORIZATION_OF_ROLES);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_AUTHORIZATIONS_OF_ROLES);
+		bp.setSourceProperties(IRoleAuthorizationLink.ROLE_ID_PROPERTY);
+		bp.setDestinationProperties(IRoleAuthorizationLink.AUTHORIZATION_ID_PROPERTY);
+	}
+
+	private void addAuthorizationRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkEntityId(EntityIds.ROLE_AUTHORIZATION_LINK);
+		bp.setLinkBeanType(RoleAuthorizationLink.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_ROLES_OF_AUTHORIZATIONS);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_ROLES_OF_AUTHORIZATIONS);
+		bp.setSourceProperties(IRoleAuthorizationLink.AUTHORIZATION_ID_PROPERTY);
+		bp.setDestinationProperties(IRoleAuthorizationLink.ROLE_ID_PROPERTY);
+	}
+
+	private IReaderService<Void> createPersonsOfRolesReader(final boolean related) {
+		return getServiceFactory().readerService(
+				Role.class,
+				Person.class,
+				RelationTypes.PERSON_ROLE,
+				Direction.INCOMING,
+				related,
+				IPerson.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createRolesOfPersonsReader(final boolean related) {
+		return getServiceFactory().readerService(
+				Person.class,
+				Role.class,
+				RelationTypes.PERSON_ROLE,
+				Direction.OUTGOING,
+				related,
+				IRole.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createRolesOfAuthorizationsReader(final boolean related) {
+		return getServiceFactory().readerService(
+				Authorization.class,
+				Role.class,
+				RelationTypes.ROLE_AUTHORIZATION,
+				Direction.INCOMING,
+				related,
+				IRole.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createAuthorizationsOfRolesReader(final boolean related) {
+		return getServiceFactory().readerService(
+				Role.class,
+				Authorization.class,
+				RelationTypes.ROLE_AUTHORIZATION,
+				Direction.OUTGOING,
+				related,
+				IAuthorization.ALL_PROPERTIES);
+	}
 
 }
