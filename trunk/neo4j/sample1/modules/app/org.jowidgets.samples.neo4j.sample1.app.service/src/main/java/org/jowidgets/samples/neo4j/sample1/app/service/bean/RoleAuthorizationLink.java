@@ -28,52 +28,34 @@
 
 package org.jowidgets.samples.neo4j.sample1.app.service.bean;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.jowidgets.cap.service.neo4j.tools.NodeBean;
-import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRole;
-import org.neo4j.graphdb.Direction;
-import org.neo4j.graphdb.Node;
+import org.jowidgets.cap.service.neo4j.tools.RelationshipBean;
+import org.jowidgets.samples.neo4j.sample1.app.common.bean.IRoleAuthorizationLink;
 import org.neo4j.graphdb.Relationship;
 
-public class Role extends NodeBean implements IRole {
+public class RoleAuthorizationLink extends RelationshipBean implements IRoleAuthorizationLink {
 
-	public Role(final Node node) {
-		super(node);
+	public RoleAuthorizationLink(final Relationship relationship) {
+		super(relationship);
 	}
 
 	@Override
-	public String getName() {
-		return getProperty(NAME_PROPERTY);
+	public Object getRoleId() {
+		return getStartNodeId();
 	}
 
 	@Override
-	public void setName(final String name) {
-		setProperty(NAME_PROPERTY, name);
+	public void setRoleId(final Object id) {
+		setStartNodeId(Role.class, RelationTypes.ROLE_AUTHORIZATION, id);
 	}
 
 	@Override
-	public String getDescription() {
-		return getProperty(DESCRIPTION_PROPERTY);
+	public Object getAuthorizationId() {
+		return getEndNodeId();
 	}
 
 	@Override
-	public void setDescription(final String name) {
-		setProperty(DESCRIPTION_PROPERTY, name);
-	}
-
-	@Override
-	public Boolean getInUse() {
-		return getNode().getRelationships(Direction.INCOMING).iterator().hasNext();
-	}
-
-	public Set<Person> getPersons() {
-		final Set<Person> result = new HashSet<Person>();
-		for (final Relationship relation : getNode().getRelationships(Direction.INCOMING, RelationTypes.PERSON_ROLE)) {
-			result.add(new Person(relation.getEndNode()));
-		}
-		return result;
+	public void setAuthorizationId(final Object id) {
+		setEndNodeId(Authorization.class, RelationTypes.ROLE_AUTHORIZATION, id);
 	}
 
 }
