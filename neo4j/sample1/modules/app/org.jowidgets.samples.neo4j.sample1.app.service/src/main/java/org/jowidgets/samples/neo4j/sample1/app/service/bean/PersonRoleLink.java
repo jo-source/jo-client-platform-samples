@@ -45,7 +45,7 @@ public class PersonRoleLink extends RelationshipBean implements IPersonRoleLink 
 
 	@Override
 	public void setPersonId(final Object id) {
-		setStartNodeId(Person.class, RelationTypes.PERSON_ROLE_LINKS, id);
+		setStartNodeId(Person.class, RelationTypes.PERSON_ROLE, id);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class PersonRoleLink extends RelationshipBean implements IPersonRoleLink 
 
 	@Override
 	public void setRoleId(final Object id) {
-		setEndNodeId(Role.class, RelationTypes.PERSON_ROLE_LINKS, id);
+		setEndNodeId(Role.class, RelationTypes.PERSON_ROLE, id);
 	}
 
 }

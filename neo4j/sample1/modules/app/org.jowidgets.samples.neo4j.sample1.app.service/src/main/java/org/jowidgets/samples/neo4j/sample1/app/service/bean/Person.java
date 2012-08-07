@@ -77,7 +77,7 @@ public class Person extends NodeBean implements IPerson {
 
 	public Set<Role> getRoles() {
 		final Set<Role> result = new HashSet<Role>();
-		for (final Relationship relation : getNode().getRelationships(Direction.OUTGOING, RelationTypes.PERSON_ROLE_LINKS)) {
+		for (final Relationship relation : getNode().getRelationships(Direction.OUTGOING, RelationTypes.PERSON_ROLE)) {
 			result.add(new Role(relation.getEndNode()));
 		}
 		return result;
@@ -86,7 +86,7 @@ public class Person extends NodeBean implements IPerson {
 	@Override
 	public List<String> getRoleNames() {
 		final List<String> result = new LinkedList<String>();
-		for (final Relationship relation : getNode().getRelationships(Direction.OUTGOING, RelationTypes.PERSON_ROLE_LINKS)) {
+		for (final Relationship relation : getNode().getRelationships(Direction.OUTGOING, RelationTypes.PERSON_ROLE)) {
 			result.add(new Role(relation.getEndNode()).getName());
 		}
 		return result;

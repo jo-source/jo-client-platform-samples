@@ -32,6 +32,7 @@ import org.neo4j.graphdb.RelationshipType;
 
 public enum RelationTypes implements RelationshipType {
 
-	PERSON_ROLE_LINKS;
+	PERSON_ROLE,
+	ROLE_AUTHORIZATION;
 
 }

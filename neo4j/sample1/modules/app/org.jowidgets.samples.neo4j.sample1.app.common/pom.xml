@@ -18,12 +18,6 @@
 			<version>${jocap.version}</version>
 		</dependency>
 		
-		 <dependency>
-			<groupId>org.jowidgets</groupId>
-			<artifactId>org.jowidgets.service</artifactId>
-			<version>${jocap.version}</version>
-		</dependency>
-		
         <dependency>
 			<groupId>org.jowidgets</groupId>
 			<artifactId>org.jowidgets.security</artifactId>
