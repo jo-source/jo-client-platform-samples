@@ -28,6 +28,8 @@
 
 package org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.win;
 
+import org.jowidgets.addons.bridge.swt.awt.SwtAwtToolkitProviderFactory;
+import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.common.Sample1StarterStandaloneSwt;
 
 public final class Neo4JSample1StarterStandaloneSwtWin {
@@ -35,6 +37,7 @@ public final class Neo4JSample1StarterStandaloneSwtWin {
 	private Neo4JSample1StarterStandaloneSwtWin() {}
 
 	public static void main(final String[] args) throws Exception {
+		Toolkit.initialize(SwtAwtToolkitProviderFactory.create());
 		Sample1StarterStandaloneSwt.startClient();
 	}
 

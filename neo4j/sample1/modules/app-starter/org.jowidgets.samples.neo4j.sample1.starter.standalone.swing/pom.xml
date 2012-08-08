@@ -11,11 +11,19 @@
 	</parent>
 
 	<dependencies>
+	
 		<dependency>
 			<groupId>org.jowidgets.samples.neo4j.sample1</groupId>
 			<artifactId>org.jowidgets.samples.neo4j.sample1.starter.standalone.common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.jowidgets</groupId>
+			<artifactId>org.jowidgets.cap.addons.widgets.graph.impl.swing</artifactId>
+			<version>${jocap.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.jowidgets</groupId>
 			<artifactId>org.jowidgets.spi.impl.swing</artifactId>
