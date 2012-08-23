@@ -49,7 +49,7 @@
                     </sign>
 					<jnlp>
 						<outputFile>sample1_standalone_swing.jnlp</outputFile>
-						<mainClass>org.jowidgets.samples.neo4j.sample1.starter.standalone.swing.Sample1StarterStandaloneSwing</mainClass>
+						<mainClass>org.jowidgets.samples.neo4j.sample1.starter.standalone.swing.Neo4JSample1StarterStandaloneSwing</mainClass>
 					</jnlp>
 				</configuration>
 			</plugin>

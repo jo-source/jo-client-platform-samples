@@ -49,7 +49,7 @@
                     </sign>
 					<jnlp>
 						<outputFile>sample1_standalone_swt_gtk64.jnlp</outputFile>
-						<mainClass>org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.gtk64.Sample1StarterStandaloneSwtGtk64</mainClass>
+						<mainClass>org.jowidgets.samples.neo4j.sample1.starter.standalone.swt.gtk64.Neo4JSample1StarterStandaloneSwtGtk64</mainClass>
 					</jnlp>
 				</configuration>
 			</plugin>

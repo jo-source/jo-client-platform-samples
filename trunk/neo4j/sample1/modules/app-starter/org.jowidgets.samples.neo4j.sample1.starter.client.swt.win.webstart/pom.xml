@@ -49,7 +49,7 @@
                     </sign>
 					<jnlp>
 						<outputFile>sample1_client_swt_win.jnlp</outputFile>
-						<mainClass>org.jowidgets.samples.neo4j.sample1.starter.client.swt.win.Sample1StarterClientSwtWin</mainClass>
+						<mainClass>org.jowidgets.samples.neo4j.sample1.starter.client.swt.win.Neo4JSample1StarterClientSwtWin</mainClass>
 					</jnlp>
 				</configuration>
 			</plugin>
