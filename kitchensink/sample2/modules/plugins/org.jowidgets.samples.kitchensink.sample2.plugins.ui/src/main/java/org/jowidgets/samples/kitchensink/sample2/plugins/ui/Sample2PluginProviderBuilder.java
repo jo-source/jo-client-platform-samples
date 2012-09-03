@@ -42,6 +42,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRole;
 import org.jowidgets.samples.kitchensink.sample2.app.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.PersonLabelRendererPlugin;
+import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.PhoneLabelRendererPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.RoleLabelRendererPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.selection.PersonSelectionProvider;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.table.PersonMenuContributionPlugin;
@@ -85,6 +86,13 @@ public final class Sample2PluginProviderBuilder extends PluginProviderBuilder {
 				IBeanProxyLabelRendererPlugin.ENTITIY_ID_PROPERTY_KEY,
 				EntityIds.ROLE,
 				EntityIds.LINKED_ROLES_OF_PERSONS);
+
+		addPlugin(
+				IBeanProxyLabelRendererPlugin.ID,
+				new PhoneLabelRendererPlugin(),
+				IBeanProxyLabelRendererPlugin.ENTITIY_ID_PROPERTY_KEY,
+				EntityIds.PHONE,
+				EntityIds.LINKED_PHONES_OF_PERSONS);
 
 		addPlugin(IBeanTablePlugin.ID, new PersonTablePlugin(), IBeanTablePlugin.ENTITIY_ID_PROPERTY_KEY, EntityIds.PERSON);
 
