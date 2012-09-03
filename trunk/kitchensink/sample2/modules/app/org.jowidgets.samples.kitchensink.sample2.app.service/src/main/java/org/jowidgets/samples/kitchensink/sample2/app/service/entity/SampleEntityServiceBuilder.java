@@ -74,8 +74,6 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Role;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleAuthorizationLink;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.AuthorizationDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.CountryDtoDescriptorBuilder;
-import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.LinkedPersonOfSourcePersonDtoDescriptorBuilder;
-import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.LinkedSourcePersonOfPersonDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonOfSourcePersonLinkDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonPersonLinkDtoDescriptorBuilder;
@@ -132,22 +130,6 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		//SourcePersonOfPersonLink
 		entityBp = addEntity().setEntityId(EntityIds.SOURCE_PERSONS_OF_PERSONS_LINK).setBeanType(PersonPersonLink.class);
 		entityBp.setDtoDescriptor(new SourcePersonOfPersonLinkDtoDescriptorBuilder());
-
-		//Linked persons of source persons
-		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSONS_OF_SOURCE_PERSONS).setBeanType(PersonPersonLink.class);
-		entityBp.setDtoDescriptor(new LinkedPersonOfSourcePersonDtoDescriptorBuilder());
-		entityBp.setReaderService(createLinkedPersonsOfSourcePersonsReader());
-		entityBp.setCreatorService((ICreatorService) null);
-
-		//Linked source person of person 
-		entityBp = addEntity().setEntityId(EntityIds.LINKED_SOURCE_PERSONS_OF_PERSONS).setBeanType(PersonPersonLink.class);
-		entityBp.setDtoDescriptor(new LinkedSourcePersonOfPersonDtoDescriptorBuilder());
-		entityBp.setReaderService(createLinkedSourcePersonsOfPersonsReader());
-		entityBp.setCreatorService((ICreatorService) null);
-
-		//Linkable persons of  persons
-		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PERSONS_OF_PERSONS).setBeanType(Person.class);
-		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 
 		//Linked persons of roles
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSONS_OF_ROLES).setBeanType(Person.class);
@@ -239,9 +221,6 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 					personRelationType.getRelationName(),
 					personRelationType.getRelationName());
 		}
-
-		addPersonsOfSourcePersonsLinkDescriptor(entityBp);
-		addSourcePersonsOfPersonsLinkDescriptor(entityBp);
 		addPhonesofPersonsLinkDescriptor(entityBp);
 	}
 
@@ -258,26 +237,6 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		bp.setLinkableEntityId(EntityIds.LINKABLE_ROLES_OF_PERSONS);
 		bp.setSourceProperties(IPersonRoleLink.PERSON_ID_PROPERTY);
 		bp.setDestinationProperties(IPersonRoleLink.ROLE_ID_PROPERTY);
-	}
-
-	private void addPersonsOfSourcePersonsLinkDescriptor(final IBeanEntityBluePrint entityBp) {
-		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
-		bp.setLinkEntityId(EntityIds.PERSONS_OF_SOURCE_PERSONS_LINK);
-		bp.setLinkBeanType(PersonPersonLink.class);
-		bp.setLinkedEntityId(EntityIds.LINKED_PERSONS_OF_SOURCE_PERSONS);
-		bp.setLinkableEntityId(EntityIds.LINKABLE_PERSONS_OF_PERSONS);
-		bp.setSourceProperties(IPersonPersonLink.SOURCE_PERSON_ID_PROPERTY);
-		bp.setDestinationProperties(IPersonPersonLink.DESTINATION_PERSON_ID_PROPERTY);
-	}
-
-	private void addSourcePersonsOfPersonsLinkDescriptor(final IBeanEntityBluePrint entityBp) {
-		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
-		bp.setLinkEntityId(EntityIds.SOURCE_PERSONS_OF_PERSONS_LINK);
-		bp.setLinkBeanType(PersonPersonLink.class);
-		bp.setLinkedEntityId(EntityIds.LINKED_SOURCE_PERSONS_OF_PERSONS);
-		bp.setLinkableEntityId(EntityIds.LINKABLE_PERSONS_OF_PERSONS);
-		bp.setSourceProperties(IPersonPersonLink.DESTINATION_PERSON_ID_PROPERTY);
-		bp.setDestinationProperties(IPersonPersonLink.SOURCE_PERSON_ID_PROPERTY);
 	}
 
 	private void addPhonesofPersonsLinkDescriptor(final IBeanEntityBluePrint entityBp) {
@@ -417,24 +376,6 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		bp.setLinkableEntityId(EntityIds.LINKABLE_ROLES_OF_AUTHORIZATIONS);
 		bp.setSourceProperties(IRoleAuthorizationLink.AUTHORIZATION_ID_PROPERTY);
 		bp.setDestinationProperties(IRoleAuthorizationLink.ROLE_ID_PROPERTY);
-	}
-
-	private IReaderService<Void> createLinkedPersonsOfSourcePersonsReader() {
-		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(PersonPersonLink.class);
-		queryBuilder.setParentPropertyPath("sourcePerson");
-		return getServiceFactory().readerService(
-				PersonPersonLink.class,
-				queryBuilder.build(),
-				IPersonPersonLink.PERSONS_OF_SOURCE_PERSONS_PROPERTIES);
-	}
-
-	private IReaderService<Void> createLinkedSourcePersonsOfPersonsReader() {
-		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(PersonPersonLink.class);
-		queryBuilder.setParentPropertyPath("destinationPerson");
-		return getServiceFactory().readerService(
-				PersonPersonLink.class,
-				queryBuilder.build(),
-				IPersonPersonLink.SOURCE_PERSONS_OF_PERSONS_PROPERTIES);
 	}
 
 	private IReaderService<Void> createPersonsOfRolesReader(final boolean linked) {
