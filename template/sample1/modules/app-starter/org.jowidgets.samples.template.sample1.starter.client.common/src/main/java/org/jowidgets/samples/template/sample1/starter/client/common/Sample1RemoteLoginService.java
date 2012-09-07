@@ -36,7 +36,7 @@ import org.jowidgets.service.api.IServiceId;
 public class Sample1RemoteLoginService extends AbstractRemoteLoginService {
 
 	public Sample1RemoteLoginService() {
-		super("Sample0");
+		super("Sample1");
 	}
 
 	@Override
