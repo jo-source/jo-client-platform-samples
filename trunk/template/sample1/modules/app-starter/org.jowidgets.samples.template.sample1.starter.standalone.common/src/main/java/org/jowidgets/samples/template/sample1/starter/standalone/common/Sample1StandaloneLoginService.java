@@ -33,7 +33,7 @@ import org.jowidgets.cap.tools.starter.standalone.common.StandaloneLoginService;
 public final class Sample1StandaloneLoginService extends StandaloneLoginService {
 
 	public Sample1StandaloneLoginService() {
-		super("Sample0");
+		super("Sample1");
 	}
 
 }
