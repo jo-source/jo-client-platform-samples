@@ -29,12 +29,16 @@
 package org.jowidgets.samples.template.sample1.starter.server;
 
 import org.jowidgets.cap.tools.starter.server.CapServerStarter;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public final class TemplateSample1StarterServer {
 
 	private TemplateSample1StarterServer() {}
 
 	public static void main(final String[] args) throws Exception {
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
+
 		CapServerStarter.startServer();
 	}
 }

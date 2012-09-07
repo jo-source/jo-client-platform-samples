@@ -38,11 +38,15 @@ import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
 import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
 import org.jowidgets.workbench.tools.WorkbenchModelBuilder;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public class Sample1Workbench implements IWorkbenchFactory {
 
 	@Override
 	public IWorkbench create() {
+
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
 
 		final IWorkbenchModelBuilder builder = new WorkbenchModelBuilder();
 		builder.setInitialDimension(new Dimension(1024, 768));
