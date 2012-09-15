@@ -32,7 +32,7 @@ import java.util.List;
 
 import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.common.api.execution.IExecutableChecker;
-import org.jowidgets.cap.common.api.service.IEntityClassProviderService;
+import org.jowidgets.cap.common.api.service.IEntityApplicationService;
 import org.jowidgets.cap.common.api.service.IEntityService;
 import org.jowidgets.cap.common.api.service.IExecutorService;
 import org.jowidgets.cap.common.api.service.ILookUpService;
@@ -50,7 +50,7 @@ import org.jowidgets.samples.kitchensink.sample1.common.service.executor.UserCom
 import org.jowidgets.samples.kitchensink.sample1.common.service.reader.ReaderServices;
 import org.jowidgets.samples.kitchensink.sample1.common.service.security.AuthorizationProviderServiceId;
 import org.jowidgets.samples.kitchensink.sample1.service.datastore.DataStoreInitializer;
-import org.jowidgets.samples.kitchensink.sample1.service.entity.SampleEntityClassProviderServiceBuilder;
+import org.jowidgets.samples.kitchensink.sample1.service.entity.SampleEntityApplicationServiceBuilder;
 import org.jowidgets.samples.kitchensink.sample1.service.entity.SampleEntityServiceBuilder;
 import org.jowidgets.samples.kitchensink.sample1.service.executor.ChangeBirthdayExecutor;
 import org.jowidgets.samples.kitchensink.sample1.service.executor.ChangeGenderExecutor;
@@ -78,7 +78,7 @@ public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 		addService(AuthorizationProviderServiceId.ID, new AuthorizationProviderServiceImpl());
 
 		addService(IEntityService.ID, new SampleEntityServiceBuilder(this).build());
-		addService(IEntityClassProviderService.ID, new SampleEntityClassProviderServiceBuilder().build());
+		addService(IEntityApplicationService.ID, new SampleEntityApplicationServiceBuilder().build());
 
 		addReader(ReaderServices.ALL_USERS, new AllUsersReaderService());
 		addReader(ReaderServices.ROLES_OF_USERS, new LinkedRolesOfUsersReaderService());
