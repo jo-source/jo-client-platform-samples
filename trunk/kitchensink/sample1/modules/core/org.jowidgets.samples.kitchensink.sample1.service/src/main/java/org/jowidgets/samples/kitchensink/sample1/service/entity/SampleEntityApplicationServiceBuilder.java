@@ -29,38 +29,38 @@
 package org.jowidgets.samples.kitchensink.sample1.service.entity;
 
 import org.jowidgets.cap.common.api.CapCommonToolkit;
-import org.jowidgets.cap.common.api.entity.IEntityClassBuilder;
-import org.jowidgets.cap.service.tools.entity.EntityClassProviderServiceBuilder;
+import org.jowidgets.cap.common.api.entity.IEntityApplicationNodeBuilder;
+import org.jowidgets.cap.service.tools.entity.EntityApplicationServiceBuilder;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 
-public class SampleEntityClassProviderServiceBuilder extends EntityClassProviderServiceBuilder {
+public class SampleEntityApplicationServiceBuilder extends EntityApplicationServiceBuilder {
 
-	public SampleEntityClassProviderServiceBuilder() {
+	public SampleEntityApplicationServiceBuilder() {
 		super();
-		IEntityClassBuilder builder = CapCommonToolkit.entityClassBuilder();
-		builder.setId(IUser.class);
+		IEntityApplicationNodeBuilder builder = CapCommonToolkit.entityApplicationNodeBuilder();
+		builder.setEntityId(IUser.class);
 		builder.setLabel(Messages.getString("SampleEntityClassProviderServiceBuilder.user")); //$NON-NLS-1$
 		builder.setDescription(Messages.getString("SampleEntityClassProviderServiceBuilder.user_description")); //$NON-NLS-1$
-		addEntityClass(builder.build());
+		addNode(builder.build());
 
-		builder = CapCommonToolkit.entityClassBuilder();
-		builder.setId(EntityIds.ROLE);
+		builder = CapCommonToolkit.entityApplicationNodeBuilder();
+		builder.setEntityId(EntityIds.ROLE);
 		builder.setLabel(Messages.getString("SampleEntityClassProviderServiceBuilder.roles")); //$NON-NLS-1$
 		builder.setDescription(Messages.getString("SampleEntityClassProviderServiceBuilder.roles_description")); //$NON-NLS-1$
-		addEntityClass(builder.build());
+		addNode(builder.build());
 
-		builder = CapCommonToolkit.entityClassBuilder();
-		builder.setId(EntityIds.AUTHORIZATION);
+		builder = CapCommonToolkit.entityApplicationNodeBuilder();
+		builder.setEntityId(EntityIds.AUTHORIZATION);
 		builder.setLabel(Messages.getString("SampleEntityClassProviderServiceBuilder.authorization")); //$NON-NLS-1$
 		builder.setDescription(Messages.getString("SampleEntityClassProviderServiceBuilder.authorization_description")); //$NON-NLS-1$
-		addEntityClass(builder.build());
+		addNode(builder.build());
 
-		builder = CapCommonToolkit.entityClassBuilder();
-		builder.setId(EntityIds.GENERIC_BEAN);
+		builder = CapCommonToolkit.entityApplicationNodeBuilder();
+		builder.setEntityId(EntityIds.GENERIC_BEAN);
 		builder.setLabel(Messages.getString("SampleEntityClassProviderServiceBuilder.generic_bean")); //$NON-NLS-1$
 		builder.setDescription(Messages.getString("SampleEntityClassProviderServiceBuilder.generic_bean_description")); //$NON-NLS-1$
-		addEntityClass(builder.build());
+		addNode(builder.build());
 	}
 
 }
