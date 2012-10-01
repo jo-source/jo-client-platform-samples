@@ -173,7 +173,7 @@ public final class Sample1EntityServiceBuilder extends Neo4JEntityServiceBuilder
 	}
 
 	private IReaderService<Void> createPersonsOfRolesReader(final boolean related) {
-		return getServiceFactory().readerService(
+		return getServiceFactory().relatedReaderService(
 				Role.class,
 				Person.class,
 				RelationTypes.PERSON_ROLE,
@@ -183,7 +183,7 @@ public final class Sample1EntityServiceBuilder extends Neo4JEntityServiceBuilder
 	}
 
 	private IReaderService<Void> createRolesOfPersonsReader(final boolean related) {
-		return getServiceFactory().readerService(
+		return getServiceFactory().relatedReaderService(
 				Person.class,
 				Role.class,
 				RelationTypes.PERSON_ROLE,
@@ -193,7 +193,7 @@ public final class Sample1EntityServiceBuilder extends Neo4JEntityServiceBuilder
 	}
 
 	private IReaderService<Void> createRolesOfAuthorizationsReader(final boolean related) {
-		return getServiceFactory().readerService(
+		return getServiceFactory().relatedReaderService(
 				Authorization.class,
 				Role.class,
 				RelationTypes.ROLE_AUTHORIZATION,
@@ -203,7 +203,7 @@ public final class Sample1EntityServiceBuilder extends Neo4JEntityServiceBuilder
 	}
 
 	private IReaderService<Void> createAuthorizationsOfRolesReader(final boolean related) {
-		return getServiceFactory().readerService(
+		return getServiceFactory().relatedReaderService(
 				Role.class,
 				Authorization.class,
 				RelationTypes.ROLE_AUTHORIZATION,
