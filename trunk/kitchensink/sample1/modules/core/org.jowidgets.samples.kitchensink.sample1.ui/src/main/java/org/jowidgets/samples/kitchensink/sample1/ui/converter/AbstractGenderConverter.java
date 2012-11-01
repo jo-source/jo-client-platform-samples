@@ -32,7 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.jowidgets.api.convert.IConverter;
-import org.jowidgets.api.toolkit.Toolkit;
+import org.jowidgets.i18n.api.MessageReplacer;
 import org.jowidgets.tools.converter.MapConverter;
 
 public abstract class AbstractGenderConverter {
@@ -54,10 +54,10 @@ public abstract class AbstractGenderConverter {
 		stringToObject.put(female, "F");
 		stringToObject.put(female.toLowerCase(), "F");
 
-		this.converter = new MapConverter<String>(objectToString, stringToObject, Toolkit.getMessageReplacer().replace(
-				ERROR_MSG,
-				male,
-				female));
+		this.converter = new MapConverter<String>(
+			objectToString,
+			stringToObject,
+			MessageReplacer.replace(ERROR_MSG, male, female));
 	}
 
 	public IConverter<String> getConverter() {

@@ -31,7 +31,6 @@ package org.jowidgets.samples.kitchensink.sample1.ui.attribute;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.cap.common.api.bean.IProperty;
 import org.jowidgets.cap.common.api.service.IEntityService;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
@@ -39,6 +38,7 @@ import org.jowidgets.cap.ui.api.attribute.IAttribute;
 import org.jowidgets.cap.ui.api.attribute.IAttributeBuilder;
 import org.jowidgets.cap.ui.api.attribute.IAttributeGroup;
 import org.jowidgets.cap.ui.api.attribute.IAttributeToolkit;
+import org.jowidgets.i18n.api.MessageReplacer;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
 import org.jowidgets.service.api.ServiceProvider;
 
@@ -65,10 +65,8 @@ public class GenericBeanAttributesFactory {
 			final IAttributeBuilder<String> builder = attributeToolkit.createAttributeBuilder(property);
 
 			if (columnIndex % 8 == 0) {
-				final String id = Toolkit.getMessageReplacer().replace(GROUP_N, String.valueOf(groupIndex));
-				final String description = Toolkit.getMessageReplacer().replace(
-						DESCRIPTION_OF_GROUP_N,
-						String.valueOf(groupIndex));
+				final String id = MessageReplacer.replace(GROUP_N, String.valueOf(groupIndex));
+				final String description = MessageReplacer.replace(DESCRIPTION_OF_GROUP_N, String.valueOf(groupIndex));
 
 				group = new IAttributeGroup() {
 
