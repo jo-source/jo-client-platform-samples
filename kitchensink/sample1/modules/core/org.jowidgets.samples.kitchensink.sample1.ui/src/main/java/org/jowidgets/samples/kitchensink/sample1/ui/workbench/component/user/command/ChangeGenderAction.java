@@ -43,6 +43,7 @@ import org.jowidgets.cap.ui.api.execution.BeanSelectionPolicy;
 import org.jowidgets.cap.ui.api.model.IBeanListModel;
 import org.jowidgets.cap.ui.tools.execution.ExecutionInterceptorAdapter;
 import org.jowidgets.common.types.IVetoable;
+import org.jowidgets.i18n.api.MessageReplacer;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 import org.jowidgets.samples.kitchensink.sample1.common.service.executor.ChangeGenderExecutableChecker;
 import org.jowidgets.samples.kitchensink.sample1.common.service.executor.UserComponentExecutorServices;
@@ -77,13 +78,13 @@ public class ChangeGenderAction extends ActionWrapper {
 				final String question;
 				if (size == 1) {
 					final IUser bean = model.getBean(model.getSelection().get(0)).getBean();
-					question = Toolkit.getMessageReplacer().replace(
+					question = MessageReplacer.replace(
 							WOULD_YOU_REALLY_LIKE_TO_CHANGE_THE_GENDER_OF_N_M_THIS_CAN_T_BE_UNDONE,
 							bean.getName(),
 							bean.getLastName());
 				}
 				else {
-					question = Toolkit.getMessageReplacer().replace(
+					question = MessageReplacer.replace(
 							WOULD_YOU_REALLY_LIKE_TO_CHANGE_THE_GENDER_OF_N_PERSONS_THIS_CAN_T_BE_UNDONE,
 							String.valueOf(size));
 				}
