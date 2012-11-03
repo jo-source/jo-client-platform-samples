@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.jowidgets.cap.sample1.starter.rcp.standalone
-Bundle-SymbolicName: org.jowidgets.cap.sample1.starter.rcp.standalone;singleton:=true
-Bundle-Version: 0.13.0.qualifier
+Bundle-Name: org.jowidgets.samples.kitchensink.sample1.starter.rcp.standalone
+Bundle-SymbolicName: org.jowidgets.samples.kitchensink.sample1.starter.rcp.standalone;singleton:=true
+Bundle-Version: 0.0.1.qualifier
 Bundle-Vendor: jo-widgets.org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ui;bundle-version="3.6.0",
@@ -11,12 +11,12 @@ Require-Bundle: org.eclipse.ui;bundle-version="3.6.0",
  org.jowidgets.workbench.impl.rcp.libs
 Bundle-ClassPath: .,
  lib/org.jowidgets.cap.common.jar,
- lib/org.jowidgets.cap.sample1.common.jar,
- lib/org.jowidgets.cap.sample1.plugins.ui.jar,
- lib/org.jowidgets.cap.sample1.service.jar,
- lib/org.jowidgets.cap.sample1.starter.standalone.common.jar,
- lib/org.jowidgets.cap.sample1.starter.standalone.swt.jar,
- lib/org.jowidgets.cap.sample1.ui.jar,
+ lib/org.jowidgets.samples.kitchensink.sample1.common.jar,
+ lib/org.jowidgets.samples.kitchensink.sample1.plugins.ui.jar,
+ lib/org.jowidgets.samples.kitchensink.sample1.service.jar,
+ lib/org.jowidgets.samples.kitchensink.sample1.starter.standalone.common.jar,
+ lib/org.jowidgets.samples.kitchensink.sample1.starter.standalone.swt.jar,
+ lib/org.jowidgets.samples.kitchensink.sample1.ui.jar,
  lib/org.jowidgets.cap.service.impl.dummy.jar,
  lib/org.jowidgets.cap.service.jar,
  lib/org.jowidgets.cap.tools.starter.standalone.common.jar,

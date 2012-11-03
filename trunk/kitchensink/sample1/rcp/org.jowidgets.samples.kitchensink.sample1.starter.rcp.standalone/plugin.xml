@@ -6,7 +6,7 @@
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="org.jowidgets.cap.sample1.starter.standalone.rcp.Sample1StarterStandaloneRcp">
+               class="org.jowidgets.samples.kitchensink.sample1.starter.standalone.rcp.Sample1StarterStandaloneRcp">
          </run>
       </application>
    </extension>
@@ -14,7 +14,7 @@
          id="sample1"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.jowidgets.cap.sample1.starter.rcp.standalone.sample1"
+            application="org.jowidgets.samples.kitchensink.sample1.starter.rcp.standalone.sample1"
             name="org.jowidgets.workbench.impl.rcp.example">
          <property
                name="appName"

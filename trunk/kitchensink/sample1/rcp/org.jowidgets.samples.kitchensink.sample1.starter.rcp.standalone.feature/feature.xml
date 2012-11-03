@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.jowidgets.cap.sample1.starter.rcp.standalone.feature"
-      label="org.jowidgets.cap.sample1.starter.rcp.standalone.feature"
-      version="0.13.0.qualifier">
+      id="org.jowidgets.samples.kitchensink.sample1.starter.rcp.standalone.feature"
+      label="org.jowidgets.samples.kitchensink.sample1.starter.rcp.standalone.feature"
+      version="0.0.1.qualifier">
 
    <description url="http://www.example.com/description">
       [Enter Feature Description here.]
@@ -35,7 +35,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.jowidgets.cap.sample1.starter.rcp.standalone"
+         id="org.jowidgets.samples.kitchensink.sample1.starter.rcp.standalone"
          download-size="0"
          install-size="0"
          version="0.0.0"
