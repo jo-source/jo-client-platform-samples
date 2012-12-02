@@ -40,7 +40,7 @@ public class PersonActivateExecutableChecker implements IExecutableChecker<IPers
 
 	@Override
 	public IExecutableState getExecutableState(final IPerson person) {
-		if (person != null && person.getActive()) {
+		if (person != null && person.getActive() != null && person.getActive().booleanValue()) {
 			return ExecutableState.notExecutable("Person is already activated");
 		}
 		else {
