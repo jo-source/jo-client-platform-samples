@@ -28,11 +28,16 @@
 
 package org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.view;
 
+import java.util.List;
+
 import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
+import org.jowidgets.cap.ui.api.attribute.IAttribute;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
+import org.jowidgets.cap.ui.api.widgets.IBeanFormBluePrint;
 import org.jowidgets.cap.ui.api.widgets.IBeanSelectionFormBluePrint;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
+import org.jowidgets.samples.kitchensink.sample1.ui.attribute.UserAttributesFactory;
 import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.workbench.api.IViewContext;
 import org.jowidgets.workbench.tools.AbstractView;
@@ -47,6 +52,10 @@ public class UserDetailView extends AbstractView {
 		final IContainer container = context.getContainer();
 		container.setLayout(MigLayoutFactory.growingCellLayout());
 		final IBeanSelectionFormBluePrint selectionFormBp = CapUiToolkit.bluePrintFactory().beanSelectionForm(parentModel);
+		final List<IAttribute<Object>> formAttributes = new UserAttributesFactory().formAttributes();
+		final IBeanFormBluePrint<Object> beanFormBp = CapUiToolkit.bluePrintFactory().beanForm(formAttributes);
+		beanFormBp.setEntityId(IUser.class);
+		selectionFormBp.setBeanForm(beanFormBp);
 		container.add(selectionFormBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
 	}
 }
