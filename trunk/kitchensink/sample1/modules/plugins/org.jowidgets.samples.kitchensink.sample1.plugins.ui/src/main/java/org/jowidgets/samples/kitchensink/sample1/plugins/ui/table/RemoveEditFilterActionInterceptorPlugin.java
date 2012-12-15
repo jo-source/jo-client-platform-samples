@@ -26,36 +26,28 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample1.plugins.ui;
+package org.jowidgets.samples.kitchensink.sample1.plugins.ui.table;
 
-import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuContributionPlugin;
+import org.jowidgets.api.command.IActionBuilder;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuInterceptorPlugin;
-import org.jowidgets.plugin.tools.PluginProviderBuilder;
-import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
+import org.jowidgets.cap.ui.api.table.IBeanTableMenuInterceptor;
+import org.jowidgets.cap.ui.api.table.IBeanTableModel;
+import org.jowidgets.cap.ui.api.widgets.IBeanTable;
+import org.jowidgets.cap.ui.tools.table.BeanTableMenuInterceptorAdapter;
+import org.jowidgets.plugin.api.IPluginProperties;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
-import org.jowidgets.samples.kitchensink.sample1.plugins.ui.table.RemoveEditFilterActionInterceptorPlugin;
-import org.jowidgets.samples.kitchensink.sample1.plugins.ui.table.UserMenuContributionPlugin;
-import org.jowidgets.samples.kitchensink.sample1.plugins.ui.table.UserMenuInterceptorPlugin;
 
-public final class Sample1PluginProviderBuilder extends PluginProviderBuilder {
+public class RemoveEditFilterActionInterceptorPlugin extends BeanTableMenuInterceptorAdapter<IUser> implements
+		IBeanTableMenuInterceptorPlugin<IUser> {
 
-	public Sample1PluginProviderBuilder() {
-		addPlugin(
-				IBeanTableMenuInterceptorPlugin.ID,
-				new UserMenuInterceptorPlugin(),
-				IBeanTableMenuInterceptorPlugin.ENTITIY_ID_PROPERTY_KEY,
-				IUser.class,
-				EntityIds.VIRTUAL_USERS_OF_ROLES);
+	@Override
+	public IBeanTableMenuInterceptor<IUser> getMenuInterceptor(final IPluginProperties properties, final IBeanTable<IUser> table) {
+		return this;
+	}
 
-		addPlugin(
-				IBeanTableMenuContributionPlugin.ID,
-				new UserMenuContributionPlugin(),
-				IBeanTableMenuContributionPlugin.ENTITIY_ID_PROPERTY_KEY,
-				IUser.class,
-				EntityIds.VIRTUAL_USERS_OF_ROLES);
-
-		addPlugin(IBeanTableMenuInterceptorPlugin.ID, new RemoveEditFilterActionInterceptorPlugin());
-
+	@Override
+	public IActionBuilder editFilterActionBuilder(final IBeanTableModel<?> model, final IActionBuilder builder) {
+		return null;
 	}
 
 }
