@@ -29,6 +29,7 @@
 package org.jowidgets.samples.kitchensink.sample1.plugins.ui.table;
 
 import org.jowidgets.api.command.IActionBuilder;
+import org.jowidgets.api.command.ICommandAction;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuInterceptorPlugin;
 import org.jowidgets.cap.ui.api.table.IBeanTableMenuInterceptor;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
@@ -36,6 +37,7 @@ import org.jowidgets.cap.ui.api.widgets.IBeanTable;
 import org.jowidgets.cap.ui.tools.table.BeanTableMenuInterceptorAdapter;
 import org.jowidgets.plugin.api.IPluginProperties;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
+import org.jowidgets.tools.command.ActionBuilder;
 
 public class RemoveEditFilterActionInterceptorPlugin extends BeanTableMenuInterceptorAdapter<IUser> implements
 		IBeanTableMenuInterceptorPlugin<IUser> {
@@ -47,7 +49,12 @@ public class RemoveEditFilterActionInterceptorPlugin extends BeanTableMenuInterc
 
 	@Override
 	public IActionBuilder editFilterActionBuilder(final IBeanTableModel<?> model, final IActionBuilder builder) {
-		return null;
+		return new ActionBuilder() {
+			@Override
+			public ICommandAction build() {
+				return null;
+			}
+		};
 	}
 
 }
