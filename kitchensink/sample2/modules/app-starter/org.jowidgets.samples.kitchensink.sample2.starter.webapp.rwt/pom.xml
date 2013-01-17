@@ -17,16 +17,31 @@
 			<artifactId>org.jowidgets.samples.kitchensink.sample2.app.ui</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.jowidgets.samples.kitchensink.sample2</groupId>
 			<artifactId>org.jowidgets.samples.kitchensink.sample2.app.service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.jowidgets</groupId>
 			<artifactId>org.jowidgets.cap.tools.starter.webapp.rwt</artifactId>
 			<version>${jocap.version}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>org.eclipse.rap.rwt</artifactId>
+            <version>1.4.2.20120213-1324</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>org.eclipse.rap.rwt.q07</artifactId>
+            <version>1.4.2.20120213-1324</version>
+        </dependency>
+		
 	</dependencies>
 
     <build>
