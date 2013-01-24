@@ -104,7 +104,7 @@ public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 	}
 
 	private IServicesDecoratorProvider createCancelServiceDecoratorProvider() {
-		final ICancelServicesDecoratorProviderBuilder builder = HibernateServiceToolkit.serviceDecoratorProviderBuilder("sample2PersistenceUnit");
+		final ICancelServicesDecoratorProviderBuilder builder = HibernateServiceToolkit.cancelServiceDecoratorProviderBuilder("sample2PersistenceUnit");
 		builder.addServices(ILookUpService.class);
 		return builder.build();
 	}
