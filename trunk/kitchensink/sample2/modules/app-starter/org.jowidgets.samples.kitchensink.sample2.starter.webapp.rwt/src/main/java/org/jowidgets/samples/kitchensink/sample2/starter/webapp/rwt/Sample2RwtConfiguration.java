@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,19 +26,27 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample2.app.service.util;
+package org.jowidgets.samples.kitchensink.sample2.starter.webapp.rwt;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import java.util.HashMap;
+import java.util.Map;
 
-public final class SampleDataGeneratorStarter {
+import org.eclipse.rap.rwt.application.Application;
+import org.eclipse.rap.rwt.application.Application.OperationMode;
+import org.eclipse.rap.rwt.application.ApplicationConfiguration;
+import org.eclipse.rap.rwt.client.WebClient;
 
-	private SampleDataGeneratorStarter() {}
+public final class Sample2RwtConfiguration implements ApplicationConfiguration {
 
-	public static void main(final String[] args) {
-		final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("sample2PersistenceUnit");
-		final SampleDataGenerator sampleDataGenerator = new SampleDataGenerator();
-		sampleDataGenerator.dropAndCreateAllData(entityManagerFactory, 500, 1000);
+	@Override
+	public void configure(final Application application) {
+		application.setOperationMode(OperationMode.SWT_COMPATIBILITY);
+		application.addStyleSheet(
+				"org.jowidgets.spi.impl.rwt.themes.business",
+				"org/jowidgets/spi/impl/rwt/themes/business/business_less_insets.css");
+		final Map<String, String> properties = new HashMap<String, String>();
+		properties.put(WebClient.THEME_ID, "org.jowidgets.spi.impl.rwt.themes.business");
+		properties.put(WebClient.PAGE_TITLE, "RWT Workbench Demo");
+		application.addEntryPoint("/Sample2", Sample2RwtEntryPoint.class, properties);
 	}
-
 }
