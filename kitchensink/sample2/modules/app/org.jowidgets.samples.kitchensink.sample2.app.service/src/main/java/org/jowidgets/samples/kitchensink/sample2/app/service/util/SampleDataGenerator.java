@@ -106,6 +106,7 @@ public final class SampleDataGenerator {
 		final EntityManager entityManager = entityManagerFactory.createEntityManager();
 		final EntityTransaction tx = entityManager.getTransaction();
 		tx.begin();
+		entityManager.createQuery("delete from Phone").executeUpdate();
 		entityManager.createQuery("delete from RoleAuthorizationLink").executeUpdate();
 		entityManager.createQuery("delete from PersonPersonLink").executeUpdate();
 		entityManager.createQuery("delete from PersonRoleLink").executeUpdate();
