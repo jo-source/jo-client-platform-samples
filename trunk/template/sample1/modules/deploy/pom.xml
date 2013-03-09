@@ -77,6 +77,39 @@
 									<destFileName>sample1-web.war</destFileName>
 									<outputDirectory>${deploy.dir}</outputDirectory>
 								</artifactItem>
+								
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>org.jowidgets.samples.template.sample1.starter.standalone.swing.executable</artifactId>
+									<version>${project.version}</version>
+									<classifier>jar-with-dependencies</classifier>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+									<destFileName>sample1-standalone-swing-executable.jar</destFileName>
+									<outputDirectory>${deploy.dir}</outputDirectory>
+								</artifactItem>
+								
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>org.jowidgets.samples.template.sample1.starter.standalone.swt.win.executable</artifactId>
+									<version>${project.version}</version>
+									<classifier>jar-with-dependencies</classifier>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+									<destFileName>sample1-standalone-swt-win-executable.jar</destFileName>
+									<outputDirectory>${deploy.dir}</outputDirectory>
+								</artifactItem>
+								
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>org.jowidgets.samples.template.sample1.starter.standalone.swt.gtk64.executable</artifactId>
+									<version>${project.version}</version>
+									<classifier>jar-with-dependencies</classifier>
+									<type>jar</type>
+									<overWrite>true</overWrite>
+									<destFileName>sample1-standalone-swt-gtk64-executable.jar</destFileName>
+									<outputDirectory>${deploy.dir}</outputDirectory>
+								</artifactItem>
 
 							</artifactItems>
 						</configuration>
