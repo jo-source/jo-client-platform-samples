@@ -4,8 +4,8 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
   version="2.4">
  
-  <display-name>Cap Sample1</display-name>
-  <description>Cap Sample1</description>
+  <display-name>Sample1</display-name>
+  <description>Sample1</description>
  
   <context-param>
     <param-name>org.eclipse.rwt.entryPoints</param-name>
