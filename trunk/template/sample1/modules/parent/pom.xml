@@ -16,24 +16,24 @@
 		<jocap.version>0.20.0-SNAPSHOT</jocap.version>
 	</properties>
 
-	<scm>
-		<connection>scm:svn:http://jo-useradmin.googlecode.com/svn/trunk/template/sample1/modules/parent</connection>
-		<developerConnection>scm:svn:https://jo-useradmin.googlecode.com/svn/trunk/template/sample1/modules/parent</developerConnection>
-		<url>http://jo-client-platform.googlecode.com/svn/trunk/template/sample1/modules/parent</url>
-	</scm>
-
 	<modules>
 	    <module>../app/parent/</module>
 		<module>../app-starter/parent/</module>
 		<module>../deploy</module>
 	</modules>
 
-	<distributionManagement>
+	<repositories>
 		<repository>
-			<id>jowidgets-ftp-repository</id>
-			<url>ftp://jowidgets.org/jowidgets-org/maven2/</url>
+			<id>jowidgets</id>
+			<url>http://jowidgets.org/maven2/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
 		</repository>
-	</distributionManagement>
+	</repositories>
 
 	<dependencyManagement>
 		<dependencies>
@@ -71,37 +71,9 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.8.2</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
 
-	<repositories>
-		<repository>
-			<id>jowidgets</id>
-			<url>http://jowidgets.org/maven2/</url>
-			<releases>
-				<enabled>true</enabled>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 
 	<build>
-		<extensions>
-			<extension>
-				<groupId>org.apache.maven.wagon</groupId>
-				<artifactId>wagon-ftp</artifactId>
-				<version>1.0-beta-6</version>
-			</extension>
-		</extensions>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -129,12 +101,6 @@
 						<version>${jowidgets.version}</version>
 					</dependency>
 				</dependencies>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-deploy-plugin</artifactId>
-				<version>2.5</version>
 			</plugin>
 
 			<plugin>
