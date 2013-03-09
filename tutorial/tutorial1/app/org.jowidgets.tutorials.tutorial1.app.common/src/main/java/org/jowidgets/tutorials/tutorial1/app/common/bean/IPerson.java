@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,45 +25,47 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.tutorials.tutorial1.app.common.bean;
 
-package org.jowidgets.tutorials.tutorial1.app.ui.workbench;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.tutorials.tutorial1.app.ui.application.Tutorial1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-public final class Tutorial1Workbench implements IWorkbenchFactory {
+import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.tutorials.tutorial1.app.common.dto.Gender;
 
-	private final boolean webapp;
+public interface IPerson extends IBean {
 
-	public Tutorial1Workbench() {
-		this(false);
-	}
+	String NAME_PROPERTY = "name";
+	String DATE_OF_BIRTH_PROPERTY = "dateOfBirth";
+	String GENDER_PROPERTY = "gender";
 
-	public Tutorial1Workbench(final boolean webapp) {
-		this.webapp = webapp;
-	}
-
-	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLabel("Tutorial1");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(NAME_PROPERTY);
+			add(DATE_OF_BIRTH_PROPERTY);
+			add(GENDER_PROPERTY);
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
 		}
-		builder.addApplication(Tutorial1ApplicationFactory.create());
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
-	}
+	};
+
+	@NotNull
+	@Size(min = 2, max = 50)
+	String getName();
+
+	void setName(String loginName);
+
+	Date getDateOfBirth();
+
+	void setDateOfBirth(Date date);
+
+	Gender getGender();
+
+	void setGender(Gender gender);
 
 }

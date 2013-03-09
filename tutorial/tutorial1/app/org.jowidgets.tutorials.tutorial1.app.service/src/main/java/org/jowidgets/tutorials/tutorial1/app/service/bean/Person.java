@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2011, H.Westphal
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,45 +25,61 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.tutorials.tutorial1.app.service.bean;
 
-package org.jowidgets.tutorials.tutorial1.app.ui.workbench;
+import java.util.Date;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.tutorials.tutorial1.app.ui.application.Tutorial1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-public final class Tutorial1Workbench implements IWorkbenchFactory {
+import org.hibernate.annotations.Index;
+import org.jowidgets.tutorials.tutorial1.app.common.bean.IPerson;
+import org.jowidgets.tutorials.tutorial1.app.common.dto.Gender;
 
-	private final boolean webapp;
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
+public class Person extends Bean implements IPerson {
 
-	public Tutorial1Workbench() {
-		this(false);
-	}
+	@Basic
+	@Index(name = "PersonNameIndex")
+	private String name;
 
-	public Tutorial1Workbench(final boolean webapp) {
-		this.webapp = webapp;
+	@Basic
+	private Date dateOfBirth;
+
+	@Basic
+	private Gender gender;
+
+	@Override
+	public String getName() {
+		return name;
 	}
 
 	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
+	public void setName(final String name) {
+		this.name = name;
+	}
 
-		SilkIconsInitializer.initializeFull();
+	@Override
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
 
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLabel("Tutorial1");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
-		}
-		builder.addApplication(Tutorial1ApplicationFactory.create());
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
+	@Override
+	public void setDateOfBirth(final Date date) {
+		this.dateOfBirth = date;
+	}
+
+	@Override
+	public Gender getGender() {
+		return gender;
+	}
+
+	@Override
+	public void setGender(final Gender gender) {
+		this.gender = gender;
 	}
 
 }

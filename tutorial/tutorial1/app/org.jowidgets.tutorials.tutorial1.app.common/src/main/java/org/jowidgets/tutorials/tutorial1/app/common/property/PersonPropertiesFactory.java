@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,44 +26,47 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial1.app.ui.workbench;
+package org.jowidgets.tutorials.tutorial1.app.common.property;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.tutorials.tutorial1.app.ui.application.Tutorial1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import java.util.LinkedList;
+import java.util.List;
 
-public final class Tutorial1Workbench implements IWorkbenchFactory {
+import org.jowidgets.cap.common.api.CapCommonToolkit;
+import org.jowidgets.cap.common.api.bean.IBeanPropertyBuilder;
+import org.jowidgets.cap.common.api.bean.IProperty;
+import org.jowidgets.tutorials.tutorial1.app.common.bean.IPerson;
 
-	private final boolean webapp;
+public final class PersonPropertiesFactory {
 
-	public Tutorial1Workbench() {
-		this(false);
+	private PersonPropertiesFactory() {}
+
+	public static List<IProperty> create() {
+		final List<IProperty> result = new LinkedList<IProperty>();
+
+		//IPerson.NAME_PROPERTY
+		IBeanPropertyBuilder builder = builder(IPerson.NAME_PROPERTY);
+		builder.setLabel("Name");
+		builder.setDescription("The name of the person");
+		builder.setMandatory(true);
+		result.add(builder.build());
+
+		//IPerson.DATE_OF_BIRTH_PROPERTY
+		builder = builder(IPerson.DATE_OF_BIRTH_PROPERTY);
+		builder.setLabel("Date of birth");
+		builder.setDescription("The date when the person was born");
+		result.add(builder.build());
+
+		//IPerson.GENDER_PROPERTY
+		builder = builder(IPerson.GENDER_PROPERTY);
+		builder.setLabel("Gender");
+		builder.setDescription("The persons gender");
+		result.add(builder.build());
+
+		return result;
 	}
 
-	public Tutorial1Workbench(final boolean webapp) {
-		this.webapp = webapp;
-	}
-
-	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLabel("Tutorial1");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
-		}
-		builder.addApplication(Tutorial1ApplicationFactory.create());
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
+	private static IBeanPropertyBuilder builder(final String propertyName) {
+		return CapCommonToolkit.beanPropertyBuilder(IPerson.class, propertyName);
 	}
 
 }

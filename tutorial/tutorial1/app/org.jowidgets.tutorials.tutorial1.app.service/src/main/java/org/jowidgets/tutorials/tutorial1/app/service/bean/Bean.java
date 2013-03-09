@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2012, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,45 +25,33 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.tutorials.tutorial1.app.service.bean;
 
-package org.jowidgets.tutorials.tutorial1.app.ui.workbench;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.tutorials.tutorial1.app.ui.application.Tutorial1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.jowidgets.cap.common.api.bean.IBean;
 
-public final class Tutorial1Workbench implements IWorkbenchFactory {
+@MappedSuperclass
+public class Bean implements IBean {
 
-	private final boolean webapp;
+	@Id
+	@GeneratedValue
+	private Long id;
 
-	public Tutorial1Workbench() {
-		this(false);
-	}
+	@Version
+	private long version;
 
-	public Tutorial1Workbench(final boolean webapp) {
-		this.webapp = webapp;
+	@Override
+	public Long getId() {
+		return id;
 	}
 
 	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLabel("Tutorial1");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
-		}
-		builder.addApplication(Tutorial1ApplicationFactory.create());
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
+	public long getVersion() {
+		return version;
 	}
 
 }
