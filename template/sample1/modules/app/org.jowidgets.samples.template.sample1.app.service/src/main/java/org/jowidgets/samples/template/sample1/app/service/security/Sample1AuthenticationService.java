@@ -34,14 +34,14 @@ import org.jowidgets.security.api.IPrincipal;
 import org.jowidgets.security.tools.DefaultPrincipal;
 import org.jowidgets.util.EmptyCheck;
 
-public class SampleAuthenticationService implements IAuthenticationService<IPrincipal<String>, ICredentials> {
+public final class Sample1AuthenticationService implements IAuthenticationService<IPrincipal<String>, ICredentials> {
 
 	@Override
 	public IPrincipal<String> authenticate(final ICredentials credentials) {
 		if ("admin".equals(credentials.getUsername()) && "admin".equals(credentials.getPassword())) {
 			return new DefaultPrincipal(credentials.getUsername());
 		}
-		else if ("jo".equals(credentials.getUsername()) && "miller".equals(credentials.getPassword())) {
+		else if ("guest".equals(credentials.getUsername()) && "guest".equals(credentials.getPassword())) {
 			return new DefaultPrincipal(credentials.getUsername());
 		}
 		else if (EmptyCheck.isEmpty(credentials.getUsername()) && EmptyCheck.isEmpty(credentials.getPassword())) {

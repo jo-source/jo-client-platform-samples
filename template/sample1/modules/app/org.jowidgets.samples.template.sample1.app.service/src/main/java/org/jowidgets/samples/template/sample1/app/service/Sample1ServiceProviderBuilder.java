@@ -32,11 +32,10 @@ import org.jowidgets.samples.template.sample1.app.common.service.security.Author
 import org.jowidgets.samples.template.sample1.app.service.security.AuthorizationProviderServiceImpl;
 import org.jowidgets.service.tools.ServiceProviderBuilder;
 
-public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
+public class Sample1ServiceProviderBuilder extends ServiceProviderBuilder {
 
-	public SampleServiceProviderBuilder() {
+	public Sample1ServiceProviderBuilder() {
 		super();
-
 		addService(AuthorizationProviderServiceId.ID, new AuthorizationProviderServiceImpl());
 	}
 
