@@ -26,24 +26,14 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.template.sample1.app.service.security;
+package org.jowidgets.samples.template.sample1.app.service;
 
-import org.jowidgets.cap.common.api.execution.IExecutionCallback;
-import org.jowidgets.cap.common.api.execution.IResultCallback;
-import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.security.api.IPrincipal;
-import org.jowidgets.security.api.SecurityContextHolder;
-import org.jowidgets.security.tools.DefaultPrincipal;
+import org.jowidgets.service.tools.DefaultServiceProviderHolder;
 
-public final class AuthorizationProviderServiceImpl implements IAuthorizationProviderService<IPrincipal<String>> {
+public class Sample1ServiceProviderHolder extends DefaultServiceProviderHolder {
 
-	@Override
-	public void getPrincipal(final IResultCallback<IPrincipal<String>> result, final IExecutionCallback executionCallback) {
-		try {
-			result.finished((DefaultPrincipal) SecurityContextHolder.getSecurityContext());
-		}
-		catch (final Exception exception) {
-			result.exception(exception);
-		}
+	public Sample1ServiceProviderHolder() {
+		super(new Sample1ServiceProviderBuilder());
 	}
+
 }

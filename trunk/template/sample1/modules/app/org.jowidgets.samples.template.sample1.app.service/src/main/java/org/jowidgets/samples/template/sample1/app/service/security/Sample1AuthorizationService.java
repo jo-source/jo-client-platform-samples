@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,14 +26,43 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.template.sample1.app.service;
+package org.jowidgets.samples.template.sample1.app.service.security;
 
-import org.jowidgets.service.tools.DefaultServiceProviderHolder;
+import java.util.HashSet;
+import java.util.Set;
 
-public class ServiceProviderHolder extends DefaultServiceProviderHolder {
+import org.jowidgets.security.api.IAuthorizationService;
+import org.jowidgets.security.api.IPrincipal;
+import org.jowidgets.security.tools.DefaultPrincipal;
 
-	public ServiceProviderHolder() {
-		super(new SampleServiceProviderBuilder());
+public final class Sample1AuthorizationService implements IAuthorizationService<IPrincipal<String>> {
+
+	private static final String READ_ALL = "READ_ALL";
+	private static final String WRITE_ALL = "WRITE_ALL";
+
+	private static final Set<String> ADMIN_AUTHORITIES = createAdminAuthorities();
+	private static final Set<String> GUEST_AUTHORITIES = createGuestAuthorities();
+
+	private static Set<String> createAdminAuthorities() {
+		final Set<String> result = new HashSet<String>();
+		result.add(READ_ALL);
+		result.add(WRITE_ALL);
+		return result;
 	}
 
+	private static Set<String> createGuestAuthorities() {
+		final Set<String> result = new HashSet<String>();
+		result.add(READ_ALL);
+		return result;
+	}
+
+	@Override
+	public IPrincipal<String> authorize(final IPrincipal<String> principal) {
+		if ("admin".equals(principal.getUsername())) {
+			return new DefaultPrincipal(principal.getUsername(), ADMIN_AUTHORITIES);
+		}
+		else {
+			return new DefaultPrincipal(principal.getUsername(), GUEST_AUTHORITIES);
+		}
+	}
 }
