@@ -34,7 +34,7 @@ public final class Sample1RwtEntryPoint extends CapRwtEntryPoint {
 
 	//StartUrl: http://127.0.0.1:8080/sample1-web/Sample1
 	public Sample1RwtEntryPoint() {
-		super(new Sample1Workbench());
+		super(new Sample1Workbench(true));
 	}
 
 }

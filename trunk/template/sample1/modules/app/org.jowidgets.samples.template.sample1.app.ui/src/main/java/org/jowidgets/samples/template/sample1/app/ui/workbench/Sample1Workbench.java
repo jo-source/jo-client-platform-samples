@@ -28,43 +28,39 @@
 
 package org.jowidgets.samples.template.sample1.app.ui.workbench;
 
-import org.jowidgets.cap.ui.api.login.LoginService;
-import org.jowidgets.common.types.Dimension;
-import org.jowidgets.common.types.IVetoable;
-import org.jowidgets.workbench.api.ILoginCallback;
+import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
 import org.jowidgets.workbench.api.IWorkbench;
 import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
 import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.jowidgets.workbench.tools.WorkbenchModelBuilder;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
-public class Sample1Workbench implements IWorkbenchFactory {
+public final class Sample1Workbench implements IWorkbenchFactory {
+
+	private final boolean webapp;
+
+	public Sample1Workbench() {
+		this(false);
+	}
+
+	public Sample1Workbench(final boolean webapp) {
+		this.webapp = webapp;
+	}
 
 	@Override
 	public IWorkbench create() {
-
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
 
-		final IWorkbenchModelBuilder builder = new WorkbenchModelBuilder();
-		builder.setInitialDimension(new Dimension(1024, 768));
-		builder.setInitialSplitWeight(0.2);
+		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel("Sample1");
-		builder.setLoginCallback(new ILoginCallback() {
-			@Override
-			public void onLogin(final IVetoable vetoable) {
-				final boolean doLogin = LoginService.doLogin();
-				if (!doLogin) {
-					vetoable.veto();
-				}
-			}
-		});
 
-		final IWorkbenchModel model = builder.build();
+		if (webapp) {
+			builder.setInitialMaximized(true);
+			builder.setDecorated(false);
+		}
 
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(model);
+		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
 	}
 
 }
