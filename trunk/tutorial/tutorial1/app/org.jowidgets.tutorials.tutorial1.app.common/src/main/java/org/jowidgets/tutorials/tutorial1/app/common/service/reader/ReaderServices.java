@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,44 +26,19 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial1.app.ui.workbench;
+package org.jowidgets.tutorials.tutorial1.app.common.service.reader;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.tutorials.tutorial1.app.ui.application.Tutorial1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.jowidgets.cap.common.api.service.IReaderService;
+import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.service.tools.ServiceId;
 
-public final class Tutorial1Workbench implements IWorkbenchFactory {
+public final class ReaderServices {
 
-	private final boolean webapp;
+	public static final IServiceId<IReaderService<Void>> ALL_PERSONS = create("ALL_PERSONS");
 
-	public Tutorial1Workbench() {
-		this(false);
+	private ReaderServices() {}
+
+	private static <PARAM_TYPE> IServiceId<IReaderService<PARAM_TYPE>> create(final String idSuffix) {
+		return new ServiceId<IReaderService<PARAM_TYPE>>(ReaderServices.class.getName() + "_" + idSuffix, IReaderService.class);
 	}
-
-	public Tutorial1Workbench(final boolean webapp) {
-		this.webapp = webapp;
-	}
-
-	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLabel("Tutorial1");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
-		}
-		builder.addApplication(Tutorial1ApplicationFactory.create());
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
-	}
-
 }

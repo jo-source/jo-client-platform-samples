@@ -28,15 +28,48 @@
 
 package org.jowidgets.tutorials.tutorial1.app.service;
 
-import org.jowidgets.tutorials.tutorial1.app.common.service.security.AuthorizationProviderServiceId;
-import org.jowidgets.tutorials.tutorial1.app.service.security.AuthorizationProviderServiceImpl;
+import org.jowidgets.cap.service.hibernate.api.HibernateServiceToolkit;
+import org.jowidgets.cap.service.jpa.api.IJpaServicesDecoratorProviderBuilder;
+import org.jowidgets.cap.service.jpa.api.JpaServiceToolkit;
+import org.jowidgets.service.api.IServicesDecoratorProvider;
 import org.jowidgets.service.tools.ServiceProviderBuilder;
+import org.jowidgets.tutorials.tutorial1.app.common.service.creator.CreatorServices;
+import org.jowidgets.tutorials.tutorial1.app.common.service.deleter.DeleterServices;
+import org.jowidgets.tutorials.tutorial1.app.common.service.reader.ReaderServices;
+import org.jowidgets.tutorials.tutorial1.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.tutorials.tutorial1.app.common.service.updater.UpdaterServices;
+import org.jowidgets.tutorials.tutorial1.app.service.creator.PersonCreatorServiceFactory;
+import org.jowidgets.tutorials.tutorial1.app.service.deleter.PersonDeleterServiceFactory;
+import org.jowidgets.tutorials.tutorial1.app.service.reader.PersonReaderServiceFactory;
+import org.jowidgets.tutorials.tutorial1.app.service.security.AuthorizationProviderServiceImpl;
+import org.jowidgets.tutorials.tutorial1.app.service.updater.PersonUpdaterServiceFactory;
 
 public class Tutorial1ServiceProviderBuilder extends ServiceProviderBuilder {
 
 	public Tutorial1ServiceProviderBuilder() {
 		super();
+		//security
 		addService(AuthorizationProviderServiceId.ID, new AuthorizationProviderServiceImpl());
+
+		//Person CRUD services
+		addService(ReaderServices.ALL_PERSONS, PersonReaderServiceFactory.allPersons());
+		addService(CreatorServices.CREATE_PERSON, PersonCreatorServiceFactory.create());
+		addService(UpdaterServices.UPDATE_PERSON, PersonUpdaterServiceFactory.create());
+		addService(DeleterServices.DELETE_PERSON, PersonDeleterServiceFactory.create());
+
+		//jpa decorators
+		addServiceDecorator(createJpaServiceDecoratorProvider());
+		addServiceDecorator(createCancelServiceDecoratorProvider());
+	}
+
+	private IServicesDecoratorProvider createJpaServiceDecoratorProvider() {
+		final IJpaServicesDecoratorProviderBuilder builder = JpaServiceToolkit.serviceDecoratorProviderBuilder("tutorial1PersistenceUnit");
+		builder.addExceptionDecorator(HibernateServiceToolkit.exceptionDecorator());
+		return builder.build();
+	}
+
+	private IServicesDecoratorProvider createCancelServiceDecoratorProvider() {
+		return HibernateServiceToolkit.cancelServiceDecoratorProviderBuilder("tutorial1PersistenceUnit").build();
 	}
 
 }
