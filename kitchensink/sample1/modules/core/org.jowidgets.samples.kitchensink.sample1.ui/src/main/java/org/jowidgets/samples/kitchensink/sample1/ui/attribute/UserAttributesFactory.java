@@ -73,7 +73,7 @@ public class UserAttributesFactory {
 		genderAttributeBp.setDisplayFormat(IconDisplayFormat.getInstance()).setTableAlignment(AlignmentHorizontal.CENTER);
 
 		final IAttributeBluePrint<Date> birthdayAttributeBp = modifierBuilder.addModifier(IUser.DATE_OF_BIRTH_PROPERTY);
-		birthdayAttributeBp.setLabelDisplayFormat(DisplayFormat.LONG).setDisplayFormat(DateDisplayFormat.DATE);
+		birthdayAttributeBp.setLabelDisplayFormat(DisplayFormat.LONG).setDisplayFormat(DateDisplayFormat.DATE_TIME);
 
 		modifierBuilder.addModifier(IUser.ADMIN_PROPERTY).setTableAlignment(AlignmentHorizontal.CENTER);
 
