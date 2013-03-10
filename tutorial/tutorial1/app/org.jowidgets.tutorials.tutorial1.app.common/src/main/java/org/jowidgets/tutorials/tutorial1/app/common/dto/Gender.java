@@ -30,7 +30,18 @@ package org.jowidgets.tutorials.tutorial1.app.common.dto;
 
 public enum Gender {
 
-	MALE,
-	FEMALE
+	MALE("Male"),
+	FEMALE("Female");
+
+	private final String label;
+
+	private Gender(final String label) {
+		this.label = label;
+	}
+
+	@Override
+	public String toString() {
+		return label;
+	}
 
 }
