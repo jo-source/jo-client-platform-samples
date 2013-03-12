@@ -26,36 +26,30 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial2.app.ui.component;
+package org.jowidgets.tutorials.tutorial2.app.ui.action;
 
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
-import org.jowidgets.api.widgets.IContainer;
-import org.jowidgets.cap.ui.api.CapUiToolkit;
+import org.jowidgets.api.command.IAction;
+import org.jowidgets.cap.ui.api.command.ExecutorAction;
+import org.jowidgets.cap.ui.api.command.IExecutorActionBuilder;
+import org.jowidgets.cap.ui.api.execution.BeanExecutionPolicy;
+import org.jowidgets.cap.ui.api.execution.BeanSelectionPolicy;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.widgets.IBeanTable;
-import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.common.image.IImageConstant;
-import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.tutorials.tutorial2.app.common.bean.IPerson;
-import org.jowidgets.tutorials.tutorial2.app.ui.action.PersonLongLastingActionFactory;
-import org.jowidgets.workbench.api.IViewContext;
-import org.jowidgets.workbench.tools.AbstractView;
+import org.jowidgets.tutorials.tutorial2.app.common.service.executor.ExecutorServices;
 
-public final class PersonTableView extends AbstractView {
+public final class PersonLongLastingActionFactory {
 
-	public static final String ID = PersonTableView.class.getName();
-	public static final String DEFAULT_LABEL = "Persons";
-	public static final String DEFAULT_TOOLTIP = "Shows all person";
-	public static final IImageConstant DEFAULT_ICON = SilkIcons.USER;
+	private PersonLongLastingActionFactory() {}
 
-	public PersonTableView(final IViewContext context, final IBeanTableModel<IPerson> model) {
-		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
-
-		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		final IBeanTable<IPerson> table = container.add(cbpf.beanTable(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
-
-		table.getCellPopMenu().addAction(PersonLongLastingActionFactory.create(model));
+	public static IAction create(final IBeanTableModel<IPerson> model) {
+		final IExecutorActionBuilder<IPerson, Void> builder = ExecutorAction.builder(model);
+		builder.setText("Long lasting test");
+		builder.setIcon(SilkIcons.CLOCK);
+		builder.setExecutor(ExecutorServices.PERSON_LONG_LASTING);
+		builder.setSelectionPolicy(BeanSelectionPolicy.MULTI_SELECTION);
+		builder.setExecutionPolicy(BeanExecutionPolicy.PARALLEL);
+		return builder.build();
 	}
 
 }
