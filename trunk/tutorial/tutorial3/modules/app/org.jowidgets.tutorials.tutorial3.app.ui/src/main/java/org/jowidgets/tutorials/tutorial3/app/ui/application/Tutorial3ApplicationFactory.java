@@ -65,6 +65,7 @@ public final class Tutorial3ApplicationFactory {
 		final IEntityComponentNodesFactory factory = CapWorkbenchToolkit.entityComponentNodesFactory();
 		final IComponentNodeModel result = factory.createNode(entityId);
 		result.setIcon(icon);
+		result.setSelected(select);
 		return result;
 	}
 
