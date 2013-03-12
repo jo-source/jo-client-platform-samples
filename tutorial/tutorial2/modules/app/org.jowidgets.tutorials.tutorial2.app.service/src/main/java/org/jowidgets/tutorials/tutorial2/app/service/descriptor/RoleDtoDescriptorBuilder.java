@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,38 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial2.app.common.entity;
+package org.jowidgets.tutorials.tutorial2.app.service.descriptor;
 
-public enum EntityIds {
+import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
+import org.jowidgets.cap.common.api.sort.Sort;
+import org.jowidgets.tutorials.tutorial2.app.common.bean.IRole;
 
-	PERSON,
-	ROLE
+public final class RoleDtoDescriptorBuilder extends AbstractDtoDescriptorBuilder {
+
+	public RoleDtoDescriptorBuilder() {
+		super(IRole.class);
+
+		setLabelSingular("Role");
+		setLabelPlural("Roles");
+		setDefaultSorting(Sort.create(IRole.NAME_PROPERTY));
+
+		setRenderingPattern("$" + IRole.NAME_PROPERTY + "$");
+
+		//IBean.ID_PROPERTY
+		addIdProperty();
+
+		//IRole.NAME_PROPERTY
+		IBeanPropertyBluePrint propertyBp = addProperty(IRole.NAME_PROPERTY);
+		propertyBp.setLabel("Name");
+		propertyBp.setDescription("The name of the role");
+
+		//IRole.DESCRIPTION_PROPERTY
+		propertyBp = addProperty(IRole.DESCRIPTION_PROPERTY);
+		propertyBp.setLabel("Description");
+		propertyBp.setDescription("The description of the role");
+
+		//IBean.VERSION_PROPERTY
+		addVersionProperty();
+	}
 
 }

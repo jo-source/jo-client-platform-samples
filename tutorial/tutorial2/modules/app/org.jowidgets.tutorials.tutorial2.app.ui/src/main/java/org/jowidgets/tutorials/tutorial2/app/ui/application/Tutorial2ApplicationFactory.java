@@ -58,6 +58,7 @@ public final class Tutorial2ApplicationFactory {
 	private static void createComponentTree(final IWorkbenchApplicationModelBuilder builder) {
 		builder.addChild(createPersonNode());
 		builder.addChild(createGenericNode(EntityIds.PERSON, SilkIcons.USER));
+		builder.addChild(createGenericNode(EntityIds.ROLE, SilkIcons.GROUP));
 	}
 
 	private static IComponentNodeModel createPersonNode() {

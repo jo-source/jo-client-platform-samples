@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2011, H.Westphal
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,12 +25,45 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.tutorials.tutorial2.app.service.bean;
 
-package org.jowidgets.tutorials.tutorial2.app.common.entity;
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-public enum EntityIds {
+import org.hibernate.annotations.Index;
+import org.jowidgets.tutorials.tutorial2.app.common.bean.IRole;
 
-	PERSON,
-	ROLE
+@Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
+public class Role extends Bean implements IRole {
+
+	@Basic
+	@Index(name = "RoleNameIndex")
+	private String name;
+
+	@Basic
+	private String description;
+
+	@Override
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public void setName(final String name) {
+		this.name = name;
+	}
+
+	@Override
+	public String getDescription() {
+		return description;
+	}
+
+	@Override
+	public void setDescription(final String description) {
+		this.description = description;
+	}
 
 }

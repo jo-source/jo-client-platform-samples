@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,12 +25,39 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.tutorials.tutorial2.app.common.bean;
 
-package org.jowidgets.tutorials.tutorial2.app.common.entity;
+import java.util.LinkedList;
+import java.util.List;
 
-public enum EntityIds {
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-	PERSON,
-	ROLE
+import org.jowidgets.cap.common.api.bean.IBean;
+
+public interface IRole extends IBean {
+
+	String NAME_PROPERTY = "name";
+	String DESCRIPTION_PROPERTY = "description";
+
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(NAME_PROPERTY);
+			add(DESCRIPTION_PROPERTY);
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
+		}
+	};
+
+	@NotNull
+	@Size(min = 2, max = 20)
+	String getName();
+
+	void setName(String loginName);
+
+	String getDescription();
+
+	void setDescription(String description);
 
 }
