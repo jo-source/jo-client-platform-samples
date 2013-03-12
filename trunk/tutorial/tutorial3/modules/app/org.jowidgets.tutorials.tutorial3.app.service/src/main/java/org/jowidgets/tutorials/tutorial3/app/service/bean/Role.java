@@ -27,8 +27,11 @@
  */
 package org.jowidgets.tutorials.tutorial3.app.service.bean;
 
+import java.util.List;
+
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -45,6 +48,9 @@ public class Role extends Bean implements IRole {
 
 	@Basic
 	private String description;
+
+	@OneToMany(mappedBy = "role")
+	private List<PersonRoleLink> personRoleLinks;
 
 	@Override
 	public String getName() {

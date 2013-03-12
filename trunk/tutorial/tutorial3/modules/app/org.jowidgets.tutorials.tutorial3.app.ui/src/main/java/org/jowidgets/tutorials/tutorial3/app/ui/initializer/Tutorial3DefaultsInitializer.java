@@ -26,32 +26,27 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial3.app.ui.component;
+package org.jowidgets.tutorials.tutorial3.app.ui.initializer;
 
-import org.jowidgets.addons.icons.silkicons.SilkIcons;
-import org.jowidgets.api.widgets.IContainer;
-import org.jowidgets.cap.ui.api.CapUiToolkit;
-import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.common.image.IImageConstant;
-import org.jowidgets.tools.layout.MigLayoutFactory;
-import org.jowidgets.tutorials.tutorial3.app.common.bean.IPerson;
-import org.jowidgets.workbench.api.IViewContext;
-import org.jowidgets.workbench.tools.AbstractView;
+import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
+import org.jowidgets.api.types.AutoPackPolicy;
+import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
+import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
+import org.jowidgets.tools.widgets.blueprint.BPF;
 
-public final class PersonTableView extends AbstractView {
+public final class Tutorial3DefaultsInitializer {
 
-	public static final String ID = PersonTableView.class.getName();
-	public static final String DEFAULT_LABEL = "Persons";
-	public static final String DEFAULT_TOOLTIP = "Shows all person";
-	public static final IImageConstant DEFAULT_ICON = SilkIcons.USER;
+	private Tutorial3DefaultsInitializer() {}
 
-	public PersonTableView(final IViewContext context, final IBeanTableModel<IPerson> model) {
-		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
+	public static void initialize() {
+		SilkIconsInitializer.initializeFull();
 
-		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		container.add(cbpf.beanTable(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
+			@Override
+			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
+				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+			}
+		});
 	}
 
 }

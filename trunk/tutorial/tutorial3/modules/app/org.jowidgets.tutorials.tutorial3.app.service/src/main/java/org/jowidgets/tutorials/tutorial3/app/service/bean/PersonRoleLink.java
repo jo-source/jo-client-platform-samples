@@ -25,31 +25,50 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.tutorials.tutorial3.app.service.bean;
 
-package org.jowidgets.tutorials.tutorial3.app.ui.component;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-import org.jowidgets.addons.icons.silkicons.SilkIcons;
-import org.jowidgets.api.widgets.IContainer;
-import org.jowidgets.cap.ui.api.CapUiToolkit;
-import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.common.image.IImageConstant;
-import org.jowidgets.tools.layout.MigLayoutFactory;
-import org.jowidgets.tutorials.tutorial3.app.common.bean.IPerson;
-import org.jowidgets.workbench.api.IViewContext;
-import org.jowidgets.workbench.tools.AbstractView;
+@Entity
+@Table(name = "PERSON_ROLE_LINK")
+public class PersonRoleLink extends Bean {
 
-public final class PersonDetailView extends AbstractView {
+	public static final String PERSON_ID_PROPERTY = "personId";
+	public static final String ROLE_ID_PROPERTY = "roleId";
 
-	public static final String ID = PersonDetailView.class.getName();
-	public static final String DEFAULT_LABEL = "Person form";
-	public static final String DEFAULT_TOOLTIP = "Shows the detail form of the person";
-	public static final IImageConstant DEFAULT_ICON = SilkIcons.USER;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PERSON_ID", nullable = false, insertable = false, updatable = false)
+	private Person person;
 
-	public PersonDetailView(final IViewContext context, final IBeanTableModel<IPerson> model) {
-		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
-		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		container.add(cbpf.beanSelectionForm(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ROLE_ID", nullable = false, insertable = false, updatable = false)
+	private Role role;
+
+	@Column(name = "PERSON_ID", nullable = false)
+	private Long personId;
+
+	@Column(name = "ROLE_ID", nullable = false)
+	private Long roleId;
+
+	public Long getPersonId() {
+		return personId;
 	}
+
+	public void setPersonId(final Long id) {
+		this.personId = id;
+	}
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(final Long id) {
+		this.roleId = id;
+	}
+
 }

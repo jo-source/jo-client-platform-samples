@@ -31,6 +31,12 @@ package org.jowidgets.tutorials.tutorial3.app.common.entity;
 public enum EntityIds {
 
 	PERSON,
-	ROLE
+	ROLE,
+
+	LINKED_ROLES_OF_PERSONS,
+	LINKABLE_ROLES_OF_PERSONS,
+
+	LINKED_PERSONS_OF_ROLES,
+	LINKABLE_PERSONS_OF_ROLES;
 
 }

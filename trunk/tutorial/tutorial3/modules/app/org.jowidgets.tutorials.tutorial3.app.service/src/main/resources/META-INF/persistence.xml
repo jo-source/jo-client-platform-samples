@@ -9,6 +9,7 @@
 		
 		<class>org.jowidgets.tutorials.tutorial3.app.service.bean.Bean</class>
 		<class>org.jowidgets.tutorials.tutorial3.app.service.bean.Person</class>
+		<class>org.jowidgets.tutorials.tutorial3.app.service.bean.PersonRoleLink</class>
 		
 		<properties>	
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
