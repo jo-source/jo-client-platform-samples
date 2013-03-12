@@ -29,13 +29,21 @@
 package org.jowidgets.tutorials.tutorial2.app.service;
 
 import org.jowidgets.cap.common.api.service.IEntityService;
+import org.jowidgets.cap.service.api.CapServiceToolkit;
+import org.jowidgets.cap.service.api.bean.IBeanAccess;
+import org.jowidgets.cap.service.api.executor.IExecutorServiceBuilder;
 import org.jowidgets.cap.service.hibernate.api.HibernateServiceToolkit;
 import org.jowidgets.cap.service.jpa.api.IJpaServicesDecoratorProviderBuilder;
 import org.jowidgets.cap.service.jpa.api.JpaServiceToolkit;
+import org.jowidgets.service.api.IServiceId;
 import org.jowidgets.service.api.IServicesDecoratorProvider;
 import org.jowidgets.service.tools.ServiceProviderBuilder;
+import org.jowidgets.tutorials.tutorial2.app.common.bean.IPerson;
+import org.jowidgets.tutorials.tutorial2.app.common.service.executor.ExecutorServices;
 import org.jowidgets.tutorials.tutorial2.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.tutorials.tutorial2.app.service.bean.Person;
 import org.jowidgets.tutorials.tutorial2.app.service.entity.Tutorial2EntityServiceBuilder;
+import org.jowidgets.tutorials.tutorial2.app.service.executor.PersonLongLastingExecutor;
 import org.jowidgets.tutorials.tutorial2.app.service.security.AuthorizationProviderServiceImpl;
 
 public class Tutorial2ServiceProviderBuilder extends ServiceProviderBuilder {
@@ -47,6 +55,9 @@ public class Tutorial2ServiceProviderBuilder extends ServiceProviderBuilder {
 
 		//EntityService
 		addService(IEntityService.ID, new Tutorial2EntityServiceBuilder(this).build());
+
+		//Executor services
+		addPersonExecutorService(ExecutorServices.PERSON_LONG_LASTING);
 
 		//jpa decorators
 		addServiceDecorator(createJpaServiceDecoratorProvider());
@@ -61,6 +72,15 @@ public class Tutorial2ServiceProviderBuilder extends ServiceProviderBuilder {
 
 	private IServicesDecoratorProvider createCancelServiceDecoratorProvider() {
 		return HibernateServiceToolkit.cancelServiceDecoratorProviderBuilder("tutorial2PersistenceUnit").build();
+	}
+
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	private void addPersonExecutorService(final IServiceId id) {
+		final IBeanAccess<Person> beanAccess = JpaServiceToolkit.serviceFactory().beanAccess(Person.class);
+		final IExecutorServiceBuilder<Person, Object> builder = CapServiceToolkit.executorServiceBuilder(beanAccess);
+		builder.setBeanDtoFactory(IPerson.ALL_PROPERTIES);
+		builder.setExecutor(new PersonLongLastingExecutor());
+		addService(id, builder.build());
 	}
 
 }

@@ -26,36 +26,22 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial2.app.ui.component;
+package org.jowidgets.tutorials.tutorial2.app.common.service.executor;
 
-import org.jowidgets.addons.icons.silkicons.SilkIcons;
-import org.jowidgets.api.widgets.IContainer;
-import org.jowidgets.cap.ui.api.CapUiToolkit;
-import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.widgets.IBeanTable;
-import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.common.image.IImageConstant;
-import org.jowidgets.tools.layout.MigLayoutFactory;
-import org.jowidgets.tutorials.tutorial2.app.common.bean.IPerson;
-import org.jowidgets.tutorials.tutorial2.app.ui.action.PersonLongLastingActionFactory;
-import org.jowidgets.workbench.api.IViewContext;
-import org.jowidgets.workbench.tools.AbstractView;
+import org.jowidgets.cap.common.api.service.IExecutorService;
+import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.service.tools.ServiceId;
 
-public final class PersonTableView extends AbstractView {
+public final class ExecutorServices {
 
-	public static final String ID = PersonTableView.class.getName();
-	public static final String DEFAULT_LABEL = "Persons";
-	public static final String DEFAULT_TOOLTIP = "Shows all person";
-	public static final IImageConstant DEFAULT_ICON = SilkIcons.USER;
+	public static final IServiceId<IExecutorService<Void>> PERSON_LONG_LASTING = create("PERSON_LONG_LASTING");
 
-	public PersonTableView(final IViewContext context, final IBeanTableModel<IPerson> model) {
-		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
+	private ExecutorServices() {}
 
-		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		final IBeanTable<IPerson> table = container.add(cbpf.beanTable(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
-
-		table.getCellPopMenu().addAction(PersonLongLastingActionFactory.create(model));
+	private static <PARAM_TYPE> IServiceId<IExecutorService<PARAM_TYPE>> create(final String idSuffix) {
+		return new ServiceId<IExecutorService<PARAM_TYPE>>(
+			ExecutorServices.class.getName() + "_" + idSuffix,
+			IExecutorService.class);
 	}
 
 }

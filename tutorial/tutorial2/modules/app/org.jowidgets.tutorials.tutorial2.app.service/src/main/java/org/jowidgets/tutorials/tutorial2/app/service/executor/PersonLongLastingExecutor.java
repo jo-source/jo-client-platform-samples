@@ -26,36 +26,31 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial2.app.ui.component;
+package org.jowidgets.tutorials.tutorial2.app.service.executor;
 
-import org.jowidgets.addons.icons.silkicons.SilkIcons;
-import org.jowidgets.api.widgets.IContainer;
-import org.jowidgets.cap.ui.api.CapUiToolkit;
-import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.widgets.IBeanTable;
-import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.common.image.IImageConstant;
-import org.jowidgets.tools.layout.MigLayoutFactory;
-import org.jowidgets.tutorials.tutorial2.app.common.bean.IPerson;
-import org.jowidgets.tutorials.tutorial2.app.ui.action.PersonLongLastingActionFactory;
-import org.jowidgets.workbench.api.IViewContext;
-import org.jowidgets.workbench.tools.AbstractView;
+import org.jowidgets.cap.common.api.execution.IExecutionCallback;
+import org.jowidgets.cap.service.api.CapServiceToolkit;
+import org.jowidgets.cap.service.api.executor.IBeanExecutor;
+import org.jowidgets.tutorials.tutorial2.app.service.bean.Person;
 
-public final class PersonTableView extends AbstractView {
+public class PersonLongLastingExecutor implements IBeanExecutor<Person, Void> {
 
-	public static final String ID = PersonTableView.class.getName();
-	public static final String DEFAULT_LABEL = "Persons";
-	public static final String DEFAULT_TOOLTIP = "Shows all person";
-	public static final IImageConstant DEFAULT_ICON = SilkIcons.USER;
-
-	public PersonTableView(final IViewContext context, final IBeanTableModel<IPerson> model) {
-		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
-
-		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		final IBeanTable<IPerson> table = container.add(cbpf.beanTable(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
-
-		table.getCellPopMenu().addAction(PersonLongLastingActionFactory.create(model));
+	@Override
+	public Person execute(final Person person, final Void parameter, final IExecutionCallback executionCallback) {
+		executionCallback.setTotalStepCount(1000);
+		for (int i = 0; i < 1000; i++) {
+			try {
+				Thread.sleep(10);
+			}
+			catch (final InterruptedException e) {
+				throw new RuntimeException();
+			}
+			executionCallback.setDescription("Very busy " + i);
+			executionCallback.workedOne();
+			CapServiceToolkit.checkCanceled(executionCallback);
+		}
+		executionCallback.finshed();
+		return person;
 	}
 
 }
