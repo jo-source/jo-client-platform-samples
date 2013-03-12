@@ -33,12 +33,9 @@ import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
 import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
 import org.jowidgets.common.image.IImageConstant;
 import org.jowidgets.tutorials.tutorial3.app.common.entity.EntityIds;
-import org.jowidgets.tutorials.tutorial3.app.ui.component.PersonComponent;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModel;
-import org.jowidgets.workbench.toolkit.api.IComponentNodeModelBuilder;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
-import org.jowidgets.workbench.tools.ComponentNodeModelBuilder;
 import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
 
 public final class Tutorial3ApplicationFactory {
@@ -56,26 +53,18 @@ public final class Tutorial3ApplicationFactory {
 	}
 
 	private static void createComponentTree(final IWorkbenchApplicationModelBuilder builder) {
-		builder.addChild(createPersonNode());
-		builder.addChild(createGenericNode(EntityIds.PERSON, SilkIcons.USER));
+		builder.addChild(createGenericNode(EntityIds.PERSON, SilkIcons.USER, true));
 		builder.addChild(createGenericNode(EntityIds.ROLE, SilkIcons.GROUP));
 	}
 
-	private static IComponentNodeModel createPersonNode() {
-		final IComponentNodeModelBuilder builder = new ComponentNodeModelBuilder();
-		builder.setId(PersonComponent.class.getName());
-		builder.setLabel("Persons");
-		builder.setIcon(SilkIcons.USER);
-		builder.setComponentFactory(PersonComponent.class);
-		builder.setSelected(true);
-		return builder.build();
+	private static IComponentNodeModel createGenericNode(final EntityIds entityId, final IImageConstant icon) {
+		return createGenericNode(entityId, icon, false);
 	}
 
-	private static IComponentNodeModel createGenericNode(final EntityIds entityId, final IImageConstant icon) {
+	private static IComponentNodeModel createGenericNode(final EntityIds entityId, final IImageConstant icon, final boolean select) {
 		final IEntityComponentNodesFactory factory = CapWorkbenchToolkit.entityComponentNodesFactory();
 		final IComponentNodeModel result = factory.createNode(entityId);
 		result.setIcon(icon);
-		result.setLabel(result.getLabel() + " (generic)");
 		return result;
 	}
 

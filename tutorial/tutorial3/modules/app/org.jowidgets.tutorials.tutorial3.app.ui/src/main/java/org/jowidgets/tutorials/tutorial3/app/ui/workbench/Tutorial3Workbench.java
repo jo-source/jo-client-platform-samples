@@ -28,9 +28,9 @@
 
 package org.jowidgets.tutorials.tutorial3.app.ui.workbench;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
 import org.jowidgets.tutorials.tutorial3.app.ui.application.Tutorial3ApplicationFactory;
+import org.jowidgets.tutorials.tutorial3.app.ui.initializer.Tutorial3DefaultsInitializer;
 import org.jowidgets.workbench.api.IWorkbench;
 import org.jowidgets.workbench.api.IWorkbenchFactory;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
@@ -54,7 +54,7 @@ public final class Tutorial3Workbench implements IWorkbenchFactory {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
 
-		SilkIconsInitializer.initializeFull();
+		Tutorial3DefaultsInitializer.initialize();
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel("Tutorial3");
