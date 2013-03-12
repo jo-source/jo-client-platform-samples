@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,44 +26,27 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial2.app.ui.workbench;
+package org.jowidgets.tutorials.tutorial2.app.ui.defaults;
 
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.tutorials.tutorial2.app.ui.application.Tutorial2ApplicationFactory;
-import org.jowidgets.tutorials.tutorial2.app.ui.defaults.Tutorial2DefaultsInitializer;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
+import org.jowidgets.api.types.AutoPackPolicy;
+import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
+import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
+import org.jowidgets.tools.widgets.blueprint.BPF;
 
-public final class Tutorial2Workbench implements IWorkbenchFactory {
+public final class Tutorial2DefaultsInitializer {
 
-	private final boolean webapp;
+	private Tutorial2DefaultsInitializer() {}
 
-	public Tutorial2Workbench() {
-		this(false);
-	}
+	public static void initialize() {
+		SilkIconsInitializer.initializeFull();
 
-	public Tutorial2Workbench(final boolean webapp) {
-		this.webapp = webapp;
-	}
-
-	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		Tutorial2DefaultsInitializer.initialize();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLabel("Tutorial2");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
-		}
-		builder.addApplication(Tutorial2ApplicationFactory.create());
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
+		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
+			@Override
+			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
+				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+			}
+		});
 	}
 
 }
