@@ -29,6 +29,10 @@
 package org.jowidgets.tutorials.tutorial2.app.ui.application;
 
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchToolkit;
+import org.jowidgets.cap.ui.api.workbench.IEntityComponentNodesFactory;
+import org.jowidgets.common.image.IImageConstant;
+import org.jowidgets.tutorials.tutorial2.app.common.entity.EntityIds;
 import org.jowidgets.tutorials.tutorial2.app.ui.component.PersonComponent;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModel;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModelBuilder;
@@ -53,6 +57,7 @@ public final class Tutorial2ApplicationFactory {
 
 	private static void createComponentTree(final IWorkbenchApplicationModelBuilder builder) {
 		builder.addChild(createPersonNode());
+		builder.addChild(createGenericNode(EntityIds.PERSON, SilkIcons.USER));
 	}
 
 	private static IComponentNodeModel createPersonNode() {
@@ -63,6 +68,14 @@ public final class Tutorial2ApplicationFactory {
 		builder.setComponentFactory(PersonComponent.class);
 		builder.setSelected(true);
 		return builder.build();
+	}
+
+	private static IComponentNodeModel createGenericNode(final EntityIds entityId, final IImageConstant icon) {
+		final IEntityComponentNodesFactory factory = CapWorkbenchToolkit.entityComponentNodesFactory();
+		final IComponentNodeModel result = factory.createNode(entityId);
+		result.setIcon(icon);
+		result.setLabel(result.getLabel() + " (generic)");
+		return result;
 	}
 
 }

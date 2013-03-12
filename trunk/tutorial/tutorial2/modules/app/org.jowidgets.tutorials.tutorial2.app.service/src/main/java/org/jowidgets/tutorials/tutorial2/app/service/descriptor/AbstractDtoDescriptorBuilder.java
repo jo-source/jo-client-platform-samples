@@ -29,7 +29,6 @@
 package org.jowidgets.tutorials.tutorial2.app.service.descriptor;
 
 import org.jowidgets.cap.common.api.bean.IBean;
-import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
 import org.jowidgets.cap.common.tools.bean.BeanDtoDescriptorBuilder;
 
 abstract class AbstractDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
@@ -39,16 +38,11 @@ abstract class AbstractDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 	}
 
 	void addIdProperty() {
-		final IBeanPropertyBluePrint propertyBp = addProperty(IBean.ID_PROPERTY);
-		propertyBp.setLabel("Id");
-		propertyBp.setSortable(true);
-		propertyBp.setVisible(false);
+		addProperty(IBean.ID_PROPERTY).setLabel("Id").setSortable(true).setVisible(false);
 	}
 
 	void addVersionProperty() {
-		final IBeanPropertyBluePrint propertyBp = addProperty(IBean.VERSION_PROPERTY);
-		propertyBp.setLabel("Version");
-		propertyBp.setVisible(false);
+		addProperty(IBean.VERSION_PROPERTY).setLabel("Version").setVisible(false);
 	}
 
 }
