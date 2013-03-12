@@ -50,7 +50,6 @@ public final class PersonDtoDescriptorBuilder extends AbstractDtoDescriptorBuild
 		IBeanPropertyBluePrint propertyBp = addProperty(IPerson.NAME_PROPERTY);
 		propertyBp.setLabel("Name");
 		propertyBp.setDescription("The name of the person");
-		propertyBp.setMandatory(true);
 
 		//IPerson.DATE_OF_BIRTH_PROPERTY
 		propertyBp = addProperty(IPerson.DATE_OF_BIRTH_PROPERTY);
