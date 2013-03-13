@@ -44,6 +44,9 @@ public final class Tutorial4AuthenticationService implements IAuthenticationServ
 		else if ("guest".equals(credentials.getUsername()) && "guest".equals(credentials.getPassword())) {
 			return new DefaultPrincipal(credentials.getUsername());
 		}
+		else if ("nobody".equals(credentials.getUsername()) && "nobody".equals(credentials.getPassword())) {
+			return new DefaultPrincipal(credentials.getUsername());
+		}
 		else if (EmptyCheck.isEmpty(credentials.getUsername()) && EmptyCheck.isEmpty(credentials.getPassword())) {
 			return new DefaultPrincipal("guest");
 		}
