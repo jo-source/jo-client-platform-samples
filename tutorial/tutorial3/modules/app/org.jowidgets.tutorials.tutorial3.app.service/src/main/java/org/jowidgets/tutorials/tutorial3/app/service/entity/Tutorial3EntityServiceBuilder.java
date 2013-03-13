@@ -64,12 +64,14 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 		entityBp.setReaderService(createPersonsOfRolesReader(true));
+		entityBp.setDeleterService((IDeleterService) null);
 		addPersonLinkDescriptors(entityBp);
 
 		//Linkable persons of roles
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 		entityBp.setReaderService(createPersonsOfRolesReader(false));
+		entityBp.setDeleterService((IDeleterService) null);
 
 		//Linked roles of persons
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_ROLES_OF_PERSONS).setBeanType(Role.class);
