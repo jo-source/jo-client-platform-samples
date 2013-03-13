@@ -34,7 +34,16 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthKeys;
 
+@CreateAuthorization(AuthKeys.CREATE_ROLE)
+@ReadAuthorization(AuthKeys.READ_ROLE)
+@UpdateAuthorization(AuthKeys.UPDATE_ROLE)
+@DeleteAuthorization(AuthKeys.DELETE_ROLE)
 public interface IRole extends IBean {
 
 	String NAME_PROPERTY = "name";

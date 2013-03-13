@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial4.app.common.service.security;
+package org.jowidgets.tutorials.tutorial4.app.common.security;
 
 import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
 import org.jowidgets.security.tools.DefaultPrincipal;

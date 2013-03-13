@@ -34,7 +34,7 @@ import org.jowidgets.cap.service.jpa.api.IJpaServicesDecoratorProviderBuilder;
 import org.jowidgets.cap.service.jpa.api.JpaServiceToolkit;
 import org.jowidgets.service.api.IServicesDecoratorProvider;
 import org.jowidgets.service.tools.ServiceProviderBuilder;
-import org.jowidgets.tutorials.tutorial4.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthorizationProviderServiceId;
 import org.jowidgets.tutorials.tutorial4.app.service.entity.Tutorial4EntityServiceBuilder;
 import org.jowidgets.tutorials.tutorial4.app.service.security.AuthorizationProviderServiceImpl;
 

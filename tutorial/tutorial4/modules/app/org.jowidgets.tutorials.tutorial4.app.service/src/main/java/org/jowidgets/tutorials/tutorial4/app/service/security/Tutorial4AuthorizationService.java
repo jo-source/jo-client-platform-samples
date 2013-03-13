@@ -28,38 +28,27 @@
 
 package org.jowidgets.tutorials.tutorial4.app.service.security;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 
 import org.jowidgets.security.api.IAuthorizationService;
 import org.jowidgets.security.api.IPrincipal;
 import org.jowidgets.security.tools.DefaultPrincipal;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthKeys;
 
 public final class Tutorial4AuthorizationService implements IAuthorizationService<IPrincipal<String>> {
 
-	private static final String READ_ALL = "READ_ALL";
-	private static final String WRITE_ALL = "WRITE_ALL";
-
-	private static final Set<String> ADMIN_AUTHORITIES = createAdminAuthorities();
-	private static final Set<String> GUEST_AUTHORITIES = createGuestAuthorities();
-
-	private static Set<String> createAdminAuthorities() {
-		final Set<String> result = new HashSet<String>();
-		result.add(READ_ALL);
-		result.add(WRITE_ALL);
-		return result;
-	}
-
-	private static Set<String> createGuestAuthorities() {
-		final Set<String> result = new HashSet<String>();
-		result.add(READ_ALL);
-		return result;
-	}
+	private static final Set<String> ADMIN_AUTHORITIES = AuthKeys.ALL_AUTHORIZATIONS;
+	private static final Set<String> GUEST_AUTHORITIES = AuthKeys.READ_AUTHORIZATIONS;
 
 	@Override
 	public IPrincipal<String> authorize(final IPrincipal<String> principal) {
 		if ("admin".equals(principal.getUsername())) {
 			return new DefaultPrincipal(principal.getUsername(), ADMIN_AUTHORITIES);
+		}
+		if ("nobody".equals(principal.getUsername())) {
+			final Set<String> emptySet = Collections.emptySet();
+			return new DefaultPrincipal(principal.getUsername(), emptySet);
 		}
 		else {
 			return new DefaultPrincipal(principal.getUsername(), GUEST_AUTHORITIES);

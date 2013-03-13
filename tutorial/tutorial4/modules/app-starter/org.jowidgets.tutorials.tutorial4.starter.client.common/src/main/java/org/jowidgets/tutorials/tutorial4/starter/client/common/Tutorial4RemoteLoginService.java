@@ -30,7 +30,7 @@ package org.jowidgets.tutorials.tutorial4.starter.client.common;
 
 import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
 import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
-import org.jowidgets.tutorials.tutorial4.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthorizationProviderServiceId;
 import org.jowidgets.service.api.IServiceId;
 
 public class Tutorial4RemoteLoginService extends AbstractRemoteLoginService {

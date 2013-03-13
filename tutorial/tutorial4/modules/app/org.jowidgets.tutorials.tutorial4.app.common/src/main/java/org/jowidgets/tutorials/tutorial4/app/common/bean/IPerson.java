@@ -35,8 +35,17 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
 import org.jowidgets.tutorials.tutorial4.app.common.dto.Gender;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthKeys;
 
+@CreateAuthorization(AuthKeys.CREATE_PERSON)
+@ReadAuthorization(AuthKeys.READ_PERSON)
+@UpdateAuthorization(AuthKeys.UPDATE_PERSON)
+@DeleteAuthorization(AuthKeys.DELETE_PERSON)
 public interface IPerson extends IBean {
 
 	String NAME_PROPERTY = "name";
