@@ -39,24 +39,20 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Index;
-import org.jowidgets.tutorials.tutorial3.app.common.bean.IRole;
+import org.jowidgets.tutorials.tutorial3.app.common.bean.IAuthorization;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class Role extends Bean implements IRole {
+public class Authorization extends Bean implements IAuthorization {
 
 	@Basic
-	@Index(name = "RoleNameIndex")
+	@Index(name = "AuthorizationNameIndex")
 	private String name;
 
 	@Basic
 	private String description;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<PersonRoleLink> personRoleLinks;
-
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
+	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "authorization")
 	@BatchSize(size = 1000)
 	private List<RoleAuthorizationLink> roleAuthorizationLinks;
 

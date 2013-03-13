@@ -36,12 +36,16 @@ import org.jowidgets.cap.service.jpa.api.query.ICriteriaQueryCreatorBuilder;
 import org.jowidgets.cap.service.jpa.api.query.JpaQueryToolkit;
 import org.jowidgets.cap.service.jpa.tools.entity.JpaEntityServiceBuilderWrapper;
 import org.jowidgets.service.api.IServiceRegistry;
+import org.jowidgets.tutorials.tutorial3.app.common.bean.IAuthorization;
 import org.jowidgets.tutorials.tutorial3.app.common.bean.IPerson;
 import org.jowidgets.tutorials.tutorial3.app.common.bean.IRole;
 import org.jowidgets.tutorials.tutorial3.app.common.entity.EntityIds;
+import org.jowidgets.tutorials.tutorial3.app.service.bean.Authorization;
 import org.jowidgets.tutorials.tutorial3.app.service.bean.Person;
 import org.jowidgets.tutorials.tutorial3.app.service.bean.PersonRoleLink;
 import org.jowidgets.tutorials.tutorial3.app.service.bean.Role;
+import org.jowidgets.tutorials.tutorial3.app.service.bean.RoleAuthorizationLink;
+import org.jowidgets.tutorials.tutorial3.app.service.descriptor.AuthorizationDtoDescriptorBuilder;
 import org.jowidgets.tutorials.tutorial3.app.service.descriptor.PersonDtoDescriptorBuilder;
 import org.jowidgets.tutorials.tutorial3.app.service.descriptor.RoleDtoDescriptorBuilder;
 
@@ -60,6 +64,11 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
 		addRoleLinkDescriptors(entityBp);
 
+		//IAuthorization
+		entityBp = addEntity().setEntityId(EntityIds.AUTHORIZATION).setBeanType(Authorization.class);
+		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
+		addAuthorizationLinkDescriptors(entityBp);
+
 		//Linked persons of roles
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
@@ -71,6 +80,19 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 		entityBp.setReaderService(createPersonsOfRolesReader(false));
+		entityBp.setDeleterService((IDeleterService) null);
+
+		//Linked roles of authorizations
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_ROLES_OF_AUTHORIZATIONS).setBeanType(Role.class);
+		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
+		entityBp.setReaderService(createRolesOfAuthorizationsReader(true));
+		entityBp.setDeleterService((IDeleterService) null);
+		addRoleLinkDescriptors(entityBp);
+
+		//Linkable roles of authorizations
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_ROLES_OF_AUTHORIZATIONS).setBeanType(Role.class);
+		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
+		entityBp.setReaderService(createRolesOfAuthorizationsReader(false));
 		entityBp.setDeleterService((IDeleterService) null);
 
 		//Linked roles of persons
@@ -86,6 +108,19 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 		entityBp.setReaderService(createRolesOfPersonsReader(false));
 		entityBp.setDeleterService((IDeleterService) null);
 
+		//Linked authorizations of roles
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_AUTHORIZATIONS_OF_ROLES).setBeanType(Authorization.class);
+		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
+		entityBp.setReaderService(createAuthorizationsOfRolesReader(true));
+		entityBp.setDeleterService((IDeleterService) null);
+		addAuthorizationLinkDescriptors(entityBp);
+
+		//Linkable authorizations of roles
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_AUTHORIZATIONS_OF_ROLES).setBeanType(Authorization.class);
+		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
+		entityBp.setReaderService(createAuthorizationsOfRolesReader(false));
+		entityBp.setDeleterService((IDeleterService) null);
+
 	}
 
 	private void addPersonLinkDescriptors(final IBeanEntityBluePrint entityBp) {
@@ -94,6 +129,11 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 
 	private void addRoleLinkDescriptors(final IBeanEntityBluePrint entityBp) {
 		addRolePersonLinkDescriptor(entityBp);
+		addRoleAuthorizationLinkDescriptor(entityBp);
+	}
+
+	private void addAuthorizationLinkDescriptors(final IBeanEntityBluePrint entityBp) {
+		addAuthorizationRoleLinkDescriptor(entityBp);
 	}
 
 	private void addPersonRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
@@ -114,6 +154,24 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 		bp.setDestinationProperties(PersonRoleLink.PERSON_ID_PROPERTY);
 	}
 
+	private void addRoleAuthorizationLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkBeanType(RoleAuthorizationLink.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_AUTHORIZATIONS_OF_ROLES);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_AUTHORIZATIONS_OF_ROLES);
+		bp.setSourceProperties(RoleAuthorizationLink.ROLE_ID_PROPERTY);
+		bp.setDestinationProperties(RoleAuthorizationLink.AUTHORIZATION_ID_PROPERTY);
+	}
+
+	private void addAuthorizationRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkBeanType(RoleAuthorizationLink.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_ROLES_OF_AUTHORIZATIONS);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_ROLES_OF_AUTHORIZATIONS);
+		bp.setSourceProperties(RoleAuthorizationLink.AUTHORIZATION_ID_PROPERTY);
+		bp.setDestinationProperties(RoleAuthorizationLink.ROLE_ID_PROPERTY);
+	}
+
 	private IReaderService<Void> createPersonsOfRolesReader(final boolean linked) {
 		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Person.class);
 		queryBuilder.setParentPropertyPath(linked, "personRoleLinks", "role");
@@ -123,6 +181,18 @@ public final class Tutorial3EntityServiceBuilder extends JpaEntityServiceBuilder
 	private IReaderService<Void> createRolesOfPersonsReader(final boolean linked) {
 		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Role.class);
 		queryBuilder.setParentPropertyPath(linked, "personRoleLinks", "person");
+		return getServiceFactory().readerService(Role.class, queryBuilder.build(), IRole.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createAuthorizationsOfRolesReader(final boolean linked) {
+		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Authorization.class);
+		queryBuilder.setParentPropertyPath(linked, "roleAuthorizationLinks", "role");
+		return getServiceFactory().readerService(Authorization.class, queryBuilder.build(), IAuthorization.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createRolesOfAuthorizationsReader(final boolean linked) {
+		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Role.class);
+		queryBuilder.setParentPropertyPath(linked, "roleAuthorizationLinks", "authorization");
 		return getServiceFactory().readerService(Role.class, queryBuilder.build(), IRole.ALL_PROPERTIES);
 	}
 

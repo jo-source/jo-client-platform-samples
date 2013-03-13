@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, H.Westphal
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,59 +25,39 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
-package org.jowidgets.tutorials.tutorial3.app.service.bean;
 
-import java.util.List;
+package org.jowidgets.tutorials.tutorial3.app.service.descriptor;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
+import org.jowidgets.cap.common.api.sort.Sort;
+import org.jowidgets.tutorials.tutorial3.app.common.bean.IAuthorization;
 
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Index;
-import org.jowidgets.tutorials.tutorial3.app.common.bean.IRole;
+public final class AuthorizationDtoDescriptorBuilder extends AbstractDtoDescriptorBuilder {
 
-@Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class Role extends Bean implements IRole {
+	public AuthorizationDtoDescriptorBuilder() {
+		super(IAuthorization.class);
 
-	@Basic
-	@Index(name = "RoleNameIndex")
-	private String name;
+		setLabelSingular("Authorization");
+		setLabelPlural("Authorizations");
+		setDefaultSorting(Sort.create(IAuthorization.NAME_PROPERTY));
 
-	@Basic
-	private String description;
+		setRenderingPattern("$" + IAuthorization.NAME_PROPERTY + "$");
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<PersonRoleLink> personRoleLinks;
+		//IBean.ID_PROPERTY
+		addIdProperty();
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<RoleAuthorizationLink> roleAuthorizationLinks;
+		//IAuthorization.NAME_PROPERTY
+		IBeanPropertyBluePrint propertyBp = addProperty(IAuthorization.NAME_PROPERTY);
+		propertyBp.setLabel("Name");
+		propertyBp.setDescription("The name of the authorization");
 
-	@Override
-	public String getName() {
-		return name;
-	}
+		//IAuthorization.DESCRIPTION_PROPERTY
+		propertyBp = addProperty(IAuthorization.DESCRIPTION_PROPERTY);
+		propertyBp.setLabel("Description");
+		propertyBp.setDescription("The description of the authorization");
 
-	@Override
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
-	}
-
-	@Override
-	public void setDescription(final String description) {
-		this.description = description;
+		//IBean.VERSION_PROPERTY
+		addVersionProperty();
 	}
 
 }

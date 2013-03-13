@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, H.Westphal
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,59 +25,39 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
-package org.jowidgets.tutorials.tutorial3.app.service.bean;
+package org.jowidgets.tutorials.tutorial3.app.common.bean;
 
+import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Index;
-import org.jowidgets.tutorials.tutorial3.app.common.bean.IRole;
+import org.jowidgets.cap.common.api.bean.IBean;
 
-@Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class Role extends Bean implements IRole {
+public interface IAuthorization extends IBean {
 
-	@Basic
-	@Index(name = "RoleNameIndex")
-	private String name;
+	String NAME_PROPERTY = "name";
+	String DESCRIPTION_PROPERTY = "description";
 
-	@Basic
-	private String description;
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(NAME_PROPERTY);
+			add(DESCRIPTION_PROPERTY);
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
+		}
+	};
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<PersonRoleLink> personRoleLinks;
+	@NotNull
+	@Size(min = 2, max = 20)
+	String getName();
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<RoleAuthorizationLink> roleAuthorizationLinks;
+	void setName(String loginName);
 
-	@Override
-	public String getName() {
-		return name;
-	}
+	String getDescription();
 
-	@Override
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String getDescription() {
-		return description;
-	}
-
-	@Override
-	public void setDescription(final String description) {
-		this.description = description;
-	}
+	void setDescription(String description);
 
 }

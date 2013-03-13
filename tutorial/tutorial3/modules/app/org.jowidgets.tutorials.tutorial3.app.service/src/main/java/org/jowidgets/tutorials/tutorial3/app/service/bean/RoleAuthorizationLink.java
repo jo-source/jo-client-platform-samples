@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, H.Westphal
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -27,57 +27,48 @@
  */
 package org.jowidgets.tutorials.tutorial3.app.service.bean;
 
-import java.util.List;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-import org.hibernate.annotations.BatchSize;
-import org.hibernate.annotations.Index;
-import org.jowidgets.tutorials.tutorial3.app.common.bean.IRole;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
-public class Role extends Bean implements IRole {
+@Table(name = "ROLE_AUTHORIZATION_LINK")
+public class RoleAuthorizationLink extends Bean {
 
-	@Basic
-	@Index(name = "RoleNameIndex")
-	private String name;
+	public static final String ROLE_ID_PROPERTY = "roleId";
+	public static final String AUTHORIZATION_ID_PROPERTY = "authorizationId";
 
-	@Basic
-	private String description;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ROLE_ID", nullable = false, insertable = false, updatable = false)
+	private Role role;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<PersonRoleLink> personRoleLinks;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "AUTHORIZATION_ID", nullable = false, insertable = false, updatable = false)
+	private Authorization authorization;
 
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<RoleAuthorizationLink> roleAuthorizationLinks;
+	@Column(name = "ROLE_ID", nullable = false)
+	private Long roleId;
 
-	@Override
-	public String getName() {
-		return name;
+	@Column(name = "AUTHORIZATION_ID", nullable = false)
+	private Long authorizationId;
+
+	public Long getRoleId() {
+		return roleId;
 	}
 
-	@Override
-	public void setName(final String name) {
-		this.name = name;
+	public void setRoleId(final Long id) {
+		this.roleId = id;
 	}
 
-	@Override
-	public String getDescription() {
-		return description;
+	public Long getAuthorizationId() {
+		return authorizationId;
 	}
 
-	@Override
-	public void setDescription(final String description) {
-		this.description = description;
+	public void setAuthorizationId(final Long authorizationId) {
+		this.authorizationId = authorizationId;
 	}
 
 }
