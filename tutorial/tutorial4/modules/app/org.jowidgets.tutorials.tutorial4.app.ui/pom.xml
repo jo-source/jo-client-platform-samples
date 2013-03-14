@@ -36,11 +36,11 @@
             <version>${jowidgets.version}</version>
         </dependency>
         
-        <dependency>
+       <dependency>
 			<groupId>org.jowidgets</groupId>
 			<artifactId>org.jowidgets.cap.security.ui.plugin</artifactId>
 			<version>${jocap.version}</version>
-		</dependency>
+		</dependency> 
 		
 		<dependency>
 			<groupId>org.hibernate</groupId>

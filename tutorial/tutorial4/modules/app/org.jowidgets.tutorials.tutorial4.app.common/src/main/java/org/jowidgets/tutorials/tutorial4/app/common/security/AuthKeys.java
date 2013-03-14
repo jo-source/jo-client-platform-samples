@@ -50,6 +50,12 @@ public final class AuthKeys {
 	public static final String UPDATE_AUTHORIZATION = "UPDATE_AUTHORIZATION";
 	public static final String DELETE_AUTHORIZATION = "DELETE_AUTHORIZATION";
 
+	public static final String CREATE_PERSON_ROLE_LINK = "CREATE_PERSON_ROLE_LINK";
+	public static final String DELETE_PERSON_ROLE_LINK = "DELETE_PERSON_ROLE_LINK";
+
+	public static final String CREATE_ROLE_AUTHORIZATION_LINK = "CREATE_ROLE_AUTHORIZATION_LINK";
+	public static final String DELETE_ROLE_AUTHORIZATION_LINK = "DELETE_ROLE_AUTHORIZATION_LINK";
+
 	//Authorizations collection
 	public static final Set<String> ALL_AUTHORIZATIONS = createAuthorizations();
 	public static final Set<String> READ_AUTHORIZATIONS = createAuthorizations("READ_");
