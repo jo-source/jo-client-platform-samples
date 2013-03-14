@@ -34,8 +34,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthKeys;
+
 @Entity
 @Table(name = "ROLE_AUTHORIZATION_LINK")
+@CreateAuthorization(AuthKeys.CREATE_ROLE_AUTHORIZATION_LINK)
+@DeleteAuthorization(AuthKeys.DELETE_ROLE_AUTHORIZATION_LINK)
 public class RoleAuthorizationLink extends Bean {
 
 	public static final String ROLE_ID_PROPERTY = "roleId";
