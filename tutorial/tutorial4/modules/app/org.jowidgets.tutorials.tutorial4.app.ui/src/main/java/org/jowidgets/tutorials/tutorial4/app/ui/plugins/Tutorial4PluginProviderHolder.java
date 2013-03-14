@@ -31,6 +31,7 @@ package org.jowidgets.tutorials.tutorial4.app.ui.plugins;
 import org.jowidgets.cap.ui.api.plugin.IBeanFormPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanProxyLabelRendererPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanRelationTreeModelPlugin;
+import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuContributionPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuInterceptorPlugin;
 import org.jowidgets.plugin.tools.PluginProviderBuilder;
 import org.jowidgets.plugin.tools.PluginProviderHolder;
@@ -42,6 +43,7 @@ import org.jowidgets.tutorials.tutorial4.app.ui.plugins.bean.PersonRendererPlugi
 import org.jowidgets.tutorials.tutorial4.app.ui.plugins.bean.RoleRendererPlugin;
 import org.jowidgets.tutorials.tutorial4.app.ui.plugins.form.RoleFormPlugin;
 import org.jowidgets.tutorials.tutorial4.app.ui.plugins.table.AuthorizationTableMenuInterceptorPlugin;
+import org.jowidgets.tutorials.tutorial4.app.ui.plugins.table.PersonTableMenuContributionPlugin;
 import org.jowidgets.tutorials.tutorial4.app.ui.plugins.table.PersonTableMenuInterceptorPlugin;
 import org.jowidgets.tutorials.tutorial4.app.ui.plugins.table.RoleTableMenuInterceptorPlugin;
 import org.jowidgets.tutorials.tutorial4.app.ui.plugins.tree.RelationTreeModelPlugin;
@@ -61,6 +63,8 @@ public final class Tutorial4PluginProviderHolder extends PluginProviderHolder {
 			addMenuInterceptorPlugin(new RoleTableMenuInterceptorPlugin(), IRole.class);
 			addMenuInterceptorPlugin(new AuthorizationTableMenuInterceptorPlugin(), IAuthorization.class);
 
+			addMenuContributionPlugin(new PersonTableMenuContributionPlugin(), IPerson.class);
+
 			addBeanRenderPlugin(new PersonRendererPlugin(), IPerson.class);
 			addBeanRenderPlugin(new RoleRendererPlugin(), IRole.class);
 			addBeanRenderPlugin(new AuthorizationRendererPlugin(), IAuthorization.class);
@@ -73,6 +77,14 @@ public final class Tutorial4PluginProviderHolder extends PluginProviderHolder {
 					IBeanTableMenuInterceptorPlugin.ID,
 					plugin,
 					IBeanTableMenuInterceptorPlugin.BEAN_TYPE_PROPERTY_KEY,
+					beanTypes);
+		}
+
+		private void addMenuContributionPlugin(final IBeanTableMenuContributionPlugin<?> plugin, final Class<?>... beanTypes) {
+			addPlugin(
+					IBeanTableMenuContributionPlugin.ID,
+					plugin,
+					IBeanTableMenuContributionPlugin.BEAN_TYPE_PROPERTY_KEY,
 					beanTypes);
 		}
 

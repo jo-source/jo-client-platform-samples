@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,22 +26,31 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial4.starter.client.common;
+package org.jowidgets.tutorials.tutorial4.app.service.executor;
 
-import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
-import org.jowidgets.tutorials.tutorial4.app.common.service.security.AuthorizationProviderServiceId;
-import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.cap.common.api.execution.IExecutionCallback;
+import org.jowidgets.cap.service.api.CapServiceToolkit;
+import org.jowidgets.cap.service.api.executor.IBeanExecutor;
+import org.jowidgets.tutorials.tutorial4.app.service.bean.Person;
 
-public class Tutorial4RemoteLoginService extends AbstractRemoteLoginService {
-
-	public Tutorial4RemoteLoginService() {
-		super("Tutorial4");
-	}
+public class PersonLongLastingExecutor implements IBeanExecutor<Person, Void> {
 
 	@Override
-	protected IServiceId<? extends IAuthorizationProviderService<?>> getAuthorizationProviderServiceId() {
-		return AuthorizationProviderServiceId.ID;
+	public Person execute(final Person person, final Void parameter, final IExecutionCallback executionCallback) {
+		executionCallback.setTotalStepCount(1000);
+		for (int i = 0; i < 1000; i++) {
+			try {
+				Thread.sleep(10);
+			}
+			catch (final InterruptedException e) {
+				throw new RuntimeException();
+			}
+			executionCallback.setDescription("Very busy " + i);
+			executionCallback.workedOne();
+			CapServiceToolkit.checkCanceled(executionCallback);
+		}
+		executionCallback.finshed();
+		return person;
 	}
 
 }
