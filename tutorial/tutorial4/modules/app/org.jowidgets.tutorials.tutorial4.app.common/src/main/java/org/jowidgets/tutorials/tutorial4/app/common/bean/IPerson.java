@@ -34,6 +34,7 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.jowidgets.cap.common.api.annotation.PropertyValidator;
 import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
@@ -41,6 +42,7 @@ import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
 import org.jowidgets.tutorials.tutorial4.app.common.dto.Gender;
 import org.jowidgets.tutorials.tutorial4.app.common.security.AuthKeys;
+import org.jowidgets.tutorials.tutorial4.app.common.validation.PersonNameValidator;
 
 @CreateAuthorization(AuthKeys.CREATE_PERSON)
 @ReadAuthorization(AuthKeys.READ_PERSON)
@@ -65,6 +67,7 @@ public interface IPerson extends IBean {
 
 	@NotNull
 	@Size(min = 2, max = 50)
+	@PropertyValidator(PersonNameValidator.class)
 	String getName();
 
 	void setName(String loginName);
