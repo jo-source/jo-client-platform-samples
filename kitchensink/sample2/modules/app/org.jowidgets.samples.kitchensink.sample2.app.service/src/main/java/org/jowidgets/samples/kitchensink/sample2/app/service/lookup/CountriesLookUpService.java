@@ -40,8 +40,8 @@ import org.jowidgets.cap.common.api.execution.IExecutionCallback;
 import org.jowidgets.cap.common.api.lookup.ILookUpEntry;
 import org.jowidgets.cap.common.api.lookup.ILookUpToolkit;
 import org.jowidgets.cap.service.api.adapter.ISyncLookUpService;
+import org.jowidgets.cap.service.jpa.tools.entity.EntityManagerProvider;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Country;
-import org.jowidgets.samples.kitchensink.sample2.app.service.entity.EntityManagerProvider;
 
 public class CountriesLookUpService implements ISyncLookUpService {
 

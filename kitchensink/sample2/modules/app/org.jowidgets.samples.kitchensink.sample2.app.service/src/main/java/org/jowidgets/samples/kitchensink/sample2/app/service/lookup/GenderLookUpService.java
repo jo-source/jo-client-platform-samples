@@ -39,6 +39,7 @@ import org.jowidgets.cap.common.api.lookup.ILookUpEntryBuilder;
 import org.jowidgets.cap.common.api.lookup.ILookUpToolkit;
 import org.jowidgets.cap.common.api.lookup.ILookUpValueRange;
 import org.jowidgets.cap.common.api.lookup.ILookUpValueRangeBuilder;
+import org.jowidgets.cap.common.api.lookup.LookUpEntry;
 import org.jowidgets.cap.service.api.adapter.ISyncLookUpService;
 import org.jowidgets.samples.kitchensink.sample2.app.common.lookup.LookUpIds;
 
@@ -67,7 +68,7 @@ public final class GenderLookUpService implements ISyncLookUpService {
 		final List<ILookUpEntry> result = new LinkedList<ILookUpEntry>();
 
 		ILookUpEntryBuilder entryBuilder = lookUpToolkit.lookUpEntryBuilder();
-		result.add(lookUpToolkit.lookUpEntry(null, "", ""));
+		result.add(LookUpEntry.create(null, "", ""));
 
 		entryBuilder.setKey(MALE_KEY).setValue(SHORT_PROPERTY_NAME, "M").setValue(LONG_PROPERTY_NAME, "Male");
 		result.add(entryBuilder.build());
