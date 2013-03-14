@@ -36,8 +36,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+import org.jowidgets.cap.common.api.annotation.BeanValidator;
 import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.samples.kitchensink.sample1.common.validation.UserBmiValidator;
 
+@BeanValidator(UserBmiValidator.class)
 public interface IUser extends IBean {
 
 	String NAME_PROPERTY = "name";

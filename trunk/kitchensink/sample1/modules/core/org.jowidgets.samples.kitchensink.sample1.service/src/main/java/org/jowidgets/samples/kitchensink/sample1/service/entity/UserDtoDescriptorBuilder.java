@@ -34,7 +34,6 @@ import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
 import org.jowidgets.cap.common.tools.bean.BeanDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
-import org.jowidgets.samples.kitchensink.sample1.common.validation.UserBmiValidator;
 import org.jowidgets.samples.kitchensink.sample1.common.validation.UserWeightValidator;
 import org.jowidgets.samples.kitchensink.sample1.service.lookup.Countries;
 import org.jowidgets.samples.kitchensink.sample1.service.lookup.Languages;
@@ -51,7 +50,6 @@ public class UserDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 
 		setLabelSingular(Messages.getString("UserDtoDescriptorBuilder.labelSingular"));
 		setLabelPlural(Messages.getString("UserDtoDescriptorBuilder.labelPlural"));
-		addValidator(new UserBmiValidator());
 
 		IBeanPropertyBluePrint propertyBp = addProperty(IUser.NAME_PROPERTY);
 		propertyBp.setLabel(Messages.getString("UserDtoDescriptorBuilder.name")); //$NON-NLS-1$
