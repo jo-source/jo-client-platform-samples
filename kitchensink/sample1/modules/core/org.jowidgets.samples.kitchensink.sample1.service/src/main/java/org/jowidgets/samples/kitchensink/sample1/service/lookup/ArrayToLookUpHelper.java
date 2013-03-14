@@ -32,19 +32,17 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jowidgets.cap.common.api.CapCommonToolkit;
 import org.jowidgets.cap.common.api.lookup.ILookUpEntry;
-import org.jowidgets.cap.common.api.lookup.ILookUpToolkit;
+import org.jowidgets.cap.common.api.lookup.LookUpEntry;
 
 final class ArrayToLookUpHelper {
 
 	private ArrayToLookUpHelper() {}
 
 	static List<ILookUpEntry> createLookUpEntries(final String[] data) {
-		final ILookUpToolkit lookUpToolkit = CapCommonToolkit.lookUpToolkit();
 		final List<ILookUpEntry> result = new LinkedList<ILookUpEntry>();
 		for (int i = 0; i < data.length; i++) {
-			result.add(lookUpToolkit.lookUpEntry(i, data[i]));
+			result.add(LookUpEntry.create(i, data[i]));
 		}
 		return Collections.unmodifiableList(result);
 	}
