@@ -26,19 +26,23 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial4.app.common.security;
+package org.jowidgets.tutorials.tutorial4.app.ui.plugins.table;
 
-import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.security.tools.DefaultPrincipal;
-import org.jowidgets.service.api.IServiceId;
-import org.jowidgets.service.tools.ServiceId;
+import org.jowidgets.api.model.item.IMenuModel;
+import org.jowidgets.cap.ui.api.widgets.IBeanTable;
+import org.jowidgets.cap.ui.tools.plugin.BeanTableMenuContributionPluginAdapter;
+import org.jowidgets.plugin.api.IPluginProperties;
+import org.jowidgets.tools.model.item.MenuModel;
+import org.jowidgets.tutorials.tutorial4.app.common.bean.IPerson;
+import org.jowidgets.tutorials.tutorial4.app.ui.action.PersonLongLastingActionFactory;
 
-public final class AuthorizationProviderServiceId {
+public class PersonTableMenuContributionPlugin extends BeanTableMenuContributionPluginAdapter<IPerson> {
 
-	public static final IServiceId<IAuthorizationProviderService<DefaultPrincipal>> ID = new ServiceId<IAuthorizationProviderService<DefaultPrincipal>>(
-		AuthorizationProviderServiceId.class.getName() + "ID",
-		IAuthorizationProviderService.class);
-
-	private AuthorizationProviderServiceId() {}
+	@Override
+	public IMenuModel getCellMenu(final IPluginProperties properties, final IBeanTable<IPerson> table) {
+		final MenuModel result = new MenuModel();
+		result.addAction(PersonLongLastingActionFactory.create(table.getModel()));
+		return result;
+	}
 
 }

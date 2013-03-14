@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,22 +26,30 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial4.starter.client.common;
+package org.jowidgets.tutorials.tutorial4.app.ui.action;
 
-import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
-import org.jowidgets.tutorials.tutorial4.app.common.service.security.AuthorizationProviderServiceId;
-import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.addons.icons.silkicons.SilkIcons;
+import org.jowidgets.api.command.IAction;
+import org.jowidgets.cap.ui.api.command.ExecutorAction;
+import org.jowidgets.cap.ui.api.command.IExecutorActionBuilder;
+import org.jowidgets.cap.ui.api.execution.BeanExecutionPolicy;
+import org.jowidgets.cap.ui.api.execution.BeanSelectionPolicy;
+import org.jowidgets.cap.ui.api.table.IBeanTableModel;
+import org.jowidgets.tutorials.tutorial4.app.common.bean.IPerson;
+import org.jowidgets.tutorials.tutorial4.app.common.service.executor.ExecutorServices;
 
-public class Tutorial4RemoteLoginService extends AbstractRemoteLoginService {
+public final class PersonLongLastingActionFactory {
 
-	public Tutorial4RemoteLoginService() {
-		super("Tutorial4");
-	}
+	private PersonLongLastingActionFactory() {}
 
-	@Override
-	protected IServiceId<? extends IAuthorizationProviderService<?>> getAuthorizationProviderServiceId() {
-		return AuthorizationProviderServiceId.ID;
+	public static IAction create(final IBeanTableModel<IPerson> model) {
+		final IExecutorActionBuilder<IPerson, Void> builder = ExecutorAction.builder(model);
+		builder.setText("Long lasting test");
+		builder.setIcon(SilkIcons.CLOCK);
+		builder.setExecutor(ExecutorServices.PERSON_LONG_LASTING);
+		builder.setSelectionPolicy(BeanSelectionPolicy.MULTI_SELECTION);
+		builder.setExecutionPolicy(BeanExecutionPolicy.PARALLEL);
+		return builder.build();
 	}
 
 }

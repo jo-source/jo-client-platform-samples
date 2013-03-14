@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,22 +26,21 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial4.starter.client.common;
+package org.jowidgets.tutorials.tutorial4.app.common.service.executor;
 
-import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
-import org.jowidgets.tutorials.tutorial4.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.cap.common.api.service.IExecutorService;
+import org.jowidgets.cap.security.common.tools.SecureServiceId;
 import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.tutorials.tutorial4.app.common.security.AuthKeys;
 
-public class Tutorial4RemoteLoginService extends AbstractRemoteLoginService {
+public final class ExecutorServices {
 
-	public Tutorial4RemoteLoginService() {
-		super("Tutorial4");
-	}
+	public static final IServiceId<IExecutorService<Void>> PERSON_LONG_LASTING = createId(AuthKeys.EXECUTE_PERSON_LONG_LASTING);
 
-	@Override
-	protected IServiceId<? extends IAuthorizationProviderService<?>> getAuthorizationProviderServiceId() {
-		return AuthorizationProviderServiceId.ID;
+	private ExecutorServices() {}
+
+	private static <PARAMETER_TYPE> IServiceId<IExecutorService<PARAMETER_TYPE>> createId(final String id) {
+		return new SecureServiceId<IExecutorService<PARAMETER_TYPE>, String>(id, IExecutorService.class, id);
 	}
 
 }

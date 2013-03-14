@@ -34,6 +34,9 @@ import java.util.Set;
 
 public final class AuthKeys {
 
+	//Executor services
+	public static final String EXECUTE_PERSON_LONG_LASTING = "EXECUTE_PERSON_LONG_LASTING";
+
 	//CRUD services
 	public static final String CREATE_PERSON = "CREATE_PERSON";
 	public static final String READ_PERSON = "READ_PERSON";

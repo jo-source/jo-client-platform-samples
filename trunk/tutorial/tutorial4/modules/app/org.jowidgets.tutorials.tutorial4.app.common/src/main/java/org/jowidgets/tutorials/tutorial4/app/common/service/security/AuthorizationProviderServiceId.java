@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,22 +26,19 @@
  * DAMAGE.
  */
 
-package org.jowidgets.tutorials.tutorial4.starter.client.common;
+package org.jowidgets.tutorials.tutorial4.app.common.service.security;
 
 import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
-import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
-import org.jowidgets.tutorials.tutorial4.app.common.service.security.AuthorizationProviderServiceId;
+import org.jowidgets.security.tools.DefaultPrincipal;
 import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.service.tools.ServiceId;
 
-public class Tutorial4RemoteLoginService extends AbstractRemoteLoginService {
+public final class AuthorizationProviderServiceId {
 
-	public Tutorial4RemoteLoginService() {
-		super("Tutorial4");
-	}
+	public static final IServiceId<IAuthorizationProviderService<DefaultPrincipal>> ID = new ServiceId<IAuthorizationProviderService<DefaultPrincipal>>(
+		AuthorizationProviderServiceId.class.getName() + "ID",
+		IAuthorizationProviderService.class);
 
-	@Override
-	protected IServiceId<? extends IAuthorizationProviderService<?>> getAuthorizationProviderServiceId() {
-		return AuthorizationProviderServiceId.ID;
-	}
+	private AuthorizationProviderServiceId() {}
 
 }
