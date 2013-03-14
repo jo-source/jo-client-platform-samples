@@ -40,7 +40,7 @@ public final class ExecutorServices {
 	private ExecutorServices() {}
 
 	private static <PARAMETER_TYPE> IServiceId<IExecutorService<PARAMETER_TYPE>> createId(final String id) {
-		return new SecureServiceId<IExecutorService<PARAMETER_TYPE>, String>(id, IExecutorService.class, id);
+		return new SecureServiceId<IExecutorService<PARAMETER_TYPE>, String>(id, IExecutorService.class);
 	}
 
 }
