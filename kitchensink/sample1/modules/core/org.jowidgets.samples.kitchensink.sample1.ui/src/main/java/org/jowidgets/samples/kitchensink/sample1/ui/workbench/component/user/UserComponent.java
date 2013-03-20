@@ -33,12 +33,12 @@ import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.model.LinkType;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 import org.jowidgets.samples.kitchensink.sample1.common.service.reader.ReaderServices;
 import org.jowidgets.samples.kitchensink.sample1.ui.attribute.UserAttributesFactory;
-import org.jowidgets.samples.kitchensink.sample1.ui.workbench.command.WorkbenchActions;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.view.RoleTableView;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.view.UserDetailGroupsBorderView;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.view.UserDetailGroupsSeparatorsView;
@@ -97,26 +97,26 @@ public class UserComponent extends AbstractComponent implements IComponent {
 
 	@Override
 	public void onActivation() {
-		WorkbenchActions.loadAction().addDataModel(userTableModel);
-		WorkbenchActions.saveAction().addDataModel(userTableModel);
-		WorkbenchActions.undoAction().addDataModel(userTableModel);
-		WorkbenchActions.cancelAction().addDataModel(userTableModel);
+		CapWorkbenchActionsProvider.loadAction().addDataModel(userTableModel);
+		CapWorkbenchActionsProvider.saveAction().addDataModel(userTableModel);
+		CapWorkbenchActionsProvider.undoAction().addDataModel(userTableModel);
+		CapWorkbenchActionsProvider.cancelAction().addDataModel(userTableModel);
 
-		WorkbenchActions.saveAction().addDataModel(roleTableModel);
-		WorkbenchActions.undoAction().addDataModel(roleTableModel);
-		WorkbenchActions.cancelAction().addDataModel(roleTableModel);
+		CapWorkbenchActionsProvider.saveAction().addDataModel(roleTableModel);
+		CapWorkbenchActionsProvider.undoAction().addDataModel(roleTableModel);
+		CapWorkbenchActionsProvider.cancelAction().addDataModel(roleTableModel);
 	}
 
 	@Override
 	public void onDeactivation(final IVetoable vetoable) {
-		WorkbenchActions.loadAction().removeDataModel(userTableModel);
-		WorkbenchActions.saveAction().removeDataModel(userTableModel);
-		WorkbenchActions.undoAction().removeDataModel(userTableModel);
-		WorkbenchActions.cancelAction().removeDataModel(userTableModel);
+		CapWorkbenchActionsProvider.loadAction().removeDataModel(userTableModel);
+		CapWorkbenchActionsProvider.saveAction().removeDataModel(userTableModel);
+		CapWorkbenchActionsProvider.undoAction().removeDataModel(userTableModel);
+		CapWorkbenchActionsProvider.cancelAction().removeDataModel(userTableModel);
 
-		WorkbenchActions.saveAction().removeDataModel(roleTableModel);
-		WorkbenchActions.undoAction().removeDataModel(roleTableModel);
-		WorkbenchActions.cancelAction().removeDataModel(roleTableModel);
+		CapWorkbenchActionsProvider.saveAction().removeDataModel(roleTableModel);
+		CapWorkbenchActionsProvider.undoAction().removeDataModel(roleTableModel);
+		CapWorkbenchActionsProvider.cancelAction().removeDataModel(roleTableModel);
 	}
 
 	private IBeanTableModel<IUser> createUserTableModel() {

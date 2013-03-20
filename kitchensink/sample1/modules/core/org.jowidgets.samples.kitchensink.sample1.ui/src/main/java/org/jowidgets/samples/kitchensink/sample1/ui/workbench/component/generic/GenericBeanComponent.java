@@ -32,10 +32,10 @@ import org.jowidgets.cap.common.api.service.IEntityService;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample1.ui.attribute.GenericBeanAttributesFactory;
-import org.jowidgets.samples.kitchensink.sample1.ui.workbench.command.WorkbenchActions;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.generic.view.GenericBeanTableView;
 import org.jowidgets.service.api.ServiceProvider;
 import org.jowidgets.workbench.api.IComponent;
@@ -69,18 +69,18 @@ public class GenericBeanComponent extends AbstractComponent implements IComponen
 
 	@Override
 	public void onActivation() {
-		WorkbenchActions.loadAction().addDataModel(tableModel);
-		WorkbenchActions.saveAction().addDataModel(tableModel);
-		WorkbenchActions.undoAction().addDataModel(tableModel);
-		WorkbenchActions.cancelAction().addDataModel(tableModel);
+		CapWorkbenchActionsProvider.loadAction().addDataModel(tableModel);
+		CapWorkbenchActionsProvider.saveAction().addDataModel(tableModel);
+		CapWorkbenchActionsProvider.undoAction().addDataModel(tableModel);
+		CapWorkbenchActionsProvider.cancelAction().addDataModel(tableModel);
 	}
 
 	@Override
 	public void onDeactivation(final IVetoable vetoable) {
-		WorkbenchActions.loadAction().removeDataModel(tableModel);
-		WorkbenchActions.saveAction().removeDataModel(tableModel);
-		WorkbenchActions.undoAction().removeDataModel(tableModel);
-		WorkbenchActions.cancelAction().removeDataModel(tableModel);
+		CapWorkbenchActionsProvider.loadAction().removeDataModel(tableModel);
+		CapWorkbenchActionsProvider.saveAction().removeDataModel(tableModel);
+		CapWorkbenchActionsProvider.undoAction().removeDataModel(tableModel);
+		CapWorkbenchActionsProvider.cancelAction().removeDataModel(tableModel);
 	}
 
 	private IBeanTableModel<Object> createTableModel() {

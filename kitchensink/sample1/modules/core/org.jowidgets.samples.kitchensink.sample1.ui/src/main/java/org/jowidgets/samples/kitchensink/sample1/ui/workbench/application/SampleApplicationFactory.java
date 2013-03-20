@@ -43,49 +43,50 @@ import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModelBuilder;
 import org.jowidgets.workbench.tools.ComponentNodeModelBuilder;
 import org.jowidgets.workbench.tools.WorkbenchApplicationModelBuilder;
 
-public class SampleApplication {
+public final class SampleApplicationFactory {
 
-	private final IWorkbenchApplicationModel model;
+	private SampleApplicationFactory() {}
 
-	public SampleApplication() {
+	public static IWorkbenchApplicationModel create() {
 		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
-		builder.setId(SampleApplication.class.getName());
-		builder.setLabel(Messages.getString("SampleApplication.sample_app")); //$NON-NLS-1$
-		this.model = builder.build();
-
+		builder.setId(SampleApplicationFactory.class.getName());
+		builder.setLabel(Messages.getString("SampleApplication.sample_app"));
+		final IWorkbenchApplicationModel model = builder.build();
 		createComponentTree(model);
-	}
-
-	public IWorkbenchApplicationModel getModel() {
 		return model;
 	}
 
-	private void createComponentTree(final IWorkbenchApplicationModel model) {
+	private static void createComponentTree(final IWorkbenchApplicationModel model) {
 		final IComponentNodeModel usersFolder = model.addChild(
-				"USERS_FOLDER_ID", Messages.getString("SampleApplication.users"), SilkIcons.FOLDER); //$NON-NLS-1$ //$NON-NLS-2$
+				"USERS_FOLDER_ID",
+				Messages.getString("SampleApplication.users"),
+				SilkIcons.FOLDER);
 
 		final IComponentNodeModelBuilder nodeModelBuilder = new ComponentNodeModelBuilder();
 		nodeModelBuilder.setComponentFactory(UserComponent.class);
 		for (int i = 0; i < 4; i++) {
 			nodeModelBuilder.setId(UserComponent.class.getName() + i);
-			nodeModelBuilder.setLabel(Messages.getString("SampleApplication.user_component") + i); //$NON-NLS-1$
+			nodeModelBuilder.setLabel(Messages.getString("SampleApplication.user_component") + i);
 			usersFolder.addChild(nodeModelBuilder.build());
 		}
 
 		final IComponentNodeModel miscFolder = model.addChild(
-				"MISC_FOLDER_ID", Messages.getString("SampleApplication.misc"), SilkIcons.FOLDER); //$NON-NLS-1$ //$NON-NLS-2$
+				"MISC_FOLDER_ID",
+				Messages.getString("SampleApplication.misc"),
+				SilkIcons.FOLDER);
 		nodeModelBuilder.setComponentFactory(GenericBeanComponent.class);
 		nodeModelBuilder.setId(GenericBeanComponent.class.getName());
-		nodeModelBuilder.setLabel(Messages.getString("SampleApplication.generic_bean")); //$NON-NLS-1$
+		nodeModelBuilder.setLabel(Messages.getString("SampleApplication.generic_bean"));
 		miscFolder.addChild(nodeModelBuilder.build());
 
 		nodeModelBuilder.setComponentFactory(RolesTabFolderComponent.class);
 		nodeModelBuilder.setId(RolesTabFolderComponent.class.getName());
-		nodeModelBuilder.setLabel("Roles Folder"); //$NON-NLS-1$
+		nodeModelBuilder.setLabel("Roles Folder");
 		miscFolder.addChild(nodeModelBuilder.build());
 
-		final IComponentNodeModel entitiesFolder = model.addChild("GENERIC_COMPONENTS_FOLDER_ID", //$NON-NLS-1$
-				Messages.getString("SampleApplication.generic_components"), //$NON-NLS-1$
+		final IComponentNodeModel entitiesFolder = model.addChild(
+				"GENERIC_COMPONENTS_FOLDER_ID",
+				Messages.getString("SampleApplication.generic_components"),
 				SilkIcons.FOLDER);
 		final List<IComponentNodeModel> entityNodes = CapUiToolkit.workbenchToolkit().entityComponentNodesFactory().createNodes();
 		for (final IComponentNodeModel entityNode : entityNodes) {

@@ -50,7 +50,7 @@ public class UserDetailView extends AbstractView {
 
 	public UserDetailView(final IViewContext context, final IBeanTableModel<IUser> parentModel) {
 		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingCellLayout());
+		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 		final IBeanSelectionFormBluePrint selectionFormBp = CapUiToolkit.bluePrintFactory().beanSelectionForm(parentModel);
 		final List<IAttribute<Object>> formAttributes = new UserAttributesFactory().formAttributes();
 		final IBeanFormBluePrint<Object> beanFormBp = CapUiToolkit.bluePrintFactory().beanForm(formAttributes);

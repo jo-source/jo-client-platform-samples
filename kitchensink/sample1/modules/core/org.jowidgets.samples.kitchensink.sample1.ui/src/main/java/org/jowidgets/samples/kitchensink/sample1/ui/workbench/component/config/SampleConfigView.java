@@ -50,7 +50,7 @@ public class SampleConfigView extends AbstractView {
 
 	public SampleConfigView(final IViewContext context, final ISingleBeanModel<ISampleConfig> model) {
 		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingCellLayout());
+		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 
 		final ISingleBeanFormBluePrint<ISampleConfig> formBp = CapUiToolkit.bluePrintFactory().singleBeanForm(model);
 		container.add(formBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);

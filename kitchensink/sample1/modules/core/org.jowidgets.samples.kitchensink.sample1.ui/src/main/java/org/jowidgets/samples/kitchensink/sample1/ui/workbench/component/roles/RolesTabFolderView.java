@@ -39,7 +39,7 @@ import org.jowidgets.workbench.tools.AbstractView;
 public class RolesTabFolderView extends AbstractView {
 
 	public static final String ID = RolesTabFolderView.class.getName();
-	public static final String DEFAULT_LABEL = "Roles"; //$NON-NLS-1$
+	public static final String DEFAULT_LABEL = "Roles";
 
 	public RolesTabFolderView(final IViewContext context, final IBeanTabFolderModel<IBeanDto> model) {
 		final IContainer container = context.getContainer();

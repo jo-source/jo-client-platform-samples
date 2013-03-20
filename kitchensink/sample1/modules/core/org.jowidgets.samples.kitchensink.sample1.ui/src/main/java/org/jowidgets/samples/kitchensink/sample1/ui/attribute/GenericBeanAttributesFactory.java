@@ -44,8 +44,8 @@ import org.jowidgets.service.api.ServiceProvider;
 
 public class GenericBeanAttributesFactory {
 
-	private static final String GROUP_N = Messages.getString("GenericBeanAttributesFactory.group_n"); //$NON-NLS-1$
-	private static final String DESCRIPTION_OF_GROUP_N = Messages.getString("GenericBeanAttributesFactory.description_of_group_n"); //$NON-NLS-1$
+	private static final String GROUP_N = Messages.getString("GenericBeanAttributesFactory.group_n");
+	private static final String DESCRIPTION_OF_GROUP_N = Messages.getString("GenericBeanAttributesFactory.description_of_group_n");
 
 	private final IAttributeToolkit attributeToolkit;
 
