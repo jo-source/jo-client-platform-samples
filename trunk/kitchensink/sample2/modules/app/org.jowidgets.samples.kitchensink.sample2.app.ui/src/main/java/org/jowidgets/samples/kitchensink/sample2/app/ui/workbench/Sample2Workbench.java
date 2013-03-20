@@ -30,12 +30,12 @@ package org.jowidgets.samples.kitchensink.sample2.app.ui.workbench;
 
 import java.util.Locale;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.api.widgets.content.IContentCreator;
 import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
 import org.jowidgets.common.widgets.layout.MigLayoutDescriptor;
 import org.jowidgets.samples.kitchensink.sample2.app.ui.application.Sample2ApplicationFactory;
+import org.jowidgets.samples.kitchensink.sample2.app.ui.initializer.SampleDefaultsInitializer;
 import org.jowidgets.samples.kitchensink.sample2.app.ui.lookup.LookupInitializer;
 import org.jowidgets.security.tools.SecurityContext;
 import org.jowidgets.tools.widgets.blueprint.BPF;
@@ -53,7 +53,7 @@ public class Sample2Workbench implements IWorkbenchFactory {
 	public IWorkbench create() {
 		Locale.setDefault(Locale.US);
 
-		SilkIconsInitializer.initializeFull();
+		SampleDefaultsInitializer.initialize();
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel("Sample2");
