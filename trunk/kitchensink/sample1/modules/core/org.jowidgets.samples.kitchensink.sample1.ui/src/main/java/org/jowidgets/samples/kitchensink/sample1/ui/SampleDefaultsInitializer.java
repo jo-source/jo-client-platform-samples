@@ -30,13 +30,14 @@ package org.jowidgets.samples.kitchensink.sample1.ui;
 
 import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.api.command.IAction;
-import org.jowidgets.api.toolkit.Toolkit;
+import org.jowidgets.api.types.AutoPackPolicy;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
-import org.jowidgets.api.widgets.blueprint.factory.IBluePrintFactory;
 import org.jowidgets.cap.ui.api.widgets.IBeanFormBluePrint;
+import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.image.IImageConstant;
-import org.jowidgets.samples.kitchensink.sample1.ui.workbench.command.WorkbenchActions;
 import org.jowidgets.tools.command.ActionWrapper;
+import org.jowidgets.tools.widgets.blueprint.BPF;
 import org.jowidgets.util.IProvider;
 
 public final class SampleDefaultsInitializer {
@@ -46,13 +47,18 @@ public final class SampleDefaultsInitializer {
 	public static void initialize() {
 		SilkIconsInitializer.initializeFull();
 
-		final IBluePrintFactory bpf = Toolkit.getBluePrintFactory();
-
-		bpf.addDefaultsInitializer(IBeanFormBluePrint.class, new IDefaultInitializer<IBeanFormBluePrint<?>>() {
+		BPF.addDefaultsInitializer(IBeanFormBluePrint.class, new IDefaultInitializer<IBeanFormBluePrint<?>>() {
 			@Override
 			public void initialize(final IBeanFormBluePrint<?> setupBuilder) {
 				setupBuilder.setUndoAction(createUndoActionProvider());
 				setupBuilder.setSaveAction(createSaveActionProvider());
+			}
+		});
+
+		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
+			@Override
+			public void initialize(final IBeanTableBluePrint<?> setupBuilder) {
+				setupBuilder.setAutoPackPolicy(AutoPackPolicy.ONCE);
 			}
 		});
 	}
@@ -61,7 +67,7 @@ public final class SampleDefaultsInitializer {
 		return new IProvider<IAction>() {
 			@Override
 			public IAction get() {
-				return new ActionWrapper(WorkbenchActions.undoAction()) {
+				return new ActionWrapper(CapWorkbenchActionsProvider.undoAction()) {
 					@Override
 					public IImageConstant getIcon() {
 						return null;
@@ -75,7 +81,7 @@ public final class SampleDefaultsInitializer {
 		return new IProvider<IAction>() {
 			@Override
 			public IAction get() {
-				return new ActionWrapper(WorkbenchActions.saveAction()) {
+				return new ActionWrapper(CapWorkbenchActionsProvider.saveAction()) {
 					@Override
 					public IImageConstant getIcon() {
 						return null;

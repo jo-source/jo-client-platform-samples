@@ -31,9 +31,9 @@ package org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.config;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.model.ISingleBeanModel;
 import org.jowidgets.cap.ui.api.model.ISingleBeanModelBuilder;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.ISampleConfig;
-import org.jowidgets.samples.kitchensink.sample1.ui.workbench.command.WorkbenchActions;
 import org.jowidgets.workbench.api.IComponent;
 import org.jowidgets.workbench.api.IComponentContext;
 import org.jowidgets.workbench.api.IView;
@@ -65,18 +65,18 @@ public class SampleConfigComponent extends AbstractComponent implements ICompone
 
 	@Override
 	public void onActivation() {
-		WorkbenchActions.loadAction().addDataModel(model);
-		WorkbenchActions.saveAction().addDataModel(model);
-		WorkbenchActions.undoAction().addDataModel(model);
-		WorkbenchActions.cancelAction().addDataModel(model);
+		CapWorkbenchActionsProvider.loadAction().addDataModel(model);
+		CapWorkbenchActionsProvider.saveAction().addDataModel(model);
+		CapWorkbenchActionsProvider.undoAction().addDataModel(model);
+		CapWorkbenchActionsProvider.cancelAction().addDataModel(model);
 	}
 
 	@Override
 	public void onDeactivation(final IVetoable vetoable) {
-		WorkbenchActions.loadAction().removeDataModel(model);
-		WorkbenchActions.saveAction().removeDataModel(model);
-		WorkbenchActions.undoAction().removeDataModel(model);
-		WorkbenchActions.cancelAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.loadAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.saveAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.undoAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.cancelAction().removeDataModel(model);
 	}
 
 	private ISingleBeanModel<ISampleConfig> createModel() {

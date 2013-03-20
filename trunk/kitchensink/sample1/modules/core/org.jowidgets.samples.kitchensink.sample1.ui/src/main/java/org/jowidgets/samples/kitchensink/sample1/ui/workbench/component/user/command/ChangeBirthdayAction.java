@@ -54,10 +54,10 @@ import org.jowidgets.util.maybe.Some;
 
 public class ChangeBirthdayAction extends ActionWrapper {
 
-	private static final String PLEASE_INPUT_THE_NEW_DATE_OF_BIRTH = Messages.getString("ChangeBirthdayAction.please_input_the_new_date_of_birth"); //$NON-NLS-1$
-	private static final String CHANGE_DAY_OF_BIRTH = Messages.getString("ChangeBirthdayAction.change_day_of_birth"); //$NON-NLS-1$
-	private static final String CHANGE_DAY_OF_BIRTH_TOOLTIP = Messages.getString("ChangeBirthdayAction.change_day_of_birth_tooltip"); //$NON-NLS-1$
-	private static final String DATE_OF_BIRTH = Messages.getString("ChangeBirthdayAction.date_of_birth"); //$NON-NLS-1$
+	private static final String PLEASE_INPUT_THE_NEW_DATE_OF_BIRTH = Messages.getString("ChangeBirthdayAction.please_input_the_new_date_of_birth");
+	private static final String CHANGE_DAY_OF_BIRTH = Messages.getString("ChangeBirthdayAction.change_day_of_birth");
+	private static final String CHANGE_DAY_OF_BIRTH_TOOLTIP = Messages.getString("ChangeBirthdayAction.change_day_of_birth_tooltip");
+	private static final String DATE_OF_BIRTH = Messages.getString("ChangeBirthdayAction.date_of_birth");
 
 	public ChangeBirthdayAction(final IBeanListModel<IUser> model) {
 		super(create(model));

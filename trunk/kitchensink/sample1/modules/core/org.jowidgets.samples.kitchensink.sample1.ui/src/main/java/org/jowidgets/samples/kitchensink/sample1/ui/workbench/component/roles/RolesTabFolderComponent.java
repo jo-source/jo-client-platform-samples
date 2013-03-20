@@ -38,10 +38,10 @@ import org.jowidgets.cap.ui.api.bean.IBeanProxyLabelRenderer;
 import org.jowidgets.cap.ui.api.model.ILabelModel;
 import org.jowidgets.cap.ui.api.tabfolder.IBeanTabFolderModel;
 import org.jowidgets.cap.ui.api.tabfolder.IBeanTabFolderModelBuilder;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.cap.ui.tools.model.LabelModelAdapter;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
-import org.jowidgets.samples.kitchensink.sample1.ui.workbench.command.WorkbenchActions;
 import org.jowidgets.util.ITypedKey;
 import org.jowidgets.workbench.api.IComponent;
 import org.jowidgets.workbench.api.IComponentContext;
@@ -74,26 +74,26 @@ public class RolesTabFolderComponent extends AbstractComponent implements ICompo
 
 	@Override
 	public void onActivation() {
-		WorkbenchActions.loadAction().addDataModel(model);
-		WorkbenchActions.saveAction().addDataModel(model);
-		WorkbenchActions.undoAction().addDataModel(model);
-		WorkbenchActions.cancelAction().addDataModel(model);
+		CapWorkbenchActionsProvider.loadAction().addDataModel(model);
+		CapWorkbenchActionsProvider.saveAction().addDataModel(model);
+		CapWorkbenchActionsProvider.undoAction().addDataModel(model);
+		CapWorkbenchActionsProvider.cancelAction().addDataModel(model);
 
-		WorkbenchActions.saveAction().addDataModel(model);
-		WorkbenchActions.undoAction().addDataModel(model);
-		WorkbenchActions.cancelAction().addDataModel(model);
+		CapWorkbenchActionsProvider.saveAction().addDataModel(model);
+		CapWorkbenchActionsProvider.undoAction().addDataModel(model);
+		CapWorkbenchActionsProvider.cancelAction().addDataModel(model);
 	}
 
 	@Override
 	public void onDeactivation(final IVetoable vetoable) {
-		WorkbenchActions.loadAction().removeDataModel(model);
-		WorkbenchActions.saveAction().removeDataModel(model);
-		WorkbenchActions.undoAction().removeDataModel(model);
-		WorkbenchActions.cancelAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.loadAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.saveAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.undoAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.cancelAction().removeDataModel(model);
 
-		WorkbenchActions.saveAction().removeDataModel(model);
-		WorkbenchActions.undoAction().removeDataModel(model);
-		WorkbenchActions.cancelAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.saveAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.undoAction().removeDataModel(model);
+		CapWorkbenchActionsProvider.cancelAction().removeDataModel(model);
 	}
 
 	private IBeanTabFolderModel<IBeanDto> createRoleModel() {

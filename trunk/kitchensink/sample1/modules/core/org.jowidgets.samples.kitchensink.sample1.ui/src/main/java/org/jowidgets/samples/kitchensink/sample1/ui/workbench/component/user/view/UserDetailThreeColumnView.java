@@ -49,12 +49,12 @@ import org.jowidgets.workbench.tools.AbstractView;
 public class UserDetailThreeColumnView extends AbstractView {
 
 	public static final String ID = UserDetailThreeColumnView.class.getName();
-	public static final String DEFAULT_LABEL = Messages.getString("UserDetailThreeColumnView.user_details_3columns"); //$NON-NLS-1$
-	public static final String DEFAULT_TOOLTIP = Messages.getString("UserDetailThreeColumnView.user_details_3columns_tooltip"); //$NON-NLS-1$
+	public static final String DEFAULT_LABEL = Messages.getString("UserDetailThreeColumnView.user_details_3columns");
+	public static final String DEFAULT_TOOLTIP = Messages.getString("UserDetailThreeColumnView.user_details_3columns_tooltip");
 
 	public UserDetailThreeColumnView(final IViewContext context, final IBeanTableModel<IUser> parentModel) {
 		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingCellLayout());
+		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 		final List<IAttribute<Object>> attributes = new UserAttributesFactory().formAttributes();
 		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
 		final IBeanFormBluePrint<IUser> formBp = cbpf.beanForm(IUser.class, attributes);

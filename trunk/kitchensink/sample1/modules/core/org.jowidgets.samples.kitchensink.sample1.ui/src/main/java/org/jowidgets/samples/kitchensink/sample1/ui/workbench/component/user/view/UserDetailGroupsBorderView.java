@@ -59,7 +59,7 @@ public class UserDetailGroupsBorderView extends AbstractView {
 
 	public UserDetailGroupsBorderView(final IViewContext context, final IBeanTableModel<IUser> parentModel) {
 		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingCellLayout());
+		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 		final List<IAttribute<Object>> attributes = new UserAttributesFactory().formAttributes();
 		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
 		final IBeanFormBluePrint<IUser> formBp = cbpf.beanForm(IUser.class, attributes);
