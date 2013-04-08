@@ -41,8 +41,4 @@ abstract class AbstractDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 		addProperty(IBean.ID_PROPERTY).setLabel("Id").setSortable(true).setVisible(false);
 	}
 
-	void addVersionProperty() {
-		addProperty(IBean.VERSION_PROPERTY).setLabel("Version").setVisible(false);
-	}
-
 }

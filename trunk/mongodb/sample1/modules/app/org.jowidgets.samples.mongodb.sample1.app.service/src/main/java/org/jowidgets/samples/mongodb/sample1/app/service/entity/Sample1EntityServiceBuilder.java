@@ -43,7 +43,7 @@ public final class Sample1EntityServiceBuilder extends MongoDBEntityServiceBuild
 
 		//IPerson
 		final IBeanEntityBluePrint entityBp = addEntity();
-		entityBp.setEntityId(EntityIds.PERSON).setBeanTypeId(IPerson.ENTITY_TYPE_ID).setBeanType(Person.class);
+		entityBp.setEntityId(EntityIds.PERSON).setBeanTypeId(IPerson.BEAN_TYPE_ID).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 	}
 

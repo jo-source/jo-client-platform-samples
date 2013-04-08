@@ -35,6 +35,7 @@ import java.util.List;
 import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.common.api.bean.IBeanKey;
 import org.jowidgets.cap.common.api.execution.IExecutionCallback;
+import org.jowidgets.cap.service.api.CapServiceToolkit;
 import org.jowidgets.cap.service.api.bean.IBeanAccess;
 import org.jowidgets.samples.mongodb.sample1.mongodb.api.MongoDBProvider;
 import org.jowidgets.util.Assert;
@@ -77,6 +78,7 @@ final class MongoDBBeanAccessImpl<BEAN_TYPE extends IBean> implements IBeanAcces
 		final List<BEAN_TYPE> result = new LinkedList<BEAN_TYPE>();
 		try {
 			while (cursor.hasNext()) {
+				CapServiceToolkit.checkCanceled(executionCallback);
 				@SuppressWarnings("unchecked")
 				final BEAN_TYPE bean = (BEAN_TYPE) cursor.next();
 				result.add(bean);

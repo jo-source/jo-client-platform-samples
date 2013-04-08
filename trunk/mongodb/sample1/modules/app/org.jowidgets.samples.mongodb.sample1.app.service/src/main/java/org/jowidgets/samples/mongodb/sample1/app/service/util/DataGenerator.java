@@ -38,15 +38,15 @@ import com.mongodb.MongoClient;
 //CHECKSTYLE:OFF
 public final class DataGenerator {
 
-	private static final int MAX_DATA = 30000000;
+	private static final int MAX_DATA = 1000000;
 
 	private static final String DB_NAME = "sample1Db";
 
-	private static final String EMAIL_COLLECTION = "EMAIL";
+	private static final String PERSON_COLLECTION = "PERSON";
 
-	private static final String SUBJECT_PROPERTY = "SUBJECT";
-	private static final String FROM_ADDRESS_PROPERTY = "FROM_ADDRESS";
-	private static final String TO_ADDRESS_PROPERTY = "TO_ADDRESS";
+	private static final String NAME_PROPERTY = "NAME";
+	private static final String LAST_NAME_PROPERTY = "LAST_NAME";
+	private static final String COMMENT_PROPERTY = "COMMENT";
 
 	private final DB db;
 
@@ -64,21 +64,21 @@ public final class DataGenerator {
 	private void createIndex() {
 		System.out.println("BEFORE CREATE INDEX");
 		final BasicDBObject index = new BasicDBObject();
-		index.append(SUBJECT_PROPERTY, 1).append(FROM_ADDRESS_PROPERTY, 1).append(TO_ADDRESS_PROPERTY, 1);
-		db.getCollection(EMAIL_COLLECTION).createIndex(index);
+		index.append(NAME_PROPERTY, 1).append(LAST_NAME_PROPERTY, 1).append(COMMENT_PROPERTY, 1);
+		db.getCollection(PERSON_COLLECTION).createIndex(index);
 		System.out.println("AFTER CREATE INDEX");
 	}
 
 	private void generateData() {
 
-		final DBCollection emails = db.getCollection(EMAIL_COLLECTION);
+		final DBCollection persons = db.getCollection(PERSON_COLLECTION);
 
 		for (int i = 0; i < MAX_DATA; i++) {
-			final BasicDBObject email = new BasicDBObject();
-			email.append(SUBJECT_PROPERTY, "Testmail" + i);
-			email.append(FROM_ADDRESS_PROPERTY, "herr.grossmann" + (MAX_DATA - i) + "@gmx.de");
-			email.append(TO_ADDRESS_PROPERTY, "one.million" + i + "@dollar.com");
-			emails.insert(email);
+			final BasicDBObject person = new BasicDBObject();
+			person.append(NAME_PROPERTY, "Name" + i);
+			person.append(LAST_NAME_PROPERTY, "LastName" + (MAX_DATA - i));
+			person.append(COMMENT_PROPERTY, "Comment" + i);
+			persons.insert(person);
 			if (i % 1000 == 0) {
 				System.out.println("Inserted: " + i);
 			}
@@ -89,25 +89,25 @@ public final class DataGenerator {
 	private void findData() {
 		System.out.println("BEFORE FIND");
 
-		final DBCollection emails = db.getCollection(EMAIL_COLLECTION);
+		final DBCollection persons = db.getCollection(PERSON_COLLECTION);
 
-		final DBCursor cursor = emails.find();
+		final DBCursor cursor = persons.find();
 
 		System.out.println("BEFORE SKIP");
 
-		cursor.sort(new BasicDBObject(SUBJECT_PROPERTY, -1));
+		cursor.sort(new BasicDBObject(NAME_PROPERTY, -1));
 
 		final long timeBefore = System.currentTimeMillis();
 
-		cursor.skip((MAX_DATA / 3) - 20);
+		cursor.skip((MAX_DATA) - 2000);
 		cursor.limit(2000);
 
 		try {
 			while (cursor.hasNext()) {
-				final DBObject email = cursor.next();
-				final Object subject = email.get(SUBJECT_PROPERTY);
-				final Object from = email.get(FROM_ADDRESS_PROPERTY);
-				final Object to = email.get(TO_ADDRESS_PROPERTY);
+				final DBObject person = cursor.next();
+				final Object subject = person.get(NAME_PROPERTY);
+				final Object from = person.get(LAST_NAME_PROPERTY);
+				final Object to = person.get(COMMENT_PROPERTY);
 				System.out.println(from + " / " + to + "/" + subject + " / ");
 			}
 		}
