@@ -61,8 +61,6 @@ public final class PersonDtoDescriptorBuilder extends AbstractDtoDescriptorBuild
 		propertyBp.setLabel("Gender");
 		propertyBp.setDescription("The persons gender");
 
-		//IBean.VERSION_PROPERTY
-		addVersionProperty();
 	}
 
 }

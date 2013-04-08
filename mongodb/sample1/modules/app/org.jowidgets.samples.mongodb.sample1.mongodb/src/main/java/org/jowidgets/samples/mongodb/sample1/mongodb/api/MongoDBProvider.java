@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@ public final class MongoDBProvider {
 			MongoDBProvider.instance = instance;
 		}
 		else {
-			throw new IllegalStateException("The IMongoDBClientProvider is already initialized");
+			throw new IllegalStateException("The IMongoDBProvider is already initialized");
 		}
 	}
 
@@ -74,7 +74,7 @@ public final class MongoDBProvider {
 				instance = iterator.next();
 				if (iterator.hasNext()) {
 					throw new IllegalStateException("More than one implementation found for '"
-						+ IMongoDBServiceToolkit.class.getName()
+						+ IMongoDBProvider.class.getName()
 						+ "'");
 				}
 			}

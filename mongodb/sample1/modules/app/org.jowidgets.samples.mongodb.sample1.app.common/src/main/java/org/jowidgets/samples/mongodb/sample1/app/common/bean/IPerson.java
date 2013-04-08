@@ -39,7 +39,7 @@ import org.jowidgets.samples.mongodb.sample1.app.common.dto.Gender;
 
 public interface IPerson extends IBean {
 
-	String ENTITY_TYPE_ID = "PERSON";
+	String BEAN_TYPE_ID = "PERSON";
 
 	String NAME_PROPERTY = "name";
 	String DATE_OF_BIRTH_PROPERTY = "dateOfBirth";

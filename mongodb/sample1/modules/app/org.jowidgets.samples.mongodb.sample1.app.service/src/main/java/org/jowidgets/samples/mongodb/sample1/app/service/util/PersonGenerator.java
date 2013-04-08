@@ -45,7 +45,7 @@ public final class PersonGenerator {
 
 	private static final int MAX_DATA = 20000;
 
-	private static final String PERSON_COLLECTION = IPerson.ENTITY_TYPE_ID;
+	private static final String PERSON_COLLECTION = IPerson.BEAN_TYPE_ID;
 
 	private final DB db;
 
