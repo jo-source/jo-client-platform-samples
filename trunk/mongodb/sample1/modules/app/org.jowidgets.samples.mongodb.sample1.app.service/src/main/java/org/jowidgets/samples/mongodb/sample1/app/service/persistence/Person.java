@@ -28,15 +28,28 @@
 
 package org.jowidgets.samples.mongodb.sample1.app.service.persistence;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.jowidgets.samples.mongodb.sample1.app.common.bean.IPerson;
 import org.jowidgets.samples.mongodb.sample1.app.common.dto.Gender;
-import org.jowidgets.samples.mongodb.sample1.mongodb.tools.DBObjectBean;
+import org.jowidgets.util.EmptyCheck;
 
-public class Person extends DBObjectBean implements IPerson {
+import com.mongodb.BasicDBList;
+import com.mongodb.DBObject;
+
+public class Person extends GenericBean implements IPerson {
+
+	public static final String PHONE_NUMBERS_PROPERTY = "phoneNumbers";
 
 	private static final long serialVersionUID = -872265010584978183L;
+
+	public Person() {
+		super(IPerson.BEAN_TYPE_ID);
+	}
 
 	@Override
 	public String getName() {
@@ -66,6 +79,29 @@ public class Person extends DBObjectBean implements IPerson {
 	@Override
 	public void setGender(final Gender gender) {
 		putEnum(GENDER_PROPERTY, gender);
+	}
+
+	public void setPhoneNumbers(final Collection<? extends PhoneNumber> numbers) {
+		final BasicDBList list = new BasicDBList();
+		if (!EmptyCheck.isEmpty(numbers)) {
+			list.addAll(numbers);
+		}
+		put(PHONE_NUMBERS_PROPERTY, list);
+	}
+
+	public List<PhoneNumber> getPhoneNumbers() {
+		@SuppressWarnings("unchecked")
+		final Iterable<DBObject> phoneNumbers = (Iterable<DBObject>) get(PHONE_NUMBERS_PROPERTY);
+		if (phoneNumbers != null) {
+			final List<PhoneNumber> result = new LinkedList<PhoneNumber>();
+			for (final DBObject phoneNumber : phoneNumbers) {
+				result.add(new PhoneNumber(phoneNumber));
+			}
+			return Collections.unmodifiableList(result);
+		}
+		else {
+			return Collections.emptyList();
+		}
 	}
 
 	@Override

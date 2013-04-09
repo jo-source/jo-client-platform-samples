@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,33 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.app.service.persistence;
 
-public enum EntityIds {
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IGenericBean;
+import org.jowidgets.samples.mongodb.sample1.mongodb.tools.DBObjectBean;
+import org.jowidgets.util.Assert;
 
-	PERSON,
-	ROLE
+import com.mongodb.DBObject;
+
+public class GenericBean extends DBObjectBean implements IGenericBean {
+
+	private static final long serialVersionUID = -872265010584978183L;
+
+	protected GenericBean(final String beanTypeId) {
+		this(beanTypeId, null);
+	}
+
+	protected GenericBean(final String beanTypeId, final DBObject dbObject) {
+		Assert.paramNotEmpty(beanTypeId, "beanTypeId");
+		put(BEAN_TYPE_ID_TYPE_PROPERTY, beanTypeId);
+		if (dbObject != null) {
+			putAll(dbObject.toMap());
+		}
+	}
+
+	@Override
+	public String getBeanTypeId() {
+		return getString(BEAN_TYPE_ID_TYPE_PROPERTY);
+	}
 
 }

@@ -26,69 +26,52 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.mongodb.impl;
+package org.jowidgets.samples.mongodb.sample1.mongodb.api;
 
 import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.common.api.bean.IBeanKey;
-import org.jowidgets.cap.common.api.execution.IExecutionCallback;
-import org.jowidgets.cap.service.api.CapServiceToolkit;
-import org.jowidgets.cap.service.api.bean.IBeanAccess;
-import org.jowidgets.samples.mongodb.sample1.mongodb.api.DocumentDAO;
-import org.jowidgets.util.Assert;
 
 import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
 
-final class MongoDBBeanAccessImpl<BEAN_TYPE extends IBean> implements IBeanAccess<BEAN_TYPE> {
+public final class DocumentDAO {
 
-	private final Class<BEAN_TYPE> beanType;
-	private final Object beanTypeId;
+	private DocumentDAO() {}
 
-	@SuppressWarnings("unchecked")
-	MongoDBBeanAccessImpl(final Class<? extends BEAN_TYPE> beanType, final Object beanTypeId) {
-		Assert.paramNotNull(beanType, "beanType");
-		Assert.paramNotNull(beanTypeId, "beanTypeId");
-
-		this.beanTypeId = beanTypeId;
-		this.beanType = (Class<BEAN_TYPE>) beanType;
+	public static DBCursor find(final Class<? extends IBean> beanType, final Object beanTypeId) {
+		return MongoDBServiceToolkit.documentDAO().find(beanType, beanTypeId);
 	}
 
-	@Override
-	public List<BEAN_TYPE> getBeans(final Collection<? extends IBeanKey> keys, final IExecutionCallback executionCallback) {
-		Assert.paramNotNull(keys, "keys");
-
-		final DBCursor cursor = DocumentDAO.findByBeanKeys(beanType, beanTypeId, keys);
-
-		final List<BEAN_TYPE> result = new LinkedList<BEAN_TYPE>();
-		try {
-			while (cursor.hasNext()) {
-				CapServiceToolkit.checkCanceled(executionCallback);
-				@SuppressWarnings("unchecked")
-				final BEAN_TYPE bean = (BEAN_TYPE) cursor.next();
-				result.add(bean);
-			}
-		}
-		finally {
-			cursor.close();
-		}
-
-		return result;
+	public static DBCursor find(final Class<? extends IBean> beanType, final Object beanTypeId, final DBObject query) {
+		return MongoDBServiceToolkit.documentDAO().find(beanType, beanTypeId, query);
 	}
 
-	@Override
-	public Class<BEAN_TYPE> getBeanType() {
-		return beanType;
+	public static long count(final Class<? extends IBean> beanType, final Object beanTypeId) {
+		return MongoDBServiceToolkit.documentDAO().count(beanType, beanTypeId);
 	}
 
-	@Override
-	public Object getBeanTypeId() {
-		return beanTypeId;
+	public static long count(final Class<? extends IBean> beanType, final Object beanTypeId, final DBObject query) {
+		return MongoDBServiceToolkit.documentDAO().count(beanType, beanTypeId, query);
 	}
 
-	@Override
-	public void flush() {}
+	public static DBCursor findByIds(
+		final Class<? extends IBean> beanType,
+		final Object beanTypeId,
+		final Collection<? extends ObjectId> ids) {
+		return MongoDBServiceToolkit.documentDAO().findByIds(beanType, beanTypeId, ids);
+	}
 
+	public static DBCursor findByBeanKeys(
+		final Class<? extends IBean> beanType,
+		final Object beanTypeId,
+		final Collection<? extends IBeanKey> keys) {
+		return MongoDBServiceToolkit.documentDAO().findByBeanKeys(beanType, beanTypeId, keys);
+	}
+
+	public static DBObject findById(final Class<? extends IBean> beanType, final Object beanTypeId, final ObjectId id) {
+		return MongoDBServiceToolkit.documentDAO().findById(beanType, beanTypeId, id);
+	}
 }

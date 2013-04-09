@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,33 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.app.service.mapper;
 
-public enum EntityIds {
+import java.util.HashMap;
+import java.util.Map;
 
-	PERSON,
-	ROLE
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.IBeanTypeIdMapper;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.IBeanTypeIdMapperProvider;
+
+public final class BeanTypeIdMapperProvider implements IBeanTypeIdMapperProvider {
+
+	private final Map<Object, BeanTypeIdMapper> mapper;
+
+	public BeanTypeIdMapperProvider() {
+		this.mapper = new HashMap<Object, BeanTypeIdMapper>();
+	}
+
+	@Override
+	public IBeanTypeIdMapper get(final Object beanTypeId) {
+		if (!(beanTypeId instanceof String)) {
+			throw new IllegalArgumentException("Param 'beanTypeId' must be a string!");
+		}
+		BeanTypeIdMapper result = mapper.get(beanTypeId);
+		if (result == null) {
+			result = new BeanTypeIdMapper((String) beanTypeId);
+			mapper.put(beanTypeId, result);
+		}
+		return result;
+	}
 
 }

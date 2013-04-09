@@ -34,10 +34,9 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.samples.mongodb.sample1.app.common.dto.Gender;
 
-public interface IPerson extends IBean {
+public interface IPerson extends IGenericBean {
 
 	String BEAN_TYPE_ID = "PERSON";
 
@@ -51,8 +50,9 @@ public interface IPerson extends IBean {
 			add(NAME_PROPERTY);
 			add(DATE_OF_BIRTH_PROPERTY);
 			add(GENDER_PROPERTY);
-			add(IBean.ID_PROPERTY);
-			add(IBean.VERSION_PROPERTY);
+			add(BEAN_TYPE_ID_TYPE_PROPERTY);
+			add(ID_PROPERTY);
+			add(VERSION_PROPERTY);
 		}
 	};
 

@@ -28,20 +28,28 @@
 
 package org.jowidgets.samples.mongodb.sample1.mongodb.impl;
 
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.IDocumentDAO;
 import org.jowidgets.samples.mongodb.sample1.mongodb.api.IMongoDBServiceFactory;
 import org.jowidgets.samples.mongodb.sample1.mongodb.api.IMongoDBServiceToolkit;
 
 public final class MongoDBServiceToolkitImpl implements IMongoDBServiceToolkit {
 
 	private final IMongoDBServiceFactory serviceFactory;
+	private final IDocumentDAO documentDAO;
 
 	public MongoDBServiceToolkitImpl() {
 		this.serviceFactory = new MongoDbBeanServiceFactoryImpl();
+		this.documentDAO = new DocumentDAOImpl();
 	}
 
 	@Override
 	public IMongoDBServiceFactory serviceFactory() {
 		return serviceFactory;
+	}
+
+	@Override
+	public IDocumentDAO documentDAO() {
+		return documentDAO;
 	}
 
 }

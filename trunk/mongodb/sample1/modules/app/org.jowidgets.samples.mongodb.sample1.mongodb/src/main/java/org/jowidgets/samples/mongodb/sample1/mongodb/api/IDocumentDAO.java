@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, Lukas Gross, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,31 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.mongodb.api;
 
-public enum EntityIds {
+import java.util.Collection;
 
-	PERSON,
-	ROLE
+import org.bson.types.ObjectId;
+import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.common.api.bean.IBeanKey;
+
+import com.mongodb.DBCursor;
+import com.mongodb.DBObject;
+
+public interface IDocumentDAO {
+
+	DBCursor find(Class<? extends IBean> beanType, final Object beanTypeId);
+
+	DBCursor find(Class<? extends IBean> beanType, final Object beanTypeId, DBObject query);
+
+	long count(Class<? extends IBean> beanType, final Object beanTypeId);
+
+	long count(Class<? extends IBean> beanType, final Object beanTypeId, DBObject query);
+
+	DBCursor findByIds(Class<? extends IBean> beanType, final Object beanTypeId, Collection<? extends ObjectId> ids);
+
+	DBCursor findByBeanKeys(Class<? extends IBean> beanType, final Object beanTypeId, Collection<? extends IBeanKey> keys);
+
+	DBObject findById(Class<? extends IBean> beanType, final Object beanTypeId, ObjectId id);
 
 }

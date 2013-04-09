@@ -32,4 +32,5 @@ public interface IMongoDBServiceToolkit {
 
 	IMongoDBServiceFactory serviceFactory();
 
+	IDocumentDAO documentDAO();
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2012, grossmann
+ * Copyright (c) 2013, Lukas Gross, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -31,57 +31,92 @@ package org.jowidgets.samples.mongodb.sample1.mongodb.api;
 import java.util.Iterator;
 import java.util.ServiceLoader;
 
-import org.jowidgets.samples.mongodb.sample1.mongodb.impl.MongoDBServiceToolkitImpl;
+import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.util.Assert;
 
-public final class MongoDBServiceToolkit {
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 
-	private static IMongoDBServiceToolkit instance;
+public final class BeanTypeIdMapperProvider {
 
-	private MongoDBServiceToolkit() {}
+	private static IBeanTypeIdMapperProvider instance;
 
-	public static synchronized void initialize(final IMongoDBServiceToolkit instance) {
+	private BeanTypeIdMapperProvider() {}
+
+	public static synchronized void initialize(final IBeanTypeIdMapperProvider instance) {
 		Assert.paramNotNull(instance, "instance");
-		if (MongoDBServiceToolkit.instance == null) {
-			MongoDBServiceToolkit.instance = instance;
+		if (BeanTypeIdMapperProvider.instance == null) {
+			BeanTypeIdMapperProvider.instance = instance;
 		}
 		else {
-			throw new IllegalStateException("The IMongoDBServiceToolkit is already initialized");
+			throw new IllegalStateException("The IBeanTypeIdMapperProvider is already initialized");
 		}
 	}
 
-	public static IMongoDBServiceToolkit getInstance() {
+	public static IBeanTypeIdMapperProvider getInstance() {
 		if (instance == null) {
 			createInstance();
 		}
 		return instance;
 	}
 
-	public static IMongoDBServiceFactory serviceFactory() {
-		return getInstance().serviceFactory();
+	public static IBeanTypeIdMapper get(final Object beanTypeId) {
+		return getInstance().get(beanTypeId);
 	}
 
-	public static IDocumentDAO documentDAO() {
-		return getInstance().documentDAO();
+	public static <BEAN_TYPE extends IBean> DBCollection getCollection(final Object beanTypeId) {
+		return getInstance().get(beanTypeId).getCollection();
+	}
+
+	public static <BEAN_TYPE extends IBean> DBObject getQuery(final Object beanTypeId) {
+		return getInstance().get(beanTypeId).getQuery();
 	}
 
 	private static synchronized void createInstance() {
 		if (instance == null) {
-			final ServiceLoader<IMongoDBServiceToolkit> serviceLoader = ServiceLoader.load(IMongoDBServiceToolkit.class);
-			final Iterator<IMongoDBServiceToolkit> iterator = serviceLoader.iterator();
+			final ServiceLoader<IBeanTypeIdMapperProvider> serviceLoader = ServiceLoader.load(IBeanTypeIdMapperProvider.class);
+			final Iterator<IBeanTypeIdMapperProvider> iterator = serviceLoader.iterator();
 
 			if (!iterator.hasNext()) {
-				instance = new MongoDBServiceToolkitImpl();
+				instance = new DefaultBeanTypeIdMapperProvider();
 			}
 			else {
 				instance = iterator.next();
 				if (iterator.hasNext()) {
 					throw new IllegalStateException("More than one implementation found for '"
-						+ IMongoDBServiceToolkit.class.getName()
+						+ IBeanTypeIdMapperProvider.class.getName()
 						+ "'");
 				}
 			}
 		}
+	}
+
+	private static final class DefaultBeanTypeIdMapperProvider implements IBeanTypeIdMapperProvider {
+
+		@Override
+		public IBeanTypeIdMapper get(final Object beanTypeId) {
+			if (!(beanTypeId instanceof String)) {
+				throw new IllegalArgumentException(
+					"Param 'beanTypeId' must be the collection name and therefore a string, or a custom beanTypeIdMapper must be injected!");
+			}
+			final String collectionName = (String) beanTypeId;
+
+			return new IBeanTypeIdMapper() {
+
+				@Override
+				public DBCollection getCollection() {
+					return MongoDBProvider.get().getCollection(collectionName);
+				}
+
+				@Override
+				public DBObject getQuery() {
+					return null;
+				}
+
+			};
+
+		}
+
 	}
 
 }

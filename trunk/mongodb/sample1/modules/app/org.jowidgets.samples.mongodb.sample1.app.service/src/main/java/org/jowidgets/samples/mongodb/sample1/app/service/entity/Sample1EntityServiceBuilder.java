@@ -30,9 +30,12 @@ package org.jowidgets.samples.mongodb.sample1.app.service.entity;
 
 import org.jowidgets.cap.service.api.entity.IBeanEntityBluePrint;
 import org.jowidgets.samples.mongodb.sample1.app.common.bean.IPerson;
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IRole;
 import org.jowidgets.samples.mongodb.sample1.app.common.entity.EntityIds;
 import org.jowidgets.samples.mongodb.sample1.app.service.descriptor.PersonDtoDescriptorBuilder;
+import org.jowidgets.samples.mongodb.sample1.app.service.descriptor.RoleDtoDescriptorBuilder;
 import org.jowidgets.samples.mongodb.sample1.app.service.persistence.Person;
+import org.jowidgets.samples.mongodb.sample1.app.service.persistence.Role;
 import org.jowidgets.samples.mongodb.sample1.mongodb.tools.MongoDBEntityServiceBuilderWrapper;
 import org.jowidgets.service.api.IServiceRegistry;
 
@@ -42,9 +45,14 @@ public final class Sample1EntityServiceBuilder extends MongoDBEntityServiceBuild
 		super(registry);
 
 		//IPerson
-		final IBeanEntityBluePrint entityBp = addEntity();
+		IBeanEntityBluePrint entityBp = addEntity();
 		entityBp.setEntityId(EntityIds.PERSON).setBeanTypeId(IPerson.BEAN_TYPE_ID).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
+
+		//IRole
+		entityBp = addEntity();
+		entityBp.setEntityId(EntityIds.ROLE).setBeanTypeId(IRole.BEAN_TYPE_ID).setBeanType(Role.class);
+		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
 	}
 
 }
