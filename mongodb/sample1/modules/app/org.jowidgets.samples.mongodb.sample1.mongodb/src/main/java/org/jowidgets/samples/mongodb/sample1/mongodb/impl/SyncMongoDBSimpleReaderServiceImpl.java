@@ -38,10 +38,9 @@ import org.jowidgets.cap.common.api.execution.IExecutionCallback;
 import org.jowidgets.cap.common.api.filter.IFilter;
 import org.jowidgets.cap.service.api.bean.IBeanDtoFactory;
 import org.jowidgets.cap.service.tools.reader.AbstractSimpleReaderService;
-import org.jowidgets.samples.mongodb.sample1.mongodb.api.MongoDBProvider;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.DocumentDAO;
 import org.jowidgets.util.Assert;
 
-import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 
 //TODO MG this implementation is not made for production use
@@ -49,7 +48,7 @@ final class SyncMongoDBSimpleReaderServiceImpl<BEAN_TYPE extends IBean, PARAM_TY
 		AbstractSimpleReaderService<BEAN_TYPE, PARAM_TYPE> {
 
 	private final Class<? extends BEAN_TYPE> beanType;
-	private final String beanTypeId;
+	private final Object beanTypeId;
 
 	SyncMongoDBSimpleReaderServiceImpl(
 		final Class<? extends BEAN_TYPE> beanType,
@@ -68,10 +67,7 @@ final class SyncMongoDBSimpleReaderServiceImpl<BEAN_TYPE extends IBean, PARAM_TY
 		Assert.paramNotNull(beanTypeId, "beanTypeId");
 		Assert.paramNotNull(beanFactory, "beanFactory");
 
-		if (!(beanTypeId instanceof String)) {
-			throw new IllegalArgumentException("Param 'beanTypeId' must be the collection name and therefore a string!");
-		}
-		this.beanTypeId = (String) beanTypeId;
+		this.beanTypeId = beanTypeId;
 		this.beanType = beanType;
 	}
 
@@ -81,10 +77,7 @@ final class SyncMongoDBSimpleReaderServiceImpl<BEAN_TYPE extends IBean, PARAM_TY
 		final PARAM_TYPE parameter,
 		final IExecutionCallback executionCallback) {
 
-		final DBCollection collection = MongoDBProvider.get().getCollection(beanTypeId);
-		collection.setObjectClass(beanType);
-
-		final DBCursor cursor = collection.find();
+		final DBCursor cursor = DocumentDAO.find(beanType, beanTypeId);
 
 		final List<BEAN_TYPE> result = new LinkedList<BEAN_TYPE>();
 		try {

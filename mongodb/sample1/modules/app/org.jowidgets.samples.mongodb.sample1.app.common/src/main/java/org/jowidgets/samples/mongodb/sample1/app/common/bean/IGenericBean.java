@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,12 +25,14 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.mongodb.sample1.app.common.bean;
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+import org.jowidgets.cap.common.api.bean.IBean;
 
-public enum EntityIds {
+public interface IGenericBean extends IBean {
 
-	PERSON,
-	ROLE
+	String BEAN_TYPE_ID_TYPE_PROPERTY = "beanTypeId";
+
+	String getBeanTypeId();
 
 }

@@ -35,7 +35,7 @@ import org.jowidgets.cap.common.api.validation.IBeanValidator;
 import org.jowidgets.cap.service.api.bean.IBeanDtoFactory;
 import org.jowidgets.cap.service.api.bean.IBeanInitializer;
 import org.jowidgets.cap.service.tools.creator.AbstractSyncCreatorServiceImpl;
-import org.jowidgets.samples.mongodb.sample1.mongodb.api.MongoDBProvider;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.BeanTypeIdMapperProvider;
 import org.jowidgets.util.Assert;
 
 import com.mongodb.DBCollection;
@@ -44,7 +44,7 @@ import com.mongodb.DBObject;
 final class SyncMongoDBCreatorServiceImpl<BEAN_TYPE extends IBean> extends AbstractSyncCreatorServiceImpl<BEAN_TYPE> {
 
 	private final Class<? extends BEAN_TYPE> beanType;
-	private final String beanTypeId;
+	private final Object beanTypeId;
 
 	SyncMongoDBCreatorServiceImpl(
 		final Class<? extends BEAN_TYPE> beanType,
@@ -59,18 +59,15 @@ final class SyncMongoDBCreatorServiceImpl<BEAN_TYPE extends IBean> extends Abstr
 		Assert.paramNotNull(beanType, "beanType");
 		Assert.paramNotNull(beanTypeId, "beanTypeId");
 
-		if (!(beanTypeId instanceof String)) {
-			throw new IllegalArgumentException("Param 'beanTypeId' must be the collection name and therefore a string!");
-		}
-		this.beanTypeId = (String) beanTypeId;
-
 		this.beanType = beanType;
+		this.beanTypeId = beanTypeId;
 	}
 
 	@Override
 	protected BEAN_TYPE createBean(final IExecutionCallback executionCallback) {
 		try {
-			return beanType.newInstance();
+			final BEAN_TYPE result = beanType.newInstance();
+			return result;
 		}
 		catch (final Exception e) {
 			throw new RuntimeException(e);
@@ -79,7 +76,7 @@ final class SyncMongoDBCreatorServiceImpl<BEAN_TYPE extends IBean> extends Abstr
 
 	@Override
 	protected void persistBean(final BEAN_TYPE bean, final IExecutionCallback executionCallback) {
-		final DBCollection collection = MongoDBProvider.get().getCollection(beanTypeId);
+		final DBCollection collection = BeanTypeIdMapperProvider.getCollection(beanTypeId);
 		collection.insert((DBObject) bean);
 	}
 

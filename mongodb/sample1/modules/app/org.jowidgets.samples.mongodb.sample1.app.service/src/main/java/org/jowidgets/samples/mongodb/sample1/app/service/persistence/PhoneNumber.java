@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,49 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.app.service.persistence;
 
-public enum EntityIds {
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IPhoneNumber;
 
-	PERSON,
-	ROLE
+import com.mongodb.DBObject;
+
+public class PhoneNumber extends GenericBean implements IPhoneNumber {
+
+	public static final String BEAN_TYPE_ID = "PHONE_NUMBER";
+
+	private static final long serialVersionUID = -872265010584978183L;
+
+	public PhoneNumber() {
+		this(null);
+	}
+
+	public PhoneNumber(final DBObject dbObject) {
+		super(IPhoneNumber.BEAN_TYPE_ID, dbObject);
+	}
+
+	@Override
+	public String getNumber() {
+		return getString(NUMBER_PROPERTY);
+	}
+
+	@Override
+	public void setNumber(final String number) {
+		put(NUMBER_PROPERTY, number);
+	}
+
+	@Override
+	public String getProvider() {
+		return getString(PROVIDER_PROPERTY);
+	}
+
+	@Override
+	public void setProvider(final String provider) {
+		put(PROVIDER_PROPERTY, provider);
+	}
+
+	@Override
+	public String toString() {
+		return "PhoneNumer [number=" + getNumber() + ", provider=" + getProvider() + "]";
+	}
 
 }

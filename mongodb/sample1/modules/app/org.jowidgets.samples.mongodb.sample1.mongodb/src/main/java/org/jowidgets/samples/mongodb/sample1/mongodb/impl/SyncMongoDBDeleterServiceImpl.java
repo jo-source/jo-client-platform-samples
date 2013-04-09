@@ -41,7 +41,7 @@ import org.jowidgets.cap.service.api.bean.IBeanAccess;
 import org.jowidgets.cap.service.api.deleter.IDeleterServiceInterceptor;
 import org.jowidgets.cap.service.api.executor.IBeanExecutor;
 import org.jowidgets.cap.service.api.executor.IExecutorServiceBuilder;
-import org.jowidgets.samples.mongodb.sample1.mongodb.api.MongoDBProvider;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.BeanTypeIdMapperProvider;
 
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
@@ -91,7 +91,7 @@ final class SyncMongoDBDeleterServiceImpl<BEAN_TYPE extends IBean> implements IS
 		public BEAN_TYPE execute(final BEAN_TYPE data, final Void parameter, final IExecutionCallback executionCallback) {
 			CapServiceToolkit.checkCanceled(executionCallback);
 			interceptor.beforeDelete(data, executionCallback);
-			final DBCollection collection = MongoDBProvider.get().getCollection(beanTypeId);
+			final DBCollection collection = BeanTypeIdMapperProvider.getCollection(beanTypeId);
 			collection.remove((DBObject) data);
 			return null;
 		}

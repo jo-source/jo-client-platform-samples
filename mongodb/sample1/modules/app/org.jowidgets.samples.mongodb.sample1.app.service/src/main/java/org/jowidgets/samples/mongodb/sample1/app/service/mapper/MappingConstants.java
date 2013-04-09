@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,11 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.app.service.mapper;
 
-public enum EntityIds {
+public final class MappingConstants {
 
-	PERSON,
-	ROLE
+	public static final String COLLECTION_NAME = "docs";
 
+	private MappingConstants() {}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,35 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.app.service.mapper;
 
-public enum EntityIds {
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IGenericBean;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.IBeanTypeIdMapper;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.MongoDBProvider;
+import org.jowidgets.util.Assert;
 
-	PERSON,
-	ROLE
+import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
+import com.mongodb.QueryBuilder;
+
+final class BeanTypeIdMapper implements IBeanTypeIdMapper {
+
+	private final String beanTypeId;
+
+	BeanTypeIdMapper(final String beanTypeId) {
+		Assert.paramNotNull(beanTypeId, "beanTypeId");
+		this.beanTypeId = beanTypeId;
+	}
+
+	@Override
+	public DBCollection getCollection() {
+		final DBCollection result = MongoDBProvider.get().getCollection(MappingConstants.COLLECTION_NAME);
+		return result;
+	}
+
+	@Override
+	public DBObject getQuery() {
+		return QueryBuilder.start(IGenericBean.BEAN_TYPE_ID_TYPE_PROPERTY).is(beanTypeId).get();
+	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,31 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.app.service.persistence;
 
-public enum EntityIds {
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IRole;
 
-	PERSON,
-	ROLE
+public class Role extends GenericBean implements IRole {
+
+	private static final long serialVersionUID = -872265010584978183L;
+
+	public Role() {
+		super(IRole.BEAN_TYPE_ID);
+	}
+
+	@Override
+	public String getName() {
+		return getString(NAME_PROPERTY);
+	}
+
+	@Override
+	public void setName(final String name) {
+		put(NAME_PROPERTY, name);
+	}
+
+	@Override
+	public String toString() {
+		return "Role [name=" + getName() + "]";
+	}
 
 }

@@ -38,7 +38,7 @@ import com.mongodb.MongoClient;
 //CHECKSTYLE:OFF
 public final class DataGenerator {
 
-	private static final int MAX_DATA = 1000000;
+	private static final int MAX_DATA = 20000000;
 
 	private static final String DB_NAME = "sample1Db";
 
@@ -64,7 +64,10 @@ public final class DataGenerator {
 	private void createIndex() {
 		System.out.println("BEFORE CREATE INDEX");
 		final BasicDBObject index = new BasicDBObject();
-		index.append(NAME_PROPERTY, 1).append(LAST_NAME_PROPERTY, 1).append(COMMENT_PROPERTY, 1);
+		index.append("_id", 1);
+		index.append(NAME_PROPERTY, 1);
+		index.append(LAST_NAME_PROPERTY, 1);
+		index.append(COMMENT_PROPERTY, 1);
 		db.getCollection(PERSON_COLLECTION).createIndex(index);
 		System.out.println("AFTER CREATE INDEX");
 	}
@@ -91,7 +94,7 @@ public final class DataGenerator {
 
 		final DBCollection persons = db.getCollection(PERSON_COLLECTION);
 
-		final DBCursor cursor = persons.find();
+		final DBCursor cursor = persons.find(new BasicDBObject());
 
 		System.out.println("BEFORE SKIP");
 

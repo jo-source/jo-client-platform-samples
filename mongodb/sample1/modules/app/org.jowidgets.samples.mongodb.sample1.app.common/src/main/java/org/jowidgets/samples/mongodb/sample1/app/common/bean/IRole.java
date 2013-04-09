@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,12 +25,34 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.mongodb.sample1.app.common.bean;
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+import java.util.LinkedList;
+import java.util.List;
 
-public enum EntityIds {
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-	PERSON,
-	ROLE
+public interface IRole extends IGenericBean {
+
+	String BEAN_TYPE_ID = "ROLE";
+
+	String NAME_PROPERTY = "name";
+
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(NAME_PROPERTY);
+			add(BEAN_TYPE_ID_TYPE_PROPERTY);
+			add(ID_PROPERTY);
+			add(VERSION_PROPERTY);
+		}
+	};
+
+	@NotNull
+	@Size(min = 2, max = 50)
+	String getName();
+
+	void setName(String loginName);
 
 }

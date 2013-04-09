@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2013, Lukas Gross, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,11 +26,11 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.mongodb.sample1.app.common.entity;
+package org.jowidgets.samples.mongodb.sample1.mongodb.api;
 
-public enum EntityIds {
 
-	PERSON,
-	ROLE
+public interface IBeanTypeIdMapperProvider {
+
+	IBeanTypeIdMapper get(Object beanTypeId);
 
 }

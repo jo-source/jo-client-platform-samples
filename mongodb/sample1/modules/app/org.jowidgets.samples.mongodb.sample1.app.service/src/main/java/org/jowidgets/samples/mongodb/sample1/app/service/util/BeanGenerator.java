@@ -30,9 +30,14 @@ package org.jowidgets.samples.mongodb.sample1.app.service.util;
 
 import java.util.Date;
 
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IGenericBean;
 import org.jowidgets.samples.mongodb.sample1.app.common.bean.IPerson;
+import org.jowidgets.samples.mongodb.sample1.app.common.bean.IRole;
 import org.jowidgets.samples.mongodb.sample1.app.common.dto.Gender;
+import org.jowidgets.samples.mongodb.sample1.app.service.mapper.MappingConstants;
 import org.jowidgets.samples.mongodb.sample1.app.service.persistence.Person;
+import org.jowidgets.samples.mongodb.sample1.app.service.persistence.Role;
+import org.jowidgets.samples.mongodb.sample1.mongodb.api.BeanTypeIdMapperProvider;
 import org.jowidgets.samples.mongodb.sample1.mongodb.api.MongoDBProvider;
 
 import com.mongodb.BasicDBObject;
@@ -41,15 +46,13 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 
 //CHECKSTYLE:OFF
-public final class PersonGenerator {
+public final class BeanGenerator {
 
-	private static final int MAX_DATA = 20000;
-
-	private static final String PERSON_COLLECTION = IPerson.BEAN_TYPE_ID;
+	private static final int MAX_DATA = 200;
 
 	private final DB db;
 
-	private PersonGenerator() throws Exception {
+	private BeanGenerator() throws Exception {
 		this.db = MongoDBProvider.get();
 	}
 
@@ -61,17 +64,21 @@ public final class PersonGenerator {
 
 	private void createIndex() {
 		System.out.println("BEFORE CREATE INDEX");
-		final BasicDBObject index = new BasicDBObject();
-		index.append(IPerson.NAME_PROPERTY, 1);
-		index.append(IPerson.DATE_OF_BIRTH_PROPERTY, 1);
-		index.append(IPerson.GENDER_PROPERTY, 1);
-		db.getCollection(PERSON_COLLECTION).createIndex(index);
+		final DBCollection collection = db.getCollection(MappingConstants.COLLECTION_NAME);
+		collection.ensureIndex(new BasicDBObject(IGenericBean.BEAN_TYPE_ID_TYPE_PROPERTY, 1));
+
+		collection.ensureIndex(new BasicDBObject(IPerson.NAME_PROPERTY, 1));
+		collection.ensureIndex(new BasicDBObject(IPerson.DATE_OF_BIRTH_PROPERTY, 1));
+		collection.ensureIndex(new BasicDBObject(IPerson.GENDER_PROPERTY, 1));
+
+		collection.ensureIndex(new BasicDBObject(IRole.NAME_PROPERTY, 1));
+
 		System.out.println("AFTER CREATE INDEX");
 	}
 
 	private void generateData() {
 
-		final DBCollection persons = db.getCollection(PERSON_COLLECTION);
+		final DBCollection documents = db.getCollection(MappingConstants.COLLECTION_NAME);
 
 		for (int i = 0; i < MAX_DATA; i++) {
 			final Person person = new Person();
@@ -80,10 +87,16 @@ public final class PersonGenerator {
 			person.setDateOfBirth(new Date());
 			person.setGender(Gender.MALE);
 
-			persons.insert(person);
+			documents.insert(person);
 			if (i % 1000 == 0) {
 				System.out.println("Inserted: " + i);
 			}
+		}
+
+		for (int i = 0; i < 10; i++) {
+			final Role role = new Role();
+			role.setName("Role" + i);
+			documents.insert(role);
 		}
 
 	}
@@ -91,7 +104,7 @@ public final class PersonGenerator {
 	private void findData() {
 		System.out.println("BEFORE FIND");
 
-		final DBCollection persons = db.getCollection(PERSON_COLLECTION);
+		final DBCollection persons = BeanTypeIdMapperProvider.getCollection(IPerson.BEAN_TYPE_ID);
 		persons.setObjectClass(Person.class);
 
 		final DBCursor cursor = persons.find();
@@ -102,7 +115,7 @@ public final class PersonGenerator {
 
 		final long timeBefore = System.currentTimeMillis();
 
-		cursor.skip((MAX_DATA / 3) - 20);
+		//cursor.skip((MAX_DATA / 3) - 20);
 		cursor.limit(2000);
 
 		try {
@@ -123,7 +136,7 @@ public final class PersonGenerator {
 	}
 
 	public static void main(final String[] args) throws Exception {
-		final PersonGenerator dataGenerator = new PersonGenerator();
+		final BeanGenerator dataGenerator = new BeanGenerator();
 		dataGenerator.dropData();
 		dataGenerator.createIndex();
 		dataGenerator.generateData();
