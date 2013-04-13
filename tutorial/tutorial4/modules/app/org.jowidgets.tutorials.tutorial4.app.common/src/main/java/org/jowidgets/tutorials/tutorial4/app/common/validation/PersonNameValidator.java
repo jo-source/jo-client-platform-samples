@@ -28,12 +28,16 @@
 
 package org.jowidgets.tutorials.tutorial4.app.common.validation;
 
+import java.io.Serializable;
+
 import org.jowidgets.util.EmptyCheck;
 import org.jowidgets.validation.IValidationResult;
 import org.jowidgets.validation.IValidator;
 import org.jowidgets.validation.ValidationResult;
 
-public final class PersonNameValidator implements IValidator<String> {
+public final class PersonNameValidator implements IValidator<String>, Serializable {
+
+	private static final long serialVersionUID = -2611397148202828525L;
 
 	@Override
 	public IValidationResult validate(final String value) {
