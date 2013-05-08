@@ -15,6 +15,8 @@
 		<class>org.jowidgets.samples.kitchensink.sample2.app.service.bean.Role</class>
 		<class>org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleAuthorizationLink</class>
 		<class>org.jowidgets.samples.kitchensink.sample2.app.service.bean.Phone</class>
+		<class>org.jowidgets.samples.kitchensink.sample2.app.service.bean.Category</class>
+		<class>org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleCategoryLink</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
 			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"></property>

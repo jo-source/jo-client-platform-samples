@@ -26,38 +26,39 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample2.app.common.entity;
+package org.jowidgets.samples.kitchensink.sample2.app.service.descriptor;
 
-public enum EntityIds {
+import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
+import org.jowidgets.cap.common.tools.bean.BeanDtoDescriptorBuilder;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.ICategory;
 
-	PERSON,
-	ROLE,
-	AUTHORIZATION,
-	COUNTRY,
-	PHONE,
-	CATEGORY,
+public class CategoryDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 
-	PERSON_LINK_TYPE,
-	PERSON_ROLE_LINK,
-	ROLE_AUTHORIZATION_LINK,
-	PERSONS_OF_SOURCE_PERSONS_LINK,
-	SOURCE_PERSONS_OF_PERSONS_LINK,
-	LINKED_PERSONS_OF_SOURCE_PERSONS,
-	LINKED_SOURCE_PERSONS_OF_PERSONS,
-	LINKABLE_PERSONS_OF_PERSONS,
-	LINKED_ROLES_OF_PERSONS,
-	LINKABLE_ROLES_OF_PERSONS,
-	LINKED_PERSONS_OF_ROLES,
-	LINKABLE_PERSONS_OF_ROLES,
-	LINKED_AUTHORIZATION_OF_ROLES,
-	LINKABLE_AUTHORIZATIONS_OF_ROLES,
-	LINKED_ROLES_OF_AUTHORIZATIONS,
-	LINKABLE_ROLES_OF_AUTHORIZATIONS,
-	LINKED_PHONES_OF_PERSONS,
-	LINKABLE_PHONES_OF_PERSONS,
-	LINKED_PERSON_OF_PHONES,
-	LINKABLE_PERSONS_OF_PHONES,
-	LINKED_CATEGORIES_OF_ROLES,
-	LINKABLE_CATEGORIES_OF_ROLES
+	public CategoryDtoDescriptorBuilder() {
+		super(ICategory.class);
 
+		setLabelSingular("Category");
+		setLabelPlural("Categories");
+		setRenderingPattern("$" + ICategory.NAME_PROPERTY + "$");
+
+		IBeanPropertyBluePrint propertyBp;
+
+		propertyBp = addProperty(IBean.ID_PROPERTY);
+		propertyBp.setLabel("Id");
+		propertyBp.setDescription("The categories technical identifier");
+
+		propertyBp = addProperty(ICategory.NAME_PROPERTY);
+		propertyBp.setLabel("Name");
+		propertyBp.setDescription("The categories name");
+		propertyBp.setMandatory(true);
+
+		propertyBp = addProperty(ICategory.DESCRIPTION_PROPERTY);
+		propertyBp.setLabel("Description");
+		propertyBp.setDescription("The categories description");
+
+		propertyBp = addProperty(IBean.VERSION_PROPERTY);
+		propertyBp.setLabel("Version");
+		propertyBp.setDescription("The version of the dataset");
+	}
 }

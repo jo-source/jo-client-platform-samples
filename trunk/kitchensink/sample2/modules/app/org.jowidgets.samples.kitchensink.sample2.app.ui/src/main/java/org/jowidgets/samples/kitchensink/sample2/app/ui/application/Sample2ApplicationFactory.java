@@ -59,6 +59,7 @@ public final class Sample2ApplicationFactory {
 		addEntityComponent(model, EntityIds.PERSON);
 		addEntityComponent(model, EntityIds.ROLE);
 		addEntityComponent(model, EntityIds.AUTHORIZATION);
+		addEntityComponent(model, EntityIds.CATEGORY);
 		addEntityComponent(model, EntityIds.PERSON_LINK_TYPE);
 		addEntityComponent(model, EntityIds.COUNTRY);
 		addEntityComponent(model, EntityIds.PHONE);

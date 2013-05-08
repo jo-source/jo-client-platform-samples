@@ -25,39 +25,54 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.kitchensink.sample2.app.common.bean;
 
-package org.jowidgets.samples.kitchensink.sample2.app.common.entity;
+import java.util.LinkedList;
+import java.util.List;
 
-public enum EntityIds {
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-	PERSON,
-	ROLE,
-	AUTHORIZATION,
-	COUNTRY,
-	PHONE,
-	CATEGORY,
+import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
+import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
+import org.jowidgets.samples.kitchensink.sample2.app.common.security.AuthKeys;
 
-	PERSON_LINK_TYPE,
-	PERSON_ROLE_LINK,
-	ROLE_AUTHORIZATION_LINK,
-	PERSONS_OF_SOURCE_PERSONS_LINK,
-	SOURCE_PERSONS_OF_PERSONS_LINK,
-	LINKED_PERSONS_OF_SOURCE_PERSONS,
-	LINKED_SOURCE_PERSONS_OF_PERSONS,
-	LINKABLE_PERSONS_OF_PERSONS,
-	LINKED_ROLES_OF_PERSONS,
-	LINKABLE_ROLES_OF_PERSONS,
-	LINKED_PERSONS_OF_ROLES,
-	LINKABLE_PERSONS_OF_ROLES,
-	LINKED_AUTHORIZATION_OF_ROLES,
-	LINKABLE_AUTHORIZATIONS_OF_ROLES,
-	LINKED_ROLES_OF_AUTHORIZATIONS,
-	LINKABLE_ROLES_OF_AUTHORIZATIONS,
-	LINKED_PHONES_OF_PERSONS,
-	LINKABLE_PHONES_OF_PERSONS,
-	LINKED_PERSON_OF_PHONES,
-	LINKABLE_PERSONS_OF_PHONES,
-	LINKED_CATEGORIES_OF_ROLES,
-	LINKABLE_CATEGORIES_OF_ROLES
+@CreateAuthorization(AuthKeys.CREATE_CATEGORY)
+@ReadAuthorization(AuthKeys.READ_CATEGORY)
+@UpdateAuthorization(AuthKeys.UPDATE_CATEGORY)
+@DeleteAuthorization(AuthKeys.DELETE_CATEGORY)
+public interface ICategory extends IBean {
+
+	String NAME_PROPERTY = "name";
+	String DESCRIPTION_PROPERTY = "description";
+	String SUPER_CATEGORY_ID_PROPERTY = "superCategoryId";
+
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(NAME_PROPERTY);
+			add(DESCRIPTION_PROPERTY);
+			add(SUPER_CATEGORY_ID_PROPERTY);
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
+		}
+	};
+
+	@NotNull
+	@Size(min = 2, max = 50)
+	String getName();
+
+	void setName(String name);
+
+	String getDescription();
+
+	void setDescription(String name);
+
+	Long getSuperCategoryId();
+
+	void setSuperCategoryId(final Long id);
 
 }

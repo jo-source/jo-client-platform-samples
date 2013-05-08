@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2011, H.Westphal
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,39 +25,50 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
+package org.jowidgets.samples.kitchensink.sample2.app.service.bean;
 
-package org.jowidgets.samples.kitchensink.sample2.app.common.entity;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-public enum EntityIds {
+@Entity
+@Table(name = "ROLE_CATEGORY_LINK")
+public class RoleCategoryLink extends Bean {
 
-	PERSON,
-	ROLE,
-	AUTHORIZATION,
-	COUNTRY,
-	PHONE,
-	CATEGORY,
+	public static final String ROLE_ID_PROPERTY = "roleId";
+	public static final String CATEGORY_ID_PROPERTY = "categoryId";
 
-	PERSON_LINK_TYPE,
-	PERSON_ROLE_LINK,
-	ROLE_AUTHORIZATION_LINK,
-	PERSONS_OF_SOURCE_PERSONS_LINK,
-	SOURCE_PERSONS_OF_PERSONS_LINK,
-	LINKED_PERSONS_OF_SOURCE_PERSONS,
-	LINKED_SOURCE_PERSONS_OF_PERSONS,
-	LINKABLE_PERSONS_OF_PERSONS,
-	LINKED_ROLES_OF_PERSONS,
-	LINKABLE_ROLES_OF_PERSONS,
-	LINKED_PERSONS_OF_ROLES,
-	LINKABLE_PERSONS_OF_ROLES,
-	LINKED_AUTHORIZATION_OF_ROLES,
-	LINKABLE_AUTHORIZATIONS_OF_ROLES,
-	LINKED_ROLES_OF_AUTHORIZATIONS,
-	LINKABLE_ROLES_OF_AUTHORIZATIONS,
-	LINKED_PHONES_OF_PERSONS,
-	LINKABLE_PHONES_OF_PERSONS,
-	LINKED_PERSON_OF_PHONES,
-	LINKABLE_PERSONS_OF_PHONES,
-	LINKED_CATEGORIES_OF_ROLES,
-	LINKABLE_CATEGORIES_OF_ROLES
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ROLE_ID", nullable = false, insertable = false, updatable = false)
+	private Role role;
+
+	@Column(name = "ROLE_ID", nullable = false)
+	private Long roleId;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CATEGORY_ID", nullable = false, insertable = false, updatable = false)
+	private Category category;
+
+	@Column(name = "CATEGORY_ID", nullable = false)
+	private Long categoryId;
+
+	public Long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(final Long id) {
+		this.roleId = id;
+	}
+
+	public Long getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(final Long id) {
+		this.categoryId = id;
+	}
 
 }

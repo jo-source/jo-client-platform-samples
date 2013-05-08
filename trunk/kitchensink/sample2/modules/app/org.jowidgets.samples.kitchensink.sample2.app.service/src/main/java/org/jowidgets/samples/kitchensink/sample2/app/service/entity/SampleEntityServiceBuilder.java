@@ -55,6 +55,7 @@ import org.jowidgets.cap.service.jpa.api.query.IPredicateCreator;
 import org.jowidgets.cap.service.jpa.api.query.JpaQueryToolkit;
 import org.jowidgets.cap.service.jpa.tools.entity.JpaEntityServiceBuilderWrapper;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IAuthorization;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.ICategory;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPersonPersonLink;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPersonRelationType;
@@ -64,6 +65,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRole;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRoleAuthorizationLink;
 import org.jowidgets.samples.kitchensink.sample2.app.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Authorization;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Category;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Country;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Person;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.PersonPersonLink;
@@ -72,7 +74,9 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.bean.PersonRoleLink
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Phone;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Role;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleAuthorizationLink;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleCategoryLink;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.AuthorizationDtoDescriptorBuilder;
+import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.CategoryDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.CountryDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonOfSourcePersonLinkDtoDescriptorBuilder;
@@ -123,6 +127,11 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp.setDtoDescriptor(new PhoneDtoDescriptorBuilder());
 		entityBp.setProperties(IPhone.ALL_PROPERTIES);
 		addPersonsOfPhonesLinkDescriptor(entityBp);
+
+		//ICategory
+		entityBp = addEntity().setEntityId(EntityIds.CATEGORY).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
+		entityBp.setProperties(ICategory.ALL_PROPERTIES);
 
 		//IPersonsOfSourcePersonLink
 		entityBp = addEntity().setEntityId(EntityIds.PERSONS_OF_SOURCE_PERSONS_LINK).setBeanType(PersonPersonLink.class);
@@ -181,6 +190,18 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_AUTHORIZATIONS_OF_ROLES).setBeanType(Authorization.class);
 		entityBp.setDtoDescriptor(new AuthorizationDtoDescriptorBuilder());
 		entityBp.setReaderService(createAuthorizationsOfRolesReader(false));
+		entityBp.setDeleterService((IDeleterService) null);
+
+		//Linked categories of roles
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_CATEGORIES_OF_ROLES).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
+		entityBp.setReaderService(createCategoriesOfRolesReader(true));
+		entityBp.setDeleterService((IDeleterService) null);
+
+		//Linkable categories of roles
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_CATEGORIES_OF_ROLES).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
+		entityBp.setReaderService(createCategoriesOfRolesReader(false));
 		entityBp.setDeleterService((IDeleterService) null);
 
 		// Linked phones of persons
@@ -245,6 +266,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 	private void addRoleLinkDescriptors(final IBeanEntityBluePrint entityBp) {
 		addRolePersonLinkDescriptor(entityBp);
 		addRoleAuthorizationLinkDescriptor(entityBp);
+		addRoleCategoryLinkDescriptor(entityBp);
 	}
 
 	private void addPersonRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
@@ -384,6 +406,15 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		bp.setDestinationProperties(IRoleAuthorizationLink.AUTHORIZATION_ID_PROPERTY);
 	}
 
+	private void addRoleCategoryLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkBeanType(RoleCategoryLink.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_CATEGORIES_OF_ROLES);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_CATEGORIES_OF_ROLES);
+		bp.setSourceProperties(RoleCategoryLink.ROLE_ID_PROPERTY);
+		bp.setDestinationProperties(RoleCategoryLink.CATEGORY_ID_PROPERTY);
+	}
+
 	private void addAuthorizationRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
 		bp.setLinkEntityId(EntityIds.ROLE_AUTHORIZATION_LINK);
@@ -432,6 +463,12 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Authorization.class);
 		queryBuilder.setParentPropertyPath(linked, "roleAuthorizationLinks", "role");
 		return getServiceFactory().readerService(Authorization.class, queryBuilder.build(), IAuthorization.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createCategoriesOfRolesReader(final boolean linked) {
+		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Category.class);
+		queryBuilder.setParentPropertyPath(linked, "categoryRoleLinks", "role");
+		return getServiceFactory().readerService(Category.class, queryBuilder.build(), ICategory.ALL_PROPERTIES);
 	}
 
 	private IUpdaterService createPersonUpdaterService() {
