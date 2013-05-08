@@ -52,6 +52,11 @@ public final class AuthKeys {
 	public static final String UPDATE_ROLE = "UPDATE_ROLE";
 	public static final String DELETE_ROLE = "DELETE_ROLE";
 
+	public static final String CREATE_CATEGORY = "CREATE_CATEGORY";
+	public static final String READ_CATEGORY = "READ_CATEGORY";
+	public static final String UPDATE_CATEGORY = "UPDATE_CATEGORY";
+	public static final String DELETE_CATEGORY = "DELETE_CATEGORY";
+
 	public static final String CREATE_COUNTRY = "CREATE_COUNTRY";
 	public static final String READ_COUNTRY = "READ_COUNTRY";
 	public static final String UPDATE_COUNTRY = "UPDATE_COUNTRY";
