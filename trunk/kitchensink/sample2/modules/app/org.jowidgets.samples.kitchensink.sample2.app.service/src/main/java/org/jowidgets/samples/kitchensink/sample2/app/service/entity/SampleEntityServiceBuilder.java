@@ -121,6 +121,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		//IPhone
 		entityBp = addEntity().setEntityId(EntityIds.PHONE).setBeanType(Phone.class);
 		entityBp.setDtoDescriptor(new PhoneDtoDescriptorBuilder());
+		entityBp.setProperties(IPhone.ALL_PROPERTIES);
 		addPersonsOfPhonesLinkDescriptor(entityBp);
 
 		//IPersonsOfSourcePersonLink
@@ -187,15 +188,32 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp.setProperties(IPhone.ALL_PROPERTIES);
 		entityBp.setDtoDescriptor(new PhoneDtoDescriptorBuilder());
 		entityBp.setCreatorService((ICreatorService) null);
-		entityBp.setReaderService(createPhonesOfPersonLinkReader());
+		entityBp.setReaderService(createPhonesOfPersonLinkReader(true));
+		entityBp.setProperties(IPhone.ALL_PROPERTIES);
 		addPersonsOfPhonesLinkDescriptor(entityBp);
 
-		// Linked persons of phones
-		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSONS_OF_PHONES).setBeanType(Person.class);
+		// Linkable phones of persons
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PHONES_OF_PERSONS).setBeanType(Phone.class);
+		entityBp.setProperties(IPhone.ALL_PROPERTIES);
+		entityBp.setDtoDescriptor(new PhoneDtoDescriptorBuilder());
+		entityBp.setCreatorService((ICreatorService) null);
+		entityBp.setDeleterService((IDeleterService) null);
+		entityBp.setReaderService(createPhonesOfPersonLinkReader(false));
+
+		// Linked person of phones
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_PERSON_OF_PHONES).setBeanType(Person.class);
+		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder("User", "User"));
+		entityBp.setCreatorService((ICreatorService) null);
+		entityBp.setReaderService(createPersonsOfPhonesLinkReader(true));
+		addPersonLinkDescriptors(entityBp);
+
+		// Linkable persons of phones
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PERSONS_OF_PHONES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 		entityBp.setCreatorService((ICreatorService) null);
-		entityBp.setReaderService(createPersonsOfPhonesLinkReader());
-		addPersonLinkDescriptors(entityBp);
+		entityBp.setDeleterService((IDeleterService) null);
+		entityBp.setReaderService(createPersonsOfPhonesLinkReader(false));
+
 	}
 
 	private void addPersonLinkDescriptors(final IBeanEntityBluePrint entityBp) {
@@ -241,20 +259,18 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 
 	private void addPhonesofPersonsLinkDescriptor(final IBeanEntityBluePrint entityBp) {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
-		bp.setLinkEntityId(EntityIds.LINKED_PHONES_OF_PERSONS);
-		bp.setLinkBeanType(Phone.class);
+		bp.setLinkEntityId(EntityIds.PHONE);
 		bp.setLinkedEntityId(EntityIds.LINKED_PHONES_OF_PERSONS);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_PHONES_OF_PERSONS);
 		bp.setSourceProperties(Phone.PERSON_ID_PROPERTY);
-		bp.setLinkDeleterService(null);
 	}
 
 	private void addPersonsOfPhonesLinkDescriptor(final IBeanEntityBluePrint entityBp) {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
-		bp.setLinkEntityId(EntityIds.LINKED_PERSONS_OF_PHONES);
-		bp.setLinkBeanType(Person.class);
-		bp.setLinkedEntityId(EntityIds.LINKED_PERSONS_OF_PHONES);
-		bp.setSourceProperties(Person.ID_PROPERTY);
-		bp.setLinkDeleterService(null);
+		bp.setLinkEntityId(EntityIds.PHONE);
+		bp.setLinkedEntityId(EntityIds.LINKED_PERSON_OF_PHONES);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_PERSONS_OF_PHONES);
+		bp.setDestinationProperties(Phone.PERSON_ID_PROPERTY);
 	}
 
 	private void addPersonPersonLinkDescriptor(
@@ -394,15 +410,15 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		return getServiceFactory().readerService(Role.class, queryBuilder.build(), IRole.ALL_PROPERTIES);
 	}
 
-	private IReaderService<Void> createPhonesOfPersonLinkReader() {
+	private IReaderService<Void> createPhonesOfPersonLinkReader(final boolean linked) {
 		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Phone.class);
-		queryBuilder.setParentPropertyPath("person");
+		queryBuilder.setParentPropertyPath(linked, "person");
 		return getServiceFactory().readerService(Phone.class, queryBuilder.build(), IPhone.ALL_PROPERTIES);
 	}
 
-	private IReaderService<Void> createPersonsOfPhonesLinkReader() {
+	private IReaderService<Void> createPersonsOfPhonesLinkReader(final boolean linked) {
 		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Person.class);
-		queryBuilder.setParentPropertyPath("phones");
+		queryBuilder.setParentPropertyPath(linked, "phones");
 		return getServiceFactory().readerService(Person.class, queryBuilder.build(), Person.ALL_PROPERTIES);
 	}
 
