@@ -42,6 +42,7 @@ import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.Index;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.ICategory;
+import org.jowidgets.samples.kitchensink.sample2.app.service.entity.EntityManagerProvider;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
@@ -97,12 +98,30 @@ public class Category extends Bean implements ICategory {
 
 	@Override
 	public void setSuperCategoryId(final Long superCategoryId) {
+		superCategory = null;
 		this.superCategoryId = superCategoryId;
+	}
+
+	public Category getSuperCategory() {
+		if (superCategory == null && superCategoryId != null) {
+			superCategory = EntityManagerProvider.get().find(Category.class, superCategoryId);
+		}
+		return superCategory;
 	}
 
 	@Override
 	public Long getSuperCategoryId() {
 		return superCategoryId;
+	}
+
+	@Override
+	public String getSuperCategoryLabel() {
+		if (getSuperCategory() != null) {
+			return getSuperCategory().getName();
+		}
+		else {
+			return null;
+		}
 	}
 
 }
