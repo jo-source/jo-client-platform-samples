@@ -49,6 +49,7 @@ public interface ICategory extends IBean {
 	String NAME_PROPERTY = "name";
 	String DESCRIPTION_PROPERTY = "description";
 	String SUPER_CATEGORY_ID_PROPERTY = "superCategoryId";
+	String SUPER_CATEGORY_LABEL_PROPERTY = "superCategoryLabel";
 
 	List<String> ALL_PROPERTIES = new LinkedList<String>() {
 		private static final long serialVersionUID = 1L;
@@ -56,6 +57,7 @@ public interface ICategory extends IBean {
 			add(NAME_PROPERTY);
 			add(DESCRIPTION_PROPERTY);
 			add(SUPER_CATEGORY_ID_PROPERTY);
+			add(SUPER_CATEGORY_LABEL_PROPERTY);
 			add(IBean.ID_PROPERTY);
 			add(IBean.VERSION_PROPERTY);
 		}
@@ -74,5 +76,7 @@ public interface ICategory extends IBean {
 	Long getSuperCategoryId();
 
 	void setSuperCategoryId(final Long id);
+
+	String getSuperCategoryLabel();
 
 }

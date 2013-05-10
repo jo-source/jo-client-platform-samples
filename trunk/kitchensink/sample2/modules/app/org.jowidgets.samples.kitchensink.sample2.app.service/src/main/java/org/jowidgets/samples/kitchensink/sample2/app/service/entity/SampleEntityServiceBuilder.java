@@ -132,6 +132,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp = addEntity().setEntityId(EntityIds.CATEGORY).setBeanType(Category.class);
 		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
 		entityBp.setProperties(ICategory.ALL_PROPERTIES);
+		addCategoryLinkDescriptors(entityBp);
 
 		//IPersonsOfSourcePersonLink
 		entityBp = addEntity().setEntityId(EntityIds.PERSONS_OF_SOURCE_PERSONS_LINK).setBeanType(PersonPersonLink.class);
@@ -197,6 +198,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
 		entityBp.setReaderService(createCategoriesOfRolesReader(true));
 		entityBp.setDeleterService((IDeleterService) null);
+		addCategoryLinkDescriptors(entityBp);
 
 		//Linkable categories of roles
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_CATEGORIES_OF_ROLES).setBeanType(Category.class);
@@ -235,6 +237,38 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp.setDeleterService((IDeleterService) null);
 		entityBp.setReaderService(createPersonsOfPhonesLinkReader(false));
 
+		// Linked sub categories of categories
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_SUB_CATEGORIES_OF_CATEGORIES).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder("Sub category", "Sub categories"));
+		entityBp.setCreatorService((ICreatorService) null);
+		entityBp.setReaderService(createSubCategoriesOfCategoriesLinkReader(true));
+		entityBp.setProperties(ICategory.ALL_PROPERTIES);
+		addCategoryLinkDescriptors(entityBp);
+
+		// Linkable sub categories of categories
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_SUB_CATEGORIES_OF_CATEGORIES).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
+		entityBp.setCreatorService((ICreatorService) null);
+		entityBp.setDeleterService((IDeleterService) null);
+		entityBp.setProperties(ICategory.ALL_PROPERTIES);
+		entityBp.setReaderService(createSubCategoriesOfCategoriesLinkReader(false));
+
+		// Linked super category of categories
+		entityBp = addEntity().setEntityId(EntityIds.LINKED_SUPER_CATEGORY_OF_CATEGORIES).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder("Super category", "Super category"));
+		entityBp.setCreatorService((ICreatorService) null);
+		entityBp.setReaderService(createSuperCategoryOfCategoriesLinkReader(true));
+		entityBp.setProperties(ICategory.ALL_PROPERTIES);
+		addCategoryLinkDescriptors(entityBp);
+
+		// Linkable super category of categories
+		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_SUPER_CATEGORY_OF_CATEGORIES).setBeanType(Category.class);
+		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
+		entityBp.setCreatorService((ICreatorService) null);
+		entityBp.setDeleterService((IDeleterService) null);
+		entityBp.setProperties(ICategory.ALL_PROPERTIES);
+		entityBp.setReaderService(createSuperCategoryOfCategoriesLinkReader(false));
+
 	}
 
 	private void addPersonLinkDescriptors(final IBeanEntityBluePrint entityBp) {
@@ -269,6 +303,11 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		addRoleCategoryLinkDescriptor(entityBp);
 	}
 
+	private void addCategoryLinkDescriptors(final IBeanEntityBluePrint entityBp) {
+		addCategorySubCategoryLinkDescriptor(entityBp);
+		addCategorySuperCategoryLinkDescriptor(entityBp);
+	}
+
 	private void addPersonRoleLinkDescriptor(final IBeanEntityBluePrint entityBp) {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
 		bp.setLinkEntityId(EntityIds.PERSON_ROLE_LINK);
@@ -293,6 +332,24 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		bp.setLinkedEntityId(EntityIds.LINKED_PERSON_OF_PHONES);
 		bp.setLinkableEntityId(EntityIds.LINKABLE_PERSONS_OF_PHONES);
 		bp.setDestinationProperties(Phone.PERSON_ID_PROPERTY);
+	}
+
+	private void addCategorySubCategoryLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkEntityId(EntityIds.CATEGORY);
+		bp.setLinkBeanType(Category.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_SUB_CATEGORIES_OF_CATEGORIES);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_SUB_CATEGORIES_OF_CATEGORIES);
+		bp.setSourceProperties(ICategory.SUPER_CATEGORY_ID_PROPERTY);
+	}
+
+	private void addCategorySuperCategoryLinkDescriptor(final IBeanEntityBluePrint entityBp) {
+		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
+		bp.setLinkEntityId(EntityIds.CATEGORY);
+		bp.setLinkBeanType(Category.class);
+		bp.setLinkedEntityId(EntityIds.LINKED_SUPER_CATEGORY_OF_CATEGORIES);
+		bp.setLinkableEntityId(EntityIds.LINKABLE_SUPER_CATEGORY_OF_CATEGORIES);
+		bp.setDestinationProperties(ICategory.SUPER_CATEGORY_ID_PROPERTY);
 	}
 
 	private void addPersonPersonLinkDescriptor(
@@ -450,7 +507,19 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 	private IReaderService<Void> createPersonsOfPhonesLinkReader(final boolean linked) {
 		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Person.class);
 		queryBuilder.setParentPropertyPath(linked, "phones");
-		return getServiceFactory().readerService(Person.class, queryBuilder.build(), Person.ALL_PROPERTIES);
+		return getServiceFactory().readerService(Person.class, queryBuilder.build(), IPerson.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createSubCategoriesOfCategoriesLinkReader(final boolean linked) {
+		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Category.class);
+		queryBuilder.setParentPropertyPath(linked, "superCategory");
+		return getServiceFactory().readerService(Category.class, queryBuilder.build(), ICategory.ALL_PROPERTIES);
+	}
+
+	private IReaderService<Void> createSuperCategoryOfCategoriesLinkReader(final boolean linked) {
+		final ICriteriaQueryCreatorBuilder<Void> queryBuilder = JpaQueryToolkit.criteriaQueryCreatorBuilder(Category.class);
+		queryBuilder.setParentPropertyPath(linked, "subCategories");
+		return getServiceFactory().readerService(Category.class, queryBuilder.build(), ICategory.ALL_PROPERTIES);
 	}
 
 	private IReaderService<Void> createRolesOfAuthorizationsReader(final boolean linked) {

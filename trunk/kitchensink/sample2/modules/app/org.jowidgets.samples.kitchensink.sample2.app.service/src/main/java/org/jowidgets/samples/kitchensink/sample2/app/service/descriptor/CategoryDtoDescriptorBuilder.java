@@ -36,10 +36,14 @@ import org.jowidgets.samples.kitchensink.sample2.app.common.bean.ICategory;
 public class CategoryDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 
 	public CategoryDtoDescriptorBuilder() {
+		this("Category", "Categories");
+	}
+
+	public CategoryDtoDescriptorBuilder(final String labelSigular, final String labelPlural) {
 		super(ICategory.class);
 
-		setLabelSingular("Category");
-		setLabelPlural("Categories");
+		setLabelSingular(labelSigular);
+		setLabelPlural(labelPlural);
 		setRenderingPattern("$" + ICategory.NAME_PROPERTY + "$");
 
 		IBeanPropertyBluePrint propertyBp;
@@ -56,6 +60,12 @@ public class CategoryDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 		propertyBp = addProperty(ICategory.DESCRIPTION_PROPERTY);
 		propertyBp.setLabel("Description");
 		propertyBp.setDescription("The categories description");
+
+		propertyBp = addProperty(ICategory.SUPER_CATEGORY_ID_PROPERTY);
+		propertyBp.setLabel("Super category id");
+
+		propertyBp = addProperty(ICategory.SUPER_CATEGORY_LABEL_PROPERTY);
+		propertyBp.setLabel("Super category");
 
 		propertyBp = addProperty(IBean.VERSION_PROPERTY);
 		propertyBp.setLabel("Version");
