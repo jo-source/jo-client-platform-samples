@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+
+<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="25">
+<locations>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307181758"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307181758/all/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307181733"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307181758/thirdparty/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307181711"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307181247/all"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307181247"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307181247/thirdparty"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.datatools.enablement.sdk.feature.feature.group" version="1.8.2.v201010181125-7I977XFE9JfheEiJQF88iIv2_vUh"/>
+<unit id="org.eclipse.datatools.sdk.feature.feature.group" version="1.8.2.v201010181125-7P9j7eFEPPYjqNWgPz-1SsWN7dZo"/>
+<unit id="org.eclipse.jetty.sdk.feature.group" version="7.1.6.v20100831"/>
+<unit id="org.eclipse.riena.build.feature.sdk.feature.group" version="2.0.0.v20100615_2_0_0"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.6.1.v20100914-1218"/>
+<unit id="org.eclipse.swordfish.sdk.feature.feature.group" version="0.10.0.v201006150915"/>
+<unit id="org.eclipse.rap.runtime.sdk.feature.group" version="1.3.2.20110216-1023"/>
+<unit id="org.eclipse.ecf.core.feature.group" version="3.3.1.v20100913-1814"/>
+<unit id="org.eclipse.pde.junit.runtime.standalone.feature.group" version="1.0.0.v20100831"/>
+<unit id="org.eclipse.pde.junit.runtime.addon.feature.group" version="1.0.0.v20100831"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.6.2.r362_v20110210b-7H7R67v9rtOv_dTCawtb0WQnN92B"/>
+<unit id="org.eclipse.emf.rap.sdk.feature.group" version="2.6.1.v20100914-1218"/>
+<unit id="org.eclipse.persistence.sdk.feature.group" version="2.1.2.v20101206-r8635"/>
+<unit id="org.eclipse.birt.osgi.runtime.sdk.feature.group" version="2.6.2.r262_v20101008-57B381wLglLKxfjdt881PQeMU42p"/>
+<unit id="org.eclipse.rcp.feature.group" version="3.6.2.r362_v20101104-9SAxFMKFkSAqi8axkv1ZjegmiBLY"/>
+<unit id="org.eclipse.rcp.source.feature.group" version="3.6.2.r362_v20101104-9SAxFMKFkSAqi8axkv1ZjegmiBLY"/>
+<unit id="org.eclipse.pde.feature.group" version="3.6.2.r362_v20110203-7b7mFL2FET3dhHalh1iNZtL"/>
+<unit id="org.eclipse.jpt.feature.feature.group" version="2.3.3.v201010220000-7N7UF77FD3wTgcVbmmf0cT"/>
+<repository location="http://download.eclipse.org/releases/helios/"/>
+</location>
+</locations>
+</target>
