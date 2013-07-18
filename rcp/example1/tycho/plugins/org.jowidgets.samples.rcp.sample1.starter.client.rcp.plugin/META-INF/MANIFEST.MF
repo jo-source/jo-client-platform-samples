@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin
+Bundle-SymbolicName: org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: jo-widgets.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.jowidgets.workbench.impl.rcp.plugin,
+ org.jowidgets.samples.rcp.sample1.app.ui.bundle
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+
