@@ -18,6 +18,7 @@
 
 	<modules>
 		<module>../modules/parent/</module>
+		<module>../bundles/parent/</module>
 	</modules>
 
 	<repositories>
