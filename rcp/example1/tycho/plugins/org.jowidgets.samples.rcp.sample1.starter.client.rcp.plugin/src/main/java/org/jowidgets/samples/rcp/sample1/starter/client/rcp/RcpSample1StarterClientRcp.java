@@ -34,9 +34,9 @@ import org.eclipse.equinox.app.IApplicationContext;
 import org.eclipse.swt.widgets.Display;
 import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.impl.toolkit.DefaultToolkitProvider;
+import org.jowidgets.samples.rcp.sample1.app.ui.workbench.RcpSample1Workbench;
 import org.jowidgets.spi.impl.swt.common.SwtWidgetsServiceProvider;
 import org.jowidgets.workbench.impl.rcp.WorkbenchRunner;
-import org.jowidgets.samples.rcp.sample1.app.ui.workbench.RcpSample1Workbench;
 
 public class RcpSample1StarterClientRcp implements IApplication {
 

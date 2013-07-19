@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 
-<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="25">
+<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="26">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307181758"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307181758/all/"/>
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307191251"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307191251/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307181733"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307181758/thirdparty/"/>
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307191251"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307191251/thirdparty/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307181711"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307181247/all"/>
+<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307191201"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307191201/all"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307181247"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307181247/thirdparty"/>
+<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307191201"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307191201/thirdparty"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.datatools.enablement.sdk.feature.feature.group" version="1.8.2.v201010181125-7I977XFE9JfheEiJQF88iIv2_vUh"/>
@@ -40,5 +40,8 @@
 <unit id="org.eclipse.jpt.feature.feature.group" version="2.3.3.v201010220000-7N7UF77FD3wTgcVbmmf0cT"/>
 <repository location="http://download.eclipse.org/releases/helios/"/>
 </location>
+<location path="C:\projects\jo-client-platform-samples\modules\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.ui.bundle\target" type="Directory"/>
+<location path="C:\projects\jo-client-platform-samples\modules\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.common.bundle\target" type="Directory"/>
+<location path="C:\projects\jo-client-platform-samples\modules\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.service.bundle\target" type="Directory"/>
 </locations>
 </target>
