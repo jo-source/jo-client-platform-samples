@@ -17,6 +17,34 @@
 		<tycho-extras.version>0.16.0</tycho-extras.version>
 		<tycho-provider>org.eclipse.tycho</tycho-provider>
 	</properties>
+	
+	<repositories>
+	
+		<repository>
+			<id>com.springsource.repository.bundles.release</id>
+			<name>SpringSource Enterprise Bundle Repository - SpringSource Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/release</url>
+		</repository>
+
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+	
+		<repository>
+			<id>helios</id>
+			<url>http://download.eclipse.org/releases/helios</url>
+			<layout>p2</layout>
+		</repository>
+		
+		<repository>
+			<id>rap-2.0</id>
+			<url>http://download.eclipse.org/rt/rap/2.0</url>
+			<layout>p2</layout>
+		</repository>
+		
+	</repositories>
 
 	<dependencies>
 
@@ -42,9 +70,10 @@
 	</dependencies>
 
 	<modules>
-		<module>../features/parent/</module>
 		<module>../target/</module>
+		<module>../features/parent/</module>
 		<module>../plugins/parent/</module>
+		<module>../application/parent/</module>
 	</modules>
 
 	<build>
