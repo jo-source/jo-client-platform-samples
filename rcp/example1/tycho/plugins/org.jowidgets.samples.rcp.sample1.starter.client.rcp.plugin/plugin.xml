@@ -2,6 +2,14 @@
 <?eclipse version="3.4"?>
 <plugin>
 
-   
+	<extension
+         id="RcpSample1"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.jowidgets.samples.rcp.sample1.starter.client.rcp.RcpSample1StarterClientRcp">
+         </run>
+      </application>
+   </extension>
 
 </plugin>

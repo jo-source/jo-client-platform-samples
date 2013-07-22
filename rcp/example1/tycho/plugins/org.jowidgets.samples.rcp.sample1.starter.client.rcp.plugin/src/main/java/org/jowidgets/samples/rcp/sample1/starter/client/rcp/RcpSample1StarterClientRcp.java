@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, H.Westphal, grossmann
+ * Copyright (c) 2013, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -31,23 +31,16 @@ import java.io.File;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.eclipse.swt.widgets.Display;
-import org.jowidgets.api.toolkit.Toolkit;
-import org.jowidgets.impl.toolkit.DefaultToolkitProvider;
+import org.jowidgets.cap.tools.starter.client.rcp.CapRcpClientWorkbenchRunner;
 import org.jowidgets.samples.rcp.sample1.app.ui.workbench.RcpSample1Workbench;
-import org.jowidgets.spi.impl.swt.common.SwtWidgetsServiceProvider;
-import org.jowidgets.workbench.impl.rcp.WorkbenchRunner;
 
-public class RcpSample1StarterClientRcp implements IApplication {
+public final class RcpSample1StarterClientRcp implements IApplication {
 
 	@Override
 	public Object start(final IApplicationContext context) {
-		if (!Toolkit.isInitialized()) {
-			Toolkit.initialize(new DefaultToolkitProvider(new SwtWidgetsServiceProvider(Display.getDefault())));
-		}
-
 		final String configFilePath = System.getProperty("user.home") + File.separator + getClass().getName() + ".config";
-		new WorkbenchRunner().run(new RcpSample1Workbench(), new FileConfigService(configFilePath));
+		final FileConfigService configurationService = new FileConfigService(configFilePath);
+		new CapRcpClientWorkbenchRunner("http://localhost:8080/").run(new RcpSample1Workbench(), configurationService);
 		return IApplication.EXIT_OK;
 	}
 
