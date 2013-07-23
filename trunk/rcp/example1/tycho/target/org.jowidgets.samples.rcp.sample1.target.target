@@ -22,7 +22,16 @@
 <repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307221309/thirdparty/"/>
 </location>
 
-<location path="C:\Users\MGrossmann\Downloads\eclipse-jee-helios-SR2-win32\eclipse" type="Directory"/>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.equinox.executable.feature.group" version="3.4.2.R36x_v20110125-7N7K7bF8zk1BAKMh0iz0t94miBLY"/>
+<unit id="org.eclipse.platform.sdk" version="3.6.2.M20110210-1200"/>
+<unit id="org.eclipse.ecf.core.feature.group" version="3.3.1.v20100913-1814"/>
+<unit id="org.eclipse.rcp.source.feature.group" version="3.6.2.r362_v20101104-9SAxFMKFkSAqi8axkv1ZjegmiBLY"/>
+<unit id="org.eclipse.equinox.sdk.feature.group" version="3.6.2.r362_v20110210b-7H7R67v9rtOv_dTCawtb0WQnN92B"/>
+<repository location="http://download.eclipse.org/releases/helios"/>
+</location>
+
+<!--location path="C:\Users\MGrossmann\Downloads\eclipse-jee-helios-SR2-win32\eclipse" type="Directory"/-->
 <location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.common.bundle\target" type="Directory"/>
 <location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.service.bundle\target" type="Directory"/>
 <location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.ui.bundle\target" type="Directory"/>
