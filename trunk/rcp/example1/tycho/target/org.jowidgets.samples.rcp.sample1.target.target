@@ -5,12 +5,12 @@
 <locations>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307231400"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307231400/all/"/>
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307231543"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307231543/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307231400"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307231400/thirdparty/"/>
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307231543"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307231543/thirdparty/"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
@@ -31,7 +31,6 @@
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
 
-<!--location path="C:\Users\MGrossmann\Downloads\eclipse-jee-helios-SR2-win32\eclipse" type="Directory"/-->
 <location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.common.bundle\target" type="Directory"/>
 <location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.service.bundle\target" type="Directory"/>
 <location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.ui.bundle\target" type="Directory"/>
