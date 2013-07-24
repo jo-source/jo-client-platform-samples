@@ -3,6 +3,7 @@
 
 <product name="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application" uid="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application" id="org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin.RcpSample1StarterClientRcp" application="org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin.RcpSample1StarterClientRcp" version="0.0.1.qualifier" useFeatures="true" includeLaunchers="true">
 
+
    <configIni use="default">
    </configIni>
 
@@ -12,6 +13,7 @@
 
    <windowImages/>
 
+
    <launcher>
       <solaris/>
       <win useIco="false">
@@ -19,8 +21,10 @@
       </win>
    </launcher>
 
+
    <vm>
    </vm>
+
 
    <plugins>
    </plugins>
