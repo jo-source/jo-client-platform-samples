@@ -3,7 +3,16 @@
 <plugin>
 
 	<extension
-         id="RcpSample1"
+         id="RcpSample1StarterClientRcp"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.jowidgets.samples.rcp.sample1.starter.client.rcp.RcpSample1StarterClientRcp">
+         </run>
+      </application>
+    </extension>
+	<extension
+         id="RcpSample1StarterClientRcp"
          point="org.eclipse.core.runtime.applications">
       <application>
          <run
