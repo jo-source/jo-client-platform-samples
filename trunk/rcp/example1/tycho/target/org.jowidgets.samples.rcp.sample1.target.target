@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 
-<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="35">
+<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="36">
 <locations>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
@@ -31,9 +31,7 @@
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
 
-<location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.common.bundle\target" type="Directory"/>
-<location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.service.bundle\target" type="Directory"/>
-<location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\bundles\app\org.jowidgets.samples.rcp.sample1.app.ui.bundle\target" type="Directory"/>
+<location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\tycho\features\org.jowidgets.samples.rcp.sample1.feature\target\site\plugins" type="Directory"/>
 
 </locations>
 </target>
