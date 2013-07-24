@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application" uid="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application" id="org.jowidgets.samples.rcp.sample1.starter.client.rcp.RcpSample1StarterClientRcp" application="org.jowidgets.samples.rcp.sample1.starter.client.rcp.RcpSample1StarterClientRcp" version="0.0.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application" uid="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application" id="org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin.RcpSample1StarterClientRcp" application="org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin.RcpSample1StarterClientRcp" version="0.0.1.qualifier" useFeatures="true" includeLaunchers="true">
 
    <configIni use="default">
    </configIni>
