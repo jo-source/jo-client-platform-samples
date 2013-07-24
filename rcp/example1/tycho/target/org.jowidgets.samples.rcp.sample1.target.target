@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 
-<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="36">
+<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="37">
 <locations>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
