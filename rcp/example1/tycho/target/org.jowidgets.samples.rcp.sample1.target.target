@@ -5,21 +5,21 @@
 <locations>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307231543"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307231543/all/"/>
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307240649"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240649/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307231543"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307231543/thirdparty/"/>
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307240649"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240649/thirdparty/"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307221309"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307221309/all/"/>
+<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307240747"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307240747/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307221309"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307221309/thirdparty/"/>
+<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307240747"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307240747/thirdparty/"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
