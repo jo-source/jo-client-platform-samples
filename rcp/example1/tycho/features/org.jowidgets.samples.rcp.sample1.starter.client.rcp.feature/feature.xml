@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.jowidgets.samples.rcp.sample1.starter.client.rcp.feature"
+      label="org.jowidgets.samples.rcp.sample1.starter.client.rcp.feature"
+      version="0.0.1.qualifier">
+
+   <description url="http://www.example.com/description">
+      Feature that holds anything for the rcp client starter
+   </description>
+
+   <copyright url="http://www.example.com/copyright">
+      org.jowidgets Michael Grossmann 2013
+   </copyright>
+
+   <license url="http://www.example.com/license">
+      BSD Licence
+   </license>
+
+   <includes
+         id="org.jowidgets.samples.rcp.sample1.feature"
+         version="0.0.0"/>
+
+   <plugin
+         id="org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

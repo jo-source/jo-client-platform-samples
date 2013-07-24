@@ -13,6 +13,7 @@
 
 	<modules>
 	    <module>../org.jowidgets.samples.rcp.sample1.feature</module>
+		<module>../org.jowidgets.samples.rcp.sample1.starter.client.rcp.feature</module>
 	</modules>
 
 </project>
