@@ -5,12 +5,12 @@
 <locations>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307240649"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240649/all/"/>
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307240811"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240811/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307240649"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240649/thirdparty/"/>
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307240811"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240811/thirdparty/"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
