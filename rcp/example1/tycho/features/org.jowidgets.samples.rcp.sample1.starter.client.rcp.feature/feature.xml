@@ -234,7 +234,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.jowidgets.cap.tools.starter.classloading.plugin"
+         id="org.jowidgets.tools.starter.classloading.plugin"
          download-size="0"
          install-size="0"
          version="0.0.0"
