@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?pde version="3.8"?>
 
-<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="37">
+<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="38">
 <locations>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307240811"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240811/all/"/>
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0.201307251233"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307251233/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307240811"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307240811/thirdparty/"/>
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.26.0.201307251233"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.26.0.201307251233/thirdparty/"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307240747"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307240747/all/"/>
+<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0.201307251216"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307251216/all/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307240747"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307240747/thirdparty/"/>
+<unit id="org.jowidgets.cap.thirdparty.feature.feature.group" version="0.23.0.201307251216"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.23.0.201307251216/thirdparty/"/>
 </location>
 
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="slicer" includeSource="true" type="InstallableUnit">

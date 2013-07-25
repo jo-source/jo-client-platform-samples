@@ -19,7 +19,6 @@ Require-Bundle: org.eclipse.ui,
  org.jowidgets.workbench.impl.rcp.plugin,
  org.jowidgets.cap.tools.starter.hibernate.validation.plugin,
  org.jowidgets.samples.rcp.sample1.app.ui.bundle,
- org.jowidgets.cap.tools.starter.classloading.plugin,
  org.jowidgets.service.bundle,
  org.jowidgets.samples.rcp.sample1.app.common.bundle,
  org.jowidgets.cap.common.bundle,
@@ -27,7 +26,8 @@ Require-Bundle: org.eclipse.ui,
  org.jowidgets.cap.tools.starter.client.login.bundle,
  org.jowidgets.api.bundle,
  org.jowidgets.security.impl.http.client.bundle,
- org.jowidgets.cap.ui.bundle
+ org.jowidgets.cap.ui.bundle,
+ org.jowidgets.tools.starter.classloading.plugin
 
 
 

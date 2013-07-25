@@ -33,6 +33,7 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.jowidgets.cap.tools.starter.client.rcp.CapRcpClientWorkbenchRunner;
 import org.jowidgets.samples.rcp.sample1.app.ui.workbench.RcpSample1Workbench;
+import org.jowidgets.workbench.impl.rcp.FileConfigService;
 
 public final class RcpSample1StarterClientRcp implements IApplication {
 

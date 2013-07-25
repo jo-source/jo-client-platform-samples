@@ -28,7 +28,7 @@
 
 package org.jowidgets.samples.rcp.sample1.starter.client.rcp;
 
-import org.jowidgets.cap.tools.starter.classloading.BundleContextClassLoaderRegisterer;
+import org.jowidgets.tools.starter.classloading.BundleContextClassLoaderRegisterer;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 
