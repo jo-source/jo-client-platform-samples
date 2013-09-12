@@ -30,7 +30,7 @@
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
 
-<location path="C:\projects\jo\jo-client-platform-samples\eclipse\rcp\example1\tycho\features\org.jowidgets.samples.rcp.sample1.feature\target\site\plugins" type="Directory"/>
+<location path="C:\projects\jo-client-platform-samples\modules\rcp\example1\tycho\features\org.jowidgets.samples.rcp.sample1.feature\target\site\plugins" type="Directory"/>
 
 </locations>
 </target>
