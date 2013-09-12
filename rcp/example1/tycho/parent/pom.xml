@@ -45,7 +45,6 @@
 		<module>../target/</module>
 		<module>../features/parent/</module>
 		<module>../plugins/parent/</module>
-		<!--module>../application/parent/</module-->
 	</modules>
 
 	<build>

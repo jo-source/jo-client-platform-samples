@@ -11,19 +11,5 @@
          </run>
       </application>
     </extension>
-    
-    <extension
-          id="RcpSample1StarterClientRcp"
-          point="org.eclipse.core.runtime.products">
-      <product
-            application="org.jowidgets.samples.rcp.sample1.starter.client.rcp.plugin.RcpSample1StarterClientRcp"
-            name="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application">
-         <property
-               name="appName"
-               value="org.jowidgets.samples.rcp.sample1.starter.client.rcp.application">
-         </property>
-      </product>
-   </extension>
-	
 
 </plugin>
