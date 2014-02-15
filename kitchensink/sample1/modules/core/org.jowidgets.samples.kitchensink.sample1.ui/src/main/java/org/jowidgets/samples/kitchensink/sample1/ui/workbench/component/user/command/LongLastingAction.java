@@ -35,6 +35,8 @@ import org.jowidgets.cap.ui.api.command.IExecutorActionBuilder;
 import org.jowidgets.cap.ui.api.execution.BeanExecutionPolicy;
 import org.jowidgets.cap.ui.api.execution.BeanSelectionPolicy;
 import org.jowidgets.cap.ui.api.model.IBeanListModel;
+import org.jowidgets.common.types.Modifier;
+import org.jowidgets.common.types.VirtualKey;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 import org.jowidgets.samples.kitchensink.sample1.common.service.executor.UserComponentExecutorServices;
 import org.jowidgets.tools.command.ActionWrapper;
@@ -53,6 +55,7 @@ public class LongLastingAction extends ActionWrapper {
 		builder.setSelectionPolicy(BeanSelectionPolicy.MULTI_SELECTION);
 		builder.setExecutionPolicy(BeanExecutionPolicy.PARALLEL);
 		builder.setExecutor(UserComponentExecutorServices.LONG_LASTING);
+		builder.setAccelerator(VirtualKey.L, Modifier.CTRL);
 		return builder.build();
 	}
 }
