@@ -43,6 +43,8 @@ import org.jowidgets.cap.ui.api.execution.BeanSelectionPolicy;
 import org.jowidgets.cap.ui.api.model.IBeanListModel;
 import org.jowidgets.cap.ui.tools.execution.ExecutionInterceptorAdapter;
 import org.jowidgets.common.types.IVetoable;
+import org.jowidgets.common.types.Modifier;
+import org.jowidgets.common.types.VirtualKey;
 import org.jowidgets.i18n.api.MessageReplacer;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 import org.jowidgets.samples.kitchensink.sample1.common.service.executor.ChangeGenderExecutableChecker;
@@ -68,6 +70,7 @@ public class ChangeGenderAction extends ActionWrapper {
 		builder.setSelectionPolicy(BeanSelectionPolicy.MULTI_SELECTION);
 		builder.setExecutionPolicy(BeanExecutionPolicy.PARALLEL);
 		builder.setExecutor(UserComponentExecutorServices.CHANGE_GENDER);
+		builder.setAccelerator(VirtualKey.G, Modifier.CTRL);
 		//TODO MG get checker from service (id oder so)
 		builder.addExecutableChecker(new ChangeGenderExecutableChecker());
 		builder.addExecutionInterceptor(new ExecutionInterceptorAdapter<List<IBeanDto>>() {
