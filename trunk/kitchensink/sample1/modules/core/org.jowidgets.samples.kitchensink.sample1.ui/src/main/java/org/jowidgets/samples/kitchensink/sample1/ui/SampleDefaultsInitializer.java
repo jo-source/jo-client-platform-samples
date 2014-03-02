@@ -59,8 +59,11 @@ public final class SampleDefaultsInitializer {
 			@Override
 			public void initialize(final IBeanTableBluePrint<?> setupBuilder) {
 				setupBuilder.setAutoPackPolicy(AutoPackPolicy.ONCE);
+				setupBuilder.setDefaultCopyAction(true);
+				setupBuilder.setDefaultPasteAction(true);
 			}
 		});
+
 	}
 
 	private static IProvider<IAction> createUndoActionProvider() {
