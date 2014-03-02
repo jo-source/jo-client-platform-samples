@@ -53,6 +53,7 @@ import org.jowidgets.common.widgets.layout.MigLayoutDescriptor;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.command.ChangeBirthdayAction;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.command.ChangeGenderAction;
+import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.command.CreateTransientUserAction;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.command.LongLastingAction;
 import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.tools.model.item.MenuModel;
@@ -93,6 +94,7 @@ public class UserTableView extends AbstractView {
 		table.getCellPopMenu().addAction(new ChangeGenderAction(tableModel));
 		table.getCellPopMenu().addAction(new ChangeBirthdayAction(tableModel));
 		table.getCellPopMenu().addAction(new LongLastingAction(tableModel));
+		table.getCellPopMenu().addAction(new CreateTransientUserAction(table));
 
 		table.getCellPopMenu().addSeparator();
 
