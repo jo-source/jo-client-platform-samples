@@ -42,7 +42,6 @@ import org.jowidgets.cap.service.api.executor.IBeanExecutor;
 import org.jowidgets.cap.service.api.executor.IExecutorServiceBuilder;
 import org.jowidgets.cap.service.hibernate.api.HibernateServiceToolkit;
 import org.jowidgets.cap.service.hibernate.api.ICancelServicesDecoratorProviderBuilder;
-import org.jowidgets.cap.service.hibernate.oracle.api.HibernateOracleServiceToolkit;
 import org.jowidgets.cap.service.jpa.api.IJpaServicesDecoratorProviderBuilder;
 import org.jowidgets.cap.service.jpa.api.JpaServiceToolkit;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
@@ -99,7 +98,8 @@ public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 		final IJpaServicesDecoratorProviderBuilder builder = JpaServiceToolkit.serviceDecoratorProviderBuilder("sample2PersistenceUnit");
 		builder.addEntityManagerServices(ILookUpService.class);
 		builder.addExceptionDecorator(HibernateServiceToolkit.exceptionDecorator());
-		builder.addExceptionDecorator(HibernateOracleServiceToolkit.exceptionDecorator());
+		//TODO use this with oracle db
+		//builder.addExceptionDecorator(HibernateOracleServiceToolkit.exceptionDecorator());
 		return builder.build();
 	}
 
