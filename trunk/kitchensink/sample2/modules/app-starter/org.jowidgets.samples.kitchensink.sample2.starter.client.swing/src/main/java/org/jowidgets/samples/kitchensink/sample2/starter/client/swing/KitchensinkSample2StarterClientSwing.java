@@ -41,6 +41,8 @@ public final class KitchensinkSample2StarterClientSwing {
 		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		SwingOptions.setJoWidgetsTabLayout(true);
+		SwingOptions.setDefaultTableTransferHandler(false);
+		SwingOptions.setDefaultTreeTransferHandler(false);
 		Sample2StarterClient.startClient();
 		System.exit(0);
 	}

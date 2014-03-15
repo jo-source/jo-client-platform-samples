@@ -31,6 +31,7 @@ package org.jowidgets.samples.kitchensink.sample2.app.ui.initializer;
 import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.api.types.AutoPackPolicy;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
+import org.jowidgets.cap.ui.api.widgets.IBeanRelationTreeBluePrint;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 
@@ -43,8 +44,18 @@ public final class SampleDefaultsInitializer {
 
 		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
 			@Override
-			public void initialize(final IBeanTableBluePrint<?> setupBuilder) {
-				setupBuilder.setAutoPackPolicy(AutoPackPolicy.ONCE);
+			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
+				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+				bluePrint.setDefaultCopyAction(true);
+				bluePrint.setDefaultPasteAction(true);
+			}
+		});
+
+		BPF.addDefaultsInitializer(IBeanRelationTreeBluePrint.class, new IDefaultInitializer<IBeanRelationTreeBluePrint<?>>() {
+			@Override
+			public void initialize(final IBeanRelationTreeBluePrint<?> bluePrint) {
+				bluePrint.setDefaultCopyAction(true);
+				bluePrint.setDefaultLinkPasteAction(true);
 			}
 		});
 	}
