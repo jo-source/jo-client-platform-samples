@@ -29,12 +29,14 @@
 package org.jowidgets.samples.kitchensink.sample2.plugins.ui;
 
 import org.jowidgets.cap.ui.api.plugin.IBeanProxyLabelRendererPlugin;
+import org.jowidgets.cap.ui.api.plugin.IBeanProxyPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanRelationTreePlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanSelectionProviderPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuContributionPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuInterceptorPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanTablePlugin;
 import org.jowidgets.cap.ui.api.tree.IBeanRelationNodeModel;
+import org.jowidgets.cap.ui.tools.plugin.BeanMessagePopupPlugin;
 import org.jowidgets.plugin.api.IPluginFilter;
 import org.jowidgets.plugin.api.IPluginProperties;
 import org.jowidgets.plugin.tools.PluginProviderBuilder;
@@ -54,6 +56,8 @@ import org.jowidgets.samples.kitchensink.sample2.plugins.ui.tree.RoleRelationTre
 public final class Sample2PluginProviderBuilder extends PluginProviderBuilder {
 
 	public Sample2PluginProviderBuilder() {
+		addPlugin(IBeanProxyPlugin.ID, new BeanMessagePopupPlugin());
+
 		addPlugin(
 				IBeanTableMenuInterceptorPlugin.ID,
 				new PersonMenuInterceptorPlugin(),
