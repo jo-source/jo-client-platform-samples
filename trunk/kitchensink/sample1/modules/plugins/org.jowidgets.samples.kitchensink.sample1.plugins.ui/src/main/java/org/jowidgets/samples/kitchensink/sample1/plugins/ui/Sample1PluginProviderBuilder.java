@@ -28,8 +28,10 @@
 
 package org.jowidgets.samples.kitchensink.sample1.plugins.ui;
 
+import org.jowidgets.cap.ui.api.plugin.IBeanProxyPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuContributionPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuInterceptorPlugin;
+import org.jowidgets.cap.ui.tools.plugin.BeanMessagePopupPlugin;
 import org.jowidgets.plugin.tools.PluginProviderBuilder;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
@@ -40,6 +42,8 @@ import org.jowidgets.samples.kitchensink.sample1.plugins.ui.table.UserMenuInterc
 public final class Sample1PluginProviderBuilder extends PluginProviderBuilder {
 
 	public Sample1PluginProviderBuilder() {
+		addPlugin(IBeanProxyPlugin.ID, new BeanMessagePopupPlugin());
+
 		addPlugin(
 				IBeanTableMenuInterceptorPlugin.ID,
 				new UserMenuInterceptorPlugin(),
