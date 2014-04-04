@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<fileset-config file-format-version="1.2.0" simple-config="false" sync-formatter="false">
+  <local-check-config name="maven-checkstyle-plugin" location="jar:file:/C:/Users/Michael/.m2/repository/org/jowidgets/org.jowidgets.checkstyle/0.30.0/org.jowidgets.checkstyle-0.30.0.jar!/org/jowidgets/checkstyle/checkstyle-checker.xml" type="remote" description="maven-checkstyle-plugin configuration">
+    <property name="checkstyle.cache.file" value="${project_loc}/target/checkstyle-cachefile"/>
+    <property name="checkstyle.header.file" value="C:\projects\jo\jo-client-platform-samples\repo\trunk\rcp3\tutorial\jo-client-platform1\tycho\ui\org.jowidgets.tutorials.rcp3.tutorial1.ui\target\checkstyle-header.txt"/>
+  </local-check-config>
+  <fileset name="java-sources" enabled="true" check-config-name="maven-checkstyle-plugin" local="true">
+    <file-match-pattern match-pattern="src/main/java/.*/.*\.java" include-pattern="true"/>
+    <file-match-pattern match-pattern="src/main/java.*.*/.*Messages\.java" include-pattern="false"/>
+  </fileset>
+</fileset-config>

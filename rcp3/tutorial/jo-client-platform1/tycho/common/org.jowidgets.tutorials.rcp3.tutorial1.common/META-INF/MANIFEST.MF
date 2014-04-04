@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.tutorials.rcp3.tutorial1
+Bundle-SymbolicName: org.jowidgets.tutorials.rcp3.tutorial1.common;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: jowidgets.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: 
+ org.jowidgets.cap.common.bundle,
+ org.jowidgets.service.bundle,
+ org.jowidgets.security.bundle,
+ org.jowidgets.i18n.bundle,
+ com.springsource.javax.validation;bundle-version="1.0.0"
+Export-Package: org.jowidgets.tutorials.rcp3.tutorial1.common.bean,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.dto,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.property,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.service.creator,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.service.deleter,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.service.reader,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.service.security,
+ org.jowidgets.tutorials.rcp3.tutorial1.common.service.updater
