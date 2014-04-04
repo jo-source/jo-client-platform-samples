@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<rss version="0.91">
+  <channel>
+    <title>org.jowidgets.tutorials.rcp3.tutorial1.ui - Checkstyle report</title>
+    <link>${project.url}</link>
+    <description>org.jowidgets.tutorials.rcp3.tutorial1.ui - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2014</copyright>
+    <item>
+      <title>File: 7,
+             Errors: 0,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>${project.url}/checkstyle.html</link>
+      <description>
+        <p>Click <a href="${project.url}/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.component.PersonComponentLayoutFactory.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/component/PersonComponentLayoutFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.workbench.Tutorial1Workbench.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/workbench/Tutorial1Workbench.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.component.PersonTableView.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/component/PersonTableView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.attribute.PersonAttributesFactory.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/attribute/PersonAttributesFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.component.PersonComponent.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/component/PersonComponent.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.component.PersonDetailView.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/component/PersonDetailView.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#org.jowidgets.tutorials.rcp3.tutorial1.ui.application.Tutorial1ApplicationFactory.java">org/jowidgets/tutorials/rcp3/tutorial1/ui/application/Tutorial1ApplicationFactory.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
