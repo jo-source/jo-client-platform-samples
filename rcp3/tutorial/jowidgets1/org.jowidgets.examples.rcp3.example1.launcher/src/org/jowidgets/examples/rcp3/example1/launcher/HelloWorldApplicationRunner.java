@@ -28,7 +28,7 @@
 
 package org.jowidgets.examples.rcp3.example1.launcher;
 
-import org.jowidgets.examples.rcp3.example1.common.HelloWorldApplication;
+import org.jowidgets.examples.rcp3.example1.HelloWorldApplication;
 import org.jowidgets.tools.starter.application.osgi.plugin.OsgiApplicationRunner;
 
 public final class HelloWorldApplicationRunner extends OsgiApplicationRunner {
