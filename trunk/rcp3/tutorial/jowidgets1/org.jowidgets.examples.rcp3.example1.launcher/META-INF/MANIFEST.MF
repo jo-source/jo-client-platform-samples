@@ -5,9 +5,8 @@ Bundle-SymbolicName: org.jowidgets.examples.rcp3.example1.launcher;singleton:=tr
 Bundle-Version: 1.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Require-Bundle: org.eclipse.osgi;bundle-version="3.6.2",
- org.jowidgets.examples.rcp3.example1.common,
+ org.jowidgets.examples.rcp3.example1,
  org.jowidgets.tools.starter.classloading.plugin,
- org.jowidgets.util.bundle,
  org.jowidgets.api.bundle,
  org.jowidgets.common.bundle,
  org.jowidgets.tools.starter.application.osgi.plugin
