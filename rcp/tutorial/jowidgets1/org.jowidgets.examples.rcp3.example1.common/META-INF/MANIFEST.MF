@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.examples.rcp3.example1.common
+Bundle-SymbolicName: org.jowidgets.examples.rcp3.example1.common;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.jowidgets.api.bundle,
+ org.jowidgets.common.bundle,
+ org.jowidgets.tools.bundle,
+ org.jowidgets.util.bundle,
+ org.jowidgets.validation.bundle
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.jowidgets.examples.rcp3.example1.common
