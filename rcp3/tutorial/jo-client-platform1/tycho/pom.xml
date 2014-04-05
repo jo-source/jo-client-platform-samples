@@ -15,6 +15,7 @@
 		<module>/targetplatform/</module>
 		<module>/common/</module>
 		<module>/ui/</module>
+		<module>/launcher/</module>
 	</modules>
 	
 	<properties>
