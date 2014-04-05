@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?>
-
-<target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="39">
+<?pde version="3.8"?><target name="org.jowidgets.samples.rcp.sample1.target" sequenceNumber="41">
 <locations>
-
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.0.1"/>
-<repository location="http://www.jowidgets.org/p2/thirdparty/releases/0.0.1/"/>
-</location>
-
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/releases/0.26.0/"/>
-</location>
-
-
-<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/releases/0.23.0/"/>
-</location>
-
-
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.equinox.executable.feature.group" version="3.4.2.R36x_v20110125-7N7K7bF8zk1BAKMh0iz0t94miBLY"/>
 <unit id="org.eclipse.platform.sdk" version="3.6.2.M20110210-1200"/>
@@ -29,8 +9,18 @@
 <unit id="org.eclipse.equinox.sdk.feature.group" version="3.6.2.r362_v20110210b-7H7R67v9rtOv_dTCawtb0WQnN92B"/>
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
-
-<location path="C:\projects\jo-client-platform-samples\modules\rcp\example1\tycho\features\org.jowidgets.samples.rcp.sample1.feature\target\site\plugins" type="Directory"/>
-
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.all.feature.feature.group" version="0.26.0"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/releases/0.26.0/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.0.1"/>
+<repository location="http://www.jowidgets.org/p2/thirdparty/releases/0.0.1/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.cap.all.feature.feature.group" version="0.23.0"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/releases/0.23.0/"/>
+</location>
+<location path="C:\projects\jo\jo-client-platform-samples\repo\trunk\rcp3\example1\tycho\features\org.jowidgets.samples.rcp.sample1.feature\target\site" type="Directory"/>
 </locations>
 </target>
