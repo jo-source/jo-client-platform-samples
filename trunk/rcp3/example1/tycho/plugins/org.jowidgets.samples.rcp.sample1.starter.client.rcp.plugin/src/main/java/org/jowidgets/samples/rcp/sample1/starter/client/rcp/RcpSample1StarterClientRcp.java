@@ -27,27 +27,13 @@
  */
 package org.jowidgets.samples.rcp.sample1.starter.client.rcp;
 
-import java.io.File;
-
-import org.eclipse.equinox.app.IApplication;
-import org.eclipse.equinox.app.IApplicationContext;
-import org.jowidgets.cap.tools.starter.client.rcp.CapRcpClientWorkbenchRunner;
+import org.jowidgets.cap.tools.starter.client.rcp.CapClientRcpWorkbenchRunner;
 import org.jowidgets.samples.rcp.sample1.app.ui.workbench.RcpSample1Workbench;
-import org.jowidgets.workbench.impl.rcp.FileConfigService;
 
-public final class RcpSample1StarterClientRcp implements IApplication {
+public final class RcpSample1StarterClientRcp extends CapClientRcpWorkbenchRunner {
 
-	@Override
-	public Object start(final IApplicationContext context) {
-		final String configFilePath = System.getProperty("user.home") + File.separator + getClass().getName() + ".config";
-		final FileConfigService configurationService = new FileConfigService(configFilePath);
-		new CapRcpClientWorkbenchRunner("http://localhost:8080/").run(new RcpSample1Workbench(), configurationService);
-		return IApplication.EXIT_OK;
-	}
-
-	@Override
-	public void stop() {
-		throw new UnsupportedOperationException("stop");
+	public RcpSample1StarterClientRcp() {
+		super(new RcpSample1Workbench());
 	}
 
 }
