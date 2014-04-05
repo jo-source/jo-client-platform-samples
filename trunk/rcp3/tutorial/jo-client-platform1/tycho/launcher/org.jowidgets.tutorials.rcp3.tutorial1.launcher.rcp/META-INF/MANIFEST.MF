@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.tutorials.rcp3.tutorial1.launcher.rcp
+Bundle-SymbolicName: org.jowidgets.tutorials.rcp3.tutorial1.launcher.rcp;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: jowidgets.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: 
+ org.jowidgets.tutorials.rcp3.tutorial1.common,
+ org.jowidgets.tutorials.rcp3.tutorial1.ui,
+ org.jowidgets.api.bundle,
+ org.jowidgets.common.bundle,
+ org.jowidgets.workbench.api.bundle,
+ org.jowidgets.cap.tools.starter.client.login.bundle,
+ org.jowidgets.cap.tools.starter.client.rcp.plugin,
+ org.jowidgets.workbench.impl.rcp.plugin,
+ org.jowidgets.cap.common.bundle,
+ org.jowidgets.cap.ui.bundle,
+ org.jowidgets.service.bundle,
+ org.jowidgets.security.bundle,
+ org.jowidgets.security.impl.http.client.bundle,
+ org.jowidgets.tools.starter.classloading.plugin,
+ org.eclipse.ui;bundle-version="3.6.2",
+ org.eclipse.core.runtime;bundle-version="3.6.0"
+Bundle-Activator: org.jowidgets.tools.starter.classloading.ClassLoadingActivator
