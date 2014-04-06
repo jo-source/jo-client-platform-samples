@@ -18,7 +18,8 @@
 
 	<modules>
 		<module>/tycho/</module>
-		<module>/modules/</module>
+		<module>/modules/service/org.jowidgets.tutorials.rcp3.tutorial1.service/</module>
+		<module>/modules/starter/org.jowidgets.tutorials.rcp3.tutorial1.starter.server/</module>
 	</modules>
 
 	<repositories>

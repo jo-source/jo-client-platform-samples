@@ -5,9 +5,9 @@
 
 	<parent>
 		<groupId>org.jowidgets.tutorials.rcp3.tutorial1</groupId>
-		<artifactId>org.jowidgets.tutorials.rcp3.tutorial1.service.parent</artifactId>
+		<artifactId>org.jowidgets.tutorials.rcp3.tutorial1.parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../pom.xml</relativePath>
+		<relativePath>../../../pom.xml</relativePath>
 	</parent>
 
 	<dependencies>

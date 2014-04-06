@@ -12,10 +12,11 @@
 	</parent>
 	
 	<modules>
-		<module>/targetplatform/</module>
-		<module>/common/</module>
-		<module>/ui/</module>
-		<module>/launcher/</module>
+		<module>/targetplatform</module>
+		<module>/common/org.jowidgets.tutorials.rcp3.tutorial1.common/</module>
+		<module>/ui/org.jowidgets.tutorials.rcp3.tutorial1.ui/</module>
+		<module>/launcher/org.jowidgets.tutorials.rcp3.tutorial1.launcher.rcp/</module>
+		<module>/launcher/org.jowidgets.tutorials.rcp3.tutorial1.launcher.swt/</module>
 	</modules>
 	
 	<properties>
