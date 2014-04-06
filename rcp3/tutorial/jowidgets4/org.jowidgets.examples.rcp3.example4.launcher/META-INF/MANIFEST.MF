@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.examples.rcp3.example4.launcher
+Bundle-SymbolicName: org.jowidgets.examples.rcp3.example4.launcher;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.eclipse.osgi;bundle-version="3.6.2",
+ org.jowidgets.examples.rcp3.example4,
+ org.jowidgets.tools.starter.classloading.plugin,
+ org.jowidgets.api.bundle,
+ org.jowidgets.common.bundle,
+ org.jowidgets.tools.starter.application.osgi.plugin
+Bundle-Activator: org.jowidgets.examples.rcp3.example4.launcher.Example4Runner
