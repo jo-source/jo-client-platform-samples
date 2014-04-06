@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="Restored Target" sequenceNumber="33">
+<?pde version="3.8"?><target name="Restored Target" sequenceNumber="40">
 <locations>
-<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.0.1"/>
-<repository location="http://www.jowidgets.org/p2/thirdparty/releases/0.0.1/"/>
-</location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.equinox.executable.feature.group" version="3.4.2.R36x_v20110125-7N7K7bF8zk1BAKMh0iz0t94miBLY"/>
 <unit id="org.eclipse.platform.sdk" version="3.6.2.M20110210-1200"/>
@@ -14,11 +10,14 @@
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.addons.feature.feature.group" version="0.31.0.201404041629"/>
-<unit id="org.jowidgets.impl.swt.feature.feature.group" version="0.31.0.201404041629"/>
-<unit id="org.jowidgets.workbench.feature.feature.group" version="0.31.0.201404041629"/>
-<unit id="org.jowidgets.plugins.feature.feature.group" version="0.31.0.201404041629"/>
-<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.31.0.201404041629/"/>
+<unit id="org.jowidgets.thirdparty.feature.feature.group" version="0.0.1"/>
+<repository location="http://www.jowidgets.org/p2/thirdparty/releases/0.0.1/"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.jowidgets.workbench.feature.feature.group" version="0.31.0.201404061642"/>
+<unit id="org.jowidgets.addons.silkicons.feature.feature.group" version="0.31.0.201404061642"/>
+<unit id="org.jowidgets.impl.swt.feature.feature.group" version="0.31.0.201404061642"/>
+<repository location="http://www.jowidgets.org/p2/jowidgets/snapshots/0.31.0.201404061642/"/>
 </location>
 </locations>
 <environment>
