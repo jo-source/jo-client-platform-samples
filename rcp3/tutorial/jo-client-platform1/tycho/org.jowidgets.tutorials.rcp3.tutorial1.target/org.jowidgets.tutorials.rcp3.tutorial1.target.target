@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="org.jowidgets.tutorials.rcp3.tutorial1.target" sequenceNumber="44">
+<?pde version="3.8"?><target name="org.jowidgets.tutorials.rcp3.tutorial1.target" sequenceNumber="46">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.jowidgets.addons.silkicons.feature.feature.group" version="0.31.0.201404061642"/>
@@ -20,8 +20,8 @@
 <repository location="http://download.eclipse.org/releases/helios"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
-<unit id="org.jowidgets.cap.remoting.client.starter.feature.feature.group" version="0.28.0.201404061707"/>
-<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.28.0.201404061707/"/>
+<unit id="org.jowidgets.cap.remoting.client.starter.feature.feature.group" version="0.28.0.201404061835"/>
+<repository location="http://www.jowidgets.org/p2/jo-client-platform/snapshots/0.28.0.201404061835/"/>
 </location>
 </locations>
 </target>
