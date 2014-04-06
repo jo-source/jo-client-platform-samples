@@ -12,7 +12,7 @@
 	</parent>
 	
 	<modules>
-		<module>/targetplatform</module>
+		<module>/org.jowidgets.tutorials.rcp3.tutorial1.target/</module>
 		<module>/common/org.jowidgets.tutorials.rcp3.tutorial1.common/</module>
 		<module>/ui/org.jowidgets.tutorials.rcp3.tutorial1.ui/</module>
 		<module>/launcher/org.jowidgets.tutorials.rcp3.tutorial1.launcher.rcp/</module>
