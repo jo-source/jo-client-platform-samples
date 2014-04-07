@@ -48,6 +48,7 @@ public final class Tutorial3Workbench implements IWorkbenchFactory {
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel("Tutorial3");
+
 		builder.addApplication(Tutorial3ApplicationFactory.create());
 		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
 	}
