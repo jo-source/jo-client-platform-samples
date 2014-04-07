@@ -102,8 +102,8 @@
 				<configuration>
 					<target>
 						<artifact>
-							<groupId>org.jowidgets.tutorials.rcp3.tutorial1</groupId>
-							<artifactId>org.jowidgets.tutorials.rcp3.tutorial1.target</artifactId>
+							<groupId>org.jowidgets.tutorials.rcp3.tutorial2</groupId>
+							<artifactId>org.jowidgets.tutorials.rcp3.tutorial2.target</artifactId>
 							<version>0.0.1-SNAPSHOT</version>
 						</artifact>
 					</target>
