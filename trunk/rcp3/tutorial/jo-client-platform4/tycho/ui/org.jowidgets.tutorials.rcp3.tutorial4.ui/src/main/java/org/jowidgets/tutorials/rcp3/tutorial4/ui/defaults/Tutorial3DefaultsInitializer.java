@@ -31,6 +31,7 @@ package org.jowidgets.tutorials.rcp3.tutorial4.ui.defaults;
 import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.api.types.AutoPackPolicy;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
+import org.jowidgets.cap.ui.api.widgets.IBeanRelationTreeBluePrint;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 
@@ -45,6 +46,16 @@ public final class Tutorial3DefaultsInitializer {
 			@Override
 			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
 				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+				bluePrint.setDefaultCopyAction(true);
+				bluePrint.setDefaultPasteAction(true);
+			}
+		});
+
+		BPF.addDefaultsInitializer(IBeanRelationTreeBluePrint.class, new IDefaultInitializer<IBeanRelationTreeBluePrint<?>>() {
+			@Override
+			public void initialize(final IBeanRelationTreeBluePrint<?> bluePrint) {
+				bluePrint.setDefaultCopyAction(true);
+				bluePrint.setDefaultLinkPasteAction(true);
 			}
 		});
 	}

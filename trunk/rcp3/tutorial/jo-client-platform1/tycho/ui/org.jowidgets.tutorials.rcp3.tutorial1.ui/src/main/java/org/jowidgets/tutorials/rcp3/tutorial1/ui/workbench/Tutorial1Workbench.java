@@ -39,16 +39,6 @@ import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public final class Tutorial1Workbench implements IWorkbenchFactory {
 
-	private final boolean webapp;
-
-	public Tutorial1Workbench() {
-		this(false);
-	}
-
-	public Tutorial1Workbench(final boolean webapp) {
-		this.webapp = webapp;
-	}
-
 	@Override
 	public IWorkbench create() {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
@@ -58,10 +48,7 @@ public final class Tutorial1Workbench implements IWorkbenchFactory {
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel("Tutorial1");
-		if (webapp) {
-			builder.setInitialMaximized(true);
-			builder.setDecorated(false);
-		}
+
 		builder.addApplication(Tutorial1ApplicationFactory.create());
 		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
 	}

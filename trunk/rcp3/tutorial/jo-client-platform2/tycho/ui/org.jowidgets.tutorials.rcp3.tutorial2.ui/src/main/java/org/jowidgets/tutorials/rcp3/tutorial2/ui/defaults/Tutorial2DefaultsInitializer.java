@@ -39,12 +39,15 @@ public final class Tutorial2DefaultsInitializer {
 	private Tutorial2DefaultsInitializer() {}
 
 	public static void initialize() {
+
 		SilkIconsInitializer.initializeFull();
 
 		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
 			@Override
 			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
 				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+				bluePrint.setDefaultCopyAction(true);
+				bluePrint.setDefaultPasteAction(true);
 			}
 		});
 	}
