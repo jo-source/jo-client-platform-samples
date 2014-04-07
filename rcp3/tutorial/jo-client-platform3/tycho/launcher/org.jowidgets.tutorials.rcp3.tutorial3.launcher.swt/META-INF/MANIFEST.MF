@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.tutorials.rcp3.tutorial3.launcher.swt
+Bundle-SymbolicName: org.jowidgets.tutorials.rcp3.tutorial3.launcher.swt;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: jowidgets.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: 
+ org.jowidgets.tutorials.rcp3.tutorial3.common,
+ org.jowidgets.tutorials.rcp3.tutorial3.ui,
+ org.jowidgets.api.bundle,
+ org.jowidgets.common.bundle,
+ org.jowidgets.workbench.api.bundle,
+ org.jowidgets.workbench.impl.bundle,
+ org.jowidgets.cap.tools.starter.client.login.bundle,
+ org.jowidgets.cap.tools.starter.client.osgi.plugin,
+ org.jowidgets.cap.common.bundle,
+ org.jowidgets.cap.ui.bundle,
+ org.jowidgets.service.bundle,
+ org.jowidgets.security.bundle,
+ org.jowidgets.security.impl.http.client.bundle,
+ org.jowidgets.tools.starter.classloading.plugin,
+ org.eclipse.osgi;bundle-version="3.6.2"
+Bundle-Activator: org.jowidgets.tutorials.rcp3.tutorial3.launcher.swt.Tutorial3OsgiWorkbenchRunner
