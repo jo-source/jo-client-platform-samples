@@ -10,6 +10,9 @@
 		<class>org.jowidgets.tutorials.rcp3.tutorial3.service.bean.Bean</class>
 		<class>org.jowidgets.tutorials.rcp3.tutorial3.service.bean.Person</class>
 		<class>org.jowidgets.tutorials.rcp3.tutorial3.service.bean.Role</class>
+		<class>org.jowidgets.tutorials.rcp3.tutorial3.service.bean.Authorization</class>
+		<class>org.jowidgets.tutorials.rcp3.tutorial3.service.bean.PersonRoleLink</class>
+		<class>org.jowidgets.tutorials.rcp3.tutorial3.service.bean.RoleAuthorizationLink</class>
 		
 		<properties>	
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
