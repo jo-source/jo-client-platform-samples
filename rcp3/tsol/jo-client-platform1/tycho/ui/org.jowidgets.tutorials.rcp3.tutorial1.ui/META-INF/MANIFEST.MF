@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.tutorials.rcp3.tutorial1.ui
+Bundle-SymbolicName: org.jowidgets.tutorials.rcp3.tutorial1.ui;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: jowidgets.org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Require-Bundle: 
+ org.jowidgets.tutorials.rcp3.tutorial1.common,
+ org.jowidgets.util.bundle,
+ org.jowidgets.i18n.bundle,
+ org.jowidgets.api.bundle,
+ org.jowidgets.common.bundle,
+ org.jowidgets.tools.bundle,
+ org.jowidgets.service.bundle,
+ org.jowidgets.security.bundle,
+ org.jowidgets.cap.ui.bundle,
+ org.jowidgets.cap.common.bundle,
+ org.jowidgets.workbench.api.bundle,
+ org.jowidgets.workbench.toolkit.api.bundle,
+ org.jowidgets.workbench.tools.bundle,
+ org.jowidgets.addons.icons.silkicons.bundle,
+ com.springsource.javax.validation;bundle-version="1.0.0",
+ com.springsource.slf4j.api;bundle-version="1.6.1",
+ org.slf4j.jul.to.slf4j.bundle;bundle-version="1.6.6"
+Export-Package: org.jowidgets.tutorials.rcp3.tutorial1.ui.workbench
