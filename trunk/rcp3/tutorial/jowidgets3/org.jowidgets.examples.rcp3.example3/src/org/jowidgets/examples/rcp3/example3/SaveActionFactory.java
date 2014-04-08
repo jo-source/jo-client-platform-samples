@@ -29,17 +29,9 @@
 package org.jowidgets.examples.rcp3.example3;
 
 import org.jowidgets.api.command.CommandAction;
-import org.jowidgets.api.command.EnabledState;
 import org.jowidgets.api.command.IAction;
 import org.jowidgets.api.command.IActionBuilder;
-import org.jowidgets.api.command.ICommandExecutor;
-import org.jowidgets.api.command.IEnabledState;
-import org.jowidgets.api.command.IExecutionContext;
-import org.jowidgets.api.image.IconsSmall;
 import org.jowidgets.api.model.item.ICheckedItemModel;
-import org.jowidgets.api.toolkit.Toolkit;
-import org.jowidgets.common.widgets.controller.IItemStateListener;
-import org.jowidgets.tools.command.AbstractEnabledChecker;
 
 public final class SaveActionFactory {
 
@@ -47,42 +39,7 @@ public final class SaveActionFactory {
 
 	public static IAction create(final ICheckedItemModel checkedItem) {
 		final IActionBuilder builder = CommandAction.builder();
-		builder.setText("Save");
-		builder.setIcon(IconsSmall.DISK);
-		builder.setCommand(new SaveCommand(), new SaveEnabledChecker(checkedItem));
 		return builder.build();
-	}
-
-	private static final class SaveCommand implements ICommandExecutor {
-		@Override
-		public void execute(final IExecutionContext executionContext) throws Exception {
-			Toolkit.getMessagePane().showInfo(executionContext, "Save done!");
-		}
-	}
-
-	private static final class SaveEnabledChecker extends AbstractEnabledChecker {
-
-		private final ICheckedItemModel checkedItem;
-
-		private SaveEnabledChecker(final ICheckedItemModel checkedItem) {
-			this.checkedItem = checkedItem;
-			checkedItem.addItemListener(new IItemStateListener() {
-				@Override
-				public void itemStateChanged() {
-					fireChangedEvent();
-				}
-			});
-		}
-
-		@Override
-		public IEnabledState getEnabledState() {
-			if (!checkedItem.isSelected()) {
-				return EnabledState.disabled("Checked item must be enabled");
-			}
-			else {
-				return EnabledState.ENABLED;
-			}
-		}
 	}
 
 }
