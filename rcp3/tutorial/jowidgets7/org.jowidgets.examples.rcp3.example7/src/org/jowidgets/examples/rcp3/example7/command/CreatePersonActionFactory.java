@@ -34,14 +34,8 @@ import org.jowidgets.api.command.IAction;
 import org.jowidgets.api.command.IActionBuilder;
 import org.jowidgets.api.command.ICommandExecutor;
 import org.jowidgets.api.command.IExecutionContext;
-import org.jowidgets.api.toolkit.Toolkit;
-import org.jowidgets.api.widgets.IInputDialog;
-import org.jowidgets.api.widgets.blueprint.IInputDialogBluePrint;
-import org.jowidgets.common.types.Dimension;
-import org.jowidgets.examples.rcp3.example7.form.PersonContentCreator;
 import org.jowidgets.examples.rcp3.example7.model.BeanTableModel;
 import org.jowidgets.examples.rcp3.example7.model.Person;
-import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class CreatePersonActionFactory {
 
@@ -57,6 +51,7 @@ public final class CreatePersonActionFactory {
 
 	private static final class CreatePersonCommand implements ICommandExecutor {
 
+		@SuppressWarnings("unused")
 		private final BeanTableModel<Person> model;
 
 		private CreatePersonCommand(final BeanTableModel<Person> model) {
@@ -65,15 +60,7 @@ public final class CreatePersonActionFactory {
 
 		@Override
 		public void execute(final IExecutionContext executionContext) throws Exception {
-			final IInputDialogBluePrint<Person> dialogBp = BPF.inputDialog(new PersonContentCreator(false));
-			dialogBp.setMinPackSize(new Dimension(640, 480));
-			dialogBp.setExecutionContext(executionContext);
-			final IInputDialog<Person> dialog = Toolkit.getActiveWindow().createChildWindow(dialogBp);
-			dialog.setVisible(true);
-			if (dialog.isOkPressed()) {
-				final Person person = dialog.getValue();
-				model.addBean(person, true);
-			}
+			//TODO must be implemented
 		}
 
 	}

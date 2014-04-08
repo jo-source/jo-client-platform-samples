@@ -59,7 +59,7 @@ public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel impl
 		return renderer.getCell(rowIndex, columnIndex, data.get(rowIndex));
 	}
 
-	public void addBean(final BEAN_TYPE bean, final boolean select) {
+	public void addBean(final BEAN_TYPE bean) {
 		//TODO must be implemented
 	}
 
@@ -76,11 +76,6 @@ public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel impl
 	@Override
 	public ITableColumnModelObservable getTableColumnModelObservable() {
 		return renderer.getTableColumnModelObservable();
-	}
-
-	public BEAN_TYPE getSelectedBean() {
-		//TODO must be implemented
-		return null;
 	}
 
 }

@@ -29,10 +29,8 @@
 package org.jowidgets.examples.rcp3.example7.model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.jowidgets.api.model.table.ITableColumn;
 import org.jowidgets.api.model.table.ITableModel;
@@ -40,7 +38,6 @@ import org.jowidgets.common.model.ITableCell;
 import org.jowidgets.common.model.ITableColumnModelObservable;
 import org.jowidgets.tools.model.table.AbstractTableDataModel;
 import org.jowidgets.util.Assert;
-import org.jowidgets.util.EmptyCheck;
 
 public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel implements ITableModel {
 
@@ -74,14 +71,6 @@ public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel impl
 		}
 	}
 
-	public void removeBean(final BEAN_TYPE bean) {
-		Assert.paramNotNull(bean, "bean");
-		data.remove(bean);
-		final Set<Integer> emptySet = Collections.emptySet();
-		setSelection(emptySet);
-		fireDataChanged();
-	}
-
 	@Override
 	public int getColumnCount() {
 		return renderer.getColumnCount();
@@ -95,17 +84,6 @@ public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel impl
 	@Override
 	public ITableColumnModelObservable getTableColumnModelObservable() {
 		return renderer.getTableColumnModelObservable();
-	}
-
-	public BEAN_TYPE getSelectedBean() {
-		final ArrayList<Integer> selection = getSelection();
-		if (!EmptyCheck.isEmpty(selection)) {
-			final Integer index = selection.get(0);
-			return data.get(index.intValue());
-		}
-		else {
-			return null;
-		}
 	}
 
 }

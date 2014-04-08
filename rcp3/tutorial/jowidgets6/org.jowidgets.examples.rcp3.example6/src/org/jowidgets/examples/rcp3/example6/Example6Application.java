@@ -67,19 +67,19 @@ public final class Example6Application implements IApplication {
 		person1.setName("Ben Ebelt");
 		person1.setGender(Gender.MALE);
 		person1.setDayOfBirth(createDate());
-		result.addBean(person1, true);
+		result.addBean(person1);
 
 		final Person person2 = new Person();
 		person2.setName("Dieter Rasse");
 		person2.setGender(Gender.MALE);
 		person2.setDayOfBirth(createDate());
-		result.addBean(person2, false);
+		result.addBean(person2);
 
 		final Person person3 = new Person();
 		person3.setName("Klara Fall");
 		person3.setGender(Gender.FEMALE);
 		person3.setDayOfBirth(createDate());
-		result.addBean(person3, false);
+		result.addBean(person3);
 
 		return result;
 	}
