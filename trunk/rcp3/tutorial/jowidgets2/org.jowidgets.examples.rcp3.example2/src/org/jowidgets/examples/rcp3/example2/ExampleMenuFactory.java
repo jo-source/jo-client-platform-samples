@@ -28,12 +28,7 @@
 
 package org.jowidgets.examples.rcp3.example2;
 
-import org.jowidgets.api.model.item.IActionItemModel;
-import org.jowidgets.api.model.item.ICheckedItemModel;
 import org.jowidgets.api.model.item.IMenuModel;
-import org.jowidgets.api.model.item.IRadioItemModel;
-import org.jowidgets.common.widgets.controller.IActionListener;
-import org.jowidgets.common.widgets.controller.IItemStateListener;
 import org.jowidgets.tools.model.item.MenuModel;
 
 final class ExampleMenuFactory {
@@ -43,43 +38,6 @@ final class ExampleMenuFactory {
 	static IMenuModel create() {
 
 		final IMenuModel result = new MenuModel("Main menu");
-
-		final IActionItemModel actionItem = result.addActionItem("ActionItem");
-		actionItem.addActionListener(new IActionListener() {
-			@Override
-			public void actionPerformed() {
-				//CHECKSTYLE:OFF
-				System.out.println("Action Performed");
-				//CHECKSTYLE:ON
-			}
-		});
-
-		final ICheckedItemModel checkedItem = result.addCheckedItem("CheckedItem");
-		checkedItem.setSelected(true);
-		checkedItem.addItemListener(new IItemStateListener() {
-			@Override
-			public void itemStateChanged() {
-				//CHECKSTYLE:OFF
-				System.out.println(checkedItem.isSelected());
-				//CHECKSTYLE:ON
-			}
-		});
-
-		result.addSeparator();
-
-		final IMenuModel subMenu = result.addMenu("SubMenu");
-		final IRadioItemModel radio1 = subMenu.addRadioItem("Radio1");
-		subMenu.addRadioItem("Radio2").setSelected(true);
-		subMenu.addRadioItem("Radio3");
-
-		radio1.addItemListener(new IItemStateListener() {
-			@Override
-			public void itemStateChanged() {
-				//CHECKSTYLE:OFF
-				System.out.println(radio1.isSelected());
-				//CHECKSTYLE:ON
-			}
-		});
 
 		return result;
 

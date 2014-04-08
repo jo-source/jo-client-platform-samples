@@ -35,7 +35,6 @@ import org.jowidgets.api.widgets.blueprint.IFrameBluePrint;
 import org.jowidgets.common.application.IApplication;
 import org.jowidgets.common.application.IApplicationLifecycle;
 import org.jowidgets.common.types.Dimension;
-import org.jowidgets.common.widgets.layout.MigLayoutDescriptor;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class Example2Application implements IApplication {
@@ -46,8 +45,6 @@ public final class Example2Application implements IApplication {
 		final IFrameBluePrint frameBp = BPF.frame();
 		frameBp.setSize(new Dimension(400, 300)).setTitle("Hello World");
 		final IFrame frame = Toolkit.createRootFrame(frameBp, lifecycle);
-
-		frame.setLayout(new MigLayoutDescriptor("[]", "[]"));
 
 		final IMenuModel menu = ExampleMenuFactory.create();
 
