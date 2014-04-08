@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.EquinoxLauncher">
+<booleanAttribute key="append.args" value="true"/>
+<booleanAttribute key="automaticAdd" value="false"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/org.jowidgets.tutorials.rcp3.tutorial2.swt"/>
+<booleanAttribute key="default" value="true"/>
+<booleanAttribute key="default_auto_start" value="true"/>
+<intAttribute key="default_start_level" value="4"/>
+<booleanAttribute key="includeOptional" value="false"/>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_USE_START_ON_FIRST_THREAD" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.JRE_CONTAINER" value="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog -console"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Declipse.ignoreApp=true -Dosgi.noShutdown=true"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<booleanAttribute key="show_selected_only" value="true"/>
+<stringAttribute key="target_bundles" value="com.springsource.javax.validation@default:default,com.springsource.org.apache.commons.codec@default:default,com.springsource.org.apache.commons.logging@default:default,com.springsource.org.hibernate.validator@default:default,com.springsource.org.joda.time@default:default,com.springsource.org.jsoup@default:default,com.springsource.slf4j.api@default:default,com.springsource.slf4j.nop@default:false,net.miginfocom.miglayout.swt.bundle@default:default,org.apache.httpcomponents.httpclient.bundle@default:default,org.eclipse.osgi@-1:true,org.eclipse.swt.win32.win32.x86_64@default:false,org.eclipse.swt@default:default,org.jowidgets.addons.icons.silkicons.bundle@default:default,org.jowidgets.api.bundle@default:default,org.jowidgets.beanvalidation.bootstrap.api.bundle@default:default,org.jowidgets.cap.common.bundle@default:default,org.jowidgets.cap.remoting.client.bundle@default:default,org.jowidgets.cap.remoting.common.bundle@default:default,org.jowidgets.cap.tools.starter.client.login.bundle@default:default,org.jowidgets.cap.tools.starter.client.osgi.plugin@default:default,org.jowidgets.cap.tools.starter.client.remoting.bundle@default:default,org.jowidgets.cap.tools.starter.hibernate.validation.plugin@default:default,org.jowidgets.cap.ui.bundle@default:default,org.jowidgets.classloading.api.bundle@default:default,org.jowidgets.common.bundle@default:default,org.jowidgets.i18n.bundle@default:default,org.jowidgets.impl.bundle@default:default,org.jowidgets.invocation.client.api.bundle@default:default,org.jowidgets.invocation.client.impl.bundle@default:default,org.jowidgets.invocation.common.api.bundle@default:default,org.jowidgets.invocation.common.impl.bundle@default:default,org.jowidgets.invocation.service.client.api.bundle@default:default,org.jowidgets.invocation.service.client.impl.bundle@default:default,org.jowidgets.invocation.service.common.api.bundle@default:default,org.jowidgets.message.api.bundle@default:default,org.jowidgets.message.impl.http.client.bundle@default:default,org.jowidgets.plugin.bundle@default:default,org.jowidgets.security.bundle@default:default,org.jowidgets.security.impl.http.client.bundle@default:default,org.jowidgets.service.bundle@default:default,org.jowidgets.spi.bundle@default:default,org.jowidgets.spi.impl.common.bundle@default:default,org.jowidgets.spi.impl.swt.addons.bundle@default:default,org.jowidgets.spi.impl.swt.bundle@default:default,org.jowidgets.spi.impl.swt.common.bundle@default:default,org.jowidgets.test.api.bundle@default:default,org.jowidgets.test.common.bundle@default:default,org.jowidgets.test.spi.bundle@default:default,org.jowidgets.tools.bundle@default:default,org.jowidgets.tools.starter.application.osgi.plugin@default:default,org.jowidgets.tools.starter.classloading.plugin@default:default,org.jowidgets.tools.starter.workbench.osgi.plugin@default:default,org.jowidgets.util.bundle@default:default,org.jowidgets.validation.bundle@default:default,org.jowidgets.workbench.api.bundle@default:default,org.jowidgets.workbench.impl.bundle@default:default,org.jowidgets.workbench.toolkit.api.bundle@default:default,org.jowidgets.workbench.tools.bundle@default:default,org.slf4j.jul.to.slf4j.bundle@default:default"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useCustomFeatures" value="false"/>
+<booleanAttribute key="useDefaultConfigArea" value="true"/>
+<stringAttribute key="workspace_bundles" value="org.jowidgets.tutorials.rcp3.tutorial2.common@default:default,org.jowidgets.tutorials.rcp3.tutorial2.launcher.swt@default:default,org.jowidgets.tutorials.rcp3.tutorial2.ui@default:default"/>
+</launchConfiguration>

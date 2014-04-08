@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.jowidgets.examples.rcp3.example7
+Bundle-SymbolicName: org.jowidgets.examples.rcp3.example7;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.jowidgets.util.bundle,
+ org.jowidgets.tools.bundle,
+ org.jowidgets.api.bundle,
+ org.jowidgets.common.bundle,
+ org.jowidgets.validation.bundle,
+ org.jowidgets.addons.icons.silkicons.bundle,
+ org.jowidgets.workbench.api.bundle,
+ org.jowidgets.workbench.toolkit.api.bundle,
+ org.jowidgets.workbench.tools.bundle
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.jowidgets.examples.rcp3.example7
