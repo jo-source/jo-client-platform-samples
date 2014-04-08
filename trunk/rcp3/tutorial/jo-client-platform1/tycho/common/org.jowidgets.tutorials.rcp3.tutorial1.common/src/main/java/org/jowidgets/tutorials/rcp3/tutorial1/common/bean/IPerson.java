@@ -27,45 +27,8 @@
  */
 package org.jowidgets.tutorials.rcp3.tutorial1.common.bean;
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.jowidgets.cap.common.api.bean.IBean;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.dto.Gender;
 
 public interface IPerson extends IBean {
-
-	String NAME_PROPERTY = "name";
-	String DATE_OF_BIRTH_PROPERTY = "dateOfBirth";
-	String GENDER_PROPERTY = "gender";
-
-	List<String> ALL_PROPERTIES = new LinkedList<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add(NAME_PROPERTY);
-			add(DATE_OF_BIRTH_PROPERTY);
-			add(GENDER_PROPERTY);
-			add(IBean.ID_PROPERTY);
-			add(IBean.VERSION_PROPERTY);
-		}
-	};
-
-	@NotNull
-	@Size(min = 2, max = 50)
-	String getName();
-
-	void setName(String loginName);
-
-	Date getDateOfBirth();
-
-	void setDateOfBirth(Date date);
-
-	Gender getGender();
-
-	void setGender(Gender gender);
 
 }
