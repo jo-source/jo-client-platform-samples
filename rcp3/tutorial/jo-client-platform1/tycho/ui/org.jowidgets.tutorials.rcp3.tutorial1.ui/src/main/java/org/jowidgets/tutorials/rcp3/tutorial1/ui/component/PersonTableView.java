@@ -30,9 +30,7 @@ package org.jowidgets.tutorials.rcp3.tutorial1.ui.component;
 
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
 import org.jowidgets.api.widgets.IContainer;
-import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
 import org.jowidgets.common.image.IImageConstant;
 import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.tutorials.rcp3.tutorial1.common.bean.IPerson;
@@ -50,8 +48,7 @@ public final class PersonTableView extends AbstractView {
 		final IContainer container = context.getContainer();
 		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 
-		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		container.add(cbpf.beanTable(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+		//TODO add content here
 	}
 
 }

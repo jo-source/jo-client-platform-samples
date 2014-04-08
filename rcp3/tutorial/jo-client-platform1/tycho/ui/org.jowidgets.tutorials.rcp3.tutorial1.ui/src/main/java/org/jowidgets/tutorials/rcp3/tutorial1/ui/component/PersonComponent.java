@@ -28,17 +28,9 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial1.ui.component;
 
-import org.jowidgets.cap.ui.api.table.BeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
-import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.tutorials.rcp3.tutorial1.common.bean.IPerson;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.creator.CreatorServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.deleter.DeleterServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.reader.ReaderServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.updater.UpdaterServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.ui.attribute.PersonAttributesFactory;
 import org.jowidgets.workbench.api.IComponentContext;
 import org.jowidgets.workbench.api.IView;
 import org.jowidgets.workbench.api.IViewContext;
@@ -52,17 +44,11 @@ public final class PersonComponent extends AbstractComponent {
 		componentContext.setLayout(PersonComponentLayoutFactory.create());
 		this.personModel = createPersonModel();
 
-		personModel.load();
 	}
 
 	private IBeanTableModel<IPerson> createPersonModel() {
-		final IBeanTableModelBuilder<IPerson> builder = BeanTableModel.builder(IPerson.class);
-		builder.setAttributes(PersonAttributesFactory.create());
-		builder.setReaderService(ReaderServices.ALL_PERSONS);
-		builder.setCreatorService(CreatorServices.CREATE_PERSON);
-		builder.setUpdaterService(UpdaterServices.UPDATE_PERSON);
-		builder.setDeleterService(DeleterServices.DELETE_PERSON);
-		return builder.build();
+		//TODO must be implemented
+		return null;
 	}
 
 	@Override
@@ -80,18 +66,12 @@ public final class PersonComponent extends AbstractComponent {
 
 	@Override
 	public void onActivation() {
-		CapWorkbenchActionsProvider.loadAction().addDataModel(personModel);
-		CapWorkbenchActionsProvider.saveAction().addDataModel(personModel);
-		CapWorkbenchActionsProvider.undoAction().addDataModel(personModel);
-		CapWorkbenchActionsProvider.cancelAction().addDataModel(personModel);
+
 	}
 
 	@Override
 	public void onDeactivation(final IVetoable vetoable) {
-		CapWorkbenchActionsProvider.loadAction().removeDataModel(personModel);
-		CapWorkbenchActionsProvider.saveAction().removeDataModel(personModel);
-		CapWorkbenchActionsProvider.undoAction().removeDataModel(personModel);
-		CapWorkbenchActionsProvider.cancelAction().removeDataModel(personModel);
+
 	}
 
 }

@@ -52,34 +52,6 @@ public class Person extends Bean implements IPerson {
 	@Basic
 	private Gender gender;
 
-	@Override
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-	@Override
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	@Override
-	public void setDateOfBirth(final Date date) {
-		this.dateOfBirth = date;
-	}
-
-	@Override
-	public Gender getGender() {
-		return gender;
-	}
-
-	@Override
-	public void setGender(final Gender gender) {
-		this.gender = gender;
-	}
+	//TODO add implementation
 
 }

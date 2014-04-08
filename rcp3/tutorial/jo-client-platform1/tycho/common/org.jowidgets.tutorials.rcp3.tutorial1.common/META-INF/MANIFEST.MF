@@ -15,8 +15,5 @@ Require-Bundle:
 Export-Package: org.jowidgets.tutorials.rcp3.tutorial1.common.bean,
  org.jowidgets.tutorials.rcp3.tutorial1.common.dto,
  org.jowidgets.tutorials.rcp3.tutorial1.common.property,
- org.jowidgets.tutorials.rcp3.tutorial1.common.service.creator,
- org.jowidgets.tutorials.rcp3.tutorial1.common.service.deleter,
- org.jowidgets.tutorials.rcp3.tutorial1.common.service.reader,
- org.jowidgets.tutorials.rcp3.tutorial1.common.service.security,
- org.jowidgets.tutorials.rcp3.tutorial1.common.service.updater
+ org.jowidgets.tutorials.rcp3.tutorial1.common.service.security
+

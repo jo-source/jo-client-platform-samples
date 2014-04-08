@@ -33,16 +33,8 @@ import org.jowidgets.cap.service.jpa.api.IJpaServicesDecoratorProviderBuilder;
 import org.jowidgets.cap.service.jpa.api.JpaServiceToolkit;
 import org.jowidgets.service.api.IServicesDecoratorProvider;
 import org.jowidgets.service.tools.ServiceProviderBuilder;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.creator.CreatorServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.deleter.DeleterServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.reader.ReaderServices;
 import org.jowidgets.tutorials.rcp3.tutorial1.common.service.security.AuthorizationProviderServiceId;
-import org.jowidgets.tutorials.rcp3.tutorial1.common.service.updater.UpdaterServices;
-import org.jowidgets.tutorials.rcp3.tutorial1.service.creator.PersonCreatorServiceFactory;
-import org.jowidgets.tutorials.rcp3.tutorial1.service.deleter.PersonDeleterServiceFactory;
-import org.jowidgets.tutorials.rcp3.tutorial1.service.reader.PersonReaderServiceFactory;
 import org.jowidgets.tutorials.rcp3.tutorial1.service.security.AuthorizationProviderServiceImpl;
-import org.jowidgets.tutorials.rcp3.tutorial1.service.updater.PersonUpdaterServiceFactory;
 
 public class Tutorial1ServiceProviderBuilder extends ServiceProviderBuilder {
 
@@ -50,12 +42,6 @@ public class Tutorial1ServiceProviderBuilder extends ServiceProviderBuilder {
 		super();
 		//security
 		addService(AuthorizationProviderServiceId.ID, new AuthorizationProviderServiceImpl());
-
-		//Person CRUD services
-		addService(ReaderServices.ALL_PERSONS, PersonReaderServiceFactory.allPersons());
-		addService(CreatorServices.CREATE_PERSON, PersonCreatorServiceFactory.create());
-		addService(UpdaterServices.UPDATE_PERSON, PersonUpdaterServiceFactory.create());
-		addService(DeleterServices.DELETE_PERSON, PersonDeleterServiceFactory.create());
 
 		//jpa decorators
 		addServiceDecorator(createJpaServiceDecoratorProvider());

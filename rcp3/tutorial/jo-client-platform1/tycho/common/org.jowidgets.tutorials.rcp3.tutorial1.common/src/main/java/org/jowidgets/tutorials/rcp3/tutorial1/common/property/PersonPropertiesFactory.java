@@ -43,28 +43,10 @@ public final class PersonPropertiesFactory {
 	public static List<IProperty> create() {
 		final List<IProperty> result = new LinkedList<IProperty>();
 
-		//IPerson.NAME_PROPERTY
-		IBeanPropertyBuilder builder = builder(IPerson.NAME_PROPERTY);
-		builder.setLabel("Name");
-		builder.setDescription("The name of the person");
-		builder.setMandatory(true);
-		result.add(builder.build());
-
-		//IPerson.DATE_OF_BIRTH_PROPERTY
-		builder = builder(IPerson.DATE_OF_BIRTH_PROPERTY);
-		builder.setLabel("Date of birth");
-		builder.setDescription("The date when the person was born");
-		result.add(builder.build());
-
-		//IPerson.GENDER_PROPERTY
-		builder = builder(IPerson.GENDER_PROPERTY);
-		builder.setLabel("Gender");
-		builder.setDescription("The persons gender");
-		result.add(builder.build());
-
 		return result;
 	}
 
+	@SuppressWarnings("unused")
 	private static IBeanPropertyBuilder builder(final String propertyName) {
 		return CapCommonToolkit.beanPropertyBuilder(IPerson.class, propertyName);
 	}
