@@ -39,6 +39,9 @@ public final class SaveActionFactory {
 
 	public static IAction create(final ICheckedItemModel checkedItem) {
 		final IActionBuilder builder = CommandAction.builder();
+
+		//TODO add content here
+
 		return builder.build();
 	}
 

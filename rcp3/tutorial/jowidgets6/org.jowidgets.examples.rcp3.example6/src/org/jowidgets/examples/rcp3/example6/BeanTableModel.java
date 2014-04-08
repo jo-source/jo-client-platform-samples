@@ -29,7 +29,6 @@
 package org.jowidgets.examples.rcp3.example6;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.jowidgets.api.model.table.ITableColumn;
@@ -38,7 +37,6 @@ import org.jowidgets.common.model.ITableCell;
 import org.jowidgets.common.model.ITableColumnModelObservable;
 import org.jowidgets.tools.model.table.AbstractTableDataModel;
 import org.jowidgets.util.Assert;
-import org.jowidgets.util.EmptyCheck;
 
 public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel implements ITableModel {
 
@@ -62,14 +60,7 @@ public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel impl
 	}
 
 	public void addBean(final BEAN_TYPE bean, final boolean select) {
-		Assert.paramNotNull(bean, "bean");
-		data.add(bean);
-		fireDataChanged();
-		if (select) {
-			final List<Integer> selection = new LinkedList<Integer>();
-			selection.add(Integer.valueOf(data.size() - 1));
-			setSelection(selection);
-		}
+		//TODO must be implemented
 	}
 
 	@Override
@@ -88,14 +79,8 @@ public final class BeanTableModel<BEAN_TYPE> extends AbstractTableDataModel impl
 	}
 
 	public BEAN_TYPE getSelectedBean() {
-		final ArrayList<Integer> selection = getSelection();
-		if (!EmptyCheck.isEmpty(selection)) {
-			final Integer index = selection.get(0);
-			return data.get(index.intValue());
-		}
-		else {
-			return null;
-		}
+		//TODO must be implemented
+		return null;
 	}
 
 }

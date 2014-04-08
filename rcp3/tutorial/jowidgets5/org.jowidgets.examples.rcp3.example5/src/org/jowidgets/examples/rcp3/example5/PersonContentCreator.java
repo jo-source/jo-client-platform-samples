@@ -28,69 +28,28 @@
 
 package org.jowidgets.examples.rcp3.example5;
 
-import java.util.Date;
-
-import org.jowidgets.api.widgets.IComboBox;
-import org.jowidgets.api.widgets.IInputField;
-import org.jowidgets.api.widgets.blueprint.IInputComponentValidationLabelBluePrint;
-import org.jowidgets.api.widgets.blueprint.ITextLabelBluePrint;
 import org.jowidgets.api.widgets.content.IInputContentContainer;
 import org.jowidgets.api.widgets.content.IInputContentCreator;
 import org.jowidgets.common.widgets.layout.MigLayoutDescriptor;
-import org.jowidgets.tools.validation.MandatoryValidator;
-import org.jowidgets.tools.widgets.blueprint.BPF;
-import org.jowidgets.validation.IValidationResult;
-import org.jowidgets.validation.ValidationResult;
 
 public final class PersonContentCreator implements IInputContentCreator<Person> {
 
-	private IInputField<String> nameField;
-	private IInputField<Date> dateField;
-	private IComboBox<PersonType> stateCmb;
-
 	@Override
 	public void setValue(final Person person) {
-		nameField.setValue(person != null ? person.getName() : null);
-		dateField.setValue(person != null ? person.getDayOfBirth() : null);
-		stateCmb.setValue(person != null ? person.getType() : null);
+		//TODO implement set value
 	}
 
 	@Override
 	public Person getValue() {
-		final Person result = new Person();
-		result.setName(nameField.getValue());
-		result.setType(stateCmb.getValue());
-		result.setDayOfBirth(dateField.getValue());
-		return result;
+		//TODO implement get value
+		return null;
 	}
 
 	@Override
 	public void createContent(final IInputContentContainer content) {
 		content.setLayout(new MigLayoutDescriptor("wrap", "[][grow, 0::][20!]", "[][][]"));
 
-		final ITextLabelBluePrint textLabelBp = BPF.textLabel().alignRight();
-		final IInputComponentValidationLabelBluePrint validationLabelBp = BPF.inputComponentValidationLabel();
-		validationLabelBp.setShowValidationMessage(false);
-
-		//Name field
-		content.add(textLabelBp.setText("Name"));
-		nameField = content.add(BPF.inputFieldString(), "growx, w 0::");
-		content.add(validationLabelBp.setInputComponent(nameField), "growx, w 0::");
-		nameField.addValidator(new MandatoryValidator<String>(createMandatoryResult("Name")));
-
-		//Day of birth field
-		content.add(textLabelBp.setText("Day of birth"));
-		dateField = content.add(BPF.inputFieldDate(), "growx, w 0::");
-		content.add(validationLabelBp.setInputComponent(dateField), "growx, w 0::");
-		dateField.addValidator(new DateTestValidator());
-
-		//Day of birth field
-		content.add(textLabelBp.setText("State"));
-		stateCmb = content.add(BPF.comboBoxSelection(PersonType.values()), "growx, w 0::");
-		content.add(validationLabelBp.setInputComponent(stateCmb), "growx, w 0::");
+		//TODO add content here
 	}
 
-	private IValidationResult createMandatoryResult(final String propName) {
-		return ValidationResult.infoError("Please enter value for " + propName + "!");
-	}
 }
