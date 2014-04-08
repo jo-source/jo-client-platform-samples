@@ -28,25 +28,8 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin;
 
-import org.jowidgets.cap.ui.api.plugin.IBeanFormPlugin;
-import org.jowidgets.cap.ui.api.plugin.IBeanProxyLabelRendererPlugin;
-import org.jowidgets.cap.ui.api.plugin.IBeanRelationTreeModelPlugin;
-import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuContributionPlugin;
-import org.jowidgets.cap.ui.api.plugin.IBeanTableMenuInterceptorPlugin;
 import org.jowidgets.plugin.tools.PluginProviderBuilder;
 import org.jowidgets.plugin.tools.PluginProviderHolder;
-import org.jowidgets.tutorials.rcp3.tutorial4.common.bean.IAuthorization;
-import org.jowidgets.tutorials.rcp3.tutorial4.common.bean.IPerson;
-import org.jowidgets.tutorials.rcp3.tutorial4.common.bean.IRole;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.bean.AuthorizationRendererPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.bean.PersonRendererPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.bean.RoleRendererPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.form.RoleFormPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.table.AuthorizationTableMenuInterceptorPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.table.PersonTableMenuContributionPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.table.PersonTableMenuInterceptorPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.table.RoleTableMenuInterceptorPlugin;
-import org.jowidgets.tutorials.rcp3.tutorial4.ui.plugin.tree.RelationTreeModelPlugin;
 
 public final class Tutorial4PluginProviderHolder extends PluginProviderHolder {
 
@@ -57,43 +40,7 @@ public final class Tutorial4PluginProviderHolder extends PluginProviderHolder {
 	private static final class Tutorial4PluginProviderBuilder extends PluginProviderBuilder {
 
 		public Tutorial4PluginProviderBuilder() {
-			addPlugin(IBeanRelationTreeModelPlugin.ID, new RelationTreeModelPlugin());
-
-			addMenuInterceptorPlugin(new PersonTableMenuInterceptorPlugin(), IPerson.class);
-			addMenuInterceptorPlugin(new RoleTableMenuInterceptorPlugin(), IRole.class);
-			addMenuInterceptorPlugin(new AuthorizationTableMenuInterceptorPlugin(), IAuthorization.class);
-
-			addMenuContributionPlugin(new PersonTableMenuContributionPlugin(), IPerson.class);
-
-			addBeanRenderPlugin(new PersonRendererPlugin(), IPerson.class);
-			addBeanRenderPlugin(new RoleRendererPlugin(), IRole.class);
-			addBeanRenderPlugin(new AuthorizationRendererPlugin(), IAuthorization.class);
-
-			addBeanFormPlugin(new RoleFormPlugin(), IRole.class);
-		}
-
-		private void addMenuInterceptorPlugin(final IBeanTableMenuInterceptorPlugin<?> plugin, final Class<?>... beanTypes) {
-			addPlugin(
-					IBeanTableMenuInterceptorPlugin.ID,
-					plugin,
-					IBeanTableMenuInterceptorPlugin.BEAN_TYPE_PROPERTY_KEY,
-					beanTypes);
-		}
-
-		private void addMenuContributionPlugin(final IBeanTableMenuContributionPlugin<?> plugin, final Class<?>... beanTypes) {
-			addPlugin(
-					IBeanTableMenuContributionPlugin.ID,
-					plugin,
-					IBeanTableMenuContributionPlugin.BEAN_TYPE_PROPERTY_KEY,
-					beanTypes);
-		}
-
-		private void addBeanRenderPlugin(final IBeanProxyLabelRendererPlugin<?> plugin, final Class<?>... beanTypes) {
-			addPlugin(IBeanProxyLabelRendererPlugin.ID, plugin, IBeanProxyLabelRendererPlugin.BEAN_TYPE_PROPERTY_KEY, beanTypes);
-		}
-
-		private void addBeanFormPlugin(final IBeanFormPlugin plugin, final Class<?>... beanTypes) {
-			addPlugin(IBeanFormPlugin.ID, plugin, IBeanFormPlugin.BEAN_TYPE_PROPERTY_KEY, beanTypes);
+			//TODO add implementation here
 		}
 
 	}
