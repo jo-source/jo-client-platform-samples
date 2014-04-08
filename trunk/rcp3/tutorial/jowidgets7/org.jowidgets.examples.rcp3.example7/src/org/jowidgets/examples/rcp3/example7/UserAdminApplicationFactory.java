@@ -30,7 +30,6 @@ package org.jowidgets.examples.rcp3.example7;
 
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
 import org.jowidgets.examples.rcp3.example7.component.PersonComponent;
-import org.jowidgets.examples.rcp3.example7.component.RoleComponent;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModel;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModelBuilder;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchApplicationModel;
@@ -54,7 +53,6 @@ public final class UserAdminApplicationFactory {
 
 	private static void createComponentTree(final IWorkbenchApplicationModelBuilder builder) {
 		builder.addChild(createPersonNode());
-		builder.addChild(createRoleNode());
 	}
 
 	private static IComponentNodeModel createPersonNode() {
@@ -67,12 +65,4 @@ public final class UserAdminApplicationFactory {
 		return builder.build();
 	}
 
-	private static IComponentNodeModel createRoleNode() {
-		final IComponentNodeModelBuilder builder = new ComponentNodeModelBuilder();
-		builder.setId(RoleComponent.class.getName());
-		builder.setLabel("Roles");
-		builder.setIcon(SilkIcons.GROUP);
-		builder.setComponentFactory(RoleComponent.class);
-		return builder.build();
-	}
 }
