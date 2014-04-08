@@ -28,23 +28,14 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial2.service;
 
-import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.common.api.service.IEntityService;
-import org.jowidgets.cap.common.api.service.IExecutorService;
-import org.jowidgets.cap.service.api.bean.IBeanAccess;
-import org.jowidgets.cap.service.api.executor.IBeanExecutor;
 import org.jowidgets.cap.service.hibernate.api.HibernateServiceToolkit;
 import org.jowidgets.cap.service.jpa.api.IJpaServicesDecoratorProviderBuilder;
 import org.jowidgets.cap.service.jpa.api.JpaServiceToolkit;
 import org.jowidgets.cap.service.tools.CapServiceProviderBuilder;
-import org.jowidgets.service.api.IServiceId;
 import org.jowidgets.service.api.IServicesDecoratorProvider;
-import org.jowidgets.tutorials.rcp3.tutorial2.common.bean.IPerson;
-import org.jowidgets.tutorials.rcp3.tutorial2.common.service.executor.ExecutorServices;
 import org.jowidgets.tutorials.rcp3.tutorial2.common.service.security.AuthorizationProviderServiceId;
-import org.jowidgets.tutorials.rcp3.tutorial2.service.bean.Person;
 import org.jowidgets.tutorials.rcp3.tutorial2.service.entity.Tutorial2EntityServiceBuilder;
-import org.jowidgets.tutorials.rcp3.tutorial2.service.executor.PersonLongLastingExecutor;
 import org.jowidgets.tutorials.rcp3.tutorial2.service.security.AuthorizationProviderServiceImpl;
 
 public class Tutorial2ServiceProviderBuilder extends CapServiceProviderBuilder {
@@ -56,9 +47,6 @@ public class Tutorial2ServiceProviderBuilder extends CapServiceProviderBuilder {
 
 		//EntityService
 		addService(IEntityService.ID, new Tutorial2EntityServiceBuilder(this).build());
-
-		//Executor services
-		addPersonExecutorService(ExecutorServices.PERSON_LONG_LASTING, new PersonLongLastingExecutor());
 
 		//jpa decorators
 		addServiceDecorator(createJpaServiceDecoratorProvider());
@@ -73,13 +61,6 @@ public class Tutorial2ServiceProviderBuilder extends CapServiceProviderBuilder {
 
 	private IServicesDecoratorProvider createCancelServiceDecoratorProvider() {
 		return HibernateServiceToolkit.cancelServiceDecoratorProviderBuilder("tutorial2PersistenceUnit").build();
-	}
-
-	private <BEAN_TYPE extends IBean, PARAM_TYPE> void addPersonExecutorService(
-		final IServiceId<? extends IExecutorService<PARAM_TYPE>> id,
-		final IBeanExecutor<? extends BEAN_TYPE, PARAM_TYPE> beanExecutor) {
-		final IBeanAccess<Person> beanAccess = JpaServiceToolkit.serviceFactory().beanAccess(Person.class);
-		addExecutorService(id, beanExecutor, beanAccess, IPerson.ALL_PROPERTIES);
 	}
 
 }

@@ -28,27 +28,15 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial2.service.entity;
 
-import org.jowidgets.cap.service.api.entity.IBeanEntityBluePrint;
 import org.jowidgets.cap.service.jpa.tools.entity.JpaEntityServiceBuilderWrapper;
 import org.jowidgets.service.api.IServiceRegistry;
-import org.jowidgets.tutorials.rcp3.tutorial2.common.entity.EntityIds;
-import org.jowidgets.tutorials.rcp3.tutorial2.service.bean.Person;
-import org.jowidgets.tutorials.rcp3.tutorial2.service.bean.Role;
-import org.jowidgets.tutorials.rcp3.tutorial2.service.descriptor.PersonDtoDescriptorBuilder;
-import org.jowidgets.tutorials.rcp3.tutorial2.service.descriptor.RoleDtoDescriptorBuilder;
 
 public final class Tutorial2EntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 
 	public Tutorial2EntityServiceBuilder(final IServiceRegistry registry) {
 		super(registry);
 
-		//IPerson
-		IBeanEntityBluePrint entityBp = addEntity().setEntityId(EntityIds.PERSON).setBeanType(Person.class);
-		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
-
-		//IRole
-		entityBp = addEntity().setEntityId(EntityIds.ROLE).setBeanType(Role.class);
-		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
+		//TODO add implementation
 
 	}
 

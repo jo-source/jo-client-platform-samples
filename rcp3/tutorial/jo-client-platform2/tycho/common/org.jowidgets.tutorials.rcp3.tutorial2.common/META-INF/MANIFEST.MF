@@ -14,6 +14,4 @@ Require-Bundle:
  com.springsource.javax.validation;bundle-version="1.0.0"
 Export-Package: org.jowidgets.tutorials.rcp3.tutorial2.common.bean,
  org.jowidgets.tutorials.rcp3.tutorial2.common.dto,
- org.jowidgets.tutorials.rcp3.tutorial2.common.entity,
- org.jowidgets.tutorials.rcp3.tutorial2.common.service.executor,
  org.jowidgets.tutorials.rcp3.tutorial2.common.service.security

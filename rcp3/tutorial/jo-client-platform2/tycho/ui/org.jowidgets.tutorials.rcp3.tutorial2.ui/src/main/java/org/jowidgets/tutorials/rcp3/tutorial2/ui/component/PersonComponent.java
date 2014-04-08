@@ -28,13 +28,15 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial2.ui.component;
 
+import java.util.Collections;
+import java.util.List;
+
+import org.jowidgets.cap.ui.api.attribute.IAttribute;
 import org.jowidgets.cap.ui.api.table.BeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
-import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
 import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.tutorials.rcp3.tutorial2.common.bean.IPerson;
-import org.jowidgets.tutorials.rcp3.tutorial2.common.entity.EntityIds;
 import org.jowidgets.workbench.api.IComponentContext;
 import org.jowidgets.workbench.api.IView;
 import org.jowidgets.workbench.api.IViewContext;
@@ -52,8 +54,9 @@ public final class PersonComponent extends AbstractComponent {
 	}
 
 	private IBeanTableModel<IPerson> createPersonModel() {
-		final IBeanTableModelBuilder<IPerson> builder = BeanTableModel.builder(EntityIds.PERSON, IPerson.class);
-		return builder.build();
+		//TODO replace this code by model that using entity service
+		final List<IAttribute<Object>> attributes = Collections.emptyList();
+		return BeanTableModel.builder(IPerson.class).setAttributes(attributes).build();
 	}
 
 	@Override
