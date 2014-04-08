@@ -28,7 +28,6 @@
 
 package org.jowidgets.examples.rcp3.example5;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.jowidgets.validation.IValidationResult;
@@ -41,19 +40,9 @@ public final class DateTestValidator implements IValidator<Date> {
 	@Override
 	public IValidationResult validate(final Date value) {
 		final IValidationResultBuilder builder = ValidationResult.builder();
-		if (value != null) {
-			final Calendar calendar = Calendar.getInstance();
-			calendar.setTime(value);
-			final int year = calendar.get(Calendar.YEAR);
-			final int month = calendar.get(Calendar.MONTH);
-			final int day = calendar.get(Calendar.DAY_OF_MONTH);
-			if (year < 1972) {
-				builder.addError("Sorry, too old!");
-			}
-			else if (year == 1972 && month == 2 && day == 1) {
-				builder.addInfo("Happy birthday!");
-			}
-		}
+
+		//TODO add content here
+
 		return builder.build();
 	}
 

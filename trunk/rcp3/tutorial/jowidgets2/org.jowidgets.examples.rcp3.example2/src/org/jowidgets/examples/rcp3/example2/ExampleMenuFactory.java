@@ -36,8 +36,9 @@ final class ExampleMenuFactory {
 	private ExampleMenuFactory() {}
 
 	static IMenuModel create() {
-
 		final IMenuModel result = new MenuModel("Main menu");
+
+		//TODO add content here
 
 		return result;
 

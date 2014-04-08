@@ -38,7 +38,6 @@ import org.jowidgets.common.application.IApplication;
 import org.jowidgets.common.application.IApplicationLifecycle;
 import org.jowidgets.common.types.Dimension;
 import org.jowidgets.common.widgets.layout.MigLayoutDescriptor;
-import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class Example6Application implements IApplication {
@@ -54,12 +53,13 @@ public final class Example6Application implements IApplication {
 		final IFrame frame = Toolkit.createRootFrame(frameBp, lifecycle);
 		frame.setLayout(new MigLayoutDescriptor("0[grow, 0::]0", "0[grow, 0::]0"));
 
-		final ITableModel tableModel = createTableModel();
-		frame.add(BPF.table(tableModel), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+		//final ITableModel tableModel = createTableModel();
+		//TODO add table here
 
 		frame.setVisible(true);
 	}
 
+	@SuppressWarnings("unused")
 	private static ITableModel createTableModel() {
 		final BeanTableModel<Person> result = new BeanTableModel<>(new PersonTableRenderer());
 

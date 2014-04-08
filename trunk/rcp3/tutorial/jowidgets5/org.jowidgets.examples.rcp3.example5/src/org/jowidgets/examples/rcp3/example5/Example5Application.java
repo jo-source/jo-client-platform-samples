@@ -31,9 +31,7 @@ import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.api.widgets.IButton;
 import org.jowidgets.api.widgets.IFrame;
 import org.jowidgets.api.widgets.IInputComposite;
-import org.jowidgets.api.widgets.IInputDialog;
 import org.jowidgets.api.widgets.blueprint.IFrameBluePrint;
-import org.jowidgets.api.widgets.blueprint.IInputDialogBluePrint;
 import org.jowidgets.common.application.IApplication;
 import org.jowidgets.common.application.IApplicationLifecycle;
 import org.jowidgets.common.types.Dimension;
@@ -66,16 +64,7 @@ public final class Example5Application implements IApplication {
 		button.addActionListener(new IActionListener() {
 			@Override
 			public void actionPerformed() {
-				final IInputDialogBluePrint<Person> dialogBp = BPF.inputDialog(new PersonContentCreator());
-				dialogBp.setMinPackSize(new Dimension(800, 600));
-				dialogBp.setTitle("Edit Person ...");
-				dialogBp.setValue(inputComposite.getValue());
-				final IInputDialog<Person> dialog = frame.createChildWindow(dialogBp);
-				dialog.setVisible(true);
-				if (dialog.isOkPressed()) {
-					final Person person = dialog.getValue();
-					inputComposite.setValue(person);
-				}
+				//TODO open edit dialog here
 			}
 		});
 

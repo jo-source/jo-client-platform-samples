@@ -32,51 +32,23 @@ import org.jowidgets.api.model.table.ITableColumn;
 import org.jowidgets.api.model.table.ITableColumnModel;
 import org.jowidgets.common.model.ITableCell;
 import org.jowidgets.common.model.ITableColumnModelObservable;
-import org.jowidgets.tools.model.table.DefaultTableColumn;
-import org.jowidgets.tools.model.table.TableCell;
 
 public final class PersonTableRenderer implements IBeanTableRenderer<Person>, ITableColumnModel {
 
 	@Override
 	public ITableCell getCell(final int rowIndex, final int columnIndex, final Person bean) {
-		if (columnIndex == 0) {
-			return new TableCell(bean.getName());
-		}
-		else if (columnIndex == 1) {
-			if (bean.getDayOfBirth() != null) {
-				return new TableCell("" + bean.getDayOfBirth());
-			}
-			else {
-				return new TableCell();
-			}
-		}
-		else if (columnIndex == 2) {
-			if (bean.getGender() != null) {
-				return new TableCell("" + bean.getGender());
-			}
-			else {
-				return new TableCell();
-			}
-		}
+		//TODO must be implemented
 		return null;
 	}
 
 	@Override
 	public int getColumnCount() {
-		return 3;
+		return 0;
 	}
 
 	@Override
 	public ITableColumn getColumn(final int columnIndex) {
-		if (columnIndex == 0) {
-			return new DefaultTableColumn("Name");
-		}
-		else if (columnIndex == 1) {
-			return new DefaultTableColumn("Day of birth");
-		}
-		else if (columnIndex == 2) {
-			return new DefaultTableColumn("Gender");
-		}
+		//TODO must be implemented
 		return null;
 	}
 
