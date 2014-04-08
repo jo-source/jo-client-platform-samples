@@ -4,7 +4,7 @@ Bundle-Name: org.jowidgets.tutorials.rcp3.tutorial3.launcher.rcp
 Bundle-SymbolicName: org.jowidgets.tutorials.rcp3.tutorial3.launcher.rcp;singleton:=true
 Bundle-Version: 0.0.1.qualifier
 Bundle-Vendor: jowidgets.org
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Require-Bundle: 
  org.jowidgets.tutorials.rcp3.tutorial3.common,
