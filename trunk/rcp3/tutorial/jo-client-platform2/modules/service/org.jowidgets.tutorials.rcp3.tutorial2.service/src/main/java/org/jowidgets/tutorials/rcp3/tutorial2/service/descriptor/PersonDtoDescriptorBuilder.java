@@ -28,8 +28,6 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial2.service.descriptor;
 
-import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
-import org.jowidgets.cap.common.api.sort.Sort;
 import org.jowidgets.tutorials.rcp3.tutorial2.common.bean.IPerson;
 
 public final class PersonDtoDescriptorBuilder extends AbstractDtoDescriptorBuilder {
@@ -37,32 +35,7 @@ public final class PersonDtoDescriptorBuilder extends AbstractDtoDescriptorBuild
 	public PersonDtoDescriptorBuilder() {
 		super(IPerson.class);
 
-		setLabelSingular("Person");
-		setLabelPlural("Persons");
-		setDefaultSorting(Sort.create(IPerson.NAME_PROPERTY));
-
-		setRenderingPattern("$" + IPerson.NAME_PROPERTY + "$");
-
-		//IBean.ID_PROPERTY
-		addIdProperty();
-
-		//IPerson.NAME_PROPERTY
-		IBeanPropertyBluePrint propertyBp = addProperty(IPerson.NAME_PROPERTY);
-		propertyBp.setLabel("Name");
-		propertyBp.setDescription("The name of the person");
-
-		//IPerson.DATE_OF_BIRTH_PROPERTY
-		propertyBp = addProperty(IPerson.DATE_OF_BIRTH_PROPERTY);
-		propertyBp.setLabel("Date of birth");
-		propertyBp.setDescription("The date when the person was born");
-
-		//IPerson.GENDER_PROPERTY
-		propertyBp = addProperty(IPerson.GENDER_PROPERTY);
-		propertyBp.setLabel("Gender");
-		propertyBp.setDescription("The persons gender");
-
-		//IBean.VERSION_PROPERTY
-		addVersionProperty();
+		//TODO add implementation
 	}
 
 }

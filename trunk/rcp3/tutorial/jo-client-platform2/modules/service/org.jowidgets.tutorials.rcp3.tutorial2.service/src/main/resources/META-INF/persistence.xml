@@ -9,7 +9,6 @@
 		
 		<class>org.jowidgets.tutorials.rcp3.tutorial2.service.bean.Bean</class>
 		<class>org.jowidgets.tutorials.rcp3.tutorial2.service.bean.Person</class>
-		<class>org.jowidgets.tutorials.rcp3.tutorial2.service.bean.Role</class>
 		
 		<properties>	
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
