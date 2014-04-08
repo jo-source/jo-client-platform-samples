@@ -28,17 +28,12 @@
 package org.jowidgets.tutorials.rcp3.tutorial3.service.bean;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Index;
 import org.jowidgets.tutorials.rcp3.tutorial3.common.bean.IPerson;
 import org.jowidgets.tutorials.rcp3.tutorial3.common.dto.Gender;
@@ -56,10 +51,6 @@ public class Person extends Bean implements IPerson {
 
 	@Basic
 	private Gender gender;
-
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "person")
-	@BatchSize(size = 1000)
-	private Set<PersonRoleLink> personRoleLinks;
 
 	@Override
 	public String getName() {

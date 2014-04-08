@@ -55,7 +55,6 @@ public final class Tutorial3ApplicationFactory {
 	private static void createComponentTree(final IWorkbenchApplicationModelBuilder builder) {
 		builder.addChild(createGenericNode(EntityIds.PERSON, SilkIcons.USER, true));
 		builder.addChild(createGenericNode(EntityIds.ROLE, SilkIcons.GROUP));
-		builder.addChild(createGenericNode(EntityIds.AUTHORIZATION, SilkIcons.KEY));
 	}
 
 	private static IComponentNodeModel createGenericNode(final EntityIds entityId, final IImageConstant icon) {
