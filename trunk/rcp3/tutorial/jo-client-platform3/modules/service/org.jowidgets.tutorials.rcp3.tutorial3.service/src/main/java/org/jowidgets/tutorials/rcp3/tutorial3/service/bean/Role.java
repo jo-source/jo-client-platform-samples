@@ -27,17 +27,11 @@
  */
 package org.jowidgets.tutorials.rcp3.tutorial3.service.bean;
 
-import java.util.List;
-
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Index;
 import org.jowidgets.tutorials.rcp3.tutorial3.common.bean.IRole;
 
@@ -51,14 +45,6 @@ public class Role extends Bean implements IRole {
 
 	@Basic
 	private String description;
-
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<PersonRoleLink> personRoleLinks;
-
-	@OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "role")
-	@BatchSize(size = 1000)
-	private List<RoleAuthorizationLink> roleAuthorizationLinks;
 
 	@Override
 	public String getName() {
