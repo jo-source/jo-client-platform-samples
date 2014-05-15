@@ -28,19 +28,16 @@
 
 package org.jowidgets.tutorials.rcp3.tutorial1.ui.component;
 
-import java.util.List;
-
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
 import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
-import org.jowidgets.cap.ui.api.attribute.IAttribute;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.widgets.IBeanSelectionFormBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.cap.ui.tools.attribute.MetaAttributesFilter;
 import org.jowidgets.common.image.IImageConstant;
 import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.tutorials.rcp3.tutorial1.common.bean.IPerson;
+import org.jowidgets.tutorials.rcp3.tutorial1.ui.attribute.PersonAttributesFactory;
 import org.jowidgets.workbench.api.IViewContext;
 import org.jowidgets.workbench.tools.AbstractView;
 
@@ -57,8 +54,7 @@ public final class PersonDetailView extends AbstractView {
 
 		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
 		final IBeanSelectionFormBluePrint formBp = cbpf.beanSelectionForm(model);
-		final List<IAttribute<Object>> attributes = model.getAttributes(MetaAttributesFilter.getInstance());
-		formBp.setBeanForm(cbpf.beanForm(IPerson.class, attributes));
+		formBp.setBeanForm(cbpf.beanForm(IPerson.class, PersonAttributesFactory.create()));
 
 		container.add(formBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
 	}
