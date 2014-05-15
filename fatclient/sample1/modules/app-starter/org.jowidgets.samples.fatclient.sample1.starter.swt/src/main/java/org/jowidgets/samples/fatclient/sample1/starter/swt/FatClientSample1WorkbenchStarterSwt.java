@@ -31,9 +31,9 @@ package org.jowidgets.samples.fatclient.sample1.starter.swt;
 import org.jowidgets.samples.fatclient.sample1.common.workbench.FatClientSample1Workbench;
 import org.jowidgets.workbench.impl.WorkbenchRunner;
 
-public final class FatClientSample1WorkbenchStarter {
+public final class FatClientSample1WorkbenchStarterSwt {
 
-	private FatClientSample1WorkbenchStarter() {}
+	private FatClientSample1WorkbenchStarterSwt() {}
 
 	public static void main(final String[] args) throws Exception {
 		new WorkbenchRunner().run(new FatClientSample1Workbench());
