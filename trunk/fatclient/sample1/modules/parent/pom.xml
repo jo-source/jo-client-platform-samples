@@ -74,11 +74,10 @@
 		<dependencies>
 
 			<dependency>
-	            <groupId>org.hibernate</groupId>
-	            <artifactId>hibernate-validator</artifactId>
-	            <version>4.0.2.GA</version>
-	            <scope>runtime</scope>
-       		</dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-validator</artifactId>
+				<version>4.2.0.Final</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.slf4j</groupId>
