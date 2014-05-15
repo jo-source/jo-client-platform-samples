@@ -1,0 +1,46 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.jowidgets.samples.fatclient.sample1.common</artifactId>
+
+	<parent>
+		<groupId>org.jowidgets.samples.fatclient.sample1</groupId>
+		<artifactId>org.jowidgets.samples.fatclient.sample1.parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../parent/pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+
+	    <dependency>
+			<groupId>org.jowidgets</groupId>
+			<artifactId>org.jowidgets.cap.ui</artifactId>
+			<version>${jocap.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jowidgets</groupId>
+			<artifactId>org.jowidgets.addons.icons.silkicons</artifactId>
+			<version>${jowidgets.version}</version>
+		</dependency>
+		
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+		
+       <dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+		</dependency>
+		
+	</dependencies>
+
+</project>
