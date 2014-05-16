@@ -28,27 +28,15 @@
 
 package org.jowidgets.samples.fatclient.sample1.common.component;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
-import org.jowidgets.cap.common.api.bean.IBeanData;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
-import org.jowidgets.cap.common.api.bean.IBeanKey;
-import org.jowidgets.cap.common.api.execution.IExecutionCallback;
-import org.jowidgets.cap.common.api.execution.IResultCallback;
-import org.jowidgets.cap.common.api.filter.IFilter;
-import org.jowidgets.cap.common.api.service.ICreatorService;
-import org.jowidgets.cap.common.api.service.IDeleterService;
-import org.jowidgets.cap.common.api.service.IReaderService;
-import org.jowidgets.cap.common.api.service.IRefreshService;
-import org.jowidgets.cap.common.api.sort.ISort;
+import org.jowidgets.cap.service.repository.api.BeanRepositoryServiceFactory;
 import org.jowidgets.cap.ui.api.table.BeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
 import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.samples.fatclient.sample1.common.attribute.PersonAttributes;
+import org.jowidgets.samples.fatclient.sample1.common.repository.PersonRepository;
 import org.jowidgets.workbench.api.IComponentContext;
 import org.jowidgets.workbench.api.IView;
 import org.jowidgets.workbench.api.IViewContext;
@@ -60,75 +48,15 @@ public final class PersonComponent extends AbstractComponent {
 
 	public PersonComponent(final IComponentContext componentContext) {
 		componentContext.setLayout(PersonComponentLayoutFactory.create());
-		this.model = createPersonModel();
-
+		this.model = createModel();
 		model.load();
 	}
 
-	private IBeanTableModel<IBeanDto> createPersonModel() {
+	private IBeanTableModel<IBeanDto> createModel() {
 		final IBeanTableModelBuilder<IBeanDto> builder = BeanTableModel.builder(IBeanDto.class);
-
 		builder.setMetaAttributes();
 		builder.setAttributes(PersonAttributes.INSTANCE);
-
-		builder.setReaderService(new IReaderService<Void>() {
-			@SuppressWarnings("unchecked")
-			@Override
-			public void read(
-				final IResultCallback<List<IBeanDto>> result,
-				final List<? extends IBeanKey> parentBeanKeys,
-				final IFilter filter,
-				final List<? extends ISort> sorting,
-				final int firstRow,
-				final int maxRows,
-				final Void parameter,
-				final IExecutionCallback executionCallback) {
-				result.finished(Collections.EMPTY_LIST);
-			}
-
-			@Override
-			public void count(
-				final IResultCallback<Integer> result,
-				final List<? extends IBeanKey> parentBeanKeys,
-				final IFilter filter,
-				final Void parameter,
-				final IExecutionCallback executionCallback) {
-				result.finished(Integer.valueOf(0));
-			}
-		});
-
-		builder.setCreatorService(new ICreatorService() {
-			@SuppressWarnings("unchecked")
-			@Override
-			public void create(
-				final IResultCallback<List<IBeanDto>> result,
-				final Collection<? extends IBeanData> beansData,
-				final IExecutionCallback executionCallback) {
-				result.finished(Collections.EMPTY_LIST);
-			}
-		});
-
-		builder.setDeleterService(new IDeleterService() {
-			@Override
-			public void delete(
-				final IResultCallback<Void> result,
-				final Collection<? extends IBeanKey> beanKeys,
-				final IExecutionCallback executionCallback) {
-				result.finished(null);
-			}
-		});
-
-		builder.setRefreshService(new IRefreshService() {
-			@SuppressWarnings("unchecked")
-			@Override
-			public void refresh(
-				final IResultCallback<List<IBeanDto>> result,
-				final Collection<? extends IBeanKey> beanKeys,
-				final IExecutionCallback executionCallback) {
-				result.finished(Collections.EMPTY_LIST);
-			}
-		});
-
+		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(PersonRepository.INSTANCE));
 		return builder.build();
 	}
 
