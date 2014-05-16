@@ -84,8 +84,10 @@ public abstract class AbstractSyncReaderService implements ISyncReaderService<Vo
 		final IFilter filter,
 		final IExecutionCallback executionCallback) {
 
-		final IBeanDtoFactory<?> dtoFactory = getDtoFactory();
+		@SuppressWarnings("rawtypes")
+		final IBeanDtoFactory dtoFactory = getDtoFactory();
 
+		@SuppressWarnings("unchecked")
 		final List<IBeanDto> result = BeanDtoFactoryHelper.createDtos(
 				dtoFactory,
 				getData(parentBeanKeys, executionCallback),

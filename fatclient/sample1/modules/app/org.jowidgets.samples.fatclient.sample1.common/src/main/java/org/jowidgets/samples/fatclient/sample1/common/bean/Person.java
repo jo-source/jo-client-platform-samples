@@ -31,6 +31,10 @@ package org.jowidgets.samples.fatclient.sample1.common.bean;
 import java.util.Date;
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 public final class Person {
 
 	public static final String NAME_PROPERTY = "name";
@@ -45,6 +49,8 @@ public final class Person {
 	private ByteValue quota;
 	private List<Role> roles;
 
+	@NotNull
+	@Length(min = 2, max = 40)
 	public String getName() {
 		return name;
 	}

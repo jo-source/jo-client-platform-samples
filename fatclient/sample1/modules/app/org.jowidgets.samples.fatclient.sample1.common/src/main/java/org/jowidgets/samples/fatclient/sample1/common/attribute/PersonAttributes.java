@@ -49,7 +49,7 @@ public final class PersonAttributes {
 		builder.add(Person.GENDER_PROPERTY).setLabel("Gender");
 		builder.add(Person.DAY_OF_BIRTH_PROPERTY).setDisplayFormat(DateDisplayFormat.DATE).setLabel("Day of birth");
 		builder.add(Person.QUOTA_PROPERTY).setLabel("Quota");
-		builder.add(Person.ROLES_PROPERTY).setLabel("Roles");
+		builder.add(Person.ROLES_PROPERTY).setSortable(true).setLabel("Roles");
 
 		return builder.build();
 	};
