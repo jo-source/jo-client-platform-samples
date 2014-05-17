@@ -32,8 +32,11 @@ import java.util.List;
 
 import org.jowidgets.cap.ui.api.attribute.Attributes;
 import org.jowidgets.cap.ui.api.attribute.IAttribute;
+import org.jowidgets.cap.ui.api.attribute.IBeanAttributeBluePrint;
 import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
 import org.jowidgets.cap.ui.api.control.DateDisplayFormat;
+import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue;
+import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue.ByteUnit;
 import org.jowidgets.samples.fatclient.sample1.common.bean.Person;
 import org.jowidgets.samples.fatclient.sample1.common.control.ByteValueControlCreator;
 
@@ -48,7 +51,13 @@ public final class PersonAttributes {
 		builder.add(Person.NAME_PROPERTY).setLabel("Name");
 		builder.add(Person.GENDER_PROPERTY).setLabel("Gender");
 		builder.add(Person.DAY_OF_BIRTH_PROPERTY).setDisplayFormat(DateDisplayFormat.DATE).setLabel("Day of birth");
-		builder.add(Person.QUOTA_PROPERTY).setLabel("Quota").setControlPanel().setControlCreator(new ByteValueControlCreator());
+
+		//TODO create a generic blue print interface for dynamic return type and remove generics from IBeanAttributeBluePrint
+		final IBeanAttributeBluePrint<Object, IBeanAttributeBluePrint<Object, ?>> bp = builder.add(Person.QUOTA_PROPERTY);
+		bp.setLabel("Quota");
+		bp.setDefaultValue(new ByteValue(250, ByteUnit.GB));
+		bp.setControlPanel().setControlCreator(new ByteValueControlCreator());
+
 		builder.add(Person.ROLES_PROPERTY).setSortable(true).setLabel("Roles");
 		return builder.build();
 	};
