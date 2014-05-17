@@ -28,6 +28,7 @@
 
 package org.jowidgets.samples.fatclient.sample1.common.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -35,13 +36,15 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
-public final class Person {
+public final class Person implements Serializable {
 
 	public static final String NAME_PROPERTY = "name";
 	public static final String DAY_OF_BIRTH_PROPERTY = "dayOfBirth";
 	public static final String GENDER_PROPERTY = "gender";
 	public static final String QUOTA_PROPERTY = "quota";
 	public static final String ROLES_PROPERTY = "roles";
+
+	private static final long serialVersionUID = 4460355581200878674L;
 
 	private String name;
 	private Date dayOfBirth;
