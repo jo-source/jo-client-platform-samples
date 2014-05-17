@@ -71,7 +71,7 @@ public final class ByteValueControl extends AbstractInputControl<ByteValue> {
 		this.unitCmb = composite.add(unitCmbBp, "growx");
 
 		final int height = unitCmb.getPreferredSize().getHeight();
-		this.valueField = composite.add(0, BPF.inputFieldIntegerNumber(), "growx, w 0::, h " + height + "!");
+		this.valueField = composite.add(0, BPF.inputFieldIntegerNumber().setMaxLength(6), "growx, w 0::, h " + height + "!");
 
 		this.lastFocus = hasFocus();
 

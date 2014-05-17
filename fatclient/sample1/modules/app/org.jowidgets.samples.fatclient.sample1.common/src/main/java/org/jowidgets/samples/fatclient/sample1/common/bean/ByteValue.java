@@ -30,7 +30,12 @@ package org.jowidgets.samples.fatclient.sample1.common.bean;
 
 import org.jowidgets.util.Assert;
 
-public final class ByteValue {
+public final class ByteValue implements Comparable<ByteValue> {
+
+	private static final long KB_MULTIPLIER = 1024;
+	private static final long MB_MULTIPLIER = KB_MULTIPLIER * 1024;
+	private static final long GB_MULTIPLIER = MB_MULTIPLIER * 1024;
+	private static final long TB_MULTIPLIER = GB_MULTIPLIER * 1024;
 
 	private final ByteUnit unit;
 	private final int value;
@@ -49,6 +54,24 @@ public final class ByteValue {
 		return value;
 	}
 
+	private long getByteValue() {
+		if (ByteUnit.KB.equals(unit)) {
+			return value * KB_MULTIPLIER;
+		}
+		else if (ByteUnit.MB.equals(unit)) {
+			return value * MB_MULTIPLIER;
+		}
+		else if (ByteUnit.GB.equals(unit)) {
+			return value * GB_MULTIPLIER;
+		}
+		else if (ByteUnit.TB.equals(unit)) {
+			return value * TB_MULTIPLIER;
+		}
+		else {
+			throw new IllegalStateException("Unit '" + unit + "' is unknown");
+		}
+	}
+
 	@Override
 	public String toString() {
 		return value + " " + unit;
@@ -59,6 +82,19 @@ public final class ByteValue {
 		MB,
 		GB,
 		TB;
+	}
+
+	@Override
+	public int compareTo(final ByteValue other) {
+		if (getByteValue() < other.getByteValue()) {
+			return -1;
+		}
+		else if (getByteValue() > other.getByteValue()) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
 	}
 
 }
