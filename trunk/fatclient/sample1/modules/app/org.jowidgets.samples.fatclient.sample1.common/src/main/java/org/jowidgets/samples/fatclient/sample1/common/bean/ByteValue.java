@@ -44,6 +44,13 @@ public final class ByteValue implements Comparable<ByteValue>, Serializable {
 	private final ByteUnit unit;
 	private final int value;
 
+	public enum ByteUnit {
+		KB,
+		MB,
+		GB,
+		TB;
+	}
+
 	public ByteValue(final int value, final ByteUnit unit) {
 		Assert.paramNotNull(unit, "unit");
 		this.unit = unit;
@@ -81,11 +88,34 @@ public final class ByteValue implements Comparable<ByteValue>, Serializable {
 		return value + " " + unit;
 	}
 
-	public enum ByteUnit {
-		KB,
-		MB,
-		GB,
-		TB;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((unit == null) ? 0 : unit.hashCode());
+		result = prime * result + value;
+		return result;
+	}
+
+	@Override
+	public boolean equals(final Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof ByteValue)) {
+			return false;
+		}
+		final ByteValue other = (ByteValue) obj;
+		if (unit != other.unit) {
+			return false;
+		}
+		if (value != other.value) {
+			return false;
+		}
+		return true;
 	}
 
 	@Override
