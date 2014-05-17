@@ -54,6 +54,7 @@ public final class PersonComponent extends AbstractComponent {
 
 	private IBeanTableModel<IBeanDto> createModel() {
 		final IBeanTableModelBuilder<IBeanDto> builder = BeanTableModel.builder(IBeanDto.class);
+		builder.setLastBeanEnabled(true);
 		builder.setMetaAttributes();
 		builder.setAttributes(PersonAttributes.INSTANCE);
 		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(PersonRepository.INSTANCE));
