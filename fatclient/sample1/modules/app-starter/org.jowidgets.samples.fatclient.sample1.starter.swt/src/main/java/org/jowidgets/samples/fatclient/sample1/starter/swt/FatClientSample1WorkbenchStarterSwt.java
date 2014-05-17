@@ -29,6 +29,7 @@
 package org.jowidgets.samples.fatclient.sample1.starter.swt;
 
 import org.jowidgets.samples.fatclient.sample1.common.workbench.FatClientSample1Workbench;
+import org.jowidgets.spi.impl.swt.common.options.SwtOptions;
 import org.jowidgets.workbench.impl.WorkbenchRunner;
 
 public final class FatClientSample1WorkbenchStarterSwt {
@@ -36,6 +37,7 @@ public final class FatClientSample1WorkbenchStarterSwt {
 	private FatClientSample1WorkbenchStarterSwt() {}
 
 	public static void main(final String[] args) throws Exception {
+		SwtOptions.setClassicTableSelectionColors();
 		new WorkbenchRunner().run(new FatClientSample1Workbench());
 	}
 
