@@ -28,9 +28,13 @@
 
 package org.jowidgets.samples.fatclient.sample1.common.bean;
 
+import java.io.Serializable;
+
 import org.jowidgets.util.Assert;
 
-public final class ByteValue implements Comparable<ByteValue> {
+public final class ByteValue implements Comparable<ByteValue>, Serializable {
+
+	private static final long serialVersionUID = 8735052254044524119L;
 
 	private static final long KB_MULTIPLIER = 1024;
 	private static final long MB_MULTIPLIER = KB_MULTIPLIER * 1024;

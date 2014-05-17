@@ -33,6 +33,7 @@ import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
+import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
 import org.jowidgets.common.image.IImageConstant;
 import org.jowidgets.tools.layout.MigLayoutFactory;
@@ -51,7 +52,11 @@ public final class PersonTableView extends AbstractView {
 		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 
 		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
-		container.add(cbpf.beanTable(model), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+		final IBeanTableBluePrint<IBeanDto> beanTableBp = cbpf.beanTable(model);
+		beanTableBp.setDefaultCopyAction(true);
+		beanTableBp.setDefaultPasteAction(true);
+		beanTableBp.setEditable(true);
+		container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
 	}
 
 }
