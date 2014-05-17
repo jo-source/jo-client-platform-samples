@@ -26,31 +26,19 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample1.common.attribute;
+package org.jowidgets.samples.fatclient.sample1.common.control;
 
-import java.util.List;
+import org.jowidgets.api.widgets.IInputControl;
+import org.jowidgets.common.widgets.factory.ICustomWidgetCreator;
+import org.jowidgets.common.widgets.factory.ICustomWidgetFactory;
+import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue;
+import org.jowidgets.tools.widgets.blueprint.BPF;
 
-import org.jowidgets.cap.ui.api.attribute.Attributes;
-import org.jowidgets.cap.ui.api.attribute.IAttribute;
-import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
-import org.jowidgets.cap.ui.api.control.DateDisplayFormat;
-import org.jowidgets.samples.fatclient.sample1.common.bean.Person;
-import org.jowidgets.samples.fatclient.sample1.common.control.ByteValueControlCreator;
+public final class ByteValueControlCreator implements ICustomWidgetCreator<IInputControl<ByteValue>> {
 
-public final class PersonAttributes {
-
-	public static final List<IAttribute<Object>> INSTANCE = createInstance();
-
-	private PersonAttributes() {}
-
-	private static List<IAttribute<Object>> createInstance() {
-		final IBeanAttributesBuilder builder = Attributes.builder(Person.class);
-		builder.add(Person.NAME_PROPERTY).setLabel("Name");
-		builder.add(Person.GENDER_PROPERTY).setLabel("Gender");
-		builder.add(Person.DAY_OF_BIRTH_PROPERTY).setDisplayFormat(DateDisplayFormat.DATE).setLabel("Day of birth");
-		builder.add(Person.QUOTA_PROPERTY).setLabel("Quota").setControlPanel().setControlCreator(new ByteValueControlCreator());
-		builder.add(Person.ROLES_PROPERTY).setSortable(true).setLabel("Roles");
-		return builder.build();
-	};
+	@Override
+	public IInputControl<ByteValue> create(final ICustomWidgetFactory widgetFactory) {
+		return new ByteValueControl(widgetFactory.create(BPF.composite()));
+	}
 
 }
