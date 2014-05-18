@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.jowidgets.samples.fatclient.sample1.starter.rwt</artifactId>
+	<packaging>war</packaging>
+
+	<parent>
+		<groupId>org.jowidgets.samples.fatclient.sample1</groupId>
+		<artifactId>org.jowidgets.samples.fatclient.sample1.parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<relativePath>../../parent/pom.xml</relativePath>
+	</parent>
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>org.jowidgets.samples.fatclient.sample1</groupId>
+			<artifactId>org.jowidgets.samples.fatclient.sample1.common</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.jowidgets</groupId>
+			<artifactId>org.jowidgets.cap.tools.starter.webapp.rwt</artifactId>
+			<version>${jocap.version}</version>
+		</dependency>
+
+		<dependency>
+            <groupId>org.eclipse</groupId>
+            <artifactId>org.eclipse.rap.rwt</artifactId>
+            <version>2.2.0.20131204-0942</version>
+        </dependency>
+
+		
+		
+	</dependencies>
+
+	<build>
+		<finalName>fatclient-sample1</finalName>
+	</build>
+
+</project>
