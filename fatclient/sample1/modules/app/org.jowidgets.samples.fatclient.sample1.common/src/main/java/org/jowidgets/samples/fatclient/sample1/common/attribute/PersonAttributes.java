@@ -28,6 +28,7 @@
 
 package org.jowidgets.samples.fatclient.sample1.common.attribute;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.jowidgets.cap.ui.api.attribute.Attributes;
@@ -48,17 +49,27 @@ public final class PersonAttributes {
 
 	private static List<IAttribute<Object>> createInstance() {
 		final IBeanAttributesBuilder builder = Attributes.builder(Person.class);
-		builder.add(Person.NAME_PROPERTY).setLabel("Name");
-		builder.add(Person.GENDER_PROPERTY).setLabel("Gender");
-		builder.add(Person.DAY_OF_BIRTH_PROPERTY).setDisplayFormat(DateDisplayFormat.DATE).setLabel("Day of birth");
 
-		//TODO create a generic blue print interface for dynamic return type and remove generics from IBeanAttributeBluePrint
-		final IBeanAttributeBluePrint<Object, IBeanAttributeBluePrint<Object, ?>> bp = builder.add(Person.QUOTA_PROPERTY);
-		bp.setLabel("Quota");
+		//name
+		builder.add(Person.NAME_PROPERTY).setLabel("Name");
+
+		//gender
+		builder.add(Person.GENDER_PROPERTY).setLabel("Gender");
+
+		//day of birth 
+		IBeanAttributeBluePrint<Object> bp = builder.add(Person.DAY_OF_BIRTH_PROPERTY).setLabel("Day of birth");
+		bp.setDisplayFormat(DateDisplayFormat.DATE);
+
+		//quota
+		bp = builder.add(Person.QUOTA_PROPERTY).setLabel("Quota");
 		bp.setDefaultValue(new ByteValue(250, ByteUnit.GB));
 		bp.setControlPanel().setControlCreator(new ByteValueControlCreator());
 
-		builder.add(Person.ROLES_PROPERTY).setSortable(true).setLabel("Roles");
+		//roles
+		bp = builder.add(Person.ROLES_PROPERTY).setLabel("Roles");
+		bp.setSortable(true);
+		bp.setDefaultValue(Collections.emptyList());
+
 		return builder.build();
 	};
 
