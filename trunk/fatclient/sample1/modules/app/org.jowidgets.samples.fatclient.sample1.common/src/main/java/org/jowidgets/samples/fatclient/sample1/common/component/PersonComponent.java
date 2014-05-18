@@ -55,6 +55,7 @@ public final class PersonComponent extends AbstractComponent {
 	private IBeanTableModel<IBeanDto> createModel() {
 		final IBeanTableModelBuilder<IBeanDto> builder = BeanTableModel.builder(IBeanDto.class);
 		builder.setLastBeanEnabled(true);
+		builder.setUseLastModificationForDefault(true);
 		builder.setMetaAttributes();
 		builder.setAttributes(PersonAttributes.INSTANCE);
 		builder.setEntityLabelSingular("Person");
