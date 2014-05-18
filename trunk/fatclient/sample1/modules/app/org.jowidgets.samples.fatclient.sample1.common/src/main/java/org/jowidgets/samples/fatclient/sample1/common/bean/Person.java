@@ -39,6 +39,7 @@ import org.hibernate.validator.constraints.Length;
 public final class Person implements Serializable {
 
 	public static final String NAME_PROPERTY = "name";
+	public static final String LASTNAME_PROPERTY = "lastname";
 	public static final String DAY_OF_BIRTH_PROPERTY = "dayOfBirth";
 	public static final String GENDER_PROPERTY = "gender";
 	public static final String QUOTA_PROPERTY = "quota";
@@ -47,6 +48,7 @@ public final class Person implements Serializable {
 	private static final long serialVersionUID = 4460355581200878674L;
 
 	private String name;
+	private String lastname;
 	private Date dayOfBirth;
 	private Gender gender;
 	private ByteValue quota;
@@ -60,6 +62,16 @@ public final class Person implements Serializable {
 
 	public void setName(final String name) {
 		this.name = name;
+	}
+
+	@NotNull
+	@Length(min = 2, max = 40)
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(final String lastname) {
+		this.lastname = lastname;
 	}
 
 	public Date getDayOfBirth() {

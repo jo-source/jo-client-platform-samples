@@ -48,31 +48,27 @@ public final class PersonRepository {
 		final HashMapCrudRepository<Person> result = new HashMapCrudRepository<Person>(Person.class);
 
 		Person person = new Person();
-		person.setName("Ben Zien");
+		person.setName("Ben");
+		person.setLastname("Zien");
 		person.setGender(Gender.MALE);
 		person.setQuota(new ByteValue(100, ByteUnit.GB));
 		person.setRoles(Arrays.asList(Role.ADMIN, Role.USER, Role.GUEST));
 		result.add(person);
 
 		person = new Person();
-		person.setName("Ben Ebelt");
+		person.setName("Ben");
+		person.setLastname("Ebelt");
 		person.setGender(Gender.MALE);
 		person.setQuota(new ByteValue(50, ByteUnit.GB));
 		person.setRoles(Arrays.asList(Role.MANAGER));
 		result.add(person);
 
 		person = new Person();
-		person.setName("Klara Fall");
+		person.setName("Klara");
+		person.setLastname("Fall");
 		person.setGender(Gender.FEMALE);
 		person.setQuota(new ByteValue(1, ByteUnit.TB));
 		result.add(person);
-
-		//		for (int i = 0; i < 1000; i++) {
-		//			person = new Person();
-		//			person.setName("Name " + i);
-		//			person.setGender(Gender.FEMALE);
-		//			result.add(person);
-		//		}
 
 		return result;
 	};
