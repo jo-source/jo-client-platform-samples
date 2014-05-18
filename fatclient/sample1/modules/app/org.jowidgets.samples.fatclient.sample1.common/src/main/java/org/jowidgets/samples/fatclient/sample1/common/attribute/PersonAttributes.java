@@ -53,6 +53,9 @@ public final class PersonAttributes {
 		//name
 		builder.add(Person.NAME_PROPERTY).setLabel("Name");
 
+		//lastname
+		builder.add(Person.LASTNAME_PROPERTY).setLabel("Lastname");
+
 		//gender
 		builder.add(Person.GENDER_PROPERTY).setLabel("Gender");
 
