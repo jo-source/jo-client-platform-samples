@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2014, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,45 +26,27 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample1.common.workbench;
+package org.jowidgets.samples.fatclient.sample1.starter.rwt;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.fatclient.sample1.common.application.FatClientSample1ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import java.util.HashMap;
+import java.util.Map;
 
-public final class FatClientSample1Workbench implements IWorkbenchFactory {
+import org.eclipse.rap.rwt.application.Application;
+import org.eclipse.rap.rwt.application.Application.OperationMode;
+import org.eclipse.rap.rwt.application.ApplicationConfiguration;
+import org.eclipse.rap.rwt.client.WebClient;
 
-	private final boolean rwt;
-
-	public FatClientSample1Workbench() {
-		this(false);
-	}
-
-	public FatClientSample1Workbench(final boolean rwt) {
-		this.rwt = rwt;
-	}
+public final class FatClientSample1RwtConfiguration implements ApplicationConfiguration {
 
 	@Override
-	public IWorkbench create() {
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLoginCallback(null);
-		builder.setLabel("Fat client sample1");
-		builder.addApplication(FatClientSample1ApplicationFactory.create());
-
-		builder.setInitialMaximized(rwt);
-		builder.setDecorated(!rwt);
-
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
+	public void configure(final Application application) {
+		application.setOperationMode(OperationMode.SWT_COMPATIBILITY);
+		application.addStyleSheet(
+				"org.jowidgets.spi.impl.rwt.themes.business",
+				"org/jowidgets/spi/impl/rwt/themes/business/business_less_insets.css");
+		final Map<String, String> properties = new HashMap<String, String>();
+		properties.put(WebClient.THEME_ID, "org.jowidgets.spi.impl.rwt.themes.business");
+		properties.put(WebClient.PAGE_TITLE, "Sample1");
+		application.addEntryPoint("/Sample1", FatClientSample1RwtEntryPoint.class, properties);
 	}
-
 }

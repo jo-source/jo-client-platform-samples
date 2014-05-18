@@ -26,6 +26,7 @@
 	    <module>../app/org.jowidgets.samples.fatclient.sample1.common</module>
 		<module>../app-starter/org.jowidgets.samples.fatclient.sample1.starter.swt</module>
 		<module>../app-starter/org.jowidgets.samples.fatclient.sample1.starter.swing</module>
+		<module>../app-starter/org.jowidgets.samples.fatclient.sample1.starter.rwt</module>
 	</modules>
 
 	<distributionManagement>
