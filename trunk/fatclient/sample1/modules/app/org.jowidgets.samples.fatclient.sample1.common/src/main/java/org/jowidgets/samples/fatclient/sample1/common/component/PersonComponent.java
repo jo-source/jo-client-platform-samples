@@ -57,6 +57,8 @@ public final class PersonComponent extends AbstractComponent {
 		builder.setLastBeanEnabled(true);
 		builder.setMetaAttributes();
 		builder.setAttributes(PersonAttributes.INSTANCE);
+		builder.setEntityLabelSingular("Person");
+		builder.setEntityLabelPlural("Persons");
 		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(PersonRepository.INSTANCE));
 		return builder.build();
 	}
