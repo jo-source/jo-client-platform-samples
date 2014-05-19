@@ -75,6 +75,7 @@ public final class RadioStationComponent extends AbstractComponent {
 		builder.setEntityLabelSingular("Radio station");
 		builder.setEntityLabelPlural("Radio stations");
 		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(RadioStationRepository.INSTANCE));
+		builder.setAutoSelection(false);
 		builder.setParent(parent, LinkType.SELECTION_FIRST);
 		return builder.build();
 	}
