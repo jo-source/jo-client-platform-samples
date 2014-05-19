@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample1.starter.rwt;
+package org.jowidgets.samples.fatclient.sample2.starter.rwt;
 
 import java.util.HashMap;
 import java.util.Map;
