@@ -32,14 +32,13 @@ import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.bean.IBeanProxy;
-import org.jowidgets.cap.ui.api.bean.IBeanSelection;
 import org.jowidgets.cap.ui.api.bean.IBeanSelectionEvent;
 import org.jowidgets.cap.ui.api.bean.IBeanSelectionListener;
+import org.jowidgets.cap.ui.api.model.IModificationStateListener;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.widgets.IBeanTable;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
-import org.jowidgets.cap.ui.tools.model.BeanListModelListenerAdapter;
 import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.workbench.api.IViewContext;
 import org.jowidgets.workbench.tools.AbstractView;
@@ -49,10 +48,16 @@ public final class RadioStationTableView extends AbstractView {
 	public static final String ID = RadioStationTableView.class.getName();
 	public static final String DEFAULT_LABEL = "Radio Stations";
 
+	private final IBeanTableModel<IBeanDto> parentModel;
+	private final IBeanTable<IBeanDto> table;
+
 	public RadioStationTableView(
 		final IViewContext context,
 		final IBeanTableModel<IBeanDto> parentModel,
 		final IBeanTableModel<IBeanDto> model) {
+
+		this.parentModel = parentModel;
+
 		final IContainer container = context.getContainer();
 		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 
@@ -61,27 +66,40 @@ public final class RadioStationTableView extends AbstractView {
 		beanTableBp.setDefaultCopyAction(true);
 		beanTableBp.setDefaultPasteAction(true);
 		beanTableBp.setEditable(true);
-		final IBeanTable<IBeanDto> table = container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+		this.table = container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
 
 		parentModel.addBeanSelectionListener(new IBeanSelectionListener<IBeanDto>() {
 			@Override
 			public void selectionChanged(final IBeanSelectionEvent<IBeanDto> event) {
-				table.setEnabled(hasPersitentBean(event));
+				setVisibleStateOfTable();
 			}
 		});
 
-		parentModel.addBeanListModelListener(new BeanListModelListenerAdapter<IBeanDto>() {
+		parentModel.addModificationStateListener(new IModificationStateListener() {
 			@Override
-			public void beansChanged() {
-				table.setEnabled(hasPersitentBean(parentModel.getBeanSelection()));
+			public void modificationStateChanged() {
+				setVisibleStateOfTable();
 			}
 		});
 
-		table.setEnabled(hasPersitentBean(parentModel.getBeanSelection()));
+		setVisibleStateOfTable();
 	}
 
-	private boolean hasPersitentBean(final IBeanSelection<IBeanDto> event) {
-		final IBeanProxy<IBeanDto> bean = event.getFirstSelected();
+	private void setVisibleStateOfTable() {
+		if (hasPersitentBean()) {
+			if (!table.isVisible()) {
+				table.setVisible(true);
+			}
+		}
+		else {
+			if (table.isVisible()) {
+				table.setVisible(false);
+			}
+		}
+	}
+
+	private boolean hasPersitentBean() {
+		final IBeanProxy<IBeanDto> bean = parentModel.getFirstSelectedBean();
 		if (bean == null || bean.isDummy() || bean.isTransient()) {
 			return false;
 		}
