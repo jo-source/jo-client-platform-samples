@@ -60,6 +60,7 @@ public final class FatClientSample1Workbench implements IWorkbenchFactory {
 		builder.setLoginCallback(null);
 		builder.setLabel("Fat client sample1");
 		builder.addApplication(FatClientSample1ApplicationFactory.create());
+		builder.setApplicationNavigator(false);
 
 		builder.setInitialMaximized(rwt);
 		builder.setDecorated(!rwt);
