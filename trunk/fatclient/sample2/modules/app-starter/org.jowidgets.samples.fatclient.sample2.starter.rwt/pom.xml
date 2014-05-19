@@ -37,7 +37,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>fatclient-sample1</finalName>
+		<finalName>fatclient-sample2</finalName>
 	</build>
 
 </project>

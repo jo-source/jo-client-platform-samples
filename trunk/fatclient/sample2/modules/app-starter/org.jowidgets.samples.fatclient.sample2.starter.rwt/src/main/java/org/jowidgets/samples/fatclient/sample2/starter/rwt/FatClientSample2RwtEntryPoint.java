@@ -25,7 +25,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
-package org.jowidgets.samples.fatclient.sample1.starter.rwt;
+package org.jowidgets.samples.fatclient.sample2.starter.rwt;
 
 import org.jowidgets.cap.tools.starter.webapp.rwt.CapRwtEntryPoint;
 import org.jowidgets.samples.fatclient.sample2.common.workbench.FatClientSample2Workbench;
