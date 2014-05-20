@@ -51,7 +51,7 @@ public final class HzValue implements Comparable<HzValue>, Serializable {
 		Hz,
 		KHz,
 		MHz,
-		Ghz
+		GHz
 	}
 
 	public HzValue(final double value, final HzUnit unit) {
@@ -78,7 +78,7 @@ public final class HzValue implements Comparable<HzValue>, Serializable {
 		else if (HzUnit.MHz.equals(unit)) {
 			return value * MH_MULTIPLIER;
 		}
-		else if (HzUnit.Ghz.equals(unit)) {
+		else if (HzUnit.GHz.equals(unit)) {
 			return value * GH_MULTIPLIER;
 		}
 		else {
