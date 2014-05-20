@@ -113,4 +113,23 @@ public final class RadioStation implements Serializable {
 		this.radioStationList = radioStationList;
 	}
 
+	@Override
+	public String toString() {
+		return "RadioStation [frequency="
+			+ frequency
+			+ ", bandwidth="
+			+ bandwidth
+			+ ", band="
+			+ band
+			+ ", modulation="
+			+ modulation
+			+ ", category="
+			+ category
+			+ ", name="
+			+ name
+			+ ", radioStationList="
+			+ radioStationList
+			+ "]";
+	}
+
 }
