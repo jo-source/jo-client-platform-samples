@@ -105,7 +105,7 @@ public final class HzValueControl extends AbstractInputControl<HzValue> {
 					unitCmb.setValue(HzUnit.MHz);
 				}
 				else if (VirtualKey.G.equals(event.getVirtualKey())) {
-					unitCmb.setValue(HzUnit.Ghz);
+					unitCmb.setValue(HzUnit.GHz);
 				}
 			}
 		});
