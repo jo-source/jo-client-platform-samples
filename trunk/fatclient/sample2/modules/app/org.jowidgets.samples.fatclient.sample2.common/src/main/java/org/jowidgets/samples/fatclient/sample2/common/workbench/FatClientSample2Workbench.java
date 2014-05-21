@@ -51,6 +51,7 @@ public final class FatClientSample2Workbench implements IWorkbenchFactory {
 
 	@Override
 	public IWorkbench create() {
+
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
 

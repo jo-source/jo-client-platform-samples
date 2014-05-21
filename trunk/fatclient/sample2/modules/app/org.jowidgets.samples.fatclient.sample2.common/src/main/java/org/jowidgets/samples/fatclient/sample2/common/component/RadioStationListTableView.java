@@ -43,7 +43,10 @@ public final class RadioStationListTableView extends AbstractView {
 	public static final String ID = RadioStationListTableView.class.getName();
 	public static final String DEFAULT_LABEL = "Radio station lists";
 
-	public RadioStationListTableView(final IViewContext context, final IBeanTableModel<IBeanDto> model) {
+	public RadioStationListTableView(
+		final IViewContext context,
+		final IBeanTableModel<IBeanDto> model,
+		final IBeanTableModel<IBeanDto> child) {
 		final IContainer container = context.getContainer();
 		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 
@@ -54,5 +57,4 @@ public final class RadioStationListTableView extends AbstractView {
 		beanTableBp.setEditable(true);
 		container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
 	}
-
 }
