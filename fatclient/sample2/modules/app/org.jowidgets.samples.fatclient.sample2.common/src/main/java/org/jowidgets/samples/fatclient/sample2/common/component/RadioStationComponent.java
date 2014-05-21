@@ -58,6 +58,10 @@ public final class RadioStationComponent extends AbstractComponent {
 
 		this.stationModel = createStationModel(stationListModel);
 		stationModel.load();
+
+		//this ensures, that changes of selection and data will consider the
+		//modification state of the station model (e.g. to save first, etc.)
+		stationListModel.getDataModelContext().addDependency(stationModel);
 	}
 
 	private IBeanTableModel<IBeanDto> createStationListModel() {
@@ -76,6 +80,8 @@ public final class RadioStationComponent extends AbstractComponent {
 		builder.setEntityLabelPlural("Radio stations");
 		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(RadioStationRepository.INSTANCE));
 		builder.setAutoSelection(false);
+
+		//this ensures, that the parent beans will be set when models loads or creates beans
 		builder.setParent(parent, LinkType.SELECTION_FIRST);
 		return builder.build();
 	}
@@ -91,7 +97,7 @@ public final class RadioStationComponent extends AbstractComponent {
 	@Override
 	public IView createView(final String viewId, final IViewContext context) {
 		if (RadioStationListTableView.ID.equals(viewId)) {
-			return new RadioStationListTableView(context, stationListModel);
+			return new RadioStationListTableView(context, stationListModel, stationModel);
 		}
 		else if (RadioStationTableView.ID.equals(viewId)) {
 			return new RadioStationTableView(context, stationListModel, stationModel);
