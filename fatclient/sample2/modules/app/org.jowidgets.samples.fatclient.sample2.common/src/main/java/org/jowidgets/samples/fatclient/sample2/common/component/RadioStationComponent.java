@@ -109,25 +109,29 @@ public final class RadioStationComponent extends AbstractComponent {
 
 	@Override
 	public void onActivation() {
-		addDataModel(stationModel);
-		addDataModel(stationListModel);
+		addDataModel(stationModel, false);
+		addDataModel(stationListModel, true);
 	}
 
 	@Override
 	public void onDeactivation(final IVetoable vetoable) {
-		removeDataModel(stationModel);
-		removeDataModel(stationListModel);
+		removeDataModel(stationModel, false);
+		removeDataModel(stationListModel, true);
 	}
 
-	private void addDataModel(final IDataModel dataModel) {
-		CapWorkbenchActionsProvider.loadAction().addDataModel(dataModel);
+	private void addDataModel(final IDataModel dataModel, final boolean master) {
+		if (master) {
+			CapWorkbenchActionsProvider.loadAction().addDataModel(dataModel);
+		}
 		CapWorkbenchActionsProvider.saveAction().addDataModel(dataModel);
 		CapWorkbenchActionsProvider.undoAction().addDataModel(dataModel);
 		CapWorkbenchActionsProvider.cancelAction().addDataModel(dataModel);
 	}
 
-	private void removeDataModel(final IDataModel dataModel) {
-		CapWorkbenchActionsProvider.loadAction().removeDataModel(dataModel);
+	private void removeDataModel(final IDataModel dataModel, final boolean master) {
+		if (master) {
+			CapWorkbenchActionsProvider.loadAction().removeDataModel(dataModel);
+		}
 		CapWorkbenchActionsProvider.saveAction().removeDataModel(dataModel);
 		CapWorkbenchActionsProvider.undoAction().removeDataModel(dataModel);
 		CapWorkbenchActionsProvider.cancelAction().removeDataModel(dataModel);
