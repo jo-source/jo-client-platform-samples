@@ -66,16 +66,15 @@ public final class HzValueControl extends AbstractInputControl<HzValue> {
 
 		this.focusObservable = new FocusObservable();
 
-		composite.setLayout(new MigLayoutDescriptor("0[grow, 0::]0[]0", "0[]0"));
+		composite.setLayout(new MigLayoutDescriptor("0[grow, 0::]0[]0", "0[grow]0"));
 
 		final IComboBoxSelectionBluePrint<HzUnit> unitCmbBp = BPF.comboBoxSelection(HzUnit.values());
 		unitCmbBp.autoCompletionOff().setValue(HzUnit.MHz);
-		this.unitCmb = composite.add(unitCmbBp, "growx");
+		this.unitCmb = composite.add(unitCmbBp, "growy, sgy hg");
 
-		final int height = unitCmb.getPreferredSize().getHeight();
 		final IConverter<Double> doubleNumbeConverter = Toolkit.getConverterProvider().doubleNumber();
 		final IInputFieldBluePrint<Double> inputFieldBp = BPF.inputField(doubleNumbeConverter).setMaxLength(10);
-		this.valueField = composite.add(0, inputFieldBp, "growx, w 0::, h " + height + "!");
+		this.valueField = composite.add(0, inputFieldBp, "grow, w 0::, sgy hg");
 
 		this.lastFocus = hasFocus();
 
