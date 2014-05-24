@@ -37,6 +37,7 @@ import org.jowidgets.api.widgets.blueprint.IComboBoxSelectionBluePrint;
 import org.jowidgets.api.widgets.blueprint.IInputFieldBluePrint;
 import org.jowidgets.common.types.Dimension;
 import org.jowidgets.common.types.VirtualKey;
+import org.jowidgets.common.widgets.ISelectable;
 import org.jowidgets.common.widgets.controller.IFocusListener;
 import org.jowidgets.common.widgets.controller.IInputListener;
 import org.jowidgets.common.widgets.controller.IKeyEvent;
@@ -53,7 +54,7 @@ import org.jowidgets.validation.IValidationConditionListener;
 import org.jowidgets.validation.IValidationResult;
 import org.jowidgets.validation.ValidationResult;
 
-public final class HzValueControl extends AbstractInputControl<HzValue> {
+public final class HzValueControl extends AbstractInputControl<HzValue> implements ISelectable {
 
 	private final IInputField<Double> valueField;
 	private final IComboBox<HzUnit> unitCmb;
@@ -212,6 +213,11 @@ public final class HzValueControl extends AbstractInputControl<HzValue> {
 	@Override
 	public boolean hasFocus() {
 		return valueField.hasFocus() || unitCmb.hasFocus();
+	}
+
+	@Override
+	public void select() {
+		valueField.select();
 	}
 
 	private void focusChanged() {
