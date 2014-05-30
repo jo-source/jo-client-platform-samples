@@ -32,6 +32,7 @@ import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Shell;
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
+import org.jowidgets.api.model.item.IToolBarModel;
 import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
@@ -41,6 +42,7 @@ import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.widgets.IBeanTable;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
+import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.color.ColorValue;
 import org.jowidgets.common.color.IColorConstant;
 import org.jowidgets.common.image.IImageConstant;
@@ -99,6 +101,12 @@ public final class TagTableView extends AbstractView {
 			}
 
 		});
+
+		final IToolBarModel toolBar = context.getToolBar();
+
+		toolBar.addAction(table.getDefaultDeleterAction());
+		toolBar.addAction(CapWorkbenchActionsProvider.undoAction());
+		toolBar.addAction(CapWorkbenchActionsProvider.saveAction());
 	}
 
 	private IColorConstant getNewColor(final IColorConstant color) {
