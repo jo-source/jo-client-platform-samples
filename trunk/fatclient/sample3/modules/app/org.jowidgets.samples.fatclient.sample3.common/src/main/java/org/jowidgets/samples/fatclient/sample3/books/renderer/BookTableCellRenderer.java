@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.tags.renderer;
+package org.jowidgets.samples.fatclient.sample3.books.renderer;
 
 import org.jowidgets.api.color.Colors;
 import org.jowidgets.api.model.table.ITableCellBluePrint;
@@ -37,9 +37,10 @@ import org.jowidgets.cap.ui.api.table.IBeanTableCellRenderer;
 import org.jowidgets.common.color.IColorConstant;
 import org.jowidgets.common.model.ITableCell;
 import org.jowidgets.common.types.Markup;
+import org.jowidgets.samples.fatclient.sample3.books.bean.Book;
 import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 
-public final class TagTableCellRenderer implements IBeanTableCellRenderer<IBeanDto> {
+public final class BookTableCellRenderer implements IBeanTableCellRenderer<IBeanDto> {
 
 	@Override
 	public void render(
@@ -56,43 +57,26 @@ public final class TagTableCellRenderer implements IBeanTableCellRenderer<IBeanD
 		bluePrint.setForegroundColor(Colors.BLACK);
 		bluePrint.setBackgroundColor(Colors.WHITE);
 
-		final Object markup = bean.getValue(Tag.MARKUP_PROPERTY);
-		final Object foreground = bean.getValue(Tag.FOREGROUND_PROPERTY);
-		final Object background = bean.getValue(Tag.BACKGROUND_PROPERTY);
+		final Object tagObject = bean.getValue(Book.TAG_PROPERTY);
 
-		if (markup instanceof Markup) {
-			bluePrint.setMarkup((Markup) markup);
-		}
+		if (tagObject instanceof Tag) {
+			final Tag tag = (Tag) tagObject;
 
-		if (columnIndex == 0) {
-			if (foreground instanceof IColorConstant) {
-				bluePrint.setForegroundColor((IColorConstant) foreground);
+			final IColorConstant foreground = tag.getForeground();
+			if (foreground != null) {
+				bluePrint.setForegroundColor(foreground);
 			}
 
-			if (background instanceof IColorConstant) {
-				bluePrint.setBackgroundColor((IColorConstant) background);
+			final IColorConstant background = tag.getBackground();
+			if (background != null) {
+				bluePrint.setBackgroundColor(background);
 			}
-		}
 
-		else if (columnIndex == 1 || columnIndex == 2) {
-			if (background instanceof IColorConstant) {
-				bluePrint.setBackgroundColor((IColorConstant) background);
-				bluePrint.setSelectedBackgroundColor((IColorConstant) background);
+			final Markup markup = tag.getMarkup();
+			if (markup != null) {
+				bluePrint.setMarkup(markup);
 			}
-			if (foreground instanceof IColorConstant) {
-				bluePrint.setForegroundColor((IColorConstant) foreground);
-				bluePrint.setSelectedForegroundColor((IColorConstant) foreground);
-			}
-		}
-		else if (columnIndex == 3) {
-			if (foreground instanceof IColorConstant) {
-				bluePrint.setBackgroundColor((IColorConstant) foreground);
-				bluePrint.setSelectedBackgroundColor((IColorConstant) foreground);
-			}
-			if (background instanceof IColorConstant) {
-				bluePrint.setForegroundColor((IColorConstant) background);
-				bluePrint.setSelectedForegroundColor((IColorConstant) background);
-			}
+
 		}
 
 	}

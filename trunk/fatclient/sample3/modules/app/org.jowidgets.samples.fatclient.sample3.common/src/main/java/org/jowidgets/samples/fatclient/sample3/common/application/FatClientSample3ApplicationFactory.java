@@ -29,6 +29,7 @@
 package org.jowidgets.samples.fatclient.sample3.common.application;
 
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
+import org.jowidgets.samples.fatclient.sample3.books.component.BookComponent;
 import org.jowidgets.samples.fatclient.sample3.tags.component.TagComponent;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModel;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModelBuilder;
@@ -44,22 +45,32 @@ public final class FatClientSample3ApplicationFactory {
 	public static IWorkbenchApplicationModel create() {
 		final IWorkbenchApplicationModelBuilder builder = new WorkbenchApplicationModelBuilder();
 		builder.setId(FatClientSample3ApplicationFactory.class.getName());
-		builder.setLabel("Tag demo");
+		builder.setLabel("Book demo");
 		createComponentTree(builder);
 		return builder.build();
 	}
 
 	private static void createComponentTree(final IWorkbenchApplicationModelBuilder builder) {
-		builder.addChild(createComponentNode());
+		builder.addChild(createBookNode());
+		builder.addChild(createTagNode());
 	}
 
-	private static IComponentNodeModel createComponentNode() {
+	private static IComponentNodeModel createBookNode() {
+		final IComponentNodeModelBuilder builder = new ComponentNodeModelBuilder();
+		builder.setId(BookComponent.class.getName());
+		builder.setLabel("Books");
+		builder.setIcon(SilkIcons.BOOK);
+		builder.setComponentFactory(BookComponent.class);
+		builder.setSelected(true);
+		return builder.build();
+	}
+
+	private static IComponentNodeModel createTagNode() {
 		final IComponentNodeModelBuilder builder = new ComponentNodeModelBuilder();
 		builder.setId(TagComponent.class.getName());
 		builder.setLabel("Tags");
 		builder.setIcon(SilkIcons.TAG_BLUE);
 		builder.setComponentFactory(TagComponent.class);
-		builder.setSelected(true);
 		return builder.build();
 	}
 
