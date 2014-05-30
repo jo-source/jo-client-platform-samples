@@ -52,15 +52,15 @@ public final class BookAttributes {
 
 		//author
 		bp = builder.add(Book.AUTHOR_PROPERTY).setLabel("Author");
-		bp.setTableColumnWidth(200);
+		bp.setTableColumnWidth(150);
 
 		//isbn
 		bp = builder.add(Book.ISBN_PROPERTY).setLabel("ISBN");
-		bp.setTableColumnWidth(100);
+		bp.setTableColumnWidth(150);
 
 		//tag
 		bp = builder.add(Book.TAG_PROPERTY).setLabel("Tag");
-		bp.setTableColumnWidth(100);
+		bp.setTableColumnWidth(150);
 		bp.setLookUpValueRange(LookUps.TAG);
 
 		return builder.build();

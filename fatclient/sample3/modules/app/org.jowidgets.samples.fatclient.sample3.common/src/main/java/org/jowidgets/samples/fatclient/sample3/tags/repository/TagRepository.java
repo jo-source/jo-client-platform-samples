@@ -28,10 +28,13 @@
 
 package org.jowidgets.samples.fatclient.sample3.tags.repository;
 
+import org.jowidgets.cap.common.api.execution.IExecutionCallback;
 import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
 import org.jowidgets.common.color.ColorValue;
 import org.jowidgets.common.types.Markup;
+import org.jowidgets.samples.fatclient.sample3.books.bean.Book;
+import org.jowidgets.samples.fatclient.sample3.books.repository.BookRepository;
 import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 
 public final class TagRepository {
@@ -58,6 +61,16 @@ public final class TagRepository {
 			@Override
 			public Object getId(final Tag tag) {
 				return tag.getId();
+			}
+
+			@Override
+			public void delete(final Tag bean, final IExecutionCallback executionCallback) {
+				for (final Book book : BookRepository.INSTANCE.read()) {
+					if (bean != null && bean.equals(book.getTag())) {
+						book.setTag(null);
+					}
+				}
+				super.delete(bean, executionCallback);
 			}
 
 		};

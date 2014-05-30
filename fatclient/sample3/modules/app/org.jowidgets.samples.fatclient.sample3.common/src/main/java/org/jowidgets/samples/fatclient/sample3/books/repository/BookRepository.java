@@ -28,18 +28,17 @@
 
 package org.jowidgets.samples.fatclient.sample3.books.repository;
 
-import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
 import org.jowidgets.samples.fatclient.sample3.books.bean.Book;
 import org.jowidgets.samples.fatclient.sample3.tags.repository.TagRepository;
 
 public final class BookRepository {
 
-	public static final ICrudSupportBeanRepository<Book> INSTANCE = createInstance();
+	public static final HashMapCrudRepository<Book> INSTANCE = createInstance();
 
 	private BookRepository() {}
 
-	private static ICrudSupportBeanRepository<Book> createInstance() {
+	private static HashMapCrudRepository<Book> createInstance() {
 		return new HashMapCrudRepository<Book>(Book.class) {
 
 			{
