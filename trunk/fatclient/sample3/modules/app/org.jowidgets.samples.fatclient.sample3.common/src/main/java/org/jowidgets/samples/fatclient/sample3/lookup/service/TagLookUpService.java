@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, grossmann
+ * Copyright (c) 2014, MGrossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,44 +26,31 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.books.attribute;
+package org.jowidgets.samples.fatclient.sample3.lookup.service;
 
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
-import org.jowidgets.cap.ui.api.attribute.Attributes;
-import org.jowidgets.cap.ui.api.attribute.IAttribute;
-import org.jowidgets.cap.ui.api.attribute.IBeanAttributeBluePrint;
-import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
-import org.jowidgets.samples.fatclient.sample3.books.bean.Book;
-import org.jowidgets.samples.fatclient.sample3.lookup.common.LookUps;
+import org.jowidgets.cap.common.api.CapCommonToolkit;
+import org.jowidgets.cap.common.api.bean.IBeanKey;
+import org.jowidgets.cap.common.api.execution.IExecutionCallback;
+import org.jowidgets.cap.common.api.lookup.ILookUpEntry;
+import org.jowidgets.cap.common.api.lookup.ILookUpToolkit;
+import org.jowidgets.cap.service.api.adapter.ISyncLookUpService;
+import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
+import org.jowidgets.samples.fatclient.sample3.tags.repository.TagRepository;
 
-public final class BookAttributes {
+public final class TagLookUpService implements ISyncLookUpService {
 
-	public static final List<IAttribute<Object>> INSTANCE = createInstance();
-
-	private BookAttributes() {}
-
-	private static List<IAttribute<Object>> createInstance() {
-		final IBeanAttributesBuilder builder = Attributes.builder(Book.class);
-
-		//title
-		IBeanAttributeBluePrint<Object> bp = builder.add(Book.TITLE_PROPERTY).setLabel("Title");
-		bp.setTableColumnWidth(200);
-
-		//author
-		bp = builder.add(Book.AUTHOR_PROPERTY).setLabel("Author");
-		bp.setTableColumnWidth(200);
-
-		//isbn
-		bp = builder.add(Book.ISBN_PROPERTY).setLabel("ISBN");
-		bp.setTableColumnWidth(100);
-
-		//tag
-		bp = builder.add(Book.TAG_PROPERTY).setLabel("Tag");
-		bp.setTableColumnWidth(100);
-		bp.setLookUpValueRange(LookUps.TAG);
-
-		return builder.build();
-	};
-
+	@Override
+	public List<ILookUpEntry> readValues(final IExecutionCallback executionCallback) {
+		final ILookUpToolkit lookUpToolkit = CapCommonToolkit.lookUpToolkit();
+		final List<IBeanKey> emptyList = Collections.emptyList();
+		final List<ILookUpEntry> result = new LinkedList<ILookUpEntry>();
+		for (final Tag tag : TagRepository.INSTANCE.read(emptyList, executionCallback)) {
+			result.add(lookUpToolkit.lookUpEntry(tag, tag.getLabel()));
+		}
+		return Collections.unmodifiableList(result);
+	}
 }

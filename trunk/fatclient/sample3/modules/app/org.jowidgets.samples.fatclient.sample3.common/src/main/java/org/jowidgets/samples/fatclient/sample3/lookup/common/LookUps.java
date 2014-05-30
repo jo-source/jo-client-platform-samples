@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, grossmann
+ * Copyright (c) 2014, MGrossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,44 +26,10 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.books.attribute;
+package org.jowidgets.samples.fatclient.sample3.lookup.common;
 
-import java.util.List;
+public enum LookUps {
 
-import org.jowidgets.cap.ui.api.attribute.Attributes;
-import org.jowidgets.cap.ui.api.attribute.IAttribute;
-import org.jowidgets.cap.ui.api.attribute.IBeanAttributeBluePrint;
-import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
-import org.jowidgets.samples.fatclient.sample3.books.bean.Book;
-import org.jowidgets.samples.fatclient.sample3.lookup.common.LookUps;
-
-public final class BookAttributes {
-
-	public static final List<IAttribute<Object>> INSTANCE = createInstance();
-
-	private BookAttributes() {}
-
-	private static List<IAttribute<Object>> createInstance() {
-		final IBeanAttributesBuilder builder = Attributes.builder(Book.class);
-
-		//title
-		IBeanAttributeBluePrint<Object> bp = builder.add(Book.TITLE_PROPERTY).setLabel("Title");
-		bp.setTableColumnWidth(200);
-
-		//author
-		bp = builder.add(Book.AUTHOR_PROPERTY).setLabel("Author");
-		bp.setTableColumnWidth(200);
-
-		//isbn
-		bp = builder.add(Book.ISBN_PROPERTY).setLabel("ISBN");
-		bp.setTableColumnWidth(100);
-
-		//tag
-		bp = builder.add(Book.TAG_PROPERTY).setLabel("Tag");
-		bp.setTableColumnWidth(100);
-		bp.setLookUpValueRange(LookUps.TAG);
-
-		return builder.build();
-	};
+	TAG;
 
 }
