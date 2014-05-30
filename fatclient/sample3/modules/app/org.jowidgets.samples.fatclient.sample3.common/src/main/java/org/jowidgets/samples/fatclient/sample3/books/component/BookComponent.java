@@ -30,6 +30,9 @@ package org.jowidgets.samples.fatclient.sample3.books.component;
 
 import org.jowidgets.cap.common.api.bean.IBeanDto;
 import org.jowidgets.cap.service.repository.api.BeanRepositoryServiceFactory;
+import org.jowidgets.cap.ui.api.execution.IExecutionTask;
+import org.jowidgets.cap.ui.api.lookup.ILookUpListener;
+import org.jowidgets.cap.ui.api.lookup.LookUpCache;
 import org.jowidgets.cap.ui.api.table.BeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
@@ -38,6 +41,7 @@ import org.jowidgets.common.types.IVetoable;
 import org.jowidgets.samples.fatclient.sample3.books.attribute.BookAttributes;
 import org.jowidgets.samples.fatclient.sample3.books.renderer.BookTableCellRenderer;
 import org.jowidgets.samples.fatclient.sample3.books.repository.BookRepository;
+import org.jowidgets.samples.fatclient.sample3.lookup.common.LookUps;
 import org.jowidgets.workbench.api.IComponentContext;
 import org.jowidgets.workbench.api.IView;
 import org.jowidgets.workbench.api.IViewContext;
@@ -51,6 +55,20 @@ public final class BookComponent extends AbstractComponent {
 		componentContext.setLayout(BookComponentLayouFactory.create());
 		this.model = createModel();
 		model.load();
+
+		//this can be done without reloading, e.g. by checking all bean's an refresh the
+		//beans where a lookUp is missing
+		LookUpCache.get().getAccess(LookUps.TAG).addLookUpListener(new ILookUpListener() {
+
+			@Override
+			public void taskCreated(final IExecutionTask task) {}
+
+			@Override
+			public void afterLookUpChanged() {
+				model.load();
+			}
+		}, false);
+
 	}
 
 	private IBeanTableModel<IBeanDto> createModel() {
