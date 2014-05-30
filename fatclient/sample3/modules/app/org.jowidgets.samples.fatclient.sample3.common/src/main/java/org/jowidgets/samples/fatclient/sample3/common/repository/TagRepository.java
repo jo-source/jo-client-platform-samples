@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2014, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,46 +26,33 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample2.common.workbench;
+package org.jowidgets.samples.fatclient.sample3.common.repository;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.fatclient.sample2.common.application.FatClientSample2ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
+import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
+import org.jowidgets.samples.fatclient.sample3.common.bean.Tag;
 
-public final class FatClientSample2Workbench implements IWorkbenchFactory {
+public final class TagRepository {
 
-	private final boolean rwt;
+	public static final ICrudSupportBeanRepository<Tag> INSTANCE = createInstance();
 
-	public FatClientSample2Workbench() {
-		this(false);
-	}
+	private TagRepository() {}
 
-	public FatClientSample2Workbench(final boolean rwt) {
-		this.rwt = rwt;
-	}
+	private static ICrudSupportBeanRepository<Tag> createInstance() {
+		return new HashMapCrudRepository<Tag>(Tag.class) {
 
-	@Override
-	public IWorkbench create() {
+			{
+				for (int i = 1; i <= 10; i++) {
+					add(new Tag("Tag " + i));
+				}
+			}
 
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
+			@Override
+			public Object getId(final Tag tag) {
+				return tag.getId();
+			}
 
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLoginCallback(null);
-		builder.setLabel("Fat client sample2");
-		builder.addApplication(FatClientSample2ApplicationFactory.create());
-		builder.setApplicationNavigator(false);
-		builder.setInitialMaximized(rwt);
-		builder.setDecorated(!rwt);
-
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
-	}
+		};
+	};
 
 }

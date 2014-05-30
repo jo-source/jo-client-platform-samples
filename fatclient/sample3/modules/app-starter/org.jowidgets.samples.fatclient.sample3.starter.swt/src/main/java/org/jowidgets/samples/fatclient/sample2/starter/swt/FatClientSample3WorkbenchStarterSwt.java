@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2014, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,46 +26,19 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample2.common.workbench;
+package org.jowidgets.samples.fatclient.sample2.starter.swt;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
-import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.fatclient.sample2.common.application.FatClientSample2ApplicationFactory;
-import org.jowidgets.workbench.api.IWorkbench;
-import org.jowidgets.workbench.api.IWorkbenchFactory;
-import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
-import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
-import org.slf4j.bridge.SLF4JBridgeHandler;
+import org.jowidgets.samples.fatclient.sample3.common.workbench.FatClientSample3Workbench;
+import org.jowidgets.spi.impl.swt.common.options.SwtOptions;
+import org.jowidgets.workbench.impl.WorkbenchRunner;
 
-public final class FatClientSample2Workbench implements IWorkbenchFactory {
+public final class FatClientSample3WorkbenchStarterSwt {
 
-	private final boolean rwt;
+	private FatClientSample3WorkbenchStarterSwt() {}
 
-	public FatClientSample2Workbench() {
-		this(false);
-	}
-
-	public FatClientSample2Workbench(final boolean rwt) {
-		this.rwt = rwt;
-	}
-
-	@Override
-	public IWorkbench create() {
-
-		SLF4JBridgeHandler.removeHandlersForRootLogger();
-		SLF4JBridgeHandler.install();
-
-		SilkIconsInitializer.initializeFull();
-
-		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
-		builder.setLoginCallback(null);
-		builder.setLabel("Fat client sample2");
-		builder.addApplication(FatClientSample2ApplicationFactory.create());
-		builder.setApplicationNavigator(false);
-		builder.setInitialMaximized(rwt);
-		builder.setDecorated(!rwt);
-
-		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
+	public static void main(final String[] args) throws Exception {
+		SwtOptions.setClassicTableSelectionColors();
+		new WorkbenchRunner().run(new FatClientSample3Workbench());
 	}
 
 }

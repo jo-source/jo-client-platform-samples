@@ -26,26 +26,26 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample2.common.workbench;
+package org.jowidgets.samples.fatclient.sample3.common.workbench;
 
 import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
-import org.jowidgets.samples.fatclient.sample2.common.application.FatClientSample2ApplicationFactory;
+import org.jowidgets.samples.fatclient.sample3.common.application.FatClientSample3ApplicationFactory;
 import org.jowidgets.workbench.api.IWorkbench;
 import org.jowidgets.workbench.api.IWorkbenchFactory;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
 import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
 import org.slf4j.bridge.SLF4JBridgeHandler;
 
-public final class FatClientSample2Workbench implements IWorkbenchFactory {
+public final class FatClientSample3Workbench implements IWorkbenchFactory {
 
 	private final boolean rwt;
 
-	public FatClientSample2Workbench() {
+	public FatClientSample3Workbench() {
 		this(false);
 	}
 
-	public FatClientSample2Workbench(final boolean rwt) {
+	public FatClientSample3Workbench(final boolean rwt) {
 		this.rwt = rwt;
 	}
 
@@ -59,8 +59,8 @@ public final class FatClientSample2Workbench implements IWorkbenchFactory {
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLoginCallback(null);
-		builder.setLabel("Fat client sample2");
-		builder.addApplication(FatClientSample2ApplicationFactory.create());
+		builder.setLabel("Fat client sample3");
+		builder.addApplication(FatClientSample3ApplicationFactory.create());
 		builder.setApplicationNavigator(false);
 		builder.setInitialMaximized(rwt);
 		builder.setDecorated(!rwt);
