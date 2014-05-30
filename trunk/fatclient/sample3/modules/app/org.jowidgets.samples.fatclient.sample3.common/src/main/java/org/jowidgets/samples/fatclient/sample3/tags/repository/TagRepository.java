@@ -28,6 +28,7 @@
 
 package org.jowidgets.samples.fatclient.sample3.tags.repository;
 
+import org.jowidgets.api.color.Colors;
 import org.jowidgets.cap.common.api.execution.IExecutionCallback;
 import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
@@ -40,7 +41,7 @@ import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 public final class TagRepository {
 
 	public static final Tag MISSING = new Tag("Missing", new ColorValue(255, 0, 0), Markup.STRONG);
-	public static final Tag AVAILABLE = new Tag("Available", new ColorValue(0, 128, 0));
+	public static final Tag AVAILABLE = new Tag("Available", Colors.BLACK);
 	public static final Tag LENT = new Tag("Lent", new ColorValue(255, 128, 0));
 	public static final Tag LENDING_PERIOD_EXPIRED = new Tag("Lending period expired", new ColorValue(255, 128, 0), Markup.STRONG);
 
