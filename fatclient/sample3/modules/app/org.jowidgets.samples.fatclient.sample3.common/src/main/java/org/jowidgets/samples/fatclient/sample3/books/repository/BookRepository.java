@@ -28,6 +28,8 @@
 
 package org.jowidgets.samples.fatclient.sample3.books.repository;
 
+import java.util.Random;
+
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
 import org.jowidgets.samples.fatclient.sample3.books.bean.Book;
 import org.jowidgets.samples.fatclient.sample3.tags.repository.TagRepository;
@@ -47,6 +49,26 @@ public final class BookRepository {
 				add(new Book("Math of semitones", "Evan Steve", "921-1831232009"));
 				add(new Book("Secret of 42", "Bill Bang", "921-1823432009", TagRepository.MISSING));
 				add(new Book("Almost all prime numbers listed", "Evan Steve", "921-18234532009"));
+
+				//add some generic books
+				final Random random = new Random();
+				for (int i = 0; i < 300; i++) {
+					final Book book = new Book("Title " + i, "Generic Ghost Writer", "921-" + (1831232009 + i));
+					final double prob = random.nextDouble();
+					if (prob < 0.75) {
+						book.setTag(TagRepository.AVAILABLE);
+					}
+					else if (prob < 0.85) {
+						book.setTag(TagRepository.LENT);
+					}
+					else if (prob < 0.95) {
+						book.setTag(TagRepository.LENDING_PERIOD_EXPIRED);
+					}
+					else {
+						book.setTag(TagRepository.MISSING);
+					}
+					add(book);
+				}
 			}
 
 			@Override
