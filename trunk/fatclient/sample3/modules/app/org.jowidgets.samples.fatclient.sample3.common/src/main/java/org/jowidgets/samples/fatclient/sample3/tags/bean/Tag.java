@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.bean;
+package org.jowidgets.samples.fatclient.sample3.tags.bean;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -56,11 +56,23 @@ public final class Tag implements Serializable {
 	}
 
 	public Tag(final String label) {
+		this(label, Colors.BLACK, Colors.WHITE, Markup.DEFAULT);
+	}
+
+	public Tag(final String label, final IColorConstant foreground) {
+		this(label, foreground, Colors.WHITE, Markup.DEFAULT);
+	}
+
+	public Tag(final String label, final IColorConstant foreground, final Markup markup) {
+		this(label, foreground, Colors.WHITE, markup);
+	}
+
+	public Tag(final String label, final IColorConstant foreground, final IColorConstant background, final Markup markup) {
 		this.id = UUID.randomUUID().toString();
 		this.label = label;
-		this.background = Colors.WHITE;
-		this.foreground = Colors.BLACK;
-		this.markup = Markup.DEFAULT;
+		this.background = background;
+		this.foreground = foreground;
+		this.markup = markup;
 	}
 
 	public Object getId() {

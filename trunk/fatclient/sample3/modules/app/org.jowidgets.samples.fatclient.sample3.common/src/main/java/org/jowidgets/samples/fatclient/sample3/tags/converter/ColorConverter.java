@@ -26,25 +26,20 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.converter;
+package org.jowidgets.samples.fatclient.sample3.tags.converter;
 
-import org.jowidgets.common.types.Markup;
+import org.jowidgets.common.color.IColorConstant;
 import org.jowidgets.tools.converter.AbstractObjectStringConverter;
 
-public final class MarkupConverter extends AbstractObjectStringConverter<Markup> {
+public final class ColorConverter extends AbstractObjectStringConverter<IColorConstant> {
 
 	@Override
-	public String convertToString(final Markup value) {
-		if (Markup.DEFAULT.equals(value)) {
-			return "Default";
+	public String convertToString(final IColorConstant value) {
+		if (value != null) {
+			return "-- Klick to change --";
 		}
-		else if (Markup.STRONG.equals(value)) {
-			return "Fett";
+		else {
+			return "";
 		}
-		else if (Markup.EMPHASIZED.equals(value)) {
-			return "Kursiv";
-		}
-		return null;
 	}
-
 }

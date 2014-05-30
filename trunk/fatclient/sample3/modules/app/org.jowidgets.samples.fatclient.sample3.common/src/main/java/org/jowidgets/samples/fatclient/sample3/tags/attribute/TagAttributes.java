@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.attribute;
+package org.jowidgets.samples.fatclient.sample3.tags.attribute;
 
 import java.util.List;
 
@@ -37,10 +37,10 @@ import org.jowidgets.cap.ui.api.attribute.IBeanAttributeBluePrint;
 import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
 import org.jowidgets.common.types.AlignmentHorizontal;
 import org.jowidgets.common.types.Markup;
-import org.jowidgets.samples.fatclient.sample3.common.bean.Tag;
-import org.jowidgets.samples.fatclient.sample3.common.control.MarkupControlCreator;
-import org.jowidgets.samples.fatclient.sample3.common.converter.ColorConverter;
-import org.jowidgets.samples.fatclient.sample3.common.converter.MarkupConverter;
+import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
+import org.jowidgets.samples.fatclient.sample3.tags.control.MarkupControlCreator;
+import org.jowidgets.samples.fatclient.sample3.tags.converter.ColorConverter;
+import org.jowidgets.samples.fatclient.sample3.tags.converter.MarkupConverter;
 
 public final class TagAttributes {
 

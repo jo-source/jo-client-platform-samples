@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.component;
+package org.jowidgets.samples.fatclient.sample3.tags.component;
 
 import org.jowidgets.workbench.api.ILayout;
 import org.jowidgets.workbench.toolkit.api.IFolderLayoutBuilder;
@@ -34,12 +34,12 @@ import org.jowidgets.workbench.toolkit.api.ILayoutBuilder;
 import org.jowidgets.workbench.tools.FolderLayoutBuilder;
 import org.jowidgets.workbench.tools.LayoutBuilder;
 
-public final class FatClientSample3ComponentLayoutFactory {
+public final class TagComponentLayoutFactory {
 
 	private static final String DEFAULT_LAYOUT_ID = "DEFAULT_LAYOUT_ID";
 	private static final String MASTER_FOLDER_ID = "MASTER_FOLDER_ID";
 
-	private FatClientSample3ComponentLayoutFactory() {}
+	private TagComponentLayoutFactory() {}
 
 	public static ILayout create() {
 		final ILayoutBuilder builder = new LayoutBuilder();
@@ -50,7 +50,7 @@ public final class FatClientSample3ComponentLayoutFactory {
 	private static IFolderLayoutBuilder createMasterFolder() {
 		final IFolderLayoutBuilder result = new FolderLayoutBuilder(MASTER_FOLDER_ID);
 		result.setViewsCloseable(false);
-		result.addView(FatClientSample3TableView.ID, FatClientSample3TableView.DEFAULT_LABEL);
+		result.addView(TagTableView.ID, TagTableView.DEFAULT_LABEL, TagTableView.DEFAULT_ICON);
 		return result;
 	}
 
