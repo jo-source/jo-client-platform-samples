@@ -31,6 +31,8 @@ package org.jowidgets.samples.fatclient.sample3.books.bean;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
 import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 import org.jowidgets.samples.fatclient.sample3.tags.repository.TagRepository;
 
@@ -74,6 +76,7 @@ public final class Book implements Serializable {
 		this.id = id;
 	}
 
+	@NotNull
 	public String getTitle() {
 		return title;
 	}

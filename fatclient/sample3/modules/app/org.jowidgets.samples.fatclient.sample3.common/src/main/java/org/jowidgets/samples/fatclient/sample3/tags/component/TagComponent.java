@@ -30,11 +30,13 @@ package org.jowidgets.samples.fatclient.sample3.tags.component;
 
 import org.jowidgets.cap.common.api.bean.IBeanDto;
 import org.jowidgets.cap.service.repository.api.BeanRepositoryServiceFactory;
+import org.jowidgets.cap.ui.api.model.IProcessStateListener;
 import org.jowidgets.cap.ui.api.table.BeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
 import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
+import org.jowidgets.samples.fatclient.sample3.lookup.ui.LookupClient;
 import org.jowidgets.samples.fatclient.sample3.tags.attribute.TagAttributes;
 import org.jowidgets.samples.fatclient.sample3.tags.renderer.TagTableCellRenderer;
 import org.jowidgets.samples.fatclient.sample3.tags.repository.TagRepository;
@@ -50,6 +52,14 @@ public final class TagComponent extends AbstractComponent {
 	public TagComponent(final IComponentContext componentContext) {
 		componentContext.setLayout(TagComponentLayoutFactory.create());
 		this.model = createModel();
+
+		model.addProcessStateListener(new IProcessStateListener() {
+			@Override
+			public void processStateChanged() {
+				LookupClient.clearCache();
+			}
+		});
+
 		model.load();
 	}
 

@@ -31,11 +31,14 @@ package org.jowidgets.samples.fatclient.sample3.tags.bean;
 import java.io.Serializable;
 import java.util.UUID;
 
+import javax.validation.constraints.NotNull;
+
 import org.jowidgets.api.color.Colors;
 import org.jowidgets.common.color.IColorConstant;
 import org.jowidgets.common.types.Markup;
+import org.jowidgets.util.NullCompatibleComparison;
 
-public final class Tag implements Serializable {
+public final class Tag implements Serializable, Comparable<Tag> {
 
 	public static final String ID_PROPERTY = "id";
 	public static final String LABEL_PROPERTY = "label";
@@ -83,6 +86,7 @@ public final class Tag implements Serializable {
 		this.id = id;
 	}
 
+	@NotNull
 	public String getLabel() {
 		return label;
 	}
@@ -113,6 +117,16 @@ public final class Tag implements Serializable {
 
 	public void setForeground(final IColorConstant foreground) {
 		this.foreground = foreground;
+	}
+
+	@Override
+	public int compareTo(final Tag other) {
+		if (other == null) {
+			return -1;
+		}
+		else {
+			return NullCompatibleComparison.compareTo(label, other.getLabel());
+		}
 	}
 
 }
