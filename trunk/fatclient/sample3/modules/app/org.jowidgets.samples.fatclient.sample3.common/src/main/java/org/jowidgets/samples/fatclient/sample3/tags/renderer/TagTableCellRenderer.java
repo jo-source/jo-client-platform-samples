@@ -56,6 +56,7 @@ public final class TagTableCellRenderer implements IBeanTableCellRenderer<IBeanD
 		bluePrint.setForegroundColor(Colors.BLACK);
 		bluePrint.setBackgroundColor(Colors.WHITE);
 
+		//get rendering hints from tag
 		final Object markup = bean.getValue(Tag.MARKUP_PROPERTY);
 		final Object foreground = bean.getValue(Tag.FOREGROUND_PROPERTY);
 		final Object background = bean.getValue(Tag.BACKGROUND_PROPERTY);

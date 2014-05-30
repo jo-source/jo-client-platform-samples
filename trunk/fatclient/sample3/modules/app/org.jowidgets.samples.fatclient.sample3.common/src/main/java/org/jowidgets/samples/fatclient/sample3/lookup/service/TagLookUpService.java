@@ -50,7 +50,11 @@ public final class TagLookUpService implements ISyncLookUpService {
 		final List<ILookUpEntry> result = new LinkedList<ILookUpEntry>();
 		//allow that no tag is set
 		result.add(lookUpToolkit.lookUpEntry(null, " "));
-		for (final Tag tag : TagRepository.INSTANCE.read(emptyList, executionCallback)) {
+
+		//add the residual tags
+		final List<Tag> tags = TagRepository.INSTANCE.read(emptyList, executionCallback);
+		Collections.sort(tags);
+		for (final Tag tag : tags) {
 			result.add(lookUpToolkit.lookUpEntry(tag, tag.getLabel()));
 		}
 		return Collections.unmodifiableList(result);

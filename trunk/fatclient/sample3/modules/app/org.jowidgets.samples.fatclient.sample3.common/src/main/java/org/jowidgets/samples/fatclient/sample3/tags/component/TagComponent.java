@@ -53,6 +53,7 @@ public final class TagComponent extends AbstractComponent {
 		componentContext.setLayout(TagComponentLayoutFactory.create());
 		this.model = createModel();
 
+		//clear the lookUp if something will be changed by service
 		model.addProcessStateListener(new IProcessStateListener() {
 			@Override
 			public void processStateChanged() {
