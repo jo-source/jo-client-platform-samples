@@ -43,7 +43,7 @@ public final class BookRepository {
 
 			{
 				add(new Book("Jazz piano tutorial", "Evan Steve", "978-1898137009"));
-				add(new Book("Cooking muffins", "Richard Devil", "928-1838113009"));
+				add(new Book("Cooking muffins", "Richard Devil", "928-1838113009", TagRepository.LENT));
 				add(new Book("Math of semitones", "Evan Steve", "921-1831232009"));
 				add(new Book("Secret of 42", "Bill Bang", "921-1823432009", TagRepository.MISSING));
 				add(new Book("Almost all prime numbers listed", "Evan Steve", "921-18234532009"));
