@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+
+	<display-name>Sample2</display-name>
+	<description>Sample2</description>
+
+	<context-param>
+		<param-name>org.eclipse.rap.applicationConfiguration</param-name>
+		<param-value>org.jowidgets.samples.fatclient.sample2.starter.rwt.FatClientSample2RwtConfiguration</param-value>
+	</context-param>
+
+	<listener>
+		<listener-class>org.eclipse.rap.rwt.engine.RWTServletContextListener</listener-class>
+	</listener>
+
+	<servlet>
+		<servlet-name>Sample2</servlet-name>
+		<servlet-class>org.eclipse.rap.rwt.engine.RWTServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Sample2</servlet-name>
+		<url-pattern>/Sample2</url-pattern>
+	</servlet-mapping>
+
+
+</web-app>
