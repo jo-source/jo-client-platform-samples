@@ -48,6 +48,7 @@ public final class TagLookUpService implements ISyncLookUpService {
 		final ILookUpToolkit lookUpToolkit = CapCommonToolkit.lookUpToolkit();
 		final List<IBeanKey> emptyList = Collections.emptyList();
 		final List<ILookUpEntry> result = new LinkedList<ILookUpEntry>();
+		//allow that no tag is set
 		result.add(lookUpToolkit.lookUpEntry(null, " "));
 		for (final Tag tag : TagRepository.INSTANCE.read(emptyList, executionCallback)) {
 			result.add(lookUpToolkit.lookUpEntry(tag, tag.getLabel()));
