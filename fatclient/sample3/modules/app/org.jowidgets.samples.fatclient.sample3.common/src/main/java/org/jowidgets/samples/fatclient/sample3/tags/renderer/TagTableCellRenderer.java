@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.renderer;
+package org.jowidgets.samples.fatclient.sample3.tags.renderer;
 
 import org.jowidgets.api.model.table.ITableCellBluePrint;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
@@ -36,7 +36,7 @@ import org.jowidgets.cap.ui.api.table.IBeanTableCellRenderer;
 import org.jowidgets.common.color.IColorConstant;
 import org.jowidgets.common.model.ITableCell;
 import org.jowidgets.common.types.Markup;
-import org.jowidgets.samples.fatclient.sample3.common.bean.Tag;
+import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 
 public final class TagTableCellRenderer implements IBeanTableCellRenderer<IBeanDto> {
 

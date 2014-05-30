@@ -26,13 +26,13 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.control;
+package org.jowidgets.samples.fatclient.sample3.tags.control;
 
 import org.jowidgets.api.widgets.IInputControl;
 import org.jowidgets.common.types.Markup;
 import org.jowidgets.common.widgets.factory.ICustomWidgetCreator;
 import org.jowidgets.common.widgets.factory.ICustomWidgetFactory;
-import org.jowidgets.samples.fatclient.sample3.common.converter.MarkupConverter;
+import org.jowidgets.samples.fatclient.sample3.tags.converter.MarkupConverter;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class MarkupControlCreator implements ICustomWidgetCreator<IInputControl<? extends Markup>> {

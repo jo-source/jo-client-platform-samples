@@ -26,11 +26,12 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.component;
+package org.jowidgets.samples.fatclient.sample3.tags.component;
 
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Shell;
+import org.jowidgets.addons.icons.silkicons.SilkIcons;
 import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
@@ -42,20 +43,22 @@ import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
 import org.jowidgets.common.color.ColorValue;
 import org.jowidgets.common.color.IColorConstant;
+import org.jowidgets.common.image.IImageConstant;
 import org.jowidgets.common.types.MouseButton;
 import org.jowidgets.common.widgets.controller.ITableCellMouseEvent;
-import org.jowidgets.samples.fatclient.sample3.common.bean.Tag;
+import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 import org.jowidgets.tools.controller.TableCellAdapter;
 import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.workbench.api.IViewContext;
 import org.jowidgets.workbench.tools.AbstractView;
 
-public final class FatClientSample3TableView extends AbstractView {
+public final class TagTableView extends AbstractView {
 
-	public static final String ID = FatClientSample3TableView.class.getName();
+	public static final String ID = TagTableView.class.getName();
 	public static final String DEFAULT_LABEL = "Tags";
+	public static final IImageConstant DEFAULT_ICON = SilkIcons.TAG_BLUE;
 
-	public FatClientSample3TableView(final IViewContext context, final IBeanTableModel<IBeanDto> model) {
+	public TagTableView(final IViewContext context, final IBeanTableModel<IBeanDto> model) {
 		final IContainer container = context.getContainer();
 		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
 

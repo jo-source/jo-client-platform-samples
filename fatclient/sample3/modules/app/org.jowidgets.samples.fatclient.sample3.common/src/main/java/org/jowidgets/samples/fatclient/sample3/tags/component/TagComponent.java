@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.component;
+package org.jowidgets.samples.fatclient.sample3.tags.component;
 
 import org.jowidgets.cap.common.api.bean.IBeanDto;
 import org.jowidgets.cap.service.repository.api.BeanRepositoryServiceFactory;
@@ -35,20 +35,20 @@ import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.table.IBeanTableModelBuilder;
 import org.jowidgets.cap.ui.api.workbench.CapWorkbenchActionsProvider;
 import org.jowidgets.common.types.IVetoable;
-import org.jowidgets.samples.fatclient.sample3.common.attribute.TagAttributes;
-import org.jowidgets.samples.fatclient.sample3.common.renderer.TagTableCellRenderer;
-import org.jowidgets.samples.fatclient.sample3.common.repository.TagRepository;
+import org.jowidgets.samples.fatclient.sample3.tags.attribute.TagAttributes;
+import org.jowidgets.samples.fatclient.sample3.tags.renderer.TagTableCellRenderer;
+import org.jowidgets.samples.fatclient.sample3.tags.repository.TagRepository;
 import org.jowidgets.workbench.api.IComponentContext;
 import org.jowidgets.workbench.api.IView;
 import org.jowidgets.workbench.api.IViewContext;
 import org.jowidgets.workbench.tools.AbstractComponent;
 
-public final class FatClientSample3Component extends AbstractComponent {
+public final class TagComponent extends AbstractComponent {
 
 	private final IBeanTableModel<IBeanDto> model;
 
-	public FatClientSample3Component(final IComponentContext componentContext) {
-		componentContext.setLayout(FatClientSample3ComponentLayoutFactory.create());
+	public TagComponent(final IComponentContext componentContext) {
+		componentContext.setLayout(TagComponentLayoutFactory.create());
 		this.model = createModel();
 		model.load();
 	}
@@ -68,8 +68,8 @@ public final class FatClientSample3Component extends AbstractComponent {
 
 	@Override
 	public IView createView(final String viewId, final IViewContext context) {
-		if (FatClientSample3TableView.ID.equals(viewId)) {
-			return new FatClientSample3TableView(context, model);
+		if (TagTableView.ID.equals(viewId)) {
+			return new TagTableView(context, model);
 		}
 		else {
 			throw new IllegalArgumentException("View id '" + viewId + "' is not known.");

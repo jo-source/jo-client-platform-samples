@@ -26,13 +26,20 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample3.common.repository;
+package org.jowidgets.samples.fatclient.sample3.tags.repository;
 
 import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
-import org.jowidgets.samples.fatclient.sample3.common.bean.Tag;
+import org.jowidgets.common.color.ColorValue;
+import org.jowidgets.common.types.Markup;
+import org.jowidgets.samples.fatclient.sample3.tags.bean.Tag;
 
 public final class TagRepository {
+
+	public static final Tag MISSING = new Tag("Missing", new ColorValue(255, 0, 0), Markup.STRONG);
+	public static final Tag AVAILABLE = new Tag("Available", new ColorValue(0, 128, 0));
+	public static final Tag LENT = new Tag("Lent", new ColorValue(255, 128, 0));
+	public static final Tag LENDING_PERIOD_EXPIRED = new Tag("Lending period expired", new ColorValue(255, 128, 0), Markup.STRONG);
 
 	public static final ICrudSupportBeanRepository<Tag> INSTANCE = createInstance();
 
@@ -42,9 +49,10 @@ public final class TagRepository {
 		return new HashMapCrudRepository<Tag>(Tag.class) {
 
 			{
-				for (int i = 1; i <= 10; i++) {
-					add(new Tag("Tag " + i));
-				}
+				add(AVAILABLE);
+				add(LENT);
+				add(LENDING_PERIOD_EXPIRED);
+				add(MISSING);
 			}
 
 			@Override
