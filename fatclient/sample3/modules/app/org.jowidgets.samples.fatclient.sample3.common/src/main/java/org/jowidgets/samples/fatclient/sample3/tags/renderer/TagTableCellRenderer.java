@@ -75,7 +75,7 @@ public final class TagTableCellRenderer implements IBeanTableCellRenderer<IBeanD
 			}
 		}
 
-		else if (columnIndex == 1 || columnIndex == 2) {
+		else {
 			if (background instanceof IColorConstant) {
 				bluePrint.setBackgroundColor((IColorConstant) background);
 				bluePrint.setSelectedBackgroundColor((IColorConstant) background);
@@ -83,16 +83,6 @@ public final class TagTableCellRenderer implements IBeanTableCellRenderer<IBeanD
 			if (foreground instanceof IColorConstant) {
 				bluePrint.setForegroundColor((IColorConstant) foreground);
 				bluePrint.setSelectedForegroundColor((IColorConstant) foreground);
-			}
-		}
-		else if (columnIndex == 3) {
-			if (foreground instanceof IColorConstant) {
-				bluePrint.setBackgroundColor((IColorConstant) foreground);
-				bluePrint.setSelectedBackgroundColor((IColorConstant) foreground);
-			}
-			if (background instanceof IColorConstant) {
-				bluePrint.setForegroundColor((IColorConstant) background);
-				bluePrint.setSelectedForegroundColor((IColorConstant) background);
 			}
 		}
 
