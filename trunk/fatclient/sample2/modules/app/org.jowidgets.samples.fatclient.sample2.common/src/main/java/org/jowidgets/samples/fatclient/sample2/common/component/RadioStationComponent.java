@@ -100,7 +100,7 @@ public final class RadioStationComponent extends AbstractComponent {
 			return new RadioStationListTableView(context, stationListModel, stationModel);
 		}
 		else if (RadioStationTableView.ID.equals(viewId)) {
-			return new RadioStationTableView(context, stationListModel, stationModel);
+			return new RadioStationTableView(context, stationModel);
 		}
 		else {
 			throw new IllegalArgumentException("View id '" + viewId + "' is not known.");
