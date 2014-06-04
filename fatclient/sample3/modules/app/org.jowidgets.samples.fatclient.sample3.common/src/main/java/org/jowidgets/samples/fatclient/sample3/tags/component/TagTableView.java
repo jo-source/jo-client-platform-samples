@@ -69,6 +69,7 @@ public final class TagTableView extends AbstractView {
 		beanTableBp.setDefaultCopyAction(true);
 		beanTableBp.setDefaultPasteAction(true);
 		beanTableBp.setDefaultEditAction(false);
+		beanTableBp.setValidationLabelVisible(true);
 		beanTableBp.setEditable(true);
 
 		final IBeanTable<IBeanDto> table = container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
