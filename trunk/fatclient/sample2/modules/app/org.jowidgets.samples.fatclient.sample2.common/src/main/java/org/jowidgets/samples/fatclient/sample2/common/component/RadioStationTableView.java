@@ -53,6 +53,7 @@ public final class RadioStationTableView extends AbstractView {
 		beanTableBp.setDefaultCopyAction(true);
 		beanTableBp.setDefaultPasteAction(true);
 		beanTableBp.setEditable(true);
+		beanTableBp.setValidationLabelVisible(true);
 		container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
 	}
 
