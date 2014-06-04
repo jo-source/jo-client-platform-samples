@@ -55,6 +55,7 @@ public final class BookTableView extends AbstractView {
 		beanTableBp.setDefaultCopyAction(true);
 		beanTableBp.setDefaultPasteAction(true);
 		beanTableBp.setDefaultEditAction(false);
+		beanTableBp.setValidationLabelVisible(true);
 		beanTableBp.setEditable(true);
 
 		container.add(beanTableBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
