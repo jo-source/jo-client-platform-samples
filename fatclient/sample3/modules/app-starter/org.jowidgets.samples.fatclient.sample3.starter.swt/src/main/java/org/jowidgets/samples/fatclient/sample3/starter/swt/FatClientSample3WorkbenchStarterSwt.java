@@ -26,7 +26,7 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample2.starter.swt;
+package org.jowidgets.samples.fatclient.sample3.starter.swt;
 
 import org.jowidgets.samples.fatclient.sample3.common.workbench.FatClientSample3Workbench;
 import org.jowidgets.spi.impl.swt.common.options.SwtOptions;
