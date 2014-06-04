@@ -30,6 +30,7 @@ package org.jowidgets.samples.fatclient.sample2.common.repository;
 
 import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
+import org.jowidgets.samples.fatclient.sample2.common.bean.Category;
 import org.jowidgets.samples.fatclient.sample2.common.bean.RadioStationList;
 
 public final class RadioStationListRepository {
@@ -39,7 +40,26 @@ public final class RadioStationListRepository {
 	private RadioStationListRepository() {}
 
 	private static ICrudSupportBeanRepository<RadioStationList> createInstance() {
-		return new HashMapCrudRepository<RadioStationList>(RadioStationList.class);
+		return new HashMapCrudRepository<RadioStationList>(RadioStationList.class) {
+			{
+				RadioStationList list = new RadioStationList();
+				list.setName("List 1");
+				list.setCategory(Category.OTHER);
+				add(list);
+
+				list = new RadioStationList();
+				list.setName("List 2");
+				list.setCategory(Category.OTHER);
+				add(list);
+
+				list = new RadioStationList();
+				list.setName("List 3");
+				list.setCategory(Category.OTHER);
+				add(list);
+
+			}
+
+		};
 	};
 
 }
