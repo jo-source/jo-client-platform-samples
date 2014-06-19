@@ -80,7 +80,7 @@ public final class BookComponent extends AbstractComponent {
 		builder.setEntityLabelPlural("Books");
 		builder.setAutoSelection(false);
 		builder.addCellRenderer(new BookTableCellRenderer());
-		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(BookRepository.INSTANCE));
+		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(BookRepository.INSTANCE, true));
 		return builder.build();
 	}
 

@@ -73,7 +73,7 @@ public final class TagComponent extends AbstractComponent {
 		builder.setEntityLabelPlural("Tags");
 		builder.setAutoSelection(false);
 		builder.addCellRenderer(new TagTableCellRenderer());
-		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(TagRepository.INSTANCE));
+		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(TagRepository.INSTANCE, true));
 		return builder.build();
 	}
 
