@@ -69,7 +69,7 @@ public final class RadioStationComponent extends AbstractComponent {
 		builder.setAttributes(RadioStationListAttributes.INSTANCE);
 		builder.setEntityLabelSingular("Radio station list");
 		builder.setEntityLabelPlural("Radio station lists");
-		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(RadioStationListRepository.INSTANCE));
+		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(RadioStationListRepository.INSTANCE, true));
 		return builder.build();
 	}
 
@@ -78,7 +78,7 @@ public final class RadioStationComponent extends AbstractComponent {
 		builder.setAttributes(RadioStationAttributes.INSTANCE);
 		builder.setEntityLabelSingular("Radio station");
 		builder.setEntityLabelPlural("Radio stations");
-		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(RadioStationRepository.INSTANCE));
+		builder.setEntityServices(BeanRepositoryServiceFactory.beanServices(RadioStationRepository.INSTANCE, true));
 		builder.setAutoSelection(false);
 
 		//this ensures, that the parent beans will be set when models loads or creates beans
