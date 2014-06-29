@@ -32,58 +32,41 @@ import java.io.Serializable;
 
 import org.jowidgets.api.convert.IConverter;
 import org.jowidgets.api.toolkit.Toolkit;
+import org.jowidgets.unit.api.IUnit;
+import org.jowidgets.unit.api.IUnitValue;
 import org.jowidgets.util.Assert;
 
-public final class HzValue implements Comparable<HzValue>, Serializable {
+public final class HzValue implements IUnitValue<Double>, Comparable<HzValue>, Serializable {
 
 	private static final long serialVersionUID = 8735052254044524119L;
 
-	private static final long KH_MULTIPLIER = 1000;
-	private static final long MH_MULTIPLIER = KH_MULTIPLIER * 1000;
-	private static final long GH_MULTIPLIER = MH_MULTIPLIER * 1000;
-
 	private static final IConverter<Double> CONVERTER = Toolkit.getConverterProvider().doubleNumber();
 
-	private final HzUnit unit;
+	private final IUnit unit;
 	private final double value;
 
-	public enum HzUnit {
-		Hz,
-		KHz,
-		MHz,
-		GHz
+	public HzValue(final IUnitValue<Double> value) {
+		this(value.getValue().doubleValue(), value.getUnit());
 	}
 
-	public HzValue(final double value, final HzUnit unit) {
+	public HzValue(final double value, final IUnit unit) {
 		Assert.paramNotNull(unit, "unit");
 		this.unit = unit;
 		this.value = value;
 	}
 
-	public HzUnit getUnit() {
+	@Override
+	public IUnit getUnit() {
 		return unit;
 	}
 
-	public double getValue() {
-		return value;
+	@Override
+	public Double getValue() {
+		return Double.valueOf(value);
 	}
 
 	private double getHzValue() {
-		if (HzUnit.Hz.equals(unit)) {
-			return value;
-		}
-		else if (HzUnit.KHz.equals(unit)) {
-			return value * KH_MULTIPLIER;
-		}
-		else if (HzUnit.MHz.equals(unit)) {
-			return value * MH_MULTIPLIER;
-		}
-		else if (HzUnit.GHz.equals(unit)) {
-			return value * GH_MULTIPLIER;
-		}
-		else {
-			throw new IllegalStateException("Unit '" + unit + "' is unknown");
-		}
+		return value * unit.getConversionFactor();
 	}
 
 	@Override

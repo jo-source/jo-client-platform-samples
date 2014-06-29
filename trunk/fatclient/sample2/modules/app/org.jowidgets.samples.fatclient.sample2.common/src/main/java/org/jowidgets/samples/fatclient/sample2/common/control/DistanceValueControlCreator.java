@@ -28,25 +28,22 @@
 
 package org.jowidgets.samples.fatclient.sample2.common.control;
 
-import org.jowidgets.api.widgets.IInputControl;
+import org.jowidgets.api.widgets.IUnitValueField;
 import org.jowidgets.api.widgets.blueprint.IUnitValueFieldBluePrint;
 import org.jowidgets.common.widgets.factory.ICustomWidgetCreator;
 import org.jowidgets.common.widgets.factory.ICustomWidgetFactory;
-import org.jowidgets.samples.fatclient.sample2.common.bean.HzValue;
-import org.jowidgets.samples.fatclient.sample2.common.unit.HertzValueUnitConveter;
-import org.jowidgets.tools.unit.HertzUnitSetKeyMapping;
 import org.jowidgets.tools.widgets.blueprint.BPF;
-import org.jowidgets.unit.tools.units.HertzUnitSet;
+import org.jowidgets.unit.tools.converter.LongDoubleUnitConverter;
+import org.jowidgets.unit.tools.units.MillimeterUnitSet;
 
-public final class HzValueControlCreator implements ICustomWidgetCreator<IInputControl<HzValue>> {
+public final class DistanceValueControlCreator implements ICustomWidgetCreator<IUnitValueField<Long, Double>> {
 
 	@Override
-	public IInputControl<HzValue> create(final ICustomWidgetFactory widgetFactory) {
-		final IUnitValueFieldBluePrint<HzValue, Double> bluePrint = BPF.unitValueField(Double.class);
-		bluePrint.setUnitSet(HertzUnitSet.instance());
-		bluePrint.setDefaultUnit(HertzUnitSet.MH);
-		bluePrint.setUnitKeyMapping(HertzUnitSetKeyMapping.instance());
-		bluePrint.setUnitConverter(new HertzValueUnitConveter());
+	public IUnitValueField<Long, Double> create(final ICustomWidgetFactory widgetFactory) {
+		final IUnitValueFieldBluePrint<Long, Double> bluePrint = BPF.unitValueField(Double.class);
+		bluePrint.setUnitSet(MillimeterUnitSet.instance());
+		bluePrint.setDefaultUnit(MillimeterUnitSet.KILO_METER);
+		bluePrint.setUnitConverter(new LongDoubleUnitConverter(MillimeterUnitSet.KILO_METER));
 		return widgetFactory.create(bluePrint);
 	}
 

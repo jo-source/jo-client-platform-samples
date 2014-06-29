@@ -30,6 +30,9 @@ package org.jowidgets.samples.fatclient.sample2.common.attribute;
 
 import java.util.List;
 
+import org.jowidgets.api.convert.IConverterProvider;
+import org.jowidgets.api.convert.IObjectStringConverter;
+import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.cap.ui.api.attribute.Attributes;
 import org.jowidgets.cap.ui.api.attribute.IAttribute;
 import org.jowidgets.cap.ui.api.attribute.IBeanAttributeBluePrint;
@@ -37,10 +40,13 @@ import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
 import org.jowidgets.samples.fatclient.sample2.common.bean.Band;
 import org.jowidgets.samples.fatclient.sample2.common.bean.Category;
 import org.jowidgets.samples.fatclient.sample2.common.bean.HzValue;
-import org.jowidgets.samples.fatclient.sample2.common.bean.HzValue.HzUnit;
 import org.jowidgets.samples.fatclient.sample2.common.bean.Modulation;
 import org.jowidgets.samples.fatclient.sample2.common.bean.RadioStation;
+import org.jowidgets.samples.fatclient.sample2.common.control.DistanceValueControlCreator;
 import org.jowidgets.samples.fatclient.sample2.common.control.HzValueControlCreator;
+import org.jowidgets.unit.tools.converter.LongDoubleUnitConverter;
+import org.jowidgets.unit.tools.units.HertzUnitSet;
+import org.jowidgets.unit.tools.units.MillimeterUnitSet;
 
 public final class RadioStationAttributes {
 
@@ -70,7 +76,15 @@ public final class RadioStationAttributes {
 		bp = builder.add(RadioStation.BANDWIDTH_PROPERTY).setLabel("Bandwidth");
 		bp.setControlPanel().setControlCreator(new HzValueControlCreator());
 		bp.setTableColumnWidth(100);
-		bp.setDefaultValue(new HzValue(250, HzUnit.KHz));
+		bp.setDefaultValue(new HzValue(250, HertzUnitSet.KH));
+
+		//distance
+		bp = builder.add(RadioStation.DISTANCE_PROPERTY).setLabel("Distance");
+		final IConverterProvider converters = Toolkit.getConverterProvider();
+		final IObjectStringConverter<Long> converter;
+		converter = converters.unitValueConverter(new LongDoubleUnitConverter(MillimeterUnitSet.KILO_METER), Double.class);
+		bp.setControlPanel().setControlCreator(new DistanceValueControlCreator()).setObjectLabelConverter(converter);
+		bp.setTableColumnWidth(100);
 
 		//category
 		bp = builder.add(RadioStation.CATEGORY_PROPERTY).setLabel("Category");

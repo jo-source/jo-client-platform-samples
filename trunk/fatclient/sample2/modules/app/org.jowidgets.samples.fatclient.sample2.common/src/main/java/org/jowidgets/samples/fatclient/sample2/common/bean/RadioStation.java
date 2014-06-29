@@ -38,6 +38,7 @@ public final class RadioStation implements Serializable {
 	public static final String BANDWIDTH_PROPERTY = "bandwidth";
 	public static final String BAND_PROPERTY = "band";
 	public static final String MODULATION_PROPERTY = "modulation";
+	public static final String DISTANCE_PROPERTY = "distance";
 	public static final String CATEGORY_PROPERTY = "category";
 	public static final String NAME_PROPERTY = "name";
 
@@ -45,6 +46,7 @@ public final class RadioStation implements Serializable {
 
 	private HzValue frequency;
 	private HzValue bandwidth;
+	private Long distance;
 	private Band band;
 	private Modulation modulation;
 	private Category category;
@@ -86,6 +88,14 @@ public final class RadioStation implements Serializable {
 
 	public void setModulation(final Modulation modulation) {
 		this.modulation = modulation;
+	}
+
+	public Long getDistance() {
+		return distance;
+	}
+
+	public void setDistance(final Long distance) {
+		this.distance = distance;
 	}
 
 	@NotNull
