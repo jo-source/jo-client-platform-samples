@@ -31,15 +31,21 @@ package org.jowidgets.samples.fatclient.sample1.common.attribute;
 import java.util.Collections;
 import java.util.List;
 
+import org.jowidgets.api.convert.IConverterProvider;
+import org.jowidgets.api.convert.IObjectStringConverter;
+import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.cap.ui.api.attribute.Attributes;
 import org.jowidgets.cap.ui.api.attribute.IAttribute;
 import org.jowidgets.cap.ui.api.attribute.IBeanAttributeBluePrint;
 import org.jowidgets.cap.ui.api.attribute.IBeanAttributesBuilder;
 import org.jowidgets.cap.ui.api.control.DateDisplayFormat;
 import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue;
-import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue.ByteUnit;
 import org.jowidgets.samples.fatclient.sample1.common.bean.Person;
 import org.jowidgets.samples.fatclient.sample1.common.control.ByteValueControlCreator;
+import org.jowidgets.samples.fatclient.sample1.common.control.DistanceValueControlCreator;
+import org.jowidgets.unit.tools.converter.LongDoubleUnitConverter;
+import org.jowidgets.unit.tools.units.ByteUnitSet;
+import org.jowidgets.unit.tools.units.MillimeterUnitSet;
 
 public final class PersonAttributes {
 
@@ -63,9 +69,16 @@ public final class PersonAttributes {
 		IBeanAttributeBluePrint<Object> bp = builder.add(Person.DAY_OF_BIRTH_PROPERTY).setLabel("Day of birth");
 		bp.setDisplayFormat(DateDisplayFormat.DATE);
 
+		//Body height
+		bp = builder.add(Person.BODY_HEIGHT_PROPERTY).setLabel("Body height");
+		final IConverterProvider converters = Toolkit.getConverterProvider();
+		final IObjectStringConverter<Long> converter;
+		converter = converters.unitValueConverter(new LongDoubleUnitConverter(MillimeterUnitSet.CENTI_METER), Double.class);
+		bp.setControlPanel().setControlCreator(new DistanceValueControlCreator()).setObjectLabelConverter(converter);
+
 		//quota
 		bp = builder.add(Person.QUOTA_PROPERTY).setLabel("Quota");
-		bp.setDefaultValue(new ByteValue(250, ByteUnit.GB));
+		bp.setDefaultValue(new ByteValue(250, ByteUnitSet.GB));
 		bp.setControlPanel().setControlCreator(new ByteValueControlCreator());
 
 		//roles

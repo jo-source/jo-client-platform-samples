@@ -30,57 +30,39 @@ package org.jowidgets.samples.fatclient.sample1.common.bean;
 
 import java.io.Serializable;
 
+import org.jowidgets.unit.api.IUnit;
+import org.jowidgets.unit.api.IUnitValue;
 import org.jowidgets.util.Assert;
 
-public final class ByteValue implements Comparable<ByteValue>, Serializable {
+public final class ByteValue implements IUnitValue<Long>, Comparable<ByteValue>, Serializable {
 
 	private static final long serialVersionUID = 8735052254044524119L;
 
-	private static final long KB_MULTIPLIER = 1024;
-	private static final long MB_MULTIPLIER = KB_MULTIPLIER * 1024;
-	private static final long GB_MULTIPLIER = MB_MULTIPLIER * 1024;
-	private static final long TB_MULTIPLIER = GB_MULTIPLIER * 1024;
+	private final IUnit unit;
+	private final long value;
 
-	private final ByteUnit unit;
-	private final int value;
-
-	public enum ByteUnit {
-		KB,
-		MB,
-		GB,
-		TB;
+	public ByteValue(final IUnitValue<Long> value) {
+		this(value.getValue().longValue(), value.getUnit());
 	}
 
-	public ByteValue(final int value, final ByteUnit unit) {
+	public ByteValue(final long value, final IUnit unit) {
 		Assert.paramNotNull(unit, "unit");
 		this.unit = unit;
-		this.value = value;
+		this.value = Long.valueOf(value);
 	}
 
-	public ByteUnit getUnit() {
+	@Override
+	public IUnit getUnit() {
 		return unit;
 	}
 
-	public int getValue() {
+	@Override
+	public Long getValue() {
 		return value;
 	}
 
 	private long getByteValue() {
-		if (ByteUnit.KB.equals(unit)) {
-			return value * KB_MULTIPLIER;
-		}
-		else if (ByteUnit.MB.equals(unit)) {
-			return value * MB_MULTIPLIER;
-		}
-		else if (ByteUnit.GB.equals(unit)) {
-			return value * GB_MULTIPLIER;
-		}
-		else if (ByteUnit.TB.equals(unit)) {
-			return value * TB_MULTIPLIER;
-		}
-		else {
-			throw new IllegalStateException("Unit '" + unit + "' is unknown");
-		}
+		return (long) (value * unit.getConversionFactor());
 	}
 
 	@Override
@@ -93,7 +75,7 @@ public final class ByteValue implements Comparable<ByteValue>, Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((unit == null) ? 0 : unit.hashCode());
-		result = prime * result + value;
+		result = prime * result + (int) (value ^ (value >>> 32));
 		return result;
 	}
 
@@ -109,7 +91,12 @@ public final class ByteValue implements Comparable<ByteValue>, Serializable {
 			return false;
 		}
 		final ByteValue other = (ByteValue) obj;
-		if (unit != other.unit) {
+		if (unit == null) {
+			if (other.unit != null) {
+				return false;
+			}
+		}
+		else if (!unit.equals(other.unit)) {
 			return false;
 		}
 		if (value != other.value) {

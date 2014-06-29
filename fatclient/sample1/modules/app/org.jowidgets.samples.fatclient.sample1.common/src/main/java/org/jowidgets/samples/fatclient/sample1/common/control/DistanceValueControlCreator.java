@@ -28,23 +28,22 @@
 
 package org.jowidgets.samples.fatclient.sample1.common.control;
 
-import org.jowidgets.api.widgets.IInputControl;
+import org.jowidgets.api.widgets.IUnitValueField;
 import org.jowidgets.api.widgets.blueprint.IUnitValueFieldBluePrint;
 import org.jowidgets.common.widgets.factory.ICustomWidgetCreator;
 import org.jowidgets.common.widgets.factory.ICustomWidgetFactory;
-import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue;
-import org.jowidgets.samples.fatclient.sample1.common.unit.ByteValueUnitConveter;
 import org.jowidgets.tools.widgets.blueprint.BPF;
-import org.jowidgets.unit.tools.units.ByteUnitSet;
+import org.jowidgets.unit.tools.converter.LongDoubleUnitConverter;
+import org.jowidgets.unit.tools.units.MillimeterUnitSet;
 
-public final class ByteValueControlCreator implements ICustomWidgetCreator<IInputControl<ByteValue>> {
+public final class DistanceValueControlCreator implements ICustomWidgetCreator<IUnitValueField<Long, Double>> {
 
 	@Override
-	public IInputControl<ByteValue> create(final ICustomWidgetFactory widgetFactory) {
-		final IUnitValueFieldBluePrint<ByteValue, Long> bluePrint = BPF.unitValueField(Long.class);
-		bluePrint.setUnitSet(ByteUnitSet.instance());
-		bluePrint.setDefaultUnit(ByteUnitSet.GB);
-		bluePrint.setUnitConverter(new ByteValueUnitConveter());
+	public IUnitValueField<Long, Double> create(final ICustomWidgetFactory widgetFactory) {
+		final IUnitValueFieldBluePrint<Long, Double> bluePrint = BPF.unitValueField(Double.class);
+		bluePrint.setUnitSet(MillimeterUnitSet.instance());
+		bluePrint.setDefaultUnit(MillimeterUnitSet.CENTI_METER);
+		bluePrint.setUnitConverter(new LongDoubleUnitConverter(MillimeterUnitSet.CENTI_METER));
 		bluePrint.setUnitComboMinSize(51);
 		return widgetFactory.create(bluePrint);
 	}
