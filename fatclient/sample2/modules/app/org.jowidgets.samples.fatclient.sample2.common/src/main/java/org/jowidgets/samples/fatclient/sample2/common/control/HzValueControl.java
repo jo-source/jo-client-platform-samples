@@ -35,6 +35,7 @@ import org.jowidgets.api.widgets.IComposite;
 import org.jowidgets.api.widgets.IInputField;
 import org.jowidgets.api.widgets.blueprint.IComboBoxSelectionBluePrint;
 import org.jowidgets.api.widgets.blueprint.IInputFieldBluePrint;
+import org.jowidgets.common.color.IColorConstant;
 import org.jowidgets.common.types.Dimension;
 import org.jowidgets.common.types.VirtualKey;
 import org.jowidgets.common.widgets.ISelectable;
@@ -201,6 +202,18 @@ public final class HzValueControl extends AbstractInputControl<HzValue> implemen
 	@Override
 	public void removeFocusListener(final IFocusListener listener) {
 		focusObservable.removeFocusListener(listener);
+	}
+
+	@Override
+	public void setForegroundColor(final IColorConstant colorValue) {
+		valueField.setForegroundColor(colorValue);
+		unitCmb.setForegroundColor(colorValue);
+	}
+
+	@Override
+	public void setBackgroundColor(final IColorConstant colorValue) {
+		valueField.setBackgroundColor(colorValue);
+		unitCmb.setBackgroundColor(colorValue);
 	}
 
 	@Override
