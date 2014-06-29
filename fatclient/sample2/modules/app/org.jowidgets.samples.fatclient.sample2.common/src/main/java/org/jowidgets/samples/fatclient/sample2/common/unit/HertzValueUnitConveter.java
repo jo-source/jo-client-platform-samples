@@ -26,28 +26,25 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample2.common.control;
+package org.jowidgets.samples.fatclient.sample2.common.unit;
 
-import org.jowidgets.api.widgets.IInputControl;
-import org.jowidgets.api.widgets.blueprint.IUnitValueFieldBluePrint;
-import org.jowidgets.common.widgets.factory.ICustomWidgetCreator;
-import org.jowidgets.common.widgets.factory.ICustomWidgetFactory;
 import org.jowidgets.samples.fatclient.sample2.common.bean.HzValue;
-import org.jowidgets.samples.fatclient.sample2.common.unit.HertzValueUnitConveter;
-import org.jowidgets.tools.unit.HertzUnitSetKeyMapping;
-import org.jowidgets.tools.widgets.blueprint.BPF;
-import org.jowidgets.unit.tools.units.HertzUnitSet;
+import org.jowidgets.unit.api.IUnitValue;
+import org.jowidgets.unit.tools.converter.AbstractUnitConverter;
 
-public final class HzValueControlCreator implements ICustomWidgetCreator<IInputControl<HzValue>> {
+public final class HertzValueUnitConveter extends AbstractUnitConverter<HzValue, Double> {
 
 	@Override
-	public IInputControl<HzValue> create(final ICustomWidgetFactory widgetFactory) {
-		final IUnitValueFieldBluePrint<HzValue, Double> bluePrint = BPF.unitValueField(Double.class);
-		bluePrint.setUnitSet(HertzUnitSet.instance());
-		bluePrint.setDefaultUnit(HertzUnitSet.MH);
-		bluePrint.setUnitKeyMapping(HertzUnitSetKeyMapping.instance());
-		bluePrint.setUnitConverter(new HertzValueUnitConveter());
-		return widgetFactory.create(bluePrint);
+	public HzValue toBaseValue(final IUnitValue<Double> value) {
+		if (value != null) {
+			return new HzValue(value);
+		}
+		return null;
+	}
+
+	@Override
+	public IUnitValue<Double> toUnitValue(final HzValue value) {
+		return value;
 	}
 
 }
