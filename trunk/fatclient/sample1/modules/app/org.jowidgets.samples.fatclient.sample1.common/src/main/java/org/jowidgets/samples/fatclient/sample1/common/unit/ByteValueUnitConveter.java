@@ -26,27 +26,25 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.fatclient.sample1.common.control;
+package org.jowidgets.samples.fatclient.sample1.common.unit;
 
-import org.jowidgets.api.widgets.IInputControl;
-import org.jowidgets.api.widgets.blueprint.IUnitValueFieldBluePrint;
-import org.jowidgets.common.widgets.factory.ICustomWidgetCreator;
-import org.jowidgets.common.widgets.factory.ICustomWidgetFactory;
 import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue;
-import org.jowidgets.samples.fatclient.sample1.common.unit.ByteValueUnitConveter;
-import org.jowidgets.tools.widgets.blueprint.BPF;
-import org.jowidgets.unit.tools.units.ByteUnitSet;
+import org.jowidgets.unit.api.IUnitValue;
+import org.jowidgets.unit.tools.converter.AbstractUnitConverter;
 
-public final class ByteValueControlCreator implements ICustomWidgetCreator<IInputControl<ByteValue>> {
+public final class ByteValueUnitConveter extends AbstractUnitConverter<ByteValue, Long> {
 
 	@Override
-	public IInputControl<ByteValue> create(final ICustomWidgetFactory widgetFactory) {
-		final IUnitValueFieldBluePrint<ByteValue, Long> bluePrint = BPF.unitValueField(Long.class);
-		bluePrint.setUnitSet(ByteUnitSet.instance());
-		bluePrint.setDefaultUnit(ByteUnitSet.GB);
-		bluePrint.setUnitConverter(new ByteValueUnitConveter());
-		bluePrint.setUnitComboMinSize(51);
-		return widgetFactory.create(bluePrint);
+	public ByteValue toBaseValue(final IUnitValue<Long> value) {
+		if (value != null) {
+			return new ByteValue(value);
+		}
+		return null;
+	}
+
+	@Override
+	public IUnitValue<Long> toUnitValue(final ByteValue value) {
+		return value;
 	}
 
 }

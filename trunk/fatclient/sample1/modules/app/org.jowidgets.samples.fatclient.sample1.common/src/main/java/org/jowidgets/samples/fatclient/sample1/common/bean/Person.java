@@ -42,6 +42,7 @@ public final class Person implements Serializable {
 	public static final String LASTNAME_PROPERTY = "lastname";
 	public static final String DAY_OF_BIRTH_PROPERTY = "dayOfBirth";
 	public static final String GENDER_PROPERTY = "gender";
+	public static final String BODY_HEIGHT_PROPERTY = "bodyHeight";
 	public static final String QUOTA_PROPERTY = "quota";
 	public static final String ROLES_PROPERTY = "roles";
 
@@ -52,6 +53,7 @@ public final class Person implements Serializable {
 	private Date dayOfBirth;
 	private Gender gender;
 	private ByteValue quota;
+	private Long bodyHeight;
 	private List<Role> roles;
 
 	@NotNull
@@ -88,6 +90,14 @@ public final class Person implements Serializable {
 
 	public void setGender(final Gender gender) {
 		this.gender = gender;
+	}
+
+	public Long getBodyHeight() {
+		return bodyHeight;
+	}
+
+	public void setBodyHeight(final Long bodyHeight) {
+		this.bodyHeight = bodyHeight;
 	}
 
 	public ByteValue getQuota() {

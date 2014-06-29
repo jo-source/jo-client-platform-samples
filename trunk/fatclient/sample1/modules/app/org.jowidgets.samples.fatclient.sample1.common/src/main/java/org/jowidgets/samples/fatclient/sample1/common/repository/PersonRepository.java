@@ -33,10 +33,10 @@ import java.util.Arrays;
 import org.jowidgets.cap.service.repository.api.ICrudSupportBeanRepository;
 import org.jowidgets.cap.service.repository.tools.HashMapCrudRepository;
 import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue;
-import org.jowidgets.samples.fatclient.sample1.common.bean.ByteValue.ByteUnit;
 import org.jowidgets.samples.fatclient.sample1.common.bean.Gender;
 import org.jowidgets.samples.fatclient.sample1.common.bean.Person;
 import org.jowidgets.samples.fatclient.sample1.common.bean.Role;
+import org.jowidgets.unit.tools.units.ByteUnitSet;
 
 public final class PersonRepository {
 
@@ -51,7 +51,7 @@ public final class PersonRepository {
 		person.setName("Ben");
 		person.setLastname("Zien");
 		person.setGender(Gender.MALE);
-		person.setQuota(new ByteValue(100, ByteUnit.GB));
+		person.setQuota(new ByteValue(100, ByteUnitSet.GB));
 		person.setRoles(Arrays.asList(Role.ADMIN, Role.USER, Role.GUEST));
 		result.add(person);
 
@@ -59,7 +59,7 @@ public final class PersonRepository {
 		person.setName("Ben");
 		person.setLastname("Ebelt");
 		person.setGender(Gender.MALE);
-		person.setQuota(new ByteValue(50, ByteUnit.GB));
+		person.setQuota(new ByteValue(50, ByteUnitSet.GB));
 		person.setRoles(Arrays.asList(Role.MANAGER));
 		result.add(person);
 
@@ -67,7 +67,7 @@ public final class PersonRepository {
 		person.setName("Klara");
 		person.setLastname("Fall");
 		person.setGender(Gender.FEMALE);
-		person.setQuota(new ByteValue(1, ByteUnit.TB));
+		person.setQuota(new ByteValue(1, ByteUnitSet.TB));
 		result.add(person);
 
 		//		for (int i = 0; i < 5000; i++) {
