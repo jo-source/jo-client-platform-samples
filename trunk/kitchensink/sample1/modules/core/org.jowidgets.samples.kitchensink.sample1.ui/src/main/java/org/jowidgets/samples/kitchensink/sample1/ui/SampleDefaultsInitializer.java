@@ -61,6 +61,7 @@ public final class SampleDefaultsInitializer {
 				setupBuilder.setAutoPackPolicy(AutoPackPolicy.ONCE);
 				setupBuilder.setDefaultCopyAction(true);
 				setupBuilder.setDefaultPasteAction(true);
+				setupBuilder.setEditable(true);
 			}
 		});
 
