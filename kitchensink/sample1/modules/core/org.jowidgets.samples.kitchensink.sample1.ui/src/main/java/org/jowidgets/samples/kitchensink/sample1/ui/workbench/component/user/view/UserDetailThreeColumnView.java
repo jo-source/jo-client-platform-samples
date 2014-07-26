@@ -30,6 +30,7 @@ package org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.vi
 
 import java.util.List;
 
+import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.attribute.IAttribute;
@@ -42,7 +43,6 @@ import org.jowidgets.cap.ui.api.widgets.ICapApiBluePrintFactory;
 import org.jowidgets.common.types.AlignmentVertical;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IUser;
 import org.jowidgets.samples.kitchensink.sample1.ui.attribute.UserAttributesFactory;
-import org.jowidgets.tools.layout.MigLayoutFactory;
 import org.jowidgets.workbench.api.IViewContext;
 import org.jowidgets.workbench.tools.AbstractView;
 
@@ -54,7 +54,7 @@ public class UserDetailThreeColumnView extends AbstractView {
 
 	public UserDetailThreeColumnView(final IViewContext context, final IBeanTableModel<IUser> parentModel) {
 		final IContainer container = context.getContainer();
-		container.setLayout(MigLayoutFactory.growingInnerCellLayout());
+		container.setLayout(Toolkit.getLayoutFactoryProvider().cachedFillLayout());
 		final List<IAttribute<Object>> attributes = new UserAttributesFactory().formAttributes();
 		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
 		final IBeanFormBluePrint<IUser> formBp = cbpf.beanForm(IUser.class, attributes);
@@ -87,6 +87,6 @@ public class UserDetailThreeColumnView extends AbstractView {
 		layoutBuilder.setControlMinWidth(2, 100).setControlMaxWidth(2, 500);
 
 		formBp.setLayouter(CapUiToolkit.beanFormToolkit().layouter(layoutBuilder.build()));
-		container.add(cbpf.beanSelectionForm(parentModel).setBeanForm(formBp), MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
+		container.add(cbpf.beanSelectionForm(parentModel).setBeanForm(formBp));
 	}
 }

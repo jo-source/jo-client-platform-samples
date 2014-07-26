@@ -50,6 +50,7 @@ public final class UserBmiValidator extends AbstractSingleConcernBeanValidator<I
 			//TODO i18n
 			return ValidationResult.warning("The BMI of '" + DecimalFormat.getInstance().format(bmi) + "' seems to be very low.");
 		}
+
 		return ValidationResult.ok();
 	}
 
