@@ -40,7 +40,7 @@ public final class Sample2StarterStandaloneSwt {
 
 	public static void startClient() {
 		Locale.setDefault(Locale.US);
-
+		SwtOptions.setClassicTableSelectionColors();
 		SwtOptions.setClassicTabs(false);
 		new WorkbenchRunner().run(new Sample2Workbench());
 		System.exit(0);
