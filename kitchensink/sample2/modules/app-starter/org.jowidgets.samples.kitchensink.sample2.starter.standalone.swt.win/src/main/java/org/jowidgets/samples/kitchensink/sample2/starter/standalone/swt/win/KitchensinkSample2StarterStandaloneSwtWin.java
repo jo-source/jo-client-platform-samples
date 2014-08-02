@@ -29,12 +29,26 @@
 package org.jowidgets.samples.kitchensink.sample2.starter.standalone.swt.win;
 
 import org.jowidgets.samples.kitchensink.sample2.starter.standalone.swt.common.Sample2StarterStandaloneSwt;
+import org.jowidgets.spi.impl.swt.common.options.SwtOptions;
 
 public final class KitchensinkSample2StarterStandaloneSwtWin {
 
 	private KitchensinkSample2StarterStandaloneSwtWin() {}
 
 	public static void main(final String[] args) throws Exception {
+		//USE TO TEST AUTO UPDATE MODE
+		//		new Thread(new Runnable() {
+		//			@Override
+		//			public void run() {
+		//				try {
+		//					DynamicSampleDataGeneratorStarter.main(new String[] {});
+		//				}
+		//				catch (final Exception e) {
+		//					throw new RuntimeException(e);
+		//				}
+		//			}
+		//		}).start();
+		SwtOptions.setClassicTableSelectionColors();
 		Sample2StarterStandaloneSwt.startClient();
 	}
 
