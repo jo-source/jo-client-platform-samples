@@ -30,9 +30,11 @@ package org.jowidgets.samples.kitchensink.sample2.app.ui.initializer;
 
 import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
 import org.jowidgets.api.types.AutoPackPolicy;
+import org.jowidgets.api.widgets.blueprint.ITableBluePrint;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
 import org.jowidgets.cap.ui.api.widgets.IBeanRelationTreeBluePrint;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
+import org.jowidgets.cap.ui.api.widgets.ILookUpComboBoxSelectionBluePrint;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class SampleDefaultsInitializer {
@@ -42,10 +44,27 @@ public final class SampleDefaultsInitializer {
 	public static void initialize() {
 		SilkIconsInitializer.initializeFull();
 
+		BPF.addDefaultsInitializer(
+				ILookUpComboBoxSelectionBluePrint.class,
+				new IDefaultInitializer<ILookUpComboBoxSelectionBluePrint<?>>() {
+					@Override
+					public void initialize(final ILookUpComboBoxSelectionBluePrint<?> bluePrint) {
+						bluePrint.setAutoRefreshOnFocus(true);
+					}
+				});
+
+		BPF.addDefaultsInitializer(ITableBluePrint.class, new IDefaultInitializer<ITableBluePrint>() {
+			@Override
+			public void initialize(final ITableBluePrint bluePrint) {
+				bluePrint.setEditable(true);
+			}
+		});
+
 		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
 			@Override
 			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
 				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+				bluePrint.setEditable(true);
 				bluePrint.setDefaultCopyAction(true);
 				bluePrint.setDefaultPasteAction(true);
 			}

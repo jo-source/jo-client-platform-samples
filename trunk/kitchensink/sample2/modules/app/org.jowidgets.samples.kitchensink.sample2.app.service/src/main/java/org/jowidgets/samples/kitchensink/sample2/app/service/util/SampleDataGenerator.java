@@ -34,6 +34,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -50,6 +52,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.bean.PersonRoleLink
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Role;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleAuthorizationLink;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenderLookUpService;
+import org.jowidgets.util.EmptyCheck;
 
 public final class SampleDataGenerator {
 
@@ -284,7 +287,20 @@ public final class SampleDataGenerator {
 
 		try {
 			try {
-				return new ArrayList<String>(IOUtils.readLines(inputStream));
+				final ArrayList<String> result = new ArrayList<String>(IOUtils.readLines(inputStream));
+				for (final String string : new ArrayList<String>(result)) {
+					if (!Pattern.compile("^[A-Z]").matcher(string).find()) {
+						result.remove(string);
+					}
+					if (!EmptyCheck.isEmpty(result)) {
+						final StringTokenizer tokenizer = new StringTokenizer(string, " ");
+						if (tokenizer.countTokens() > 1) {
+							result.remove(string);
+						}
+					}
+				}
+
+				return result;
 			}
 			catch (final IOException e) {
 				throw new RuntimeException(e);

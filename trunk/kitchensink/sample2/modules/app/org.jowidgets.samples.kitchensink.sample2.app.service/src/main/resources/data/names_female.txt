@@ -854,7 +854,6 @@ Centa
 Cerene
 Ceres
 Cigdem
-Çîra
 Chanakan
 Chandra
 Chanel
@@ -2302,7 +2301,6 @@ Lara
 Larissa
 Latifah
 Lätizia
-La Toya
 Latoya
 LaToya
 LaToyia
@@ -3127,7 +3125,6 @@ Rozafa
 Róisín
 Ruby
 Rufine
-Ruihi (Maori: Luise)
 Runa
 Runhild
 Rut
@@ -3700,7 +3697,6 @@ Yani
 Yanina
 Yanna
 Yany
-Yao Jie
 Yara
 Yasamin
 Yasemin
@@ -3756,7 +3752,6 @@ Yoruba
 Yoshiko
 Yovanka
 Yoyo
-Yo Yo Ma
 Ypkel
 Yrsa
 Ysabel

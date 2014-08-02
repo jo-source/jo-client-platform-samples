@@ -39,7 +39,7 @@ public final class Sample2StarterClientSwt {
 
 	public static void startClient() {
 		Locale.setDefault(Locale.US);
-
+		SwtOptions.setClassicTableSelectionColors();
 		SwtOptions.setClassicTabs(false);
 		Sample2StarterClient.startClient();
 		System.exit(0);

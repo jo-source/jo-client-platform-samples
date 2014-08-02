@@ -1359,7 +1359,6 @@ Apostolos
 Appajim
 Appaim
 Appeli
-Ápram
 Aputsiaq
 Aqeel
 Aqissiaq
@@ -2930,8 +2929,6 @@ Esko
 Esschel
 Estéban
 Ethan
-Étienne
-Éttore
 Ettore
 Eugen
 Eusebius
@@ -4209,7 +4206,6 @@ Joviša
 Jozef
 Józef
 Juan
-Juan Cruz
 Jubal
 Judoc
 Judocus
@@ -4355,7 +4351,6 @@ Leander
 Lech
 Ledion
 Lee
-Lee Roy
 Leeroy
 LeeRoy
 Leiðólfur
@@ -4386,7 +4381,6 @@ Leoš
 Leotrim
 Lepoje
 Lepomir
-Le Roy
 Leroy
 LeRoy
 Leutrim
@@ -4841,7 +4835,6 @@ Odward
 Odwin
 Oesum
 Ogmund
-Ögmund
 Ogmundr
 Ognjen
 Ohla
@@ -4864,7 +4857,6 @@ Oleksi
 Oliver
 Olof
 Oluf
-Óluf
 Omilj
 Ommo
 Ommund
@@ -4872,7 +4864,6 @@ Ondrej
 Ondřej
 Onno
 Ordulf
-Örn
 Ortger
 Ortlieb
 Ortwald
@@ -5186,7 +5177,6 @@ Rudi
 Rudolf
 Rúdólf
 Rüdiger
-Ruka (Maori: Lucas)
 Rumolt
 Rupert
 Ruprecht
@@ -5204,9 +5194,7 @@ Sachsbert
 Sachso
 Saddam
 Sake
-Šako
 Saku
-Šale
 Salomo
 Salomon
 Salttu
@@ -5314,7 +5302,6 @@ Siniša
 Sintbert
 Sirius
 Siset
-Šiško
 Sivert
 Sixtus
 Skender
@@ -5326,7 +5313,6 @@ Slavko
 Slavoljub
 Slavomír
 Slobodan
-Špiro
 Sofronije
 Sokol
 Sönke
@@ -6030,7 +6016,6 @@ Zarija
 Zarije
 Zarin
 Zarjo
-Žarko
 Zaviša
 Zbigniew
 Zdeněk
@@ -6041,8 +6026,6 @@ Zdzisław
 Zebenjo
 Zef
 Zefyrinus
-Želimir
-Željko
 Zende
 Zeneo
 Zeno
@@ -6054,16 +6037,7 @@ Zere
 Zeus
 Zhongjie
 Zifa
-Žika
 Zikomo
-Živadin
-Živan
-Živanko
-Živko
-Živojin
-Živomir
-Živorad
-Života
 Zlatibor
 Zlatko
 Zlatoje

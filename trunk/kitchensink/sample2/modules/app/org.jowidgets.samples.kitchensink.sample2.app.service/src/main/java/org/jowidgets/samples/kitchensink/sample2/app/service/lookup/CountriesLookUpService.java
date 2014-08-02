@@ -33,7 +33,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 import org.jowidgets.cap.common.api.CapCommonToolkit;
 import org.jowidgets.cap.common.api.execution.IExecutionCallback;
@@ -53,13 +55,17 @@ public class CountriesLookUpService implements ISyncLookUpService {
 
 		final EntityManager entityManager = EntityManagerProvider.get();
 
-		final CriteriaQuery<Country> criteriaQuery = entityManager.getCriteriaBuilder().createQuery(Country.class);
-		criteriaQuery.from(Country.class);
+		final CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+		final CriteriaQuery<Country> criteriaQuery = criteriaBuilder.createQuery(Country.class);
+
+		final Root<Country> root = criteriaQuery.from(Country.class);
+		criteriaQuery.orderBy(criteriaBuilder.asc(root.get("name")));
 
 		result.add(lookUpToolkit.lookUpEntry(null, ""));
 		for (final Country country : entityManager.createQuery(criteriaQuery).getResultList()) {
 			result.add(lookUpToolkit.lookUpEntry(country.getId(), country.getName()));
 		}
+
 		return Collections.unmodifiableList(result);
 	}
 }
