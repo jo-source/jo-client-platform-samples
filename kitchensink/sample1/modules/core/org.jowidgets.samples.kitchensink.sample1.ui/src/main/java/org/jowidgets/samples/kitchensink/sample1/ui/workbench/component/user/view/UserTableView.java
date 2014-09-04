@@ -44,6 +44,7 @@ import org.jowidgets.api.widgets.IContainer;
 import org.jowidgets.api.widgets.IInputField;
 import org.jowidgets.api.widgets.blueprint.factory.IBluePrintFactory;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
+import org.jowidgets.cap.ui.api.bean.IBeanProxy;
 import org.jowidgets.cap.ui.api.table.IBeanTableModel;
 import org.jowidgets.cap.ui.api.widgets.IBeanTable;
 import org.jowidgets.cap.ui.api.widgets.IPopupMenuListener;
@@ -117,9 +118,21 @@ public class UserTableView extends AbstractView {
 		menuModel.addActionItem("Clicked row '" + event.getRowIndex() + "' and column '" + event.getColumnIndex() + "'");
 		menuModel.addActionItem("Clicked value '" + table.getModel().getValue(event.getRowIndex(), event.getColumnIndex()) + "'");
 		menuModel.addActionItem("Its " + (new Date()));
+		menuModel.addActionItem(getSelectedUserName() + " is selected");
 		final int count = random.nextInt(5) + 1;
 		for (int i = 0; i < count; i++) {
 			menuModel.addActionItem("Random item " + i);
+		}
+	}
+
+	private String getSelectedUserName() {
+		final IBeanProxy<IUser> selectedUser = table.getModel().getFirstSelectedBean();
+		if (selectedUser != null) {
+			final IUser user = selectedUser.getBean();
+			return user.getName() + " " + user.getLastName();
+		}
+		else {
+			return "Nothing";
 		}
 	}
 
