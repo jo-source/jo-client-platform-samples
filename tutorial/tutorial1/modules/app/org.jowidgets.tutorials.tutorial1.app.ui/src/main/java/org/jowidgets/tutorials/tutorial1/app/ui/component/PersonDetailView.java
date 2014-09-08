@@ -28,7 +28,7 @@
 
 package org.jowidgets.tutorials.tutorial1.app.ui.component;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.jowidgets.addons.icons.silkicons.SilkIcons;
 import org.jowidgets.api.widgets.IContainer;
@@ -57,7 +57,7 @@ public final class PersonDetailView extends AbstractView {
 
 		final ICapApiBluePrintFactory cbpf = CapUiToolkit.bluePrintFactory();
 		final IBeanSelectionFormBluePrint formBp = cbpf.beanSelectionForm(model);
-		final List<IAttribute<Object>> attributes = model.getAttributes(MetaAttributesFilter.getInstance());
+		final Collection<IAttribute<Object>> attributes = model.getAttributes(MetaAttributesFilter.getInstance());
 		formBp.setBeanForm(cbpf.beanForm(IPerson.class, attributes));
 
 		container.add(formBp, MigLayoutFactory.GROWING_CELL_CONSTRAINTS);
