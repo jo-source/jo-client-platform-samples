@@ -35,6 +35,8 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+import org.jowidgets.cap.common.api.annotation.PropertyValidator;
+import org.jowidgets.samples.fatclient.sample1.common.validator.UppercaseValidator;
 
 public final class Person implements Serializable {
 
@@ -58,6 +60,7 @@ public final class Person implements Serializable {
 
 	@NotNull
 	@Length(min = 2, max = 40)
+	@PropertyValidator(UppercaseValidator.class)
 	public String getName() {
 		return name;
 	}
