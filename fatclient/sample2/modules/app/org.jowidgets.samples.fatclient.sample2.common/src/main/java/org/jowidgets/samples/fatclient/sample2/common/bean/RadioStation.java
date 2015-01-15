@@ -32,6 +32,8 @@ import java.io.Serializable;
 
 import javax.validation.constraints.NotNull;
 
+import org.jowidgets.cap.common.api.annotation.SortConverter;
+
 public final class RadioStation implements Serializable {
 
 	public static final String FREQUENCY_PROPERTY = "frequency";
@@ -64,6 +66,7 @@ public final class RadioStation implements Serializable {
 	}
 
 	@NotNull
+	@SortConverter(value = BandSortConverter.class)
 	public Band getBand() {
 		return band;
 	}

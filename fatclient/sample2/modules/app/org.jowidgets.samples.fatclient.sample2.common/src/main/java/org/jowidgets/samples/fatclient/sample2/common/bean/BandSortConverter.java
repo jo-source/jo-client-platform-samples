@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, grossmann
+ * Copyright (c) 2015, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -28,22 +28,12 @@
 
 package org.jowidgets.samples.fatclient.sample2.common.bean;
 
-public enum Band {
+import org.jowidgets.cap.common.tools.sort.ListSortConverter;
 
-	UKW("UKW"),
-	KW("KW"),
-	MW("MW"),
-	LW("LW");
+public final class BandSortConverter extends ListSortConverter<Band> {
 
-	private final String string;
-
-	private Band(final String string) {
-		this.string = string;
-	}
-
-	@Override
-	public String toString() {
-		return string;
+	public BandSortConverter() {
+		super(Band.values());
 	}
 
 }
