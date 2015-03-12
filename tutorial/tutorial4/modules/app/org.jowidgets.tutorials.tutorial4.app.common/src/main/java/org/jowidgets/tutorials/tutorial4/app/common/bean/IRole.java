@@ -27,7 +27,7 @@
  */
 package org.jowidgets.tutorials.tutorial4.app.common.bean;
 
-import java.util.LinkedList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -49,15 +49,7 @@ public interface IRole extends IBean {
 	String NAME_PROPERTY = "name";
 	String DESCRIPTION_PROPERTY = "description";
 
-	List<String> ALL_PROPERTIES = new LinkedList<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add(NAME_PROPERTY);
-			add(DESCRIPTION_PROPERTY);
-			add(IBean.ID_PROPERTY);
-			add(IBean.VERSION_PROPERTY);
-		}
-	};
+	List<String> ALL_PROPERTIES = Arrays.asList(NAME_PROPERTY, DESCRIPTION_PROPERTY, IBean.ID_PROPERTY, IBean.VERSION_PROPERTY);
 
 	@NotNull
 	@Size(min = 2, max = 20)

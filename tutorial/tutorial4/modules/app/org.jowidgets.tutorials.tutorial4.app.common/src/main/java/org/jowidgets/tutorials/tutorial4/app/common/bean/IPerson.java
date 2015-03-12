@@ -27,8 +27,8 @@
  */
 package org.jowidgets.tutorials.tutorial4.app.common.bean;
 
+import java.util.Arrays;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.validation.constraints.NotNull;
@@ -54,16 +54,12 @@ public interface IPerson extends IBean {
 	String DATE_OF_BIRTH_PROPERTY = "dateOfBirth";
 	String GENDER_PROPERTY = "gender";
 
-	List<String> ALL_PROPERTIES = new LinkedList<String>() {
-		private static final long serialVersionUID = 1L;
-		{
-			add(NAME_PROPERTY);
-			add(DATE_OF_BIRTH_PROPERTY);
-			add(GENDER_PROPERTY);
-			add(IBean.ID_PROPERTY);
-			add(IBean.VERSION_PROPERTY);
-		}
-	};
+	List<String> ALL_PROPERTIES = Arrays.asList(
+			NAME_PROPERTY,
+			DATE_OF_BIRTH_PROPERTY,
+			GENDER_PROPERTY,
+			IBean.ID_PROPERTY,
+			IBean.VERSION_PROPERTY);
 
 	@NotNull
 	@Size(min = 2, max = 50)
