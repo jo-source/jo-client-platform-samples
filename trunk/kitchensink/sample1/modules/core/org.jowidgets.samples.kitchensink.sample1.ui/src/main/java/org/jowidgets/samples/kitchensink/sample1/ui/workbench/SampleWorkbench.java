@@ -37,7 +37,10 @@ import org.jowidgets.samples.kitchensink.sample1.ui.workbench.application.Sample
 import org.jowidgets.security.tools.SecurityContext;
 import org.jowidgets.tools.widgets.blueprint.BPF;
 import org.jowidgets.workbench.api.IWorkbench;
+import org.jowidgets.workbench.api.IWorkbenchContext;
 import org.jowidgets.workbench.api.IWorkbenchFactory;
+import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
+import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
 import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
 
@@ -49,7 +52,13 @@ public class SampleWorkbench implements IWorkbenchFactory {
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel(Messages.getString("SampleWorkbench.sample_application_1"));
-		builder.addApplication(SampleApplicationFactory.create());
+
+		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
+			@Override
+			public void onContextInitialize(final IWorkbenchModel model, final IWorkbenchContext context) {
+				model.addApplication(SampleApplicationFactory.create());
+			}
+		});
 
 		builder.setStatusBarCreator(new IContentCreator() {
 			@Override
