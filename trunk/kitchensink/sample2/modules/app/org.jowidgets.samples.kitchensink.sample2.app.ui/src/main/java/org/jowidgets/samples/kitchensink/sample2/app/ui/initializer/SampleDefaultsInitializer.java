@@ -28,23 +28,26 @@
 
 package org.jowidgets.samples.kitchensink.sample2.app.ui.initializer;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
+import org.jowidgets.addons.icons.silkicons.SilkIconsSubstitude;
+import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.api.types.AutoPackPolicy;
 import org.jowidgets.api.widgets.blueprint.ITableBluePrint;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
+import org.jowidgets.api.widgets.blueprint.factory.IBluePrintProxyFactory;
 import org.jowidgets.cap.ui.api.widgets.IBeanRelationTreeBluePrint;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ILookUpComboBoxSelectionBluePrint;
-import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class SampleDefaultsInitializer {
 
 	private SampleDefaultsInitializer() {}
 
 	public static void initialize() {
-		SilkIconsInitializer.initializeFull();
+		SilkIconsSubstitude.substitude();
 
-		BPF.addDefaultsInitializer(
+		final IBluePrintProxyFactory bppf = Toolkit.getBluePrintProxyFactory();
+
+		bppf.addDefaultsInitializer(
 				ILookUpComboBoxSelectionBluePrint.class,
 				new IDefaultInitializer<ILookUpComboBoxSelectionBluePrint<?>>() {
 					@Override
@@ -53,14 +56,14 @@ public final class SampleDefaultsInitializer {
 					}
 				});
 
-		BPF.addDefaultsInitializer(ITableBluePrint.class, new IDefaultInitializer<ITableBluePrint>() {
+		bppf.addDefaultsInitializer(ITableBluePrint.class, new IDefaultInitializer<ITableBluePrint>() {
 			@Override
 			public void initialize(final ITableBluePrint bluePrint) {
 				bluePrint.setEditable(true);
 			}
 		});
 
-		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
+		bppf.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
 			@Override
 			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
 				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
@@ -70,7 +73,7 @@ public final class SampleDefaultsInitializer {
 			}
 		});
 
-		BPF.addDefaultsInitializer(IBeanRelationTreeBluePrint.class, new IDefaultInitializer<IBeanRelationTreeBluePrint<?>>() {
+		bppf.addDefaultsInitializer(IBeanRelationTreeBluePrint.class, new IDefaultInitializer<IBeanRelationTreeBluePrint<?>>() {
 			@Override
 			public void initialize(final IBeanRelationTreeBluePrint<?> bluePrint) {
 				bluePrint.setDefaultCopyAction(true);
