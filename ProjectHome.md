@@ -1,0 +1,1 @@
+Holds sample applications for the jo-client-platform
