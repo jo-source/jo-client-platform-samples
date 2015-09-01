@@ -28,7 +28,7 @@
 
 package org.jowidgets.samples.fatclient.sample1.common.workbench;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
+import org.jowidgets.addons.icons.silkicons.SilkIconsSubstitude;
 import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
 import org.jowidgets.samples.fatclient.sample1.common.application.FatClientSample1ApplicationFactory;
 import org.jowidgets.workbench.api.IWorkbench;
@@ -54,7 +54,7 @@ public final class FatClientSample1Workbench implements IWorkbenchFactory {
 		SLF4JBridgeHandler.removeHandlersForRootLogger();
 		SLF4JBridgeHandler.install();
 
-		SilkIconsInitializer.initializeFull();
+		SilkIconsSubstitude.substitude();
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLoginCallback(null);
