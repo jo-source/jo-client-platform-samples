@@ -28,25 +28,26 @@
 
 package org.jowidgets.tutorials.tutorial4.app.ui.initializer;
 
-import org.jowidgets.addons.icons.silkicons.SilkIconsInitializer;
+import org.jowidgets.addons.icons.silkicons.SilkIconsSubstitude;
+import org.jowidgets.api.toolkit.Toolkit;
 import org.jowidgets.api.types.AutoPackPolicy;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
-import org.jowidgets.tools.widgets.blueprint.BPF;
 
 public final class Tutorial4DefaultsInitializer {
 
 	private Tutorial4DefaultsInitializer() {}
 
 	public static void initialize() {
-		SilkIconsInitializer.initializeFull();
-
-		BPF.addDefaultsInitializer(IBeanTableBluePrint.class, new IDefaultInitializer<IBeanTableBluePrint<?>>() {
-			@Override
-			public void initialize(final IBeanTableBluePrint<?> bluePrint) {
-				bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
-			}
-		});
+		SilkIconsSubstitude.substitude();
+		Toolkit.getBluePrintProxyFactory().addDefaultsInitializer(
+				IBeanTableBluePrint.class,
+				new IDefaultInitializer<IBeanTableBluePrint<?>>() {
+					@Override
+					public void initialize(final IBeanTableBluePrint<?> bluePrint) {
+						bluePrint.setAutoPackPolicy(AutoPackPolicy.ONCE);
+					}
+				});
 	}
 
 }
