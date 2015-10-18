@@ -543,6 +543,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 	private IUpdaterService createPersonUpdaterService() {
 		final IUpdaterServiceBuilder<Person> builder = getServiceFactory().updaterServiceBuilder(Person.class);
 		builder.setBeanDtoFactoryAndBeanModifier(IPerson.ALL_PROPERTIES);
+		//TODO this validator does not work with h2
 		//builder.addBeanValidator(new PersonLoginNameConstraintValidator());
 		return builder.build();
 	}
@@ -550,7 +551,8 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 	private ICreatorService createPersonCreatorService() {
 		final ICreatorServiceBuilder<Person> builder = getServiceFactory().creatorServiceBuilder(Person.class);
 		builder.setBeanDtoFactoryAndBeanInitializer(IPerson.ALL_PROPERTIES);
+		//TODO this validator does not work with h2
 		//builder.addBeanValidator(new PersonLoginNameConstraintValidator());
-		return builder.build();
+		return new DecoratedPersonCreatorService(builder.build());
 	}
 }
