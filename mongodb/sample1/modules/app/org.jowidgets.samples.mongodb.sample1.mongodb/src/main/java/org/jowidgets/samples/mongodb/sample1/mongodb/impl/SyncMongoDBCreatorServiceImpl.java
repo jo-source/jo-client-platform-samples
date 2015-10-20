@@ -28,7 +28,10 @@
 
 package org.jowidgets.samples.mongodb.sample1.mongodb.impl;
 
+import java.util.Collection;
+
 import org.jowidgets.cap.common.api.bean.IBean;
+import org.jowidgets.cap.common.api.bean.IBeanKey;
 import org.jowidgets.cap.common.api.execution.IExecutableChecker;
 import org.jowidgets.cap.common.api.execution.IExecutionCallback;
 import org.jowidgets.cap.common.api.validation.IBeanValidator;
@@ -64,7 +67,7 @@ final class SyncMongoDBCreatorServiceImpl<BEAN_TYPE extends IBean> extends Abstr
 	}
 
 	@Override
-	protected BEAN_TYPE createBean(final IExecutionCallback executionCallback) {
+	protected BEAN_TYPE createBean(final Collection<IBeanKey> parentBeanKeys, final IExecutionCallback executionCallback) {
 		try {
 			final BEAN_TYPE result = beanType.newInstance();
 			return result;
@@ -75,7 +78,10 @@ final class SyncMongoDBCreatorServiceImpl<BEAN_TYPE extends IBean> extends Abstr
 	}
 
 	@Override
-	protected void persistBean(final BEAN_TYPE bean, final IExecutionCallback executionCallback) {
+	protected void persistBean(
+		final Collection<IBeanKey> parentBeanKeys,
+		final BEAN_TYPE bean,
+		final IExecutionCallback executionCallback) {
 		final DBCollection collection = BeanTypeIdMapperProvider.getCollection(beanTypeId);
 		collection.insert((DBObject) bean);
 	}

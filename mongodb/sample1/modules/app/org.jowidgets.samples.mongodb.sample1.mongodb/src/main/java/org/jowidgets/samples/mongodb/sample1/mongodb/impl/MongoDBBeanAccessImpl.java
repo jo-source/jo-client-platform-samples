@@ -89,6 +89,16 @@ final class MongoDBBeanAccessImpl<BEAN_TYPE extends IBean> implements IBeanAcces
 	}
 
 	@Override
+	public Object getId(final BEAN_TYPE bean) {
+		return bean.getId();
+	}
+
+	@Override
+	public long getVersion(final BEAN_TYPE bean) {
+		return bean.getVersion();
+	}
+
+	@Override
 	public void flush() {}
 
 }
