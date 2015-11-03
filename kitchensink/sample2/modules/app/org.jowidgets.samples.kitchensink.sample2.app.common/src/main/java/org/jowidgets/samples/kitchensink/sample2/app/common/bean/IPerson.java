@@ -66,9 +66,9 @@ public interface IPerson extends IBean {
 			add(NAME_PROPERTY);
 			add(LAST_NAME_PROPERTY);
 			add(COUNTRY_ID_PROPERTY);
-			add(ROLE_IDS_PROPERTY);
 			add(GENDER_PROPERTY);
 			add(ACTIVE_PROPERTY);
+			add(ROLE_IDS_PROPERTY);
 			add(IBean.ID_PROPERTY);
 			add(IBean.VERSION_PROPERTY);
 		}
