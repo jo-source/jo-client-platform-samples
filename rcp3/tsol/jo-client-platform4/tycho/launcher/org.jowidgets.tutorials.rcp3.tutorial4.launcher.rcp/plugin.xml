@@ -7,7 +7,7 @@
        point="org.eclipse.core.runtime.applications">
       <application>
          <run
-               class="org.jowidgets.tutorials.rcp3.tutorial4.launcher.swt.Tutorial4RcpWorkbenchRunner">
+               class="org.jowidgets.tutorials.rcp3.tutorial4.launcher.rcp.Tutorial4RcpWorkbenchRunner">
          </run>
       </application>
     </extension>
