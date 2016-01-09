@@ -35,7 +35,7 @@ import java.util.List;
 import org.jowidgets.cap.common.api.bean.IBeanData;
 import org.jowidgets.cap.common.api.bean.IBeanDto;
 import org.jowidgets.cap.common.api.bean.IBeanKey;
-import org.jowidgets.cap.common.api.exception.ExecutableCheckException;
+import org.jowidgets.cap.common.api.exception.ServiceCanceledException;
 import org.jowidgets.cap.common.api.execution.IExecutionCallback;
 import org.jowidgets.cap.common.api.execution.IResultCallback;
 import org.jowidgets.cap.common.api.execution.UserQuestionResult;
@@ -64,10 +64,7 @@ final class DecoratedPersonCreatorService implements ICreatorService {
 		final IExecutionCallback executionCallback) {
 		final Collection<IBeanData> beansToCreate = getBeansToCreate(beans, executionCallback);
 		if (EmptyCheck.isEmpty(beansToCreate)) {
-			//TODO use the canceled exception instead after switched to no jo client platform version 0.45.0 or higher
-			//at the moment <=0.44.0 the service canceled exception will produce an unknown error on default creator action 
-			//result.exception(new ServiceCanceledException());
-			result.exception(new ExecutableCheckException(null, "Creation abborted by user", "Creation abborted by user"));
+			result.exception(new ServiceCanceledException());
 		}
 		else {
 			original.create(result, parentBeanKeys, beansToCreate, executionCallback);
