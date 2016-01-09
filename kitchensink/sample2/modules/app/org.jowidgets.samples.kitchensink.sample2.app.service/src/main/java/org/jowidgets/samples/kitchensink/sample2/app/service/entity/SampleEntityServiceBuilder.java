@@ -153,6 +153,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp = addEntity().setEntityId(EntityIds.LINKABLE_PERSONS_OF_ROLES).setBeanType(Person.class);
 		entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
 		entityBp.setReaderService(createPersonsOfRolesReader(false));
+		entityBp.setCreatorService(createPersonCreatorService());
 
 		//Linked roles of persons
 		entityBp = addEntity().setEntityId(EntityIds.LINKED_ROLES_OF_PERSONS).setBeanType(Role.class);
@@ -440,6 +441,7 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 			final IBeanEntityBluePrint linkableEntityBp = addEntity().setEntityId(linkableEntityId).setBeanType(Person.class);
 			linkableEntityBp.setReaderService(linkableReader);
 			linkableEntityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
+			linkableEntityBp.setCreatorService(createPersonCreatorService());
 		}
 	}
 
