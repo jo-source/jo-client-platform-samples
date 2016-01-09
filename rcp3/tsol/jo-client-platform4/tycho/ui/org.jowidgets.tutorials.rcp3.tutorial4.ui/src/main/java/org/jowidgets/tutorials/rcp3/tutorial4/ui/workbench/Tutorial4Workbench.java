@@ -32,7 +32,10 @@ import org.jowidgets.cap.ui.tools.workbench.CapWorkbenchModelBuilder;
 import org.jowidgets.tutorials.rcp3.tutorial4.ui.application.Tutorial4ApplicationFactory;
 import org.jowidgets.tutorials.rcp3.tutorial4.ui.defaults.Tutorial3DefaultsInitializer;
 import org.jowidgets.workbench.api.IWorkbench;
+import org.jowidgets.workbench.api.IWorkbenchContext;
 import org.jowidgets.workbench.api.IWorkbenchFactory;
+import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
+import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
 import org.jowidgets.workbench.toolkit.api.WorkbenchToolkit;
 import org.slf4j.bridge.SLF4JBridgeHandler;
@@ -48,7 +51,14 @@ public final class Tutorial4Workbench implements IWorkbenchFactory {
 
 		final IWorkbenchModelBuilder builder = new CapWorkbenchModelBuilder();
 		builder.setLabel("Tutorial4");
-		builder.addApplication(Tutorial4ApplicationFactory.create());
+
+		builder.addInitializeCallback(new IWorkbenchInitializeCallback() {
+			@Override
+			public void onContextInitialize(final IWorkbenchModel model, final IWorkbenchContext context) {
+				model.addApplication(Tutorial4ApplicationFactory.create());
+			}
+		});
+
 		return WorkbenchToolkit.getWorkbenchPartFactory().workbench(builder.build());
 	}
 

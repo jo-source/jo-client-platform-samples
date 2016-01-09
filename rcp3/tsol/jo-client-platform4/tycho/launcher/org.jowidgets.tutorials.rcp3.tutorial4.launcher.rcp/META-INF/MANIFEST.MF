@@ -24,3 +24,4 @@ Require-Bundle:
  org.eclipse.ui;bundle-version="3.6.2",
  org.eclipse.core.runtime;bundle-version="3.6.0"
 Bundle-Activator: org.jowidgets.tools.starter.classloading.ClassLoadingActivator
+Shared-Classloader-Contribution: true

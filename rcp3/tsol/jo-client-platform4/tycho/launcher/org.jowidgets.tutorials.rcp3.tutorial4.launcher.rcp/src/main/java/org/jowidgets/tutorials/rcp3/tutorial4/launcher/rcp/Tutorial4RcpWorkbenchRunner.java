@@ -25,7 +25,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH
  * DAMAGE.
  */
-package org.jowidgets.tutorials.rcp3.tutorial4.launcher.swt;
+package org.jowidgets.tutorials.rcp3.tutorial4.launcher.rcp;
 
 import org.jowidgets.cap.tools.starter.client.rcp.CapClientRcpWorkbenchRunner;
 import org.jowidgets.tutorials.rcp3.tutorial4.ui.workbench.Tutorial4Workbench;
