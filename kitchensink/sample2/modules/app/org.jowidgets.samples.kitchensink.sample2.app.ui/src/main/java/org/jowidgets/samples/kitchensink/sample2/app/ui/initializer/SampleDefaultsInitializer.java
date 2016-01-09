@@ -35,6 +35,7 @@ import org.jowidgets.api.widgets.blueprint.ITableBluePrint;
 import org.jowidgets.api.widgets.blueprint.defaults.IDefaultInitializer;
 import org.jowidgets.api.widgets.blueprint.factory.IBluePrintProxyFactory;
 import org.jowidgets.cap.ui.api.widgets.IBeanRelationTreeBluePrint;
+import org.jowidgets.cap.ui.api.widgets.IBeanSelectionFormBluePrint;
 import org.jowidgets.cap.ui.api.widgets.IBeanTableBluePrint;
 import org.jowidgets.cap.ui.api.widgets.ILookUpComboBoxSelectionBluePrint;
 
@@ -78,6 +79,13 @@ public final class SampleDefaultsInitializer {
 			public void initialize(final IBeanRelationTreeBluePrint<?> bluePrint) {
 				bluePrint.setDefaultCopyAction(true);
 				bluePrint.setDefaultLinkPasteAction(true);
+			}
+		});
+
+		bppf.addDefaultsInitializer(IBeanSelectionFormBluePrint.class, new IDefaultInitializer<IBeanSelectionFormBluePrint>() {
+			@Override
+			public void initialize(final IBeanSelectionFormBluePrint bluePrint) {
+				bluePrint.setHideReadonlyAttributes(false);
 			}
 		});
 	}

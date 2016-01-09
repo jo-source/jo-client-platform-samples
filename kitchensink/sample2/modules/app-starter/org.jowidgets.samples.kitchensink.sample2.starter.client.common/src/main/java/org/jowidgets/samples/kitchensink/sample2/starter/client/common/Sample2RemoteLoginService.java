@@ -29,9 +29,11 @@
 package org.jowidgets.samples.kitchensink.sample2.starter.client.common;
 
 import org.jowidgets.cap.common.api.service.IAuthorizationProviderService;
+import org.jowidgets.cap.common.api.service.IEntityService;
 import org.jowidgets.cap.tools.starter.client.AbstractRemoteLoginService;
 import org.jowidgets.samples.kitchensink.sample2.app.common.security.AuthorizationProviderServiceId;
 import org.jowidgets.service.api.IServiceId;
+import org.jowidgets.service.api.ServiceProvider;
 
 public class Sample2RemoteLoginService extends AbstractRemoteLoginService {
 
@@ -42,6 +44,15 @@ public class Sample2RemoteLoginService extends AbstractRemoteLoginService {
 	@Override
 	protected IServiceId<? extends IAuthorizationProviderService<?>> getAuthorizationProviderServiceId() {
 		return AuthorizationProviderServiceId.ID;
+	}
+
+	@Override
+	public void afterLoginSuccess() {
+		//Fill entity info cache after successful login in login thread
+		//to avoid entity service access later in the ui thread.
+		final IEntityService service = ServiceProvider.getService(IEntityService.ID);
+		service.clearCache();
+		service.getEntityInfos();
 	}
 
 }

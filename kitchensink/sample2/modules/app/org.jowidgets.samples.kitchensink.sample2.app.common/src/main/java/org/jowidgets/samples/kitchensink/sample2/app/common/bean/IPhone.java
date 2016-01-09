@@ -27,6 +27,7 @@
  */
 package org.jowidgets.samples.kitchensink.sample2.app.common.bean;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public interface IPhone extends IBean {
 	String PHONE_PROPERTY = "phone";
 	String PERSON_ID_PROPERTY = "personId";
 	String PERSON_LABEL_PROPERTY = "personLabel";
+	String CREATION_DATE_PROPERTY = "creationDate";
 
 	List<String> ALL_PROPERTIES = new LinkedList<String>() {
 		private static final long serialVersionUID = 1L;
@@ -53,6 +55,7 @@ public interface IPhone extends IBean {
 			add(PHONE_PROPERTY);
 			add(PERSON_ID_PROPERTY);
 			add(PERSON_LABEL_PROPERTY);
+			add(CREATION_DATE_PROPERTY);
 			add(IBean.ID_PROPERTY);
 			add(IBean.VERSION_PROPERTY);
 		}
@@ -67,5 +70,7 @@ public interface IPhone extends IBean {
 	void setPersonId(final Long id);
 
 	String getPersonLabel();
+
+	Date getCreationDate();
 
 }

@@ -58,6 +58,10 @@ public class PhoneDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 		propertyBp.setDescription("Person who owns the phone");
 		propertyBp.setMandatory(false);
 
+		propertyBp = addProperty(IPhone.CREATION_DATE_PROPERTY);
+		propertyBp.setLabel("Created");
+		propertyBp.setMandatory(false);
+
 		propertyBp = addProperty(IBean.VERSION_PROPERTY);
 		propertyBp.setLabel("Version");
 		propertyBp.setDescription("The version of the dataset");

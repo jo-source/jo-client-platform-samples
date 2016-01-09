@@ -28,6 +28,7 @@
 
 package org.jowidgets.samples.kitchensink.sample2.plugins.ui;
 
+import org.jowidgets.cap.ui.api.plugin.IBeanFormPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanProxyLabelRendererPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanProxyPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanRelationTreePlugin;
@@ -41,11 +42,13 @@ import org.jowidgets.plugin.api.IPluginFilter;
 import org.jowidgets.plugin.api.IPluginProperties;
 import org.jowidgets.plugin.tools.PluginProviderBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPhone;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRole;
 import org.jowidgets.samples.kitchensink.sample2.app.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.PersonLabelRendererPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.PhoneLabelRendererPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.RoleLabelRendererPlugin;
+import org.jowidgets.samples.kitchensink.sample2.plugins.ui.form.PhoneFormPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.selection.PersonSelectionProvider;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.table.PersonMenuContributionPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.table.PersonMenuInterceptorPlugin;
@@ -83,6 +86,8 @@ public final class Sample2PluginProviderBuilder extends PluginProviderBuilder {
 				new PersonLabelRendererPlugin(),
 				IBeanProxyLabelRendererPlugin.BEAN_TYPE_PROPERTY_KEY,
 				IPerson.class);
+
+		addPlugin(IBeanFormPlugin.ID, new PhoneFormPlugin(), IBeanFormPlugin.BEAN_TYPE_PROPERTY_KEY, IPhone.class);
 
 		addPlugin(
 				IBeanProxyLabelRendererPlugin.ID,

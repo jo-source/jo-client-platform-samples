@@ -27,6 +27,8 @@
  */
 package org.jowidgets.samples.kitchensink.sample2.app.service.bean;
 
+import java.util.Date;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,6 +47,9 @@ public class Phone extends Bean implements IPhone {
 
 	@Basic
 	private String phone;
+
+	@Basic
+	private Date creationDate;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PERSONID", nullable = false, insertable = false, updatable = false)
@@ -96,4 +101,14 @@ public class Phone extends Bean implements IPhone {
 		this.person = person;
 		personId = person != null ? person.getId() : null;
 	}
+
+	@Override
+	public Date getCreationDate() {
+		return creationDate;
+	}
+
+	public void setCreationDate(final Date creationDate) {
+		this.creationDate = creationDate;
+	}
+
 }

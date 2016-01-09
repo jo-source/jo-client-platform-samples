@@ -104,6 +104,14 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp.setUpdaterService(createPersonUpdaterService());
 		addPersonLinkDescriptors(entityBp);
 
+		for (int i = 0; i < 256; i++) {
+			entityBp = addEntity().setEntityId(EntityIds.PERSON + "" + i).setBeanType(Person.class);
+			entityBp.setDtoDescriptor(new PersonDtoDescriptorBuilder());
+			entityBp.setCreatorService(createPersonCreatorService());
+			entityBp.setUpdaterService(createPersonUpdaterService());
+			addPersonLinkDescriptors(entityBp);
+		}
+
 		//IRole
 		entityBp = addEntity().setEntityId(EntityIds.ROLE).setBeanType(Role.class);
 		entityBp.setDtoDescriptor(new RoleDtoDescriptorBuilder());
@@ -329,9 +337,11 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 	private void addPersonsOfPhonesLinkDescriptor(final IBeanEntityBluePrint entityBp) {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
 		bp.setLinkEntityId(EntityIds.PHONE);
-		bp.setLinkedEntityId(EntityIds.LINKED_PERSON_OF_PHONES);
-		bp.setLinkableEntityId(EntityIds.LINKABLE_PERSONS_OF_PHONES);
-		bp.setDestinationProperties(Phone.PERSON_ID_PROPERTY);
+		bp.setLinkBeanTypeId(Phone.class);
+		bp.setLinkedEntityId(EntityIds.PHONE);
+		bp.setSourceProperties(Phone.PERSON_ID_PROPERTY);
+		bp.setLinkDeleterService(null);
+		bp.setSymmetric(true);
 	}
 
 	private void addCategorySubCategoryLinkDescriptor(final IBeanEntityBluePrint entityBp) {
