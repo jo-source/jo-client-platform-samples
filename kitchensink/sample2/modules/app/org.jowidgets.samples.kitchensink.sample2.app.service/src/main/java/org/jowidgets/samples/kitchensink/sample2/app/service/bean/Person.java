@@ -47,19 +47,27 @@ import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Index;
 import org.jowidgets.cap.common.api.annotation.BeanValidator;
+import org.jowidgets.cap.service.jpa.api.query.PropertyMapQueryPath;
 import org.jowidgets.cap.service.jpa.api.query.QueryPath;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.genericproperties.GenericPropertyEntity;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.genericproperties.IGenericPropertyValue;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.genericproperties.GenericPropertiesAccessor;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.genericproperties.IGenericPropertyValueFactory;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.genericproperties.PersonGenericPropertyValue;
 import org.jowidgets.samples.kitchensink.sample2.app.service.entity.EntityManagerProvider;
 import org.jowidgets.samples.kitchensink.sample2.app.service.validation.PersonLoginNameConstraintValidator;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"loginName"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"loginName"}) )
 @BeanValidator(PersonLoginNameConstraintValidator.class)
+@PropertyMapQueryPath(path = {"genericProperties"}, propertyNamePath = "propertyName", valuePath = "value")
 public class Person extends Bean implements IPerson {
 
 	@Basic
@@ -104,6 +112,31 @@ public class Person extends Bean implements IPerson {
 	@BatchSize(size = 1000)
 	@MapKey(name = "PERSONID")
 	private List<Phone> phones;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "person", orphanRemoval = true)
+	@BatchSize(size = 1000)
+	private final List<PersonGenericPropertyValue> genericProperties = new LinkedList<PersonGenericPropertyValue>();
+
+	@Transient
+	private final GenericPropertiesAccessor genericPropertiesAccessor = new GenericPropertiesAccessor(
+		new IGenericPropertyValueFactory() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public IGenericPropertyValue create() {
+				final PersonGenericPropertyValue genericPropertyValue = new PersonGenericPropertyValue();
+				genericProperties.add(genericPropertyValue);
+				genericPropertyValue.setPerson(Person.this);
+				return genericPropertyValue;
+			}
+
+			@Override
+			public List<? extends IGenericPropertyValue> getGenericProperties() {
+				return genericProperties;
+			}
+		},
+		GenericPropertyEntity.PERSON);
 
 	@Override
 	public String getName() {
@@ -246,5 +279,20 @@ public class Person extends Bean implements IPerson {
 
 	public void setPhones(final List<Phone> phones) {
 		this.phones = phones;
+	}
+
+	@Override
+	public List<? extends IGenericPropertyValue> getGenericProperties() {
+		return genericProperties;
+	}
+
+	@Override
+	public void setValue(final String propertyName, final Object value) {
+		genericPropertiesAccessor.setValue(propertyName, value);
+	}
+
+	@Override
+	public Object getValue(final String propertyName) {
+		return genericPropertiesAccessor.getValue(propertyName);
 	}
 }

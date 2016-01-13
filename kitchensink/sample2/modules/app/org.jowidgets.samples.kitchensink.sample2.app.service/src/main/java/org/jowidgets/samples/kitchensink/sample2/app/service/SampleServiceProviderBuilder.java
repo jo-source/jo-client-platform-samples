@@ -56,6 +56,9 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.executor.PersonActi
 import org.jowidgets.samples.kitchensink.sample2.app.service.executor.PersonDeactivateExecutor;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.CountriesLookUpService;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenderLookUpService;
+import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenericPropertyEntityLookupService;
+import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenericPropertyLookupService;
+import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenericPropertyTypeLookupService;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.PersonOfSourcePersonRelationTypeLookUpService;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.RolesLookUpService;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.SourcePersonOfPersonRelationTypeLookUpService;
@@ -89,6 +92,9 @@ public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 		addLookUpService(LookUpIds.GENDER, new GenderLookUpService());
 		addLookUpService(LookUpIds.PERSON_OF_SOURCE_PERSON_RELATION_TYPE, new PersonOfSourcePersonRelationTypeLookUpService());
 		addLookUpService(LookUpIds.SOURCE_PERSON_OF_PERSON_RELATION_TYPE, new SourcePersonOfPersonRelationTypeLookUpService());
+		addLookUpService(LookUpIds.GENERIC_PROPERTY, new GenericPropertyLookupService());
+		addLookUpService(LookUpIds.GENERIC_PROPERTY_TYPE, new GenericPropertyTypeLookupService());
+		addLookUpService(LookUpIds.GENERIC_PROPERTY_ENTITY, new GenericPropertyEntityLookupService());
 
 		addServiceDecorator(createJpaServiceDecoratorProvider());
 		addServiceDecorator(createCancelServiceDecoratorProvider());

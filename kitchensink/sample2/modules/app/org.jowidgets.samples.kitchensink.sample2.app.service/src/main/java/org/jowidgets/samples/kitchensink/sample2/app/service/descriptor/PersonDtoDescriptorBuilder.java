@@ -28,11 +28,17 @@
 
 package org.jowidgets.samples.kitchensink.sample2.app.service.descriptor;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.common.api.bean.IBeanPropertyBluePrint;
 import org.jowidgets.cap.common.tools.bean.BeanDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.genericproperties.GenericPropertyEntity;
 import org.jowidgets.samples.kitchensink.sample2.app.common.lookup.LookUpIds;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.genericproperties.GenericProperty;
+import org.jowidgets.samples.kitchensink.sample2.app.service.loader.GenericPropertyLoader;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenderLookUpService;
 
 public class PersonDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
@@ -97,6 +103,8 @@ public class PersonDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 		propertyBp.setSortable(false);
 		propertyBp.setFilterable(true);
 
+		addGenericProperties(GenericPropertyEntity.PERSON);
+
 		propertyBp = addProperty(IPerson.ACTIVE_PROPERTY);
 		propertyBp.setLabel("Active");
 		propertyBp.setDescription("Determines if the person is active");
@@ -109,4 +117,32 @@ public class PersonDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 		propertyBp.setDescription("The version of the dataset");
 
 	}
+
+	public void addGenericProperties(final GenericPropertyEntity entity) {
+		IBeanPropertyBluePrint propertyBp;
+		final List<GenericProperty> genericProperties = GenericPropertyLoader.getGenericPropertyList(entity);
+		for (final GenericProperty genericProperty : genericProperties) {
+			propertyBp = addProperty(genericProperty.getPropertyName());
+			propertyBp.setVisible(true);
+			propertyBp.setLabel(genericProperty.getLabel());
+			propertyBp.setDescription(genericProperty.getDescription());
+			propertyBp.setSearchable(false);
+			// sorting of properties mapped with IPropertyMap not supported by jo-cap
+			propertyBp.setSortable(false);
+
+			switch (genericProperty.getType()) {
+				case STRING:
+					propertyBp.setValueType(String.class);
+					break;
+				case STRING_LIST:
+					// set value type (requires integration of pull request in jo-cap)
+					propertyBp.setValueType(Collection.class);
+
+					propertyBp.setElementValueType(String.class);
+					break;
+			}
+
+		}
+	}
+
 }

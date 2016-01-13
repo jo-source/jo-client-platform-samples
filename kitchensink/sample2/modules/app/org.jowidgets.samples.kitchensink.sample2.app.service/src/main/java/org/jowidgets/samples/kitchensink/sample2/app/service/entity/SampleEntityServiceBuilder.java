@@ -63,6 +63,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPersonRoleLink
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPhone;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRole;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRoleAuthorizationLink;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.genericproperties.IGenericProperty;
 import org.jowidgets.samples.kitchensink.sample2.app.common.entity.EntityIds;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Authorization;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Category;
@@ -75,9 +76,11 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Phone;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Role;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleAuthorizationLink;
 import org.jowidgets.samples.kitchensink.sample2.app.service.bean.RoleCategoryLink;
+import org.jowidgets.samples.kitchensink.sample2.app.service.bean.genericproperties.GenericProperty;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.AuthorizationDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.CategoryDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.CountryDtoDescriptorBuilder;
+import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.GenericPropertyDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonOfSourcePersonLinkDtoDescriptorBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.descriptor.PersonPersonLinkDtoDescriptorBuilder;
@@ -132,6 +135,12 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		entityBp = addEntity().setEntityId(EntityIds.CATEGORY).setBeanType(Category.class);
 		entityBp.setDtoDescriptor(new CategoryDtoDescriptorBuilder());
 		entityBp.setProperties(ICategory.ALL_PROPERTIES);
+		addCategoryLinkDescriptors(entityBp);
+
+		//IGenericProperty
+		entityBp = addEntity().setEntityId(EntityIds.GENERIC_PROPERTY).setBeanType(GenericProperty.class);
+		entityBp.setDtoDescriptor(new GenericPropertyDtoDescriptorBuilder());
+		entityBp.setProperties(IGenericProperty.ALL_PROPERTIES);
 		addCategoryLinkDescriptors(entityBp);
 
 		//IPersonsOfSourcePersonLink
