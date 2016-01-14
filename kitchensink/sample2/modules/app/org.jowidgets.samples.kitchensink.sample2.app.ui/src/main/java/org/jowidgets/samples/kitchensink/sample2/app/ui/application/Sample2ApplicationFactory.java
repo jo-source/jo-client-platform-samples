@@ -63,6 +63,7 @@ public final class Sample2ApplicationFactory {
 		addEntityComponent(model, EntityIds.PERSON_LINK_TYPE);
 		addEntityComponent(model, EntityIds.COUNTRY);
 		addEntityComponent(model, EntityIds.PHONE);
+		addEntityComponent(model, EntityIds.GENERIC_PROPERTY);
 	}
 
 	private static void addEntityComponent(final IWorkbenchApplicationModelBuilder parent, final Object entityId) {

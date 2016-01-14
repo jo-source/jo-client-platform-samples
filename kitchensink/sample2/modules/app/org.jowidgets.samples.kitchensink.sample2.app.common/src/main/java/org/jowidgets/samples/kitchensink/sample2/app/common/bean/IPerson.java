@@ -40,6 +40,7 @@ import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
+import org.jowidgets.samples.kitchensink.sample2.app.common.bean.genericproperties.IGenericPropertiesBean;
 import org.jowidgets.samples.kitchensink.sample2.app.common.security.AuthKeys;
 import org.jowidgets.samples.kitchensink.sample2.app.common.validation.PersonNameUppercaseValidator;
 import org.jowidgets.samples.kitchensink.sample2.app.common.validation.PersonNameWordCountValidator;
@@ -49,7 +50,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.common.validation.PersonNam
 @ReadAuthorization(AuthKeys.READ_PERSON)
 @UpdateAuthorization(AuthKeys.UPDATE_PERSON)
 @DeleteAuthorization(AuthKeys.DELETE_PERSON)
-public interface IPerson extends IBean {
+public interface IPerson extends IBean, IGenericPropertiesBean {
 
 	String NAME_PROPERTY = "name";
 	String LAST_NAME_PROPERTY = "lastname";
