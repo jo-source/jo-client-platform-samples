@@ -330,15 +330,15 @@ public class SampleEntityServiceBuilder extends JpaEntityServiceBuilderWrapper {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
 		bp.setLinkEntityId(EntityIds.PHONE);
 		bp.setLinkedEntityId(EntityIds.LINKED_PHONES_OF_PERSONS);
-		bp.setLinkableEntityId(EntityIds.LINKABLE_PHONES_OF_PERSONS);
+		//		bp.setLinkableEntityId(EntityIds.LINKABLE_PHONES_OF_PERSONS);
 		bp.setSourceProperties(Phone.PERSON_ID_PROPERTY);
 	}
 
 	private void addPersonsOfPhonesLinkDescriptor(final IBeanEntityBluePrint entityBp) {
 		final IBeanEntityLinkBluePrint bp = entityBp.addLink();
-		bp.setLinkEntityId(EntityIds.PHONE);
-		bp.setLinkBeanTypeId(Phone.class);
-		bp.setLinkedEntityId(EntityIds.PHONE);
+		bp.setLinkEntityId(EntityIds.PERSON);
+		bp.setLinkBeanTypeId(Person.class);
+		bp.setLinkedEntityId(EntityIds.PERSON);
 		bp.setSourceProperties(Phone.PERSON_ID_PROPERTY);
 		bp.setLinkDeleterService(null);
 		bp.setSymmetric(true);
