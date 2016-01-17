@@ -113,6 +113,8 @@ public final class SampleDataGenerator {
 		entityManager.createQuery("delete from RoleAuthorizationLink").executeUpdate();
 		entityManager.createQuery("delete from PersonPersonLink").executeUpdate();
 		entityManager.createQuery("delete from PersonRoleLink").executeUpdate();
+		entityManager.createQuery("delete from PersonGenericPropertyValue").executeUpdate();
+		entityManager.createQuery("delete from GenericProperty").executeUpdate();
 		entityManager.createQuery("delete from Person").executeUpdate();
 		entityManager.createQuery("delete from Role").executeUpdate();
 		entityManager.createQuery("delete from Authorization").executeUpdate();
