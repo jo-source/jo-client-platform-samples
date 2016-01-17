@@ -65,7 +65,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.entity.EntityManage
 import org.jowidgets.samples.kitchensink.sample2.app.service.validation.PersonLoginNameConstraintValidator;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"loginName"}) )
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"loginName"}))
 @BeanValidator(PersonLoginNameConstraintValidator.class)
 @PropertyMapQueryPath(path = {"genericProperties"}, propertyNamePath = "propertyName", valuePath = "value")
 public class Person extends Bean implements IPerson {
