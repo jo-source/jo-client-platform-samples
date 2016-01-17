@@ -140,6 +140,8 @@ public class PersonDtoDescriptorBuilder extends BeanDtoDescriptorBuilder {
 
 					propertyBp.setElementValueType(String.class);
 					break;
+				default:
+					break;
 			}
 
 		}
