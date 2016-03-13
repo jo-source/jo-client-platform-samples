@@ -70,6 +70,7 @@ public final class SampleDefaultsInitializer {
 				bluePrint.setEditable(true);
 				bluePrint.setDefaultCopyAction(true);
 				bluePrint.setDefaultPasteAction(true);
+				bluePrint.setValidationLabelVisible(true);
 			}
 		});
 

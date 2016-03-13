@@ -42,10 +42,11 @@ import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.genericproperties.IGenericPropertiesBean;
 import org.jowidgets.samples.kitchensink.sample2.app.common.security.AuthKeys;
+import org.jowidgets.samples.kitchensink.sample2.app.common.validation.PersonNameLastNameValidator;
 import org.jowidgets.samples.kitchensink.sample2.app.common.validation.PersonNameUppercaseValidator;
 import org.jowidgets.samples.kitchensink.sample2.app.common.validation.PersonNameWordCountValidator;
 
-@BeanValidator(PersonNameWordCountValidator.class)
+@BeanValidator({PersonNameWordCountValidator.class, PersonNameLastNameValidator.class})
 @CreateAuthorization(AuthKeys.CREATE_PERSON)
 @ReadAuthorization(AuthKeys.READ_PERSON)
 @UpdateAuthorization(AuthKeys.UPDATE_PERSON)
