@@ -28,6 +28,7 @@
 
 package org.jowidgets.samples.kitchensink.sample2.plugins.ui;
 
+import org.jowidgets.cap.ui.api.plugin.IBeanModelBuilderPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanProxyLabelRendererPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanProxyPlugin;
 import org.jowidgets.cap.ui.api.plugin.IBeanRelationTreePlugin;
@@ -43,6 +44,7 @@ import org.jowidgets.plugin.tools.PluginProviderBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IRole;
 import org.jowidgets.samples.kitchensink.sample2.app.common.entity.EntityIds;
+import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.BeanModelBuilderPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.PersonLabelRendererPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.PhoneLabelRendererPlugin;
 import org.jowidgets.samples.kitchensink.sample2.plugins.ui.bean.RoleLabelRendererPlugin;
@@ -56,6 +58,8 @@ import org.jowidgets.samples.kitchensink.sample2.plugins.ui.tree.RoleRelationTre
 public final class Sample2PluginProviderBuilder extends PluginProviderBuilder {
 
 	public Sample2PluginProviderBuilder() {
+		addPlugin(IBeanModelBuilderPlugin.ID, new BeanModelBuilderPlugin());
+
 		addPlugin(IBeanProxyPlugin.ID, new BeanMessagePopupPlugin());
 
 		addPlugin(
