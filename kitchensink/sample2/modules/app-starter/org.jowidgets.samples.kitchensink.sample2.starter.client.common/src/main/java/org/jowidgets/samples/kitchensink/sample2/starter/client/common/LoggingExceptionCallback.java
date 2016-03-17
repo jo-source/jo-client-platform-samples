@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, H.Westphal
+ * Copyright (c) 2016, grossmann
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,18 +26,19 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample2.starter.server;
+package org.jowidgets.samples.kitchensink.sample2.starter.client.common;
 
-import org.jowidgets.cap.remoting.common.RemotingBrokerId;
-import org.jowidgets.cap.tools.starter.server.CapServerStarter;
-import org.jowidgets.message.api.MessageToolkit;
+import org.jowidgets.message.api.IExceptionCallback;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public final class KitchensinkSample2StarterServer {
+public final class LoggingExceptionCallback implements IExceptionCallback {
 
-	private KitchensinkSample2StarterServer() {}
+	private static final Logger LOGGER = LoggerFactory.getLogger(LoggingExceptionCallback.class);
 
-	public static void main(final String[] args) throws Exception {
-		MessageToolkit.setExceptionCallback(RemotingBrokerId.DEFAULT_BROKER_ID, new LoggingExceptionCallback());
-		CapServerStarter.startServer();
+	@Override
+	public void exception(final Throwable throwable) {
+		LOGGER.error("Error on messaging: ", throwable);
 	}
+
 }
