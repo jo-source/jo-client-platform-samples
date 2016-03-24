@@ -47,6 +47,12 @@
             <artifactId>org.jowidgets.addons.icons.silkicons</artifactId>
             <version>${jowidgets.version}</version>
         </dependency>
+        
+        <dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>1.6.6</version>
+		</dependency>
 		
 	</dependencies>
 </project>

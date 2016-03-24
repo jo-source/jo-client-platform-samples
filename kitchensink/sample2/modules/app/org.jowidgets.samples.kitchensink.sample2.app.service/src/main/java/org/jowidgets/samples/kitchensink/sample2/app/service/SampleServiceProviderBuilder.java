@@ -54,7 +54,6 @@ import org.jowidgets.samples.kitchensink.sample2.app.service.bean.Person;
 import org.jowidgets.samples.kitchensink.sample2.app.service.entity.SampleEntityServiceBuilder;
 import org.jowidgets.samples.kitchensink.sample2.app.service.executor.PersonActivateExecutor;
 import org.jowidgets.samples.kitchensink.sample2.app.service.executor.PersonDeactivateExecutor;
-import org.jowidgets.samples.kitchensink.sample2.app.service.logging.Sample2ExceptionLogger;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.CountriesLookUpService;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenderLookUpService;
 import org.jowidgets.samples.kitchensink.sample2.app.service.lookup.GenericPropertyEntityLookupService;
@@ -107,8 +106,6 @@ public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 		builder.addExceptionDecorator(HibernateServiceToolkit.exceptionDecorator());
 		//TODO use this with oracle db
 		//builder.addExceptionDecorator(HibernateOracleServiceToolkit.exceptionDecorator());
-
-		builder.setExceptionLogger(new Sample2ExceptionLogger());
 		return builder.build();
 	}
 

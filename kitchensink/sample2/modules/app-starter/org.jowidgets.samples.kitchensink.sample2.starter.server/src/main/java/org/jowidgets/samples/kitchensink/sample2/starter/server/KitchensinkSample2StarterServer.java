@@ -28,16 +28,13 @@
 
 package org.jowidgets.samples.kitchensink.sample2.starter.server;
 
-import org.jowidgets.cap.remoting.common.RemotingBrokerId;
 import org.jowidgets.cap.tools.starter.server.CapServerStarter;
-import org.jowidgets.message.api.MessageToolkit;
 
 public final class KitchensinkSample2StarterServer {
 
 	private KitchensinkSample2StarterServer() {}
 
 	public static void main(final String[] args) throws Exception {
-		MessageToolkit.setExceptionCallback(RemotingBrokerId.DEFAULT_BROKER_ID, new LoggingExceptionCallback());
 		CapServerStarter.startServer();
 	}
 }

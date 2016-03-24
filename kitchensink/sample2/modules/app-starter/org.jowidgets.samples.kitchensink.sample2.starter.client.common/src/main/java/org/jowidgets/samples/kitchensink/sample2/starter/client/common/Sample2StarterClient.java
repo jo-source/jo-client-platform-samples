@@ -28,9 +28,7 @@
 
 package org.jowidgets.samples.kitchensink.sample2.starter.client.common;
 
-import org.jowidgets.cap.remoting.common.RemotingBrokerId;
 import org.jowidgets.cap.tools.starter.client.CapClientWorkbenchRunner;
-import org.jowidgets.message.api.MessageToolkit;
 import org.jowidgets.samples.kitchensink.sample2.app.ui.workbench.Sample2Workbench;
 
 public final class Sample2StarterClient {
@@ -38,7 +36,6 @@ public final class Sample2StarterClient {
 	private Sample2StarterClient() {}
 
 	public static void startClient() {
-		MessageToolkit.setExceptionCallback(RemotingBrokerId.DEFAULT_BROKER_ID, new LoggingExceptionCallback());
 		new CapClientWorkbenchRunner("http://localhost:8080/").run(new Sample2Workbench());
 	}
 

@@ -36,17 +36,22 @@
             <version>${jocap.version}</version>
         </dependency>	
 		
+		<dependency>
+			<groupId>org.jowidgets</groupId>
+			<artifactId>org.jowidgets.addons.logging.slf4j</artifactId>
+			<version>0.58.0-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.12</version>
+		</dependency>
+		
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>4.2.0.Final</version>
-            <scope>runtime</scope>
-        </dependency>
-		
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-jcl</artifactId>
-            <version>1.6.4</version>
             <scope>runtime</scope>
         </dependency>
         

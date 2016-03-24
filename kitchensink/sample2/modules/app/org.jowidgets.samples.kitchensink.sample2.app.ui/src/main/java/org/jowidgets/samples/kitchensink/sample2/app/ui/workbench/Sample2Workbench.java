@@ -46,11 +46,15 @@ import org.jowidgets.workbench.toolkit.api.IWorkbenchInitializeCallback;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModel;
 import org.jowidgets.workbench.toolkit.api.IWorkbenchModelBuilder;
 import org.jowidgets.workbench.toolkit.api.WorkbenchPartFactory;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public class Sample2Workbench implements IWorkbenchFactory {
 
 	@Override
 	public IWorkbench create() {
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
+
 		Locale.setDefault(Locale.US);
 
 		SampleDefaultsInitializer.initialize();
