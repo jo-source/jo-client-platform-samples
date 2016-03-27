@@ -28,14 +28,17 @@
 
 package org.jowidgets.samples.neo4j.sample1.starter.client.common;
 
-import org.jowidgets.samples.neo4j.sample1.app.ui.workbench.Sample1Workbench;
 import org.jowidgets.cap.tools.starter.client.CapClientWorkbenchRunner;
+import org.jowidgets.samples.neo4j.sample1.app.ui.workbench.Sample1Workbench;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public final class Sample1StarterClient {
 
 	private Sample1StarterClient() {}
 
 	public static void startClient() {
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
 		new CapClientWorkbenchRunner("http://localhost:8080/").run(new Sample1Workbench());
 	}
 

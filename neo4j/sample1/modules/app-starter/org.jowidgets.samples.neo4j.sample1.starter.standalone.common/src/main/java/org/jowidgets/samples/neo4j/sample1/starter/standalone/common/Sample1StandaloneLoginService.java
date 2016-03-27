@@ -29,11 +29,14 @@
 package org.jowidgets.samples.neo4j.sample1.starter.standalone.common;
 
 import org.jowidgets.cap.tools.starter.standalone.common.StandaloneLoginService;
+import org.slf4j.bridge.SLF4JBridgeHandler;
 
 public final class Sample1StandaloneLoginService extends StandaloneLoginService {
 
 	public Sample1StandaloneLoginService() {
 		super("Sample1");
+		SLF4JBridgeHandler.removeHandlersForRootLogger();
+		SLF4JBridgeHandler.install();
 	}
 
 }
