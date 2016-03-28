@@ -31,19 +31,18 @@ package org.jowidgets.samples.kitchensink.sample2.plugins.ui.selection;
 import org.jowidgets.cap.ui.api.bean.IBeanProxy;
 import org.jowidgets.cap.ui.api.bean.IBeanSelectionEvent;
 import org.jowidgets.cap.ui.api.plugin.IBeanSelectionProviderPlugin;
+import org.jowidgets.logging.api.ILogger;
+import org.jowidgets.logging.api.LoggerProvider;
 import org.jowidgets.plugin.api.IPluginProperties;
 import org.jowidgets.samples.kitchensink.sample2.app.common.bean.IPerson;
 
 public final class PersonSelectionProvider implements IBeanSelectionProviderPlugin<IPerson> {
 
+	private static final ILogger LOGGER = LoggerProvider.get(PersonSelectionProvider.class);
+
 	@Override
 	public void selectionChanged(final IBeanSelectionEvent<IPerson> selectionEvent, final IPluginProperties pluginProperties) {
-		//CHECKSTYLE:OFF
-		System.out.println("Selection plugin selected: "
-			+ getPersonName(selectionEvent)
-			+ " / SOURCE: "
-			+ selectionEvent.getSource());
-		//CHECKSTYLE:ON
+		LOGGER.info("Selection plugin selected: " + getPersonName(selectionEvent) + " / SOURCE: " + selectionEvent.getSource());
 	}
 
 	private String getPersonName(final IBeanSelectionEvent<IPerson> selectionEvent) {
