@@ -45,7 +45,7 @@ import org.jowidgets.samples.kitchensink.sample2.app.common.bean.ICategory;
 import org.jowidgets.samples.kitchensink.sample2.app.service.entity.EntityManagerProvider;
 
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name"}) )
 public class Category extends Bean implements ICategory {
 
 	@Basic

@@ -33,17 +33,20 @@ import java.util.List;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.jowidgets.cap.common.api.annotation.BeanValidator;
 import org.jowidgets.cap.common.api.bean.IBean;
 import org.jowidgets.cap.security.common.api.annotation.CreateAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.DeleteAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.ReadAuthorization;
 import org.jowidgets.cap.security.common.api.annotation.UpdateAuthorization;
 import org.jowidgets.samples.kitchensink.sample2.app.common.security.AuthKeys;
+import org.jowidgets.samples.kitchensink.sample2.app.common.validation.CategoryMultiPropertyValidator;
 
 @CreateAuthorization(AuthKeys.CREATE_CATEGORY)
 @ReadAuthorization(AuthKeys.READ_CATEGORY)
 @UpdateAuthorization(AuthKeys.UPDATE_CATEGORY)
 @DeleteAuthorization(AuthKeys.DELETE_CATEGORY)
+@BeanValidator(CategoryMultiPropertyValidator.class)
 public interface ICategory extends IBean {
 
 	String NAME_PROPERTY = "name";
@@ -53,6 +56,7 @@ public interface ICategory extends IBean {
 
 	List<String> ALL_PROPERTIES = new LinkedList<String>() {
 		private static final long serialVersionUID = 1L;
+
 		{
 			add(NAME_PROPERTY);
 			add(DESCRIPTION_PROPERTY);
