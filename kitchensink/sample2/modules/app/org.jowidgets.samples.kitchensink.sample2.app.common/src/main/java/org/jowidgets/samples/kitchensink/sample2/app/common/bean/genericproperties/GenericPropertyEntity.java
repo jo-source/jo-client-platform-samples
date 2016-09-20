@@ -32,7 +32,7 @@ public enum GenericPropertyEntity {
 
 	private String message;
 
-	private GenericPropertyEntity(final String message) {
+	GenericPropertyEntity(final String message) {
 		this.message = message;
 	}
 

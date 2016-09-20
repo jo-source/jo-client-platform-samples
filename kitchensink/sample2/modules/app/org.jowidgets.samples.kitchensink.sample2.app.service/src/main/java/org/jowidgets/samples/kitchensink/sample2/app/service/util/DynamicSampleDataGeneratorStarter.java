@@ -55,9 +55,8 @@ public final class DynamicSampleDataGeneratorStarter {
 	private static long getMaxId(final EntityManagerFactory entityManagerFactory) {
 		final EntityManager em = entityManagerFactory.createEntityManager();
 		final Query query = em.createQuery("SELECT MAX(p.id) FROM Person p");
-		Object result;
 		try {
-			result = query.getSingleResult();
+			final Object result = query.getSingleResult();
 			if (result instanceof Number) {
 				return ((Number) result).longValue();
 			}
