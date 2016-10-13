@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2016, NBeuck
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,26 +26,87 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample1.common.service.reader;
+package org.jowidgets.samples.kitchensink.sample1.service.entity;
 
-import org.jowidgets.cap.common.api.service.IReaderService;
-import org.jowidgets.service.api.IServiceId;
-import org.jowidgets.service.tools.ServiceId;
+import org.jowidgets.samples.kitchensink.sample1.common.entity.IMatch;
 
-public final class ReaderServices {
+public class Match extends AbstractSampleBean implements IMatch {
 
-	public static final IServiceId<IReaderService<Integer>> ALL_USERS = new ServiceId<IReaderService<Integer>>(
-		ReaderServices.class.getName() + "_ALL_USERS",
-		IReaderService.class);
+	private String title;
 
-	public static final IServiceId<IReaderService<Void>> ROLES_OF_USERS = new ServiceId<IReaderService<Void>>(
-		ReaderServices.class.getName() + "_ROLES_OF_USERS",
-		IReaderService.class);
+	private Integer scoreA;
+	private Integer scoreB;
 
-	public static final IServiceId<IReaderService<Void>> NEWS_TICKER = new ServiceId<IReaderService<Void>>(
-		ReaderServices.class.getName() + "_NEWS_TICKER",
-		IReaderService.class);
+	private Integer minute;
 
-	private ReaderServices() {}
+	private Boolean finished;
+
+	public Match(final Object id, final String title) {
+		super(id);
+
+		this.title = title;
+
+		this.scoreA = Integer.valueOf(0);
+		this.scoreB = Integer.valueOf(0);
+		this.minute = Integer.valueOf(1);
+
+		this.finished = Boolean.FALSE;
+	}
+
+	public Match(final Match other) {
+		super(other.getId());
+
+		this.title = other.title;
+
+		this.scoreA = other.scoreA;
+		this.scoreB = other.scoreB;
+
+		this.finished = other.finished;
+	}
+
+	@Override
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(final String title) {
+		this.title = title;
+	}
+
+	@Override
+	public Integer getScoreA() {
+		return scoreA;
+	}
+
+	public void setScoreA(final Integer scoreA) {
+		this.scoreA = scoreA;
+	}
+
+	@Override
+	public Integer getScoreB() {
+		return scoreB;
+	}
+
+	public void setScoreB(final Integer scoreB) {
+		this.scoreB = scoreB;
+	}
+
+	@Override
+	public Integer getMinute() {
+		return minute;
+	}
+
+	public void setMinute(final Integer minute) {
+		this.minute = minute;
+	}
+
+	@Override
+	public Boolean getFinished() {
+		return finished;
+	}
+
+	public void setFinished(final Boolean finished) {
+		this.finished = finished;
+	}
 
 }

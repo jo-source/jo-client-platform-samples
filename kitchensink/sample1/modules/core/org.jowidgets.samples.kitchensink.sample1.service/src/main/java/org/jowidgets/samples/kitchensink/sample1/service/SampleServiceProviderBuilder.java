@@ -62,6 +62,7 @@ import org.jowidgets.samples.kitchensink.sample1.service.lookup.LanguagesLookUpS
 import org.jowidgets.samples.kitchensink.sample1.service.lookup.RolesLookUpService;
 import org.jowidgets.samples.kitchensink.sample1.service.reader.AllUsersReaderService;
 import org.jowidgets.samples.kitchensink.sample1.service.reader.LinkedRolesOfUsersReaderService;
+import org.jowidgets.samples.kitchensink.sample1.service.reader.NewsTickerReaderService;
 import org.jowidgets.samples.kitchensink.sample1.service.security.AuthorizationProviderServiceImpl;
 import org.jowidgets.service.api.IServiceId;
 import org.jowidgets.service.tools.ServiceId;
@@ -94,6 +95,8 @@ public class SampleServiceProviderBuilder extends ServiceProviderBuilder {
 		addLookUpService(Countries.LOOK_UP_ID, new CountriesLookUpService());
 		addLookUpService(Languages.LOOK_UP_ID, new LanguagesLookUpService());
 		addLookUpService(RolesLookUpService.LOOK_UP_ID, new RolesLookUpService());
+
+		addService(ReaderServices.NEWS_TICKER, new NewsTickerReaderService());
 	}
 
 	private <BEAN_TYPE extends IBean, PARAM_TYPE> void addPersonExecutor(

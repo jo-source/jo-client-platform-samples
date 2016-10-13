@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2016, NBeuck
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -28,16 +28,42 @@
 
 package org.jowidgets.samples.kitchensink.sample1.common.entity;
 
-public enum EntityIds {
+import java.util.LinkedList;
+import java.util.List;
 
-	GENERIC_BEAN,
-	ROLE,
-	AUTHORIZATION,
-	USER_ROLE_LINK,
-	VIRTUAL_ROLES_OF_USERS,
-	VIRTUAL_LINKABLE_ROLES_OF_USERS,
-	VIRTUAL_USERS_OF_ROLES,
-	VIRTUAL_LINKABLE_USERS_OF_ROLES,
-	MATCH;
+import org.jowidgets.cap.common.api.bean.IBean;
+
+public interface IMatch extends IBean {
+
+	String TITLE_PROPERTY = "title";
+	String MINUTES_PROPERTY = "minute";
+	String FINISHED_PROPERTY = "finished";
+	String SCORE_A_PROPERTY = "scoreA";
+	String SCORE_B_PROPERTY = "scoreB";
+
+	List<String> ALL_PROPERTIES = new LinkedList<String>() {
+		private static final long serialVersionUID = 1L;
+
+		{
+			add(TITLE_PROPERTY);
+			add(MINUTES_PROPERTY);
+			add(FINISHED_PROPERTY);
+			add(SCORE_A_PROPERTY);
+			add(SCORE_B_PROPERTY);
+
+			add(IBean.ID_PROPERTY);
+			add(IBean.VERSION_PROPERTY);
+		}
+	};
+
+	String getTitle();
+
+	Boolean getFinished();
+
+	Integer getMinute();
+
+	Integer getScoreA();
+
+	Integer getScoreB();
 
 }

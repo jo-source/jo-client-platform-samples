@@ -26,18 +26,36 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample1.common.entity;
+package org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.newsticker;
 
-public enum EntityIds {
+import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.newsticker.view.NewsTableView;
+import org.jowidgets.workbench.api.ILayout;
+import org.jowidgets.workbench.toolkit.api.IFolderLayoutBuilder;
+import org.jowidgets.workbench.toolkit.api.ILayoutBuilder;
+import org.jowidgets.workbench.tools.FolderLayoutBuilder;
+import org.jowidgets.workbench.tools.LayoutBuilder;
 
-	GENERIC_BEAN,
-	ROLE,
-	AUTHORIZATION,
-	USER_ROLE_LINK,
-	VIRTUAL_ROLES_OF_USERS,
-	VIRTUAL_LINKABLE_ROLES_OF_USERS,
-	VIRTUAL_USERS_OF_ROLES,
-	VIRTUAL_LINKABLE_USERS_OF_ROLES,
-	MATCH;
+public class NewsComponentDefaultLayout {
+
+	public static final String DEFAULT_LAYOUT_ID = "DEFAULT_LAYOUT_ID";
+	public static final String MASTER_FOLDER_ID = "MASTER_FOLDER_ID";
+
+	private final ILayout layout;
+
+	public NewsComponentDefaultLayout() {
+		final ILayoutBuilder builder = new LayoutBuilder();
+		builder.setId(DEFAULT_LAYOUT_ID).setLayoutContainer(createMasterFolder());
+		this.layout = builder.build();
+	}
+
+	public ILayout getLayout() {
+		return layout;
+	}
+
+	private IFolderLayoutBuilder createMasterFolder() {
+		final IFolderLayoutBuilder result = new FolderLayoutBuilder(MASTER_FOLDER_ID);
+		result.addView(NewsTableView.ID, NewsTableView.DEFAULT_LABEL, NewsTableView.DEFAULT_TOOLTIP);
+		return result;
+	}
 
 }
