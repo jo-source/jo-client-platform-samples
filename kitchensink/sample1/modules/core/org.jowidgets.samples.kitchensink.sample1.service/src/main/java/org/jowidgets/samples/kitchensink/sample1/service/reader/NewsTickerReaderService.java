@@ -54,29 +54,37 @@ import org.jowidgets.cap.common.tools.bean.BeanDtosInsertionUpdate;
 import org.jowidgets.cap.service.api.CapServiceToolkit;
 import org.jowidgets.cap.service.api.bean.IBeanDtoFactory;
 import org.jowidgets.cap.service.tools.bean.BeanDtoFactoryHelper;
+import org.jowidgets.logging.api.ILogger;
+import org.jowidgets.logging.api.LoggerProvider;
 import org.jowidgets.samples.kitchensink.sample1.common.entity.IMatch;
 import org.jowidgets.samples.kitchensink.sample1.service.entity.Match;
+import org.jowidgets.util.concurrent.DaemonThreadFactory;
 
 /**
  * Example for a reader service that serves an {@link IUpdatableResultCallback}.
  * 
  * TODO updates that respect filter and sorting
- * TODO the should arguably be stateless and should just observe matches instead of managing it.
  * 
  * @author NBeuck
  */
 public class NewsTickerReaderService implements IReaderService<Void> {
 
+	private static final ILogger LOGGER = LoggerProvider.get(NewsTickerReaderService.class);
+
 	private final IBeanDtoFactory<IMatch> dtoFactory;
 
-	private final Map<IUpdatableResultCallback<IBeanDtosUpdate, ?>, IExecutionCallback> updateCallbacks = new ConcurrentHashMap<IUpdatableResultCallback<IBeanDtosUpdate, ?>, IExecutionCallback>();
-	private final Map<Object, Match> matches = new ConcurrentHashMap<Object, Match>();
+	private final Map<IUpdatableResultCallback<IBeanDtosUpdate, ?>, IExecutionCallback> updateCallbacks;
+	private final Map<Object, Match> matches;
 
-	private final AtomicBoolean stopped = new AtomicBoolean(false);
+	private final AtomicBoolean stopped;
 
 	public NewsTickerReaderService() {
-		this.dtoFactory = CapServiceToolkit.dtoFactory(IMatch.class, IMatch.ALL_PROPERTIES);
-		Executors.newSingleThreadScheduledExecutor().submit(new MatchGenerator());
+		dtoFactory = CapServiceToolkit.dtoFactory(IMatch.class, IMatch.ALL_PROPERTIES);
+		stopped = new AtomicBoolean(false);
+		updateCallbacks = new ConcurrentHashMap<IUpdatableResultCallback<IBeanDtosUpdate, ?>, IExecutionCallback>();
+		matches = new ConcurrentHashMap<Object, Match>();
+
+		Executors.newSingleThreadExecutor(new DaemonThreadFactory("Newsticker")).execute(new MatchGenerator());
 	}
 
 	@Override
@@ -154,7 +162,7 @@ public class NewsTickerReaderService implements IReaderService<Void> {
 	}
 
 	private void addMatches(final List<Match> matchesToAdd) {
-		// System.out.println("Adding matches");
+		LOGGER.debug("Adding matches");
 
 		for (final Match match : matchesToAdd) {
 			matches.put(match.getId(), match);
@@ -165,7 +173,7 @@ public class NewsTickerReaderService implements IReaderService<Void> {
 	}
 
 	private void updateMatch(final Match matchToUpdate, final int minutesPassed, final boolean teamAScored) {
-		// System.out.println("updating " + matchToUpdate.getTitle() + ": +" + minutesPassed + "mins, teamA? " + teamAScored);
+		LOGGER.debug("updating " + matchToUpdate.getTitle() + ": +" + minutesPassed + "mins, teamA? " + teamAScored);
 
 		final int matchLength = 90;
 
@@ -191,7 +199,7 @@ public class NewsTickerReaderService implements IReaderService<Void> {
 	}
 
 	private void clearMatches() {
-		// System.out.println("Clearing matches");
+		LOGGER.debug("Clearing matches");
 		matches.clear();
 		sendUpdate(new IBeanDtosClearUpdate() {});
 	}
