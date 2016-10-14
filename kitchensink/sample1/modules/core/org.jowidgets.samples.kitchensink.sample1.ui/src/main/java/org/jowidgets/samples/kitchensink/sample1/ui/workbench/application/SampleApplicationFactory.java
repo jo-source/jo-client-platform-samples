@@ -34,6 +34,7 @@ import org.jowidgets.addons.icons.silkicons.SilkIcons;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.config.SampleConfigComponent;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.generic.GenericBeanComponent;
+import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.newsticker.NewsTickerComponent;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.roles.RolesTabFolderComponent;
 import org.jowidgets.samples.kitchensink.sample1.ui.workbench.component.user.UserComponent;
 import org.jowidgets.workbench.toolkit.api.IComponentNodeModel;
@@ -84,6 +85,15 @@ public final class SampleApplicationFactory {
 		nodeModelBuilder.setLabel("Roles Folder");
 		miscFolder.addChild(nodeModelBuilder.build());
 
+		final IComponentNodeModel newsFolder = model.addChild(
+				"NEWS_FOLDER_ID",
+				Messages.getString("SampleApplication.news"),
+				SilkIcons.FOLDER);
+		nodeModelBuilder.setComponentFactory(NewsTickerComponent.class);
+		nodeModelBuilder.setId(NewsTickerComponent.class.getName());
+		nodeModelBuilder.setLabel(Messages.getString("SampleApplication.sports"));
+		newsFolder.addChild(nodeModelBuilder.build());
+
 		final IComponentNodeModel entitiesFolder = model.addChild(
 				"GENERIC_COMPONENTS_FOLDER_ID",
 				Messages.getString("SampleApplication.generic_components"),
@@ -98,6 +108,7 @@ public final class SampleApplicationFactory {
 		nodeModelBuilder.setLabel("Sample config");
 		nodeModelBuilder.setIcon(SilkIcons.COG_EDIT);
 		model.addChild(nodeModelBuilder.build());
+
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011, grossmann
+ * Copyright (c) 2011, nimoll
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -26,18 +26,25 @@
  * DAMAGE.
  */
 
-package org.jowidgets.samples.kitchensink.sample1.common.entity;
+package org.jowidgets.samples.kitchensink.sample1.common.descriptor;
 
-public enum EntityIds {
+import org.jowidgets.i18n.api.IMessage;
+import org.jowidgets.i18n.api.IMessageProvider;
+import org.jowidgets.i18n.api.MessageProvider;
 
-	GENERIC_BEAN,
-	ROLE,
-	AUTHORIZATION,
-	USER_ROLE_LINK,
-	VIRTUAL_ROLES_OF_USERS,
-	VIRTUAL_LINKABLE_ROLES_OF_USERS,
-	VIRTUAL_USERS_OF_ROLES,
-	VIRTUAL_LINKABLE_USERS_OF_ROLES,
-	MATCH;
+public final class Messages {
 
+	private static final IMessageProvider MESSAGE_PROVIDER = MessageProvider.create(
+			"org.jowidgets.samples.kitchensink.sample1.common.descriptor.messages",
+			Messages.class);
+
+	private Messages() {}
+
+	public static String getString(final String key) {
+		return MESSAGE_PROVIDER.getString(key);
+	}
+
+	public static IMessage getMessage(final String key) {
+		return MESSAGE_PROVIDER.getMessage(key);
+	}
 }

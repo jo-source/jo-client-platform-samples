@@ -145,7 +145,7 @@ public class SampleEntityServiceBuilder extends EntityServiceBuilder {
 				GenericBeanInitializer.ALL_PROPERTIES);
 		add(EntityIds.GENERIC_BEAN, descriptor, servicesProvider);
 
-		//IUser
+		//ISampleConfig
 		descriptor = new SampleConfigDtoDescriptorBuilder().build();
 		servicesProvider = DummyServiceFactory.beanServices(
 				registry,
