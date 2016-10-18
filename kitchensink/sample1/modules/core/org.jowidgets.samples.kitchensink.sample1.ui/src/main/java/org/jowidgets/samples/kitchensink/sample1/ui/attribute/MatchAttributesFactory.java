@@ -33,11 +33,9 @@ import java.util.List;
 import org.jowidgets.cap.common.api.bean.IProperty;
 import org.jowidgets.cap.ui.api.CapUiToolkit;
 import org.jowidgets.cap.ui.api.attribute.IAttribute;
-import org.jowidgets.cap.ui.api.attribute.IAttributeBluePrint;
 import org.jowidgets.cap.ui.api.attribute.IAttributeCollectionModifierBuilder;
 import org.jowidgets.cap.ui.api.attribute.IAttributeToolkit;
 import org.jowidgets.samples.kitchensink.sample1.common.descriptor.MatchDtoDescriptorBuilder;
-import org.jowidgets.samples.kitchensink.sample1.common.entity.IMatch;
 
 public class MatchAttributesFactory {
 
@@ -52,9 +50,8 @@ public class MatchAttributesFactory {
 
 		modifierBuilder.addDefaultEditableModifier(true);
 
-		final IAttributeBluePrint<Object> centerFrequencyAttributeBp;
-
-		centerFrequencyAttributeBp = modifierBuilder.addModifier(IMatch.TITLE_PROPERTY);
+		//		final IAttributeBluePrint<Object> centerFrequencyAttributeBp;
+		//		centerFrequencyAttributeBp = modifierBuilder.addModifier(IMatch.TITLE_PROPERTY);
 
 		final List<IAttribute<Object>> attributes = attributeToolkit.createAttributes(
 				createProperties(),

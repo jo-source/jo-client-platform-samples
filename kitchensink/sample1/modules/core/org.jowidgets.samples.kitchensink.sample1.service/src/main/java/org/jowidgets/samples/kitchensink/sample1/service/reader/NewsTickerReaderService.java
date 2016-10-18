@@ -206,8 +206,8 @@ public class NewsTickerReaderService implements IReaderService<Void> {
 
 	private class MatchGenerator implements Runnable {
 
-		private static final int timeBetweenUpdatesInMs = 1000;
-		private static final int maxNumberOfMatches = 20;
+		private static final int TIME_BETWEEN_UPDATES_IN_MS = 1000;
+		private static final int MAX_NUMBER_OF_MATCHES = 20;
 
 		private final Random rng = new Random();
 
@@ -218,15 +218,15 @@ public class NewsTickerReaderService implements IReaderService<Void> {
 				if (checkAllMatchesFinished()) {
 					clearMatches();
 				}
-				else if (matches.isEmpty() || matches.size() < maxNumberOfMatches && rng.nextDouble() < 0.5d) {
-					createMatches(Math.min(3, maxNumberOfMatches - matches.size()));
+				else if (matches.isEmpty() || matches.size() < MAX_NUMBER_OF_MATCHES && rng.nextDouble() < 0.5d) {
+					createMatches(Math.min(3, MAX_NUMBER_OF_MATCHES - matches.size()));
 				}
 				else {
 					updateAMatch();
 				}
 
 				try {
-					Thread.sleep(timeBetweenUpdatesInMs);
+					Thread.sleep(TIME_BETWEEN_UPDATES_IN_MS);
 				}
 				catch (final InterruptedException e) {
 					Thread.currentThread().interrupt();
@@ -267,7 +267,7 @@ public class NewsTickerReaderService implements IReaderService<Void> {
 		private boolean checkAllMatchesFinished() {
 			boolean result = true;
 
-			if (matches.size() < maxNumberOfMatches) {
+			if (matches.size() < MAX_NUMBER_OF_MATCHES) {
 				result = false;
 			}
 			else {
