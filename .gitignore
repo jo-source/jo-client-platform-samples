@@ -2,3 +2,6 @@
 .project
 .checkstyle
 target
+/rcp3/example1/bundles/app/org.jowidgets.samples.rcp.sample1.app.common.bundle/META-INF/MANIFEST.MF
+/rcp3/example1/bundles/app/org.jowidgets.samples.rcp.sample1.app.service.bundle/META-INF/MANIFEST.MF
+/rcp3/example1/bundles/app/org.jowidgets.samples.rcp.sample1.app.ui.bundle/META-INF/MANIFEST.MF
