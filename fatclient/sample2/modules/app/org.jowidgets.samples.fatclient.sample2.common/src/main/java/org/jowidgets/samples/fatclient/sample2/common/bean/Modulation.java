@@ -35,7 +35,7 @@ public enum Modulation {
 
 	private final String string;
 
-	private Modulation(final String string) {
+	Modulation(final String string) {
 		this.string = string;
 	}
 

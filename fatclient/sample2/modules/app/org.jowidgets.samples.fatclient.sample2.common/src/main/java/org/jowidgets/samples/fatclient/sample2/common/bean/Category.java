@@ -41,7 +41,7 @@ public enum Category {
 
 	private final String string;
 
-	private Category(final String string) {
+	Category(final String string) {
 		this.string = string;
 	}
 

@@ -79,7 +79,7 @@ public final class HzValue implements IUnitValue<Double>, Comparable<HzValue>, S
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((unit == null) ? 0 : unit.hashCode());
-		long temp;
+		final long temp;
 		temp = Double.doubleToLongBits(value);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;

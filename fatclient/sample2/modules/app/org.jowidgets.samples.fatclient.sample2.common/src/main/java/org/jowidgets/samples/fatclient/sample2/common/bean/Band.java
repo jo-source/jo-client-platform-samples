@@ -37,7 +37,7 @@ public enum Band {
 
 	private final String string;
 
-	private Band(final String string) {
+	Band(final String string) {
 		this.string = string;
 	}
 
