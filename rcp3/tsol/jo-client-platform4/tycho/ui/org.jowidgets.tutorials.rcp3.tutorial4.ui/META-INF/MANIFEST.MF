@@ -26,3 +26,4 @@ Require-Bundle:
  com.springsource.slf4j.api;bundle-version="1.6.1",
  org.slf4j.jul.to.slf4j.bundle;bundle-version="1.6.6"
 Export-Package: org.jowidgets.tutorials.rcp3.tutorial4.ui.workbench
+Shared-Classloader-Contribution: true

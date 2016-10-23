@@ -56,7 +56,7 @@ public final class Tutorial4PluginProviderHolder extends PluginProviderHolder {
 
 	private static final class Tutorial4PluginProviderBuilder extends PluginProviderBuilder {
 
-		public Tutorial4PluginProviderBuilder() {
+		Tutorial4PluginProviderBuilder() {
 			addPlugin(IBeanRelationTreeModelPlugin.ID, new RelationTreeModelPlugin());
 
 			addMenuInterceptorPlugin(new PersonTableMenuInterceptorPlugin(), IPerson.class);

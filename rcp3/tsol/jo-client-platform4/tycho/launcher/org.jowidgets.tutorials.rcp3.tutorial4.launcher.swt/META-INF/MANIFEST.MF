@@ -23,3 +23,4 @@ Require-Bundle:
  org.jowidgets.tools.starter.classloading.plugin,
  org.eclipse.osgi;bundle-version="3.6.2"
 Bundle-Activator: org.jowidgets.tutorials.rcp3.tutorial4.launcher.swt.Tutorial4OsgiWorkbenchRunner
+Shared-Classloader-Contribution: true
