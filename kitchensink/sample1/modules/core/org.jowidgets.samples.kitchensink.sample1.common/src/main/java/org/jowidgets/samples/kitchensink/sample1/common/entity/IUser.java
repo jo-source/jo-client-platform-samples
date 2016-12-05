@@ -94,13 +94,13 @@ public interface IUser extends IBean {
 	@Size(min = 1, max = 50)
 	String getName();
 
-	void setName(final String name);
+	void setName(String name);
 
 	@NotNull
 	@Size(min = 1, max = 50)
 	String getLastName();
 
-	void setLastName(final String lastName);
+	void setLastName(String lastName);
 
 	@Past
 	Date getDateOfBirth();
@@ -117,11 +117,11 @@ public interface IUser extends IBean {
 
 	Integer getAge();
 
-	void setDateOfBirth(final Date dateOfBirth);
+	void setDateOfBirth(Date dateOfBirth);
 
 	String getGender();
 
-	void setGender(final String gender);
+	void setGender(String gender);
 
 	Integer getCountry();
 

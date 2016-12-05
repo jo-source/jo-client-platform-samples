@@ -56,5 +56,5 @@ public interface ICountry extends IBean {
 
 	String getName();
 
-	void setName(final String name);
+	void setName(String name);
 }

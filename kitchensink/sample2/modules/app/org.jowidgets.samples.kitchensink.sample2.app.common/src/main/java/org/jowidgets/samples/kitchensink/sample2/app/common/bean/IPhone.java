@@ -60,11 +60,11 @@ public interface IPhone extends IBean {
 
 	String getPhone();
 
-	void setPhone(final String number);
+	void setPhone(String number);
 
 	Long getPersonId();
 
-	void setPersonId(final Long id);
+	void setPersonId(Long id);
 
 	String getPersonLabel();
 

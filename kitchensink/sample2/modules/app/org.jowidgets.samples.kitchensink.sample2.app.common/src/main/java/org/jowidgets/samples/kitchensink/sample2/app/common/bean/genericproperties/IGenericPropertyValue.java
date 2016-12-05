@@ -46,6 +46,6 @@ public interface IGenericPropertyValue extends IBean {
 	@Size(min = 1, max = 2000)
 	String getValue();
 
-	void setValue(final String value);
+	void setValue(String value);
 
 }

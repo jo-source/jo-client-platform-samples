@@ -58,9 +58,9 @@ public interface IPersonRelationType extends IBean {
 
 	String getRelationName();
 
-	void setRelationName(final String name);
+	void setRelationName(String name);
 
 	String getReverseRelationName();
 
-	void setReverseRelationName(final String name);
+	void setReverseRelationName(String name);
 }

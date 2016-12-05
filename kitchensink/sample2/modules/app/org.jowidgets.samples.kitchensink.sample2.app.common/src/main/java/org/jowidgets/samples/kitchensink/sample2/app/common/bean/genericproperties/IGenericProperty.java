@@ -57,24 +57,24 @@ public interface IGenericProperty extends IBean {
 	@NotNull
 	GenericPropertyEntity getEntity();
 
-	void setEntity(final GenericPropertyEntity entity);
+	void setEntity(GenericPropertyEntity entity);
 
 	@NotNull
 	@Size(min = 1, max = 200)
 	String getPropertyName();
 
-	void setPropertyName(final String propertyName);
+	void setPropertyName(String propertyName);
 
 	@NotNull
 	@Size(min = 1, max = 100)
 	String getLabel();
 
-	void setLabel(final String label);
+	void setLabel(String label);
 
 	@Size(min = 1, max = 2000)
 	String getDescription();
 
-	void setDescription(final String description);
+	void setDescription(String description);
 
 	@NotNull
 	GenericPropertyType getType();

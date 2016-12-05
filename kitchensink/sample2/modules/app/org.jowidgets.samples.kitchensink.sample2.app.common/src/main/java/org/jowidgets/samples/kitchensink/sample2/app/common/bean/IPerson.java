@@ -99,7 +99,7 @@ public interface IPerson extends IBean, IGenericPropertiesBean {
 	@Size(min = 1, max = 1)
 	String getGender();
 
-	void setGender(final String gender);
+	void setGender(String gender);
 
 	@NotNull
 	Boolean getActive();
@@ -112,6 +112,6 @@ public interface IPerson extends IBean, IGenericPropertiesBean {
 
 	List<Long> getRoleIds();
 
-	void setRoleIds(final List<Long> roleIds);
+	void setRoleIds(List<Long> roleIds);
 
 }

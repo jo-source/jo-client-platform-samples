@@ -74,7 +74,7 @@ public interface ISampleConfig extends IBean {
 	@Size(min = 1, max = 50)
 	String getApplicationName();
 
-	void setApplicationName(final String name);
+	void setApplicationName(String name);
 
 	Integer getMaxSessionCount();
 

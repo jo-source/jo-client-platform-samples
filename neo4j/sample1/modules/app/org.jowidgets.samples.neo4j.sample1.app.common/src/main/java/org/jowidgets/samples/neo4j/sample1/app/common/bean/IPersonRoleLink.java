@@ -53,5 +53,5 @@ public interface IPersonRoleLink extends IBean {
 
 	Object getRoleId();
 
-	void setRoleId(final Object id);
+	void setRoleId(Object id);
 }

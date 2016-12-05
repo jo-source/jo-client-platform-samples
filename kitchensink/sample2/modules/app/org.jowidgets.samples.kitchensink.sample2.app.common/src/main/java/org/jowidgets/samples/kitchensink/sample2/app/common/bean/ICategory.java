@@ -75,7 +75,7 @@ public interface ICategory extends IBean {
 
 	Long getSuperCategoryId();
 
-	void setSuperCategoryId(final Long id);
+	void setSuperCategoryId(Long id);
 
 	String getSuperCategoryLabel();
 

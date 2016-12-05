@@ -49,7 +49,7 @@ public interface IRoleAuthorizationLink extends IBean {
 
 	Object getRoleId();
 
-	void setRoleId(final Object id);
+	void setRoleId(Object id);
 
 	Object getAuthorizationId();
 

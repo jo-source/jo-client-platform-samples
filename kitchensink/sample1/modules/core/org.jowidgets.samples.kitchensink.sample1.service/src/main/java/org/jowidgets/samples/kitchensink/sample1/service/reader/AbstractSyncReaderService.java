@@ -103,6 +103,6 @@ public abstract class AbstractSyncReaderService implements ISyncReaderService<Vo
 
 	abstract IBeanDtoFactory<?> getDtoFactory();
 
-	abstract List<IBean> getData(final List<? extends IBeanKey> parentBeanKeys, final IExecutionCallback executionCallback);
+	abstract List<IBean> getData(List<? extends IBeanKey> parentBeanKeys, IExecutionCallback executionCallback);
 
 }
